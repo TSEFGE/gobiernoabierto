@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="detenidosApp">
+<head>
+      <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <link href="https://eonasdan.github.io/bootstrap-datetimepicker/css/prettify-1.0.css" rel="stylesheet">
+
+    <link href="https://eonasdan.github.io/bootstrap-datetimepicker/css/base.css" rel="stylesheet">
+
+    <link href="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+
+    <script src="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+
+    <link href="./libjs/bootstrap-combined.min.css" rel="stylesheet">
+   <!-- <link rel="stylesheet" type="text/css" media="screen" href="./libjs/bootstrap-datetimepicker-0.0.11/css/bootstrap-datetimepicker.min.css">-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>    
+        <script src="./js/detenidos.js"></script>
+        <title>Detenciones</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <!--<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"> </script> -->
+       <!-- <script type="text/javascript" src="./libjs/bootstrap.min.js"> </script>-->
+
+        <!--<script type="text/javascript" src="./libjs/bootstrap-datetimepicker-0.0.11/js/bootstrap-datetimepicker.min.js"> </script>-->
+        <script type="text/javascript" src="https://eonasdan.github.io/bootstrap-datetimepicker/js/base.js"> </script>
+        <script type="text/javascript" src="https://eonasdan.github.io/bootstrap-datetimepicker/js/prettify-1.0.min.js"> </script>
+        
+        <p id="instrucciones"><span class="glyphicon glyphicon-search"> <label>Introduzca uno o mas valores para buscar (p.ej Oficina=Xalapa y Cargo=Fiscal)</label> </p>
+        <div ng-controller="UnidadesController as todoList">
+                <form id="detenido" method="POST" action="">
+                Nombre: <input id="nombre" ng-model="nombre" type="text" class="form-control ng-valid ng-dirty" style="display:inline; width: 300px;" placeholder="Nombre completo o parcial del titular"><br></br>
+                
+                Ap. Paterno: <input id="paterno" ng-model="paterno" type="text" class="form-control ng-valid ng-dirty" style="display:inline; width: 300px;" placeholder="Palabra completa o parcial de la oficina"><br></br>
+                
+                Ap. Materno:   <input id="materno" ng-model="materno" type="text" class="form-control ng-valid ng-dirty" style="display:inline; width: 300px;" placeholder="Palabra completa o parcial del cargo"><br></br>
+                
+                Sexo:   <select id="sexo" ng-model="sexo"><option>Masculino</option><option>Femenino</option></select>
+                
+                Edad:   <input id="edad" ng-model="edad" type="text" class="form-control ng-valid ng-dirty" style="display:inline; width: 300px;" placeholder="Palabra completa o parcial del cargo"><br></br>
+
+                Unidad:   
+                <select  id="idUnidad" ng-model="idUnidad" name="idUnidad">
+                    <option ng-repeat="unidad in todoList.unidades" value="{{unidad.id}}">{{unidad.nombre}}</option>
+                    <option value="">Select</option>
+                </select></br></br>
+
+              Fecha Inicio Detención: 
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="input-group date" id="datetimepicker1">
+                                <input type="text" class="form-control" id="fechaInicio" data-format="yyyy/MM/dd hh:mm:ss" name="fechaInicio">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker1').datetimepicker({format: 'YYYY/MM/DD hh:mm'});
+                        });
+                    </script>
+                </div>
+            </div>
+
+                  Fecha Fin Detención: 
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="input-group date" id="datetimepicker2">
+                                <input type="text" class="form-control" id="fechaFin" data-format="yyyy/MM/dd hh:mm:ss" name="fechaFin">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                          $('#datetimepicker2').datetimepicker({format: 'YYYY/MM/DD hh:mm'});
+                        });
+                    </script>
+                </div>
+            </div>
+
+                <input class="btn btn-success" ng-click="addDetenido()" id="search" type="button" value="Buscar" style="text-align:center">
+        </form>
+      </div>
+    <div id="resultsDiv"> 
+    </div>
+    </body>
+</html> 

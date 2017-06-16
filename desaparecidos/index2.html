@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <title>Gobierno Abierto</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+   
+  }
+  </style>
+</head>
+
+<body>
+ <header id="header">
+ 	<center>
+     <img src="./img/header.jpg" /> 
+    </center></header>
+<div class="container">
+  <br>
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+        	<div style="width:300px; height:150px; bottom:-30px; right:0px; position:absolute; z-index:100;"><a href="bienvenida.html" style="color:#FFFFFF"> Leer mas... </a>    <a href="personas.html"><img width="100px" height="100px" src="./img/desaparecidos.png"/></a></div>
+      <img src="./img/baner_bienvenidos.png" style="height:40%; width:auto;" alt="Bienvenida" >
+    </div>
+    <div class="item">
+    	<div style="width:300px; height:150px; bottom:-30px; right:0px; position:absolute; z-index:100;"> <a href="metodologia.pdf" target="_blank" style="color:#FFFFFF"> Leer mas... </a>    <a href="personas.html"><img width="100px" height="100px" src="./img/desaparecidos.png"/></a></div>
+      <img src="./img/baner_metodologia.png" style="height:40%; width:auto;" alt="Metodología">
+    </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Anterior</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Siguiente</span>
+    </a>
+  </div>
+</div>
+<footer id="footer">
+       <img src="./img/footer.jpg" width="100%" style="vertical-align:center;"/>        
+</footer>
+</body>
+</html>

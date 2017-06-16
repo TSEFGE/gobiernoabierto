@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="detenidosApp">
+<head>
+    <link href="./libjs/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="./libjs/bootstrap-datetimepicker-0.0.11/css/bootstrap-datetimepicker.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>    
+        <script src="./js/detenidos.js"></script>
+        <title>Detenciones</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"> </script> 
+        <script type="text/javascript" src="./libjs/bootstrap.min.js"> </script>
+        <script type="text/javascript" src="./libjs/bootstrap-datetimepicker-0.0.11/js/bootstrap-datetimepicker.min.js"> </script>
+        <p id="instrucciones"><span class="glyphicon glyphicon-search"> <label>Introduzca uno o mas valores para buscar (p.ej Oficina=Xalapa y Cargo=Fiscal)</label> </p>
+        <div ng-controller="UnidadesController as todoList">
+                <form id="detenido" method="POST" action="">
+                Nombre: <input id="nombre" ng-model="nombre" type="text" class="form-control ng-valid ng-dirty" style="display:inline; width: 300px;" placeholder="Nombre completo o parcial del titular"><br></br>
+                
+                Ap. Paterno: <input id="paterno" ng-model="paterno" type="text" class="form-control ng-valid ng-dirty" style="display:inline; width: 300px;" placeholder="Palabra completa o parcial de la oficina"><br></br>
+                
+                Ap. Materno:   <input id="materno" ng-model="materno" type="text" class="form-control ng-valid ng-dirty" style="display:inline; width: 300px;" placeholder="Palabra completa o parcial del cargo"><br></br>
+                
+                Sexo:   <select id="sexo" ng-model="sexo"><option>Masculino</option><option>Femenino</option></select>
+                
+                Edad:   <input id="edad" ng-model="edad" type="text" class="form-control ng-valid ng-dirty" style="display:inline; width: 300px;" placeholder="Palabra completa o parcial del cargo"><br></br>
+
+                Unidad:   
+                <select  id="idUnidad" ng-model="idUnidad" name="idUnidad">
+                    <option ng-repeat="unidad in todoList.unidades" value="{{unidad.id}}">{{unidad.nombre}}</option>
+                    <option value="">Select</option>
+                </select></br></br>
+
+                Fecha Inicio Detención: 
+               <div class="well">
+                  <div  class="input-append date">
+                    <input id="fechaInicio" ng-model="fechaInicio" name="fechaInicio" data-format="yyyy/MM/dd hh:mm:ss" type="text">
+                    <span class="add-on">
+                      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                      </i>
+                    </span>
+                  </div>
+                </div>
+
+               Fecha Fin Detención: 
+               <div class="well">
+                  <div  class="input-append date">
+                    <input id="fechaFin" ng-model="fechaFin" name="fechaFin" data-format="yyyy/MM/dd hh:mm:ss" type="text">
+                    <span class="add-on">
+                      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                      </i>
+                    </span>
+                  </div>
+                </div>
+
+                <input class="btn btn-success" ng-click="addDetenido()" id="search" type="button" value="Buscar" style="text-align:center">
+        </form>
+      </div>
+    <div id="resultsDiv"> 
+    </div>
+    <script type="text/javascript">
+             
+          $(function() {
+            $('#fechaInicio').datetimepicker({
+              language: 'en',
+              pick12HourFormat: true
+            });
+          });
+
+          $(function() {
+            $('#fechaFin').datetimepicker({
+              language: 'en',
+              pick12HourFormat: true
+            });
+          });
+    </script>
+    </body>
+</html> 

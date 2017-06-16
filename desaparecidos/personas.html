@@ -1,0 +1,342 @@
+        <!DOCTYPE html>
+        <!--
+        To change this license header, choose License Headers in Project Properties.
+        To change this template file, choose Tools | Templates
+        and open the template in the editor.
+        -->
+        <html>
+            <head>
+                <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+                <link rel="stylesheet" href="./css/searchcss.css">
+                <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+                <style>
+                     #ayudaDiv{
+                        font-size: 18px;
+                        font-weight: lighter;
+                        color: white;
+                        background-color: #449d44;
+                        color: #FFFFFF;
+                        width: 95%;
+                        visibility: hidden;
+                        height: 70%;
+                        vertical-align: center;
+                        text-align: justify;
+                        border-radius: 20px;
+                        border: 0.5px dashed #8AC007;
+                        z-index: 900;
+                        position: absolute;
+                        left: 2.5%;
+                        top: 15%;
+                        padding-top: 20px;
+                        padding-left: 50px;
+                        padding-right: 50px;
+
+                    }
+
+                    .rcorners2 {
+                        border-radius: 10px;
+                        border: 0.5px solid #8AC007;
+                        padding: 5px; 
+                        padding-top: 10px;
+                        height: 150px;
+                        margin-left: 5px ;
+                        margin-top: 5px;
+                        display: inline-block;
+                        width: 260px;
+                        vertical-align: middle;
+                        cursor: pointer; 
+                    }
+                  
+                    #searchDiv{
+                        margin-bottom: 10px;
+                        width: 97%;
+                        margin-left: auto ;
+                        margin-right: auto ;
+                        margin-bottom: 7px;
+                    }
+                    #searchDiv table{
+                        padding-left: 10px;
+                        font-size: 14px;
+                        font-weight: bolder;
+                    }
+                    #searchDiv table tr td{
+                        font-size: 12px;
+                        color:  #EF9E9F;
+                        font-weight: bold;
+                        padding: 5px;
+                    }
+                    .image_mini{
+                        width: 100px;
+                        height: 130px;
+                        display: inline-block;
+                         margin-left: 0px;
+                        margin-top: 0px;
+                    }
+                    .data_mini{
+                        font-size: 12px;
+                        font-weight: bolder;
+                        display: inline-block;
+                        height: auto;
+                        width:140px;
+                        text-align: justify;
+                        vertical-align: middle;
+                        word-wrap: break-word;         /* All browsers since IE 5.5+ */
+                        overflow-wrap: break-word;     /* Renamed property in CSS3 draft spec */
+                        
+                    }
+                     .image_detail{
+                        width: 50%;
+                        height: auto;
+                    }
+         
+                    #detailsDiv{
+                        font-size: 14px;
+                        font-weight: bold;
+                        color: white;
+                        background-color: #728064;
+                        width: 33%;
+                        visibility: hidden;
+                        height: auto;
+                        vertical-align: center;
+                        text-align: center;
+                        border-radius: 20px;
+                        border: 0.5px dashed #8AC007;
+                        z-index: 1000;
+                        position: absolute;
+                        left: 33%;
+                        top: 20%;
+                        padding-top: 20px;
+
+                    }
+                    #warningDiv{
+                        font-size: 14px;
+                        font-weight: bold;
+                        color: red;
+                        background-color: yellow;
+                        width: 200px;
+                        height: auto;
+                        vertical-align: center;
+                        text-align: center;
+                        border-radius: 20px;
+                        border: 0.5px dashed #8AC007;
+                        z-index: 1001;
+                        position: absolute;
+                        left: 66%;
+                        top: 20%;
+                        visibility: hidden;
+                        float:left;
+                        display: inline-block;
+                    }
+                   
+                    .btn-close{
+                      color: @white-light;
+                      font-size: 30px;
+                      text-decoration: none;
+                      position: absolute; right: 5px; top: 0;
+                      &:hover{
+                         color: darken(@white-light, 10%);
+                      }
+
+                     .infoContacto{
+                        font-size: 10px;
+                        color: white;
+                    }
+                </style>
+                <title>Gobierno Abierto - Registro Público de Personas Desaparecidas</title>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            </head>
+            <body>
+            <div id="detailsDiv" style="display: inline-block;"> 
+             
+            </div>
+                <div id="warningDiv" style="display: inline-block;">
+                    Si detecta información incorrecta, agradeceremos lo comunique al tel. 2288120841
+                </div>    
+            
+                <header><center>
+                    <img src="./img/header.jpg" /> 
+                    </center>
+                    <img src="./img/help.png" onclick="displayHelp();" width="30" height="30" align="right" style="cursor: pointer; margin-right: 40px ;" data-toggle="tooltip" data-placement="top" title="Consulta la Ayuda para el uso del sitio"/>
+                    <a href="./img/cartel.pdf" target="_blank" data-toggle="tooltip" data-placement="top" title="Guia para la Denuncia de Personas Desaparecidas"><img src="./img/documento.png" width="30" height="30" align="right" style="cursor: pointer; margin-right: 10px ;"/></a>
+                    <a href="./img/GraficasDesaparecidosDic2016.pdf" target="_blank" data-toggle="tooltip" data-placement="top" title="Estadistica"><img src="./img/graficas.png" width="30" height="30" align="right" style="cursor: pointer; margin-right: 10px ;"/></a>
+
+                    <a href="./img/infografia.pdf" target="_blank" data-toggle="tooltip" data-placement="top" title="Infografía"><img src="./img/infografia.png" width="30" height="30" align="right" style="cursor: pointer; margin-right: 10px ;"/></a>
+                    <a href="./desaparecidos.xlsx" target="_blank" data-toggle="tooltip" data-placement="top" title="Descargar Archivo"><img src="./img/excel.png" width="30" height="30" align="right" style="cursor: pointer; margin-right: 10px ;"/>
+
+                    <a href="./bienvenida.html" target="_blank" data-toggle="tooltip" data-placement="top" title="Bienvenida"><img src="./img/bienvenida.png" width="30" height="30" align="right" style="cursor: pointer; margin-right: 10px ;"/></a>
+                </header>
+                <br><br>
+                <div id="container">
+                <div id="searchDiv">
+                 <form id="login" method="POST">
+                    <fieldset id="inputs">
+                    <table>
+                        <tr>
+                            <td>Nombre</td>
+                            <td>Apellido Paterno</td>
+                            <td>Apellido Materno</td>
+                            <td>Sexo</td>
+                            <td>Edad</td>
+                        </tr>
+                         <tr>
+                            <td><input  id="nombre" name="nombre" type="text" class="form-control ng-valid ng-dirty" style="display:inline; width: 250px;" placeholder="completo o una parte del mismo" ng-required="required"> 
+                            </td>
+                            <td><input id="paterno"  name="paterno"type="text" class="form-control ng-valid ng-dirty" style="display:inline; width: 250px;" placeholder="completo o una parte del mismo"></td>
+                            <td><input id="materno"  name="materno"type="text" class="form-control ng-valid ng-dirty" style="display:inline; width: 250px;" placeholder="completo o una parte del mismo"></td>
+                            <td><select id="sexo" name="sexo" type="text" class="form-control ng-valid ng-dirty" style="display:inline; width: 150px;" > <option value="">Selecciona</option> <option value="M">Hombre</option> <option value="F">Mujer</option> </select></td>
+                            <td><input type="text" id="edad"  name="edad" class="form-control ng-valid ng-dirty" style="display:inline; width: 200px;" placeholder="Al Desaparecer (años)"></td>
+                        </tr>
+                    </table>
+                       <input class="btn btn-success" type="submit" id="search" value="Buscar" style="text-align:center">
+                       <input class="btn btn-success" onclick="limpiar();" type="button" id="reset" value="Limpiar" style="text-align:center">
+                    </fieldset>
+                </form>
+
+                <div class="alert alert-amarillo">
+                    <span class="i-info"></span> Publicar datos de personas desaparecidas tiene como fin su búsqueda y localización, por lo que no se vulnera el derecho a su privacidad <strong>.
+                </div>
+                </div>
+            <div id="resultsDiv"> 
+            </div>
+            
+            <div id="ayudaDiv"> <a href="#close" class="btn-close" aria-hidden="true" onclick="closeHelp();">×</a><span> 
+                <center><h1>REGISTRO PUBLICO DE PERSONAS DESAPARECIDAS</h1></center><br>
+                Este registro está integrado por los datos de las personas no localizadas, las cuales fueron reportadas ante esta autoridad.
+                Este registro solo contiene información de las personas que no han sido localizadas.
+
+                El proceso de búsqueda en este Registro de Personas no Localizadas es de fácil uso, por lo que usted podrá realizar la búsqueda por  uno,  todos o  la combinación de los rubros de: Nombre, Apellido Paterno, Apellido Materno, Edad y/o Sexo. Posterior a colocar la información por la que usted  desea realizar la búsqueda, debe realizar un clic en el botón de Buscar, y en la parte inferior de la pantalla se desplegará las fotos de las personas no localizadas. Si desea visualizar más detalle de la persona no localizada deberá realizar un clic sobre la imagen de la foto a consultar.
+            </div>
+         </div>
+                
+                <script>
+                    $( "#search" ).click( function () {
+                    $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json',
+                     url: 'index.php/consulta',
+                    dataType: "json",                  
+                          data: JSON.stringify({
+                              nombre: $("#nombre").val(),
+                              paterno: $("#paterno").val(),
+                              materno: $("#materno").val(),
+                              sexo: $("#sexo").val(),
+                              edad: $("#edad").val()
+                          }),
+                          success: function (data) {
+                            $('#resultsDiv').empty();
+                             $.each(data, function(key, item) {
+                                if (key=="error_code"){
+                                    htmlElement = $('<h4>No existen resultados para la busqueda realizada</h4>');
+                                    $('#resultsDiv').append(htmlElement);
+                                    return false;
+                                }
+                                var partefoto="";
+                                if(item.rutfoto!=null){
+                                    partefoto=item.rutfoto.split("\\").pop();
+                                }
+                                var foto=item.rutfoto == null || item.rutfoto === "" ?'./img/desapsf.jpg':'./img/fotos/'+partefoto;
+                                var sexo=item.sexo=='M'?'Masculino':'Femenino';
+                                var origen=item.origen==null?'S/D':item.origen;
+                                htmlElement = $('<div onclick="getDetail('+item.id+');" class="rcorners2" id="'+item.id+'"><span><img class="image_mini" src="'+foto+'" onerror="epic(this);"/> '+'<div class="data_mini"><span class="glyphicon glyphicon-user"></span> '+item.nombre+' '+ item.apat +' '+ item.amat +'<br><span class="glyphicon glyphicon-calendar"></span> '+item.edad+' años<br><span class="glyphicon glyphicon-random"></span> '+sexo+'<br> <span class="glyphicon glyphicon-question-sign">Extraviado:'+item.fextrav+'</span>  </div>');
+                                //<span class="glyphicon glyphicon-home"></span> '+origen+'</small></span>
+                                $('#resultsDiv').append(htmlElement);
+                              });
+                          }
+                      });
+          });
+
+            function getDetail(id){
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json',
+                    url: './index.php/consultaById',
+                    dataType: "json",                  
+                    data: JSON.stringify({
+                        id: id,
+                    }),
+                    success: function (data) {
+                        $('#detailsDiv').empty();
+                        $.each(data, function(key, item) {
+                            if (key=="error_code"){
+                                htmlElement = $('<h4>No existen resultados para la busqueda realizada</h4>');
+                                $('#detailsDiv').append(htmlElement);
+                                return false;
+                            }
+                            var partefoto="";
+                            if(item.rutfoto!=null){
+                                 partefoto=item.rutfoto.split("\\").pop();
+                            }
+                                var foto=item.rutfoto == null || item.rutfoto === "" ?'./img/desapsfdeta.png':'./img/fotos/'+partefoto;
+
+                            var sexo=item.sexo=='M'?'Masculino':'Femenino';
+                            var origen=item.origen==null?'S/D':item.origen;
+                            htmlElement = $('<div class="detailDiv" id="'+item.id+'"><a href="#close" class="btn-close" aria-hidden="true" onclick="closeModal();">×</a><span> <table style="margin-left:12%;" width="80%"><tr><td style="text-align:center;"><img  onerror="epic2(this);" class="image_detail" src="'+foto+'"/></td></tr><tr><td style="text-align:left;">'+item.nombre+' '+ item.apat +' '+ item.amat +'<br> SEXO: '+sexo  +'<br> EDAD:'+ item.edad + '<br> NACIONALIDAD: '+item.nac +'<br> ORIGINARIO: '+origen +'<br> ESTADO: '+item.estado + '<br> LUGAR DE EXTRAVIO: '+ item.mun + '<br> FECHA DE EXTRAVIO: '+item.fextrav +'<br> ESTATURA: '+item.est +'<br> COMPLEXION: '+item.compl +'<br> OJOS: '+item.ojos +'<br> PIEL: '+item.piel +'<br> CABELLO: '+item.cab +'<br> TIPO DE CABELLO: '+item.tcab +'<br> NARIZ: '+ item.nariz +'<br> LABIOS: '+item.labios +'<br> CEJAS: '+item.cejas +'</td></tr></table></span></div><br>');
+                            var infoContacto=$('<div style="font-size:13px; font-weight:lighter;"><span>SI LO HA VISTO O LO RECONOCE COMUNIQUESE A: <br><span class="glyphicon glyphicon-phone-alt"></span>  2288416170 Ext. 3000  <span class="glyphicon glyphicon-earphone"></span>  2288120841, <img src="./img/whatsapp.png" width="19" height="19"/>  2281704493 </span><br><span class="glyphicon glyphicon-envelope"></span>  localizarlosfiscalia_ver@veracruz.gob.mx <br> Su información será anónima y confidencial </div>');
+
+                                /*<br>Fiscalía Especializada para la Atención de Denuncias por Personas Desparecidas <br> Privada del Tecnológico No. 101 Segundo Piso Col. Moctezuma. Xalapa, Veracruz, C.P 91096 */
+                            $('#detailsDiv').append(htmlElement);
+                            $('#detailsDiv').append(infoContacto);
+
+                        });
+                        //.style.visibility="visible";
+                        $('#detailsDiv').css("visibility", "visible");
+                        $('#warningDiv').css("visibility", "visible");
+                        var scrollPos = $('#detailsDiv').offset().top;
+                      $(window).scrollTop(scrollPos);
+
+                    }
+                });
+            }
+
+             function closeModal(){
+               $('#detailsDiv').css("visibility", "hidden");
+              $('#warningDiv').css("visibility", "hidden");
+
+             }
+
+            $('#login').submit(function(event){
+              event.preventDefault();
+              $("#search").click();
+            });
+
+            function displayHelp(){
+               $('#ayudaDiv').css("visibility", "visible");
+             }
+
+             function closeHelp(){
+               $('#ayudaDiv').css("visibility", "hidden");
+             }
+
+             function epic(c) {
+            c.onerror='';
+            c.src='./img/desapsf.jpg';
+        };
+         function epic2(c) {
+            c.onerror='';
+            c.src='./img/desapsfdeta.png';
+        };
+         $('[data-toggle="tooltip"]').tooltip();
+
+         function limpiar(){
+            $('#ayudaDiv').css("visibility", "hidden");
+            $('#detailsDiv').css("visibility", "hidden");       
+            $('#resultsDiv').empty();
+            $("input[type=text]").val("");
+            $('#sexo').val([]);
+          };
+            </script>
+<span class="i-info"> Corte de revisión de su actualización mensual. </span>
+            <footer>
+                <img src="./img/footer.jpg" width="100%" style="vertical-align:center;"/>        
+            </footer>
+
+			<center>			
+			    Visitante No.:
+				<a href="http://www.easycounter.com/es/">
+				<img src="//www.easycounter.com/counter.php?contactofiscalia"
+				border="0" alt="contadores"></a>
+			</center>
+            </body>
+        </html> 

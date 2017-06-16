@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="detenidosApp">
+<head> 
+  
+
+  <script>
+    </script>
+    <style type="text/css">
+      #map {
+        width: 700px;
+        height: 400px;
+      }
+      body{
+        margin-top: -50px;
+      }
+        table {
+          margin-left: 2.5%;
+          width: 95%;
+
+        }
+       input {
+            text-transform: uppercase;
+            height: 30px;
+        }
+        input.ng-invalid {
+             border: 1px solid red;
+        }
+        input.ng-invalid-required.ng-dirty {
+             border: 1px solid blue;
+        }
+        
+        body table tr td {
+            padding: 5px;
+            font-size: 14px;
+            font-weight: bolder;
+            color:  #EF9E9F;
+            font-weight: bold;
+            padding: 5px;
+        }
+        legend {
+                font-size: 12px;
+                font-weight: bolder;
+                font-family: sans-serif;
+        }
+        legend img {
+            width:50px;
+            height:50px;
+        }
+  #ayudaDiv{
+                        font-size: 18px;
+                        font-weight: lighter;
+                        color: white;
+                        background-color: #449d44;
+                        color: #FFFFFF;
+                        width: 95%;
+                        visibility: hidden;
+                        height: 70%;
+                        vertical-align: center;
+                        text-align: justify;
+                        border-radius: 20px;
+                        border: 0.5px dashed #8AC007;
+                        z-index: 900;
+                        position: absolute;
+                        left: 2.5%;
+                        top: 15%;
+                        padding-top: 20px;
+                        padding-left: 50px;
+                        padding-right: 50px;
+                        overflow: scroll;
+
+                    }
+
+          .titleHeader{
+                        font-size: 20px;
+                        font-weight: bold;
+                        color: white;
+                        background-color: #728064;
+                        vertical-align: center;
+                        height: 60px;
+                        text-align: center;
+                        border-radius: 20px;
+                        border: 0.5px solid #8AC007;
+                        margin-right: 2.5%;
+                        margin-left: 2.5%;
+                        width: 95%;
+                        padding-top: 20px;
+                        margin-top: -60px;
+                    }
+
+
+            #searchDiv{
+                        font-size: 14px;
+                        font-weight: bold;
+                        color: white;
+                        background-color: #728064;
+                        height: auto;
+                        vertical-align: center;
+                        text-align: center;
+                        border-radius: 20px;
+                        border: 0.5px dashed #8AC007;
+                        margin-left: 0%;
+                        left:8%;
+                        top: 0px;
+                        padding-top: 20px;
+                        padding-left: 40px;
+                        width: 400px;
+                        position: relative;
+                        display: inline-block;
+                        overflow: visible;
+                    }
+
+                     .hrDiv{
+                        background-color: #728064;
+                        vertical-align: center;
+                        height: 30px;
+                        border-radius: 20px;
+                        border: 0.5px solid #8AC007;
+                        margin-right: 2.5%;
+                        margin-left: 2.5%;
+                        width: 95%;
+                    }
+                     .hrDiv2{
+                        margin-left: 2.5%;
+                        width: 60%;
+                        display: inline-block;
+                        font-family: sans-serif;
+                        font-size: 19px;
+                        display: inline-block;
+                        color: #000000;
+                        vertical-align: top;
+                        margin-top: 80px;
+                    }
+
+        .data{
+            font-size: 14px;
+            font-weight: bold;
+            color: black;
+        }
+              
+                  .btn-close{
+                      color: @red-light;
+                      font-size: 45px;
+                      text-decoration: underline;
+                      position: absolute; right: 9px; top: 9px;
+                      &:hover{
+                         color: darken(@red-light, 10%);
+                      }     
+    </style>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <link href="https://eonasdan.github.io/bootstrap-datetimepicker/css/prettify-1.0.css" rel="stylesheet">
+
+    <link href="https://eonasdan.github.io/bootstrap-datetimepicker/css/base.css" rel="stylesheet">
+
+    <link href="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+
+    <script src="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+
+    <link href="./libjs/bootstrap-combined.min.css" rel="stylesheet">
+   <!-- <link rel="stylesheet" type="text/css" media="screen" href="./libjs/bootstrap-datetimepicker-0.0.11/css/bootstrap-datetimepicker.min.css">-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>    
+        <script src="./js/detenidos.js"></script>
+        <title>REGISTRO PÚBLICO DE BÚSQUEDA Y LOCALIZACIÓN DE PERSONAS DETENIDAS</title>
+        <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="HandheldFriendly" content="true">
+    </head>
+    <body ng-controller="UnidadesController as Busqueda">
+           <header><center>
+                   <!-- <img src="./img/header.jpg" />-->
+                    <div class="titleHeader"> REGISTRO PÚBLICO DE BÚSQUEDA Y LOCALIZACIÓN DE PERSONAS DETENIDAS</div>
+                     <!--<img src="./img/help.png" onclick="displayHelp();" width="30" height="30" align="right" style="cursor: pointer; margin-right: 40px ;" data-toggle="tooltip" data-placement="top" title="Consulta la Ayuda para el uso del sitio"/>-->
+                     <a href="./img/manual.pdf"><img src="./img/help.png" width="30" height="30" align="right" style="cursor: pointer; margin-right: 40px ;" data-toggle="tooltip" data-placement="top" title="Consulta la Ayuda para el uso del sitio"/></a>
+
+                    <a href="./img/grafica.png" target="_blank" data-toggle="tooltip" data-placement="top" title="Estadistica"><img src="./img/graficas.png" width="30" height="30" align="right" style="cursor: pointer; margin-right: 10px ;"/></a>
+
+                    <a href="./img/infografia.pdf" target="_blank" data-toggle="tooltip" data-placement="top" title="Infografía"><img src="./img/infografia.png" width="30" height="30" align="right" style="cursor: pointer; margin-right: 10px ;"/></a>
+
+                    <a href="./bienvenida.html" target="_blank" data-toggle="tooltip" data-placement="top" title="Bienvenida"><img src="./img/bienvenida.png" width="30" height="30" align="right" style="cursor: pointer; margin-right: 10px ;"/></a>
+        </header>
+       
+        <!--<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"> </script> -->
+       <!-- <script type="text/javascript" src="./libjs/bootstrap.min.js"> </script>-->
+
+        <!--<script type="text/javascript" src="./libjs/bootstrap-datetimepicker-0.0.11/js/bootstrap-datetimepicker.min.js"> </script>-->
+        <script type="text/javascript" src="https://eonasdan.github.io/bootstrap-datetimepicker/js/base.js"> </script>
+        <script type="text/javascript" src="https://eonasdan.github.io/bootstrap-datetimepicker/js/prettify-1.0.min.js"> </script>
+          <div id="ayudaDiv"> <a href="#close" class="btn-close" aria-hidden="true" onclick="closeHelp();">×</a><span> 
+                Este registro está integrado por los datos de las personas detenidas y puestas a disposición en alguna de las Unidades Integrales de Procuración de Justicia de la Fiscalia General del Estado de Veracruz.<br>
+
+                El proceso de búsqueda en este Registro de Personas Detenidas es de fácil uso, por lo que usted podrá realizar la búsqueda de la persona detenida únicamente si conoce todos los datos que se solicitan(NOMBRE, APELLIDO PATERNO, APELLIDO MATERNO, SEXO, FECHA DE NACIMIENTO). <br>
+                <img src="./img/busqueda.png" width="200" align="center"/>
+                <br>
+
+                Posterior a colocar la información de manera completa y correcta, debe realizar un clic en el botón de Buscar,                 <img src="./img/boton_buscar.png" width="80" align="center"/>.
+                <br>
+                En la parte inferior de la pantalla se desplegará el resultado si la persona está detenida y el periodo de su detención se encuentra vigente.<SUP>1</SUP>. Se mostrarán los datos de la puesta a disposición: Periodo de detención, Lugar, Dirección, Teléfono, Fiscal de Distrito Responsable.  <img src="./img/datosresultado.png" width="400" align="center"/>.
+                <br>
+                También se mostrará un Mapa con la ubicación de la Unidad Integral de Procuración de Justicia en donde se encuentra el detenido.
+                <img src="./img/maparesultado.png" width="400" align="center"/>.
+                 <br><br>
+
+
+                En caso de no existir algún resultado de acuerdo a la información capturada el sistema desplegará la leyenda. <font color="red">"No existe ningún registro con los datos especificados"</font>, por lo que será necesario que verifique que los datos hayan sido escritos correctamente.
+
+                <HR size="0">
+                <A NAME="nota_1"></A><SUP>1</SUP></A><FONT SIZE="-1">No existe un historial de las personas detenidas,  por lo que no podrá realizar la búsqueda de personas detenidas con anterioridad y con un periodo de detención que no se encuentre vigente al dia de la consulta</FONT>
+            </div>
+        <table>
+          <tr>
+            <td align="left"><img src="./img/logo_fge.jpg"/></td>
+            <td align="left">
+                Direccion: <span class="data"> Circuito Guizar y Valencia No. 707 Col. Reserva Territorial </span> <br> 
+                Ciudad:<span class="data"> Xalapa, Veracruz </span> <br>
+                Teléfono: <span class="data">(228) 841 61 70 </span> <br>
+                Web:<span class="data"> www.veracruz.gob.mx/justicia</span> 
+              </td>
+            <td align="right"> Ubicación Fiscalía General del Estado de Veracruz de Ignacio de la Llave<br>
+              <img  src="./img/mapa_fiscalia.png"/>
+            </td>
+          </tr>
+        </table>
+        <div class="hrDiv" style="width:60%"></div>
+
+        <div class="hrDiv2">
+          Busca Personas turnadas ante el Ministerio Público. 
+          <br><br>
+          Los familiares de personas detenidas podrán ubicar, desde cualquier computadora, la Unidad Integral de Procuración de Justicia donde se encuentra puesto a disposición el presunto inculpado.
+          <br><br>
+          Los interesados podrán ingresar por Internet y buscar con sólo teclear el nombre completo, fecha de nacimiento y sexo de la persona que buscan. 
+<br><br>
+          Llama al Centro de Atención Telefónica (228) 841-61-70 y proporciona los datos de la persona que buscas para que te auxilien en el proceso si así lo prefieres.
+        </div>
+
+          <div id="searchDiv">
+                <form id="detenido" method="POST" action="">
+                  <span class="glyphicon glyphicon-search"></span><br>
+                <table align="left" style="text-align:left;" width="400">
+                  <tr>
+                    <td colspan="2">
+                      NOMBRE
+                    </td>
+                  </tr>
+                    <tr>
+                    <td colspan="2">
+                      <input ng-required="required" id="nombre" name="nombre"  ng-model="nombre" type="text" class="form-group required ng-valid ng-dirty" style="height:30px; width: 300px;">
+                    </td>
+                  </tr>
+                    <tr>
+                     <td colspan="2">
+                      APELLIDO PATERNO
+                    </td>
+                  </tr>
+                    <tr>
+                     <td colspan="2">
+                      <input ng-required="required" id="paterno" name="paterno" ng-model="paterno" type="text" class="form-group required ng-valid ng-dirty" style="height:30px; width: 300px;">
+                    </td>
+                  </tr>
+                    <tr>
+                     <td colspan="2">
+                      APELLIDO MATERNO
+                    </td>
+                  </tr>
+                    <tr>
+                     <td colspan="2">
+                      <input id="materno" name="materno" ng-required="required" ng-model="materno" type="text" class="form-group required ng-valid ng-dirty" style="height:30px; width: 300px;">
+                    </td>
+                  </tr>
+                    <tr>
+                     <td>
+                      SEXO
+                    </td>
+                    <td>
+                      FEC. NACIMIENTO
+                    </td>
+                  </tr>
+                    <tr>
+                     <td>
+                      <select id="sexo" name="sexo" class="form-group required ng-valid ng-dirty" style="display:inline; width: 100px;"  ng-model="sexo" ><option>Masculino</option><option>Femenino</option></select>
+                    </td>
+                    <td>
+                         <div class="container" style="width:200px;">
+                                <div class="row"  style="width:200px;">
+                                    <div class="col-sm-1">
+                                        <div class="form-group">
+                                            <div class="input-group date" id="datetimepicker0">
+                                                <input type="text" class="form-control ng-valid" style="height: 30px; display:inline; width: 150px;"  onclick="this.blur(); "keyup="this.blur();" id="fechaNacimiento" data-format="yyyy/mm/dd" name="fechaNacimiento" ng-model="fechaNacimiento">
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar" ng-click="$scope.detenido.fechaNacimiento.setDirty(); $scope.detenido.fechaNacimiento.$valid=true; $scope.detenido.fechaNacimiento.$error.required=false;  $scope.detenido.fechaNacimiento.$error={}; "></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <script type="text/javascript">
+                                    $(function () {
+                                     
+                                        $('#datetimepicker0').datetimepicker({format: 'YYYY/MM/DD',locale: 'es'});
+                                    });
+                                </script>
+                                </div>
+                            </div>
+                   <!--   <input id="edad" name="edad" ng-required="required" ng-model="edad" type="text" class="form-group required ng-valid ng-dirty" style="height:30px; width: 100px;">-->
+                    </td>
+                  </tr>
+                </table>
+                <input class="btn btn-success" ng-click="getDetencion()" id="search" type="button" value="Buscar" style="text-align:center">
+                <input class="btn btn-success" onclick="limpiarResultados()" id="limpiar" type="button" value="Limpiar" style="text-align:center">
+        </form>
+        </div>
+        <div class="hrDiv" style="width:95%; margin-top:10px;"></div>
+        
+        <div class="alert alert-amarillo" id="messageDiv" style="display:none; width:95%; margin-left: 2.5%; margin-top: 30px; color:#FF0000; font-weight:bolder;">
+                    <span class="i-info"></span>{{message}}<strong>.
+              </div>
+        <div id="resultsDiv" style="display:none;">  
+         <table>
+          <tr>
+            <td align="left"><img src="./img/logo_fge.jpg"/></td>
+            <td align="left">
+               <div id="datosDetencion" style="display:block;"> 
+                          Nombre:   <span class="data"> {{ itemnombre }} {{ itempaterno }} {{ itemmaterno }}</span><br><br> 
+                          <div class="hrDiv" style="height:20px; width:100%; text-align:center; color:#FFFFFF;"> DATOS DE LA PUESTA A DISPOSICIÓN</div>
+                          <br>
+                          Fecha Inicia Detencion:  <span class="data"> {{ itemfechaInicio }}  </span> <br> 
+                          Fecha Finaliza Detencion:  <span class="data"> {{ itemfechaFin }}  </span> <br> 
+                          Lugar: <span class="data">  {{ itemunidad }}  </span> <br> 
+                          Direccion: <span class="data"> {{ itemdireccion }}  </span> <br> 
+                          Teléfono: <span class="data"> {{ itemtelefono }}  </span> <br> 
+                          Fiscal de Distrito: <span class="data"> {{ itemfiscal }}  </span> <br> 
+                        </div>
+
+                        <div class="alert alert-amarillo">
+                          <span class="i-info"></span> Los resultados de esta consulta estan sujetos a homonimia<strong>.
+                        </div>
+              </td>
+            <td align="right"> Ubicación UIPJ donde esta el detenido<br>
+            <div id="map"></div>
+            <script type="text/javascript">
+              var map;
+              var marker ;
+              function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                  center: {lat: 19.5078175, lng: -96.8770843},
+                  zoom: 15
+                
+                });
+
+                marker= new google.maps.Marker({
+                  position:  {lat: 19.5078175, lng: -96.8770843},
+                  map: map,
+                  animation: google.maps.Animation.DROP,
+                  title: 'Fiscalía General de Justicia del Estado de Veracruz de Ignacio de la Llave'
+                });
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+                marker.addListener('click', toggleBounce);
+              }
+
+          
+            function toggleBounce() {
+              if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+              } else {
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+              }
+            }
+
+            function displayHelp(){
+               $('#ayudaDiv').css("visibility", "visible");
+             }
+
+             function closeHelp(){
+               $('#ayudaDiv').css("visibility", "hidden");
+             }
+            </script>
+             <script async defer
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuYqLjlGsm5hgBHyhny5ODQKwjnqSbs30&callback=initMap">
+            </script>
+            </td>
+          </tr>
+        </table>
+        </div>
+    </body>
+</html> 
+
