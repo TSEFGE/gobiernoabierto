@@ -1,0 +1,45 @@
+.btn-grisoscuro { 
+  color: #FFFFFF; 
+  background-color: #444644; 
+  border-color: #444644; 
+} 
+ 
+.btn-gris:hover, 
+.btn-gris:focus, 
+.btn-gris:active, 
+.btn-gris.active, 
+.open .dropdown-toggle.btn-gris { 
+  color: #FFFFFF; 
+  background-color: #444644; 
+  border-color: #444644; 
+} 
+ 
+.btn-gris:active, 
+.btn-gris.active, 
+.open .dropdown-toggle.btn-gris { 
+  background-image: none; 
+} 
+ 
+.btn-gris.disabled, 
+.btn-gris[disabled], 
+fieldset[disabled] .btn-gris, 
+.btn-gris.disabled:hover, 
+.btn-gris[disabled]:hover, 
+fieldset[disabled] .btn-gris:hover, 
+.btn-gris.disabled:focus, 
+.btn-gris[disabled]:focus, 
+fieldset[disabled] .btn-gris:focus, 
+.btn-gris.disabled:active, 
+.btn-gris[disabled]:active, 
+fieldset[disabled] .btn-gris:active, 
+.btn-gris.disabled.active, 
+.btn-gris[disabled].active, 
+fieldset[disabled] .btn-gris.active { 
+  background-color: #444644; 
+  border-color: #444644; 
+} 
+ 
+.btn-gris .badge { 
+  color: #444644; 
+  background-color: #FFFFFF; 
+}
