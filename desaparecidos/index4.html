@@ -18,71 +18,81 @@
 
 
 	<style type="text/css">
-.top-to-bottom {
-    border-width: 3px;
-    
-    -webkit-border-image: 
-      -webkit-gradient(linear, 0 0, 0 100%, from(black), to(rgba(0, 0, 0, 0))) 1 100%;
-    -webkit-border-image: 
-      -webkit-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
-    -moz-border-image:
-      -moz-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;    
-    -o-border-image:
-      -o-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
-    border-image:
-      linear-gradient(to bottom, black, rgba(0, 0, 0, 0)) 1 100%;
+        .top-to-bottom {
+            border-width: 3px;
+            
+            -webkit-border-image: 
+              -webkit-gradient(linear, 0 0, 0 100%, from(black), to(rgba(0, 0, 0, 0))) 1 100%;
+            -webkit-border-image: 
+              -webkit-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
+            -moz-border-image:
+              -moz-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;    
+            -o-border-image:
+              -o-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
+            border-image:
+              linear-gradient(to bottom, black, rgba(0, 0, 0, 0)) 1 100%;
 
-    border-width: 3px;
-    
-    -webkit-border-image: 
-      -webkit-gradient(linear, 0 100%, 0 0, from(black), to(rgba(0, 0, 0, 0))) 1 100%;
-    -webkit-border-image: 
-      -webkit-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;
-    -moz-border-image:
-      -moz-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;  
-    -o-border-image:
-      -o-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;
-    border-image:
-      linear-gradient(to top, black, rgba(0, 0, 0, 0)) 1 100%;
-}
+            border-width: 3px;
+            
+            -webkit-border-image: 
+              -webkit-gradient(linear, 0 100%, 0 0, from(black), to(rgba(0, 0, 0, 0))) 1 100%;
+            -webkit-border-image: 
+              -webkit-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;
+            -moz-border-image:
+              -moz-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;  
+            -o-border-image:
+              -o-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;
+            border-image:
+              linear-gradient(to top, black, rgba(0, 0, 0, 0)) 1 100%;
+        }
 
-.menu li {
-    border-right: 1px solid #9B9A9A;
-    float: left;
-    list-style: none outside none;
-    padding-left: 5px;
-    padding-right: 5px;
-    width: auto;
-}
+        .menu li {
+            border-right: 1px solid #9B9A9A;
+            float: left;
+            list-style: none outside none;
+            padding-left: 5px;
+            padding-right: 5px;
+            width: auto;
+        }
 
-.menu li:last-child {
-    border-right:none;
-}
+        .menu li:last-child {
+            border-right:none;
+        }
 
 
-    h1 {font-size: 72px; font-family:'Neo Sans' , 'fallback-font'}
-    h2 {font-size: 60px; font-family:'Neo Sans' , 'fallback-font'}
-    h3 {font-size: 48px; font-family:'Neo Sans' , 'fallback-font'}
-    h4 {font-size: 32px; font-family:'Neo Sans' , 'fallback-font'}
-    h5 {font-size: 20px; font-family:'Neo Sans' , 'fallback-font'}
-    h6 {font-size: 14px; font-family:'Neo Sans' , 'fallback-font'}
+        h1 {font-size: 72px; font-family:'Neo Sans' , 'fallback-font'}
+        h2 {font-size: 60px; font-family:'Neo Sans' , 'fallback-font'}
+        h3 {font-size: 48px; font-family:'Neo Sans' , 'fallback-font'}
+        h4 {font-size: 32px; font-family:'Neo Sans' , 'fallback-font'}
+        h5 {font-size: 20px; font-family:'Neo Sans' , 'fallback-font'}
+        h6 {font-size: 14px; font-family:'Neo Sans' , 'fallback-font'}
 
-	.panel-default > .panel-heading-custom {
-	    background: #8e8e8e; 
-	    color: #fff;
-	    font-family:  'Neo Sans Light';
-	;
-	}
-    .panel-default > .panel-heading-customd {
-        background: #444644; 
-        color: #fff;
-        border-color: #444644; 
-        font-family: 'Neo Sans Light';
-    ;
-    }
+    	.panel-default > .panel-heading-custom {
+    	    background: #8e8e8e; 
+    	    color: #fff;
+    	    font-family:  'Neo Sans Light';
+    	;
+    	}
+        .panel-default > .panel-heading-customd {
+            background: #444644; 
+            color: #fff;
+            border-color: #444644; 
+            font-family: 'Neo Sans Light';
+        ;
+        }
+
+        .ficha-desaparecidos{
+            background: #f2f2f2;
+            border: 2px solid #f2f2f2;
+            border-radius: 20px;
+            box-shadow: 0px 0px 15px 5px #888888;
+            padding: 5px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
 	</style>
 
-        <script>
+    <script>
         $( document ).ready(function() {
             $(function (){
                 $('#fechaNacimiento').datepicker();
@@ -90,6 +100,7 @@
         });
     </script>
 </head>
+
 <body>
     <header>
     <div class="row">
@@ -147,266 +158,320 @@
     </header>
 	<br>
 	<br>
-<div class="container">
-	<div id="myCarousel" class="carousel slide" data-ride="carousel" align="center">
-	    <!-- Indicators -->
-	    <ol class="carousel-indicators">
-	      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-	      <li data-target="#myCarousel" data-slide-to="1"></li>
-	      <li data-target="#myCarousel" data-slide-to="2"></li>
-	    </ol>
 
-	    <!-- Wrapper for slides -->
-	    <div class="carousel-inner">
-	      <div class="item active">
-	        <img src="la.jpg" alt="Los Angeles" style="width:40%;">
-	      </div>
+    <div class="container">
+    	<div id="myCarousel" class="carousel slide" data-ride="carousel" align="center">
+    	    <!-- Indicators -->
+    	    <ol class="carousel-indicators">
+    	      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    	      <li data-target="#myCarousel" data-slide-to="1"></li>
+    	      <li data-target="#myCarousel" data-slide-to="2"></li>
+    	    </ol>
 
-	      <div class="item">
-	        <img src="chicago.jpg" alt="Chicago" style="width:40%;">
-	      </div>
-	    
-	      <div class="item">
-	        <img src="ny.jpg" alt="New york" style="width:40%;">
-	      </div>
-	    </div>
+    	    <!-- Wrapper for slides -->
+    	    <div class="carousel-inner">
+    	      <div class="item active">
+    	        <img src="la.jpg" alt="Los Angeles" style="width:40%;">
+    	      </div>
 
-	    <!-- Left and right controls -->
-	    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-	      <span class="glyphicon glyphicon-chevron-left"></span>
-	      <span class="sr-only">Previous</span>
-	    </a>
-	    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-	      <span class="glyphicon glyphicon-chevron-right"></span>
-	      <span class="sr-only">Next</span>
-	    </a>
-	</div>
-    <div class="panel panel-default">
-      <div class="panel-heading panel-heading-customd" align="center"><h5>Llama al Centro de Atención Telefónica (228) 841-61-70<br>
-        y proporciona los datos de la persona que buscas para que te auxilien en el proceso si así lo prefieres.</h5></div>
-      </div>
-	<p>
+    	      <div class="item">
+    	        <img src="chicago.jpg" alt="Chicago" style="width:40%;">
+    	      </div>
+    	    
+    	      <div class="item">
+    	        <img src="ny.jpg" alt="New york" style="width:40%;">
+    	      </div>
+    	    </div>
 
-    <div class="panel panel-default"> 
-        <div class="panel-heading panel-heading-custom"> 
-            <h6 class="panel-title">Busca Personas turnadas ante el Ministerio Público</h6> 
-        </div> 
-        <div class="panel-body"> 
-        <div class="box-body">
-        <div class="row">
-        	<div class="col-md-2 col-xs-6">
-    			<div class="form-group">
-					<label for="nombre">Nombre:</label>
-					<input type="text" class="form-control" id="nombre" required>
-    			</div>
-    		</div>
-        	<div class="col-md-2 col-xs-6">
-    			<div class="form-group">
-					<label for="paterno">Apellido Paterno:</label>
-					<input type="text" class="form-control" id="paterno" required>
-    			</div>
-    		</div>
-        	<div class="col-md-2 col-xs-6">
-    			<div class="form-group">
-					<label for="materno">Apellido Materno:</label>
-					<input type="text" class="form-control" id="materno" required>
-    			</div>
-    		</div>
-        	<div class="col-md-2 col-xs-6">
-			    <div class="form-group">
-			        <label for="sexo">Sexo</label>
-			        <div>
-			            <select class="form-control" id="sexo" required>
-			                <option value="s">Sexo</option>
-			                <option value="m">Masculino (M)</option>
-			                <option value="f">Femenino(F)</option>
-			            </select>
-			        </div>
-			    </div>
-    		</div>
-        	<div class="col-md-2 col-xs-6">
-    			<div class="form-group">
-					<label for="fechaNacimiento">Fecha Nacimiento:</label>
-					<div class='input-group date' id='fechaNacimiento'>
-                    <input type='text' placeholder="dd/mm/aaaa" class="form-control" id='fechaNacimientotxt' required/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-    			</div>
-    		</div>
+    	    <!-- Left and right controls -->
+    	    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    	      <span class="glyphicon glyphicon-chevron-left"></span>
+    	      <span class="sr-only">Previous</span>
+    	    </a>
+    	    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    	      <span class="glyphicon glyphicon-chevron-right"></span>
+    	      <span class="sr-only">Next</span>
+    	    </a>
     	</div>
-        <div class="row">
-            <div class="col-md-2 col-xs-6">
-                <div class="form-group">
-                    <button type="submit" class="btn btn-azul btn-block" id="search" value="Buscar"><h6>Buscar</h6></button>
+        <div class="panel panel-default">
+          <div class="panel-heading panel-heading-customd" align="center"><h5>Llama al Centro de Atención Telefónica (228) 841-61-70<br>
+            y proporciona los datos de la persona que buscas para que te auxilien en el proceso si así lo prefieres.</h5></div>
+          </div>
+    	<p>
+
+        <div class="panel panel-default"> 
+            <div class="panel-heading panel-heading-custom"> 
+                <h6 class="panel-title">Busca Personas turnadas ante el Ministerio Público</h6> 
+            </div> 
+            <div class="panel-body"> 
+            <div class="box-body">
+            <div class="row">
+            	<div class="col-md-2 col-xs-6">
+        			<div class="form-group">
+    					<label for="nombre">Nombre:</label>
+    					<input type="text" class="form-control" id="nombre" required>
+        			</div>
+        		</div>
+            	<div class="col-md-2 col-xs-6">
+        			<div class="form-group">
+    					<label for="paterno">Apellido Paterno:</label>
+    					<input type="text" class="form-control" id="paterno" required>
+        			</div>
+        		</div>
+            	<div class="col-md-2 col-xs-6">
+        			<div class="form-group">
+    					<label for="materno">Apellido Materno:</label>
+    					<input type="text" class="form-control" id="materno" required>
+        			</div>
+        		</div>
+            	<div class="col-md-2 col-xs-6">
+    			    <div class="form-group">
+    			        <label for="sexo">Sexo</label>
+    			        <div>
+    			            <select class="form-control" id="sexo" required>
+    			                <option value="s">Sexo</option>
+    			                <option value="m">Masculino (M)</option>
+    			                <option value="f">Femenino(F)</option>
+    			            </select>
+    			        </div>
+    			    </div>
+        		</div>
+            	<div class="col-md-2 col-xs-6">
+        			<div class="form-group">
+    					<label for="fechaNacimiento">Fecha Nacimiento:</label>
+    					<div class='input-group date' id='fechaNacimiento'>
+                        <input type='text' placeholder="dd/mm/aaaa" class="form-control" id='fechaNacimientotxt' required/>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+        			</div>
+        		</div>
+        	</div>
+            <div class="row">
+                <div class="col-md-2 col-xs-6">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-azul btn-block" id="search" value="Buscar"><h6>Buscar</h6></button>
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-6">
+                    <div class="form-group">
+                        <button type="button" href='javascript:;' onclick="limpiar();" class="btn btn-gris btn-block"><h6>Limpiar</h6></button>
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-2">
+                    <div class="form-group">
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-2">
+                    <div class="form-group">
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-2">
+                    <div class="form-group">
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-2">
+                    <div class="form-group">
+                        <h6><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ayuda</h6>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-2 col-xs-6">
-                <div class="form-group">
-                    <button type="button" href='javascript:;' onclick="limpiar();" class="btn btn-gris btn-block"><h6>Limpiar</h6></button>
-                </div>
             </div>
-            <div class="col-md-2 col-xs-2">
-                <div class="form-group">
-                </div>
-            </div>
-            <div class="col-md-2 col-xs-2">
-                <div class="form-group">
-                </div>
-            </div>
-            <div class="col-md-2 col-xs-2">
-                <div class="form-group">
-                </div>
-            </div>
-            <div class="col-md-2 col-xs-2">
-                <div class="form-group">
-                    <h6><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ayuda</h6>
-                </div>
-            </div>
+        	</div>    
+        </div> 
+
+        <div class="alert alert-warning-alt">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <h5>Publicar datos de personas desaparecidas tiene como fin su <strong>búsqueda y localización</strong> , por lo que no se vulnera el derecho a su privacidad.</h5>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header modal-header-warning">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body modal-header-warning">
+                        <p><h6>Debe proporcionar <strong>TODOS</strong> los datos(nombre, paterno, materno, sexo, fecha Nacimiento) para realizar la busqueda.</h6></p>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
         </div>
-    	</div>    
-    </div> 
 
-<div class="alert alert-warning-alt">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <h5>Publicar datos de personas desaparecidas tiene como fin su <strong>búsqueda y localización</strong> , por lo que no se vulnera el derecho a su privacidad.</h5>
-</div>
+        <!-- Modal -->
+        <div class="modal fade" id="danger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header modal-header-danger">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body modal-header-danger">
+                        <p><h6><strong>No existe registro</strong> para la busqueda realizada.</h6></p>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
-<!-- Modal -->
-<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header modal-header-warning">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            </div>
-            <div class="modal-body modal-header-warning">
-                <p><h6>Debe proporcionar <strong>TODOS</strong> los datos(nombre, paterno, materno, sexo, fecha Nacimiento) para realizar la busqueda.</h6></p>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div>
+        <!-- Modal de mostrar los resultados
 
-<!-- Modal -->
-<div class="modal fade" id="danger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header modal-header-danger">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            </div>
-            <div class="modal-body modal-header-danger">
-                <p><h6><strong>No existe registro</strong> para la busqueda realizada.</h6></p>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-    <!-- Modal -->
-    <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header modal-header-default">
-                    <div class="row">
-                        <div class="col-md-10 col-xs-10" align="center">
-                            <div class="form-group">
-                                <div id="resultsDivNombre"></div>
+        <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header modal-header-default">
+                        <div class="row">
+                            <div class="col-md-10 col-xs-10" align="center">
+                                <div class="form-group">
+                                    <div id="resultsDivNombre"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-xs-2">
+                                <div class="form-group">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-2 col-xs-2">
-                            <div class="form-group">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12" align="center">
+                                <div class="form-group">
+                                    <div id="resultsDivDetalles"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 col-xs-12" align="center">
-                            <div class="form-group">
-                                <div id="resultsDivDetalles"></div>
-                            </div>
-                        </div>
+                    <div class="modal-body">
+                        <div id="resultsDiv"></div>
                     </div>
                 </div>
-                <div class="modal-body">
-                    <div id="resultsDiv"></div>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+            </div>
+        </div>
+
+        modal -->
+
+        
+
+        <div>
+            <div class="row" id="resultsDiv">
+                
+            </div>
+        </div>
 
 
-<script>
-    
-$( "#search" ).click( function () {
-    $('#resultsDivNombre').empty();
-    $('#resultsDiv').empty();
-    if($("#sexo").val()=='s' || 
-    $("#fechaNacimientotxt").val()==''){
-        $('#warning').modal('show');
-    }else{
-        $.ajax({
-            type: 'POST',
-            contentType: 'application/json',
-            url: 'index.php/consulta',
-            dataType: "json",                  
-            data: JSON.stringify({
-                nombre: $("#nombre").val(),
-                paterno: $("#paterno").val(),
-                materno: $("#materno").val(),
-                sexo: $("#sexo").val(),
-                edad: $("#edad").val()
-            }),
-            success: function (data) {
+        <script>
+            
+            /*----------prueba de funcion------------*/
+
+            $( "#search" ).click( function () {
+                    $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json',
+                        url: 'index.php/consulta',
+                        dataType: "json",                  
+                          data: JSON.stringify({
+                              nombre: $("#nombre").val(),
+                              paterno: $("#paterno").val(),
+                              materno: $("#materno").val(),
+                              sexo: $("#sexo").val(),
+                              edad: $("#edad").val()
+                          }),
+                          success: function (data) {
+                            $('#resultsDiv').empty();
+                             $.each(data, function(key, item) {
+                                if (key=="error_code"){
+                                    htmlElement = $('<h4>No existen resultados para la busqueda realizada</h4>');
+                                    $('#resultsDiv').append(htmlElement);
+                                    return false;
+                                }
+                                var partefoto="";
+                                if(item.rutfoto!=null){
+                                    partefoto=item.rutfoto.split("\\").pop();
+                                }
+                                var foto=item.rutfoto == null || item.rutfoto === "" ?'./img/desapsf.jpg':'./img/fotos/'+partefoto;
+                                var sexo=item.sexo=='M'?'Masculino':'Femenino';
+                                var origen=item.origen==null?'S/D':item.origen;
+                                htmlElement = $('<div onclick="getDetail('+item.id+');" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 " id="'+item.id+'"><div class="panel ficha-desaparecidos"><div class="panel-body"><div class="col-xs-4"><span><img class="image_mini " src="'+foto+'" onerror="epic(this);" width="100" height="150"/></span></div><div class="data_mini col-xs-8"><span class="glyphicon glyphicon-user"></span> '+item.nombre+' '+ item.apat +' '+ item.amat +'<br><br><span class="glyphicon glyphicon-calendar"></span> '+item.edad+' años<br><span class="glyphicon glyphicon-random"></span> '+sexo+'<br><span class="glyphicon glyphicon-question-sign">Extraviado:'+item.fextrav+'</span></div></div></div></div>');
+                                //<span class="glyphicon glyphicon-home"></span> '+origen+'</small></span>
+                                $('#resultsDiv').append(htmlElement);
+                              });
+                          }
+                    });
+            });
+
+
+            /*----------------funcion original--------------------------*/
+            /*
+            $( "#search" ).click( function () {
+                $('#resultsDivNombre').empty();
                 $('#resultsDiv').empty();
-                $.each(data, function(key, item) {
-                    if (key=="error_code"){
-                        $('#danger').modal('show');
-                            return false;
-                    }
-                    var partefoto="";
-                    if(item.rutfoto!=null){
-                        partefoto=item.rutfoto.split("\\").pop();
-                    }
-                    var foto=item.rutfoto == null || item.rutfoto === "" ?'./img/desapsf.jpg':'./img/fotos/'+partefoto;
-                    var sexo=item.sexo=='M'?'Masculino':'Femenino';
-                    var origen=item.origen==null?'S/D':item.origen;
-                        
-                    htmlElement = $('<h6><strong>'+item.nombre+' '+ item.apat +' '+ item.amat+'</strong></h6>');
-                    $('#resultsDivNombre').append(htmlElement);
+                if($("#sexo").val()=='s' || 
+                $("#fechaNacimientotxt").val()==''){
+                    $('#warning').modal('show');
+                }else{
+                    $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json',
+                        url: 'index.php/consulta',
+                        dataType: "json",                  
+                        data: JSON.stringify({
+                            nombre: $("#nombre").val(),
+                            paterno: $("#paterno").val(),
+                            materno: $("#materno").val(),
+                            sexo: $("#sexo").val(),
+                            edad: $("#edad").val()
+                        }),
+                        success: function (data) {
+                            $('#resultsDiv').empty();
+                            $.each(data, function(key, item) {
+                                if (key=="error_code"){
+                                    $('#danger').modal('show');
+                                        return false;
+                                }
+                                var partefoto="";
+                                if(item.rutfoto!=null){
+                                    partefoto=item.rutfoto.split("\\").pop();
+                                }
+                                var foto=item.rutfoto == null || item.rutfoto === "" ?'./img/desapsf.jpg':'./img/fotos/'+partefoto;
+                                var sexo=item.sexo=='M'?'Masculino':'Femenino';
+                                var origen=item.origen==null?'S/D':item.origen;
+                                    
+                                htmlElement = $('<h6><strong>'+item.nombre+' '+ item.apat +' '+ item.amat+'</strong></h6>');
+                                $('#resultsDivNombre').append(htmlElement);
 
-                    htmlElement = $('<div class="row"><div class="col-md-3 col-xs-3"><div class="form-group"><div onclick="getDetail('+item.id+');" class="rcorners2" id="'+item.id+'"><span><img class="image_mini" src="'+foto+'" onerror="epic(this);" width="100" height="150"/></span></div></div></div><div class="col-md-2 col-xs-2"><div class="form-group"></div></div><div class="col-md-7 col-xs-7"><div class="form-group"><span>Edad:</span> '+item.edad+' años<br><br><span">Sexo:</span> '+sexo+'<br><br><span">Extravío:'+item.fextrav+'</span><br><br><button type="button" onclick="Despliega()" class="btn btn-grisoscuro btn-block" id="search" value="Buscar">Ver más detalles</button></div></div></div>');
-                                
-                    $('#resultsDiv').append(htmlElement);
-                    $('#success').modal('show');
+                                htmlElement = $('<div class="row"><div class="col-md-3 col-xs-3"><div class="form-group"><div onclick="getDetail('+item.id+');" class="rcorners2" id="'+item.id+'"><span><img class="image_mini" src="'+foto+'" onerror="epic(this);" width="100" height="150"/></span></div></div></div><div class="col-md-2 col-xs-2"><div class="form-group"></div></div><div class="col-md-7 col-xs-7"><div class="form-group"><span>Edad:</span> '+item.edad+' años<br><br><span">Sexo:</span> '+sexo+'<br><br><span">Extravío:'+item.fextrav+'</span><br><br><button type="button" onclick="Despliega()" class="btn btn-grisoscuro btn-block" id="search" value="Buscar">Ver más detalles</button></div></div></div>');
+                                            
+                                $('#resultsDiv').append(htmlElement);
+                                $('#success').modal('show');
 
-                });
-            }
-        });
-    }
-});
+                            });
+                        }
+                    });
+                }
+            });
 
-function limpiar(){
-    $('#nombre').val('');
-    $('#paterno').val('');
-    $('#materno').val('');
-    $('#sexo').val('');
-    $('#fechaNacimientotxt').val('');
-};
+            */
 
-function epic(c) {
-    c.onerror='';
-    c.src='./img/desapsf.jpg';
-};
+            function limpiar(){
+                $('#nombre').val('');
+                $('#paterno').val('');
+                $('#materno').val('');
+                $('#sexo').val('');
+                $('#fechaNacimientotxt').val('');
+            };
 
-function limpiar(){
-    $('#nombre').val('');
-    $('#paterno').val('');
-    $('#materno').val('');
-    $('#sexo').val('');
-    $('#fechaNacimientotxt').val('');
-};
+            function epic(c) {
+                c.onerror='';
+                c.src='./img/desapsf.jpg';
+            };
 
-</script>
- </div>
+            function limpiar(){
+                $('#nombre').val('');
+                $('#paterno').val('');
+                $('#materno').val('');
+                $('#sexo').val('');
+                $('#fechaNacimientotxt').val('');
+            };
+        </script>
+    </div>
 </body>
 </html> 
