@@ -74,11 +74,34 @@
         .ficha-desaparecidos{
             background: #f2f2f2;
             border: 2px solid #f2f2f2;
-            border-radius: 20px;
-            box-shadow: 0px 0px 15px 5px #888888;
-            padding: 5px;
-            padding-top: 15px;
-            padding-bottom: 15px;
+            border-radius: 25px;
+            box-shadow: 0px 0px 5px 3px #888888;
+        }
+
+        .boton-detalles{
+            border:none;
+            text-decoration: none;
+            width: 100%;
+            color: #ffffff;
+            background-color: #000000;
+        }
+          
+        .boton-detalles:hover{
+            background-color: #434141;
+            text-decoration: none;
+        }
+
+        .separador{
+            border:none;
+            height: 2px;
+            background: -webkit-linear-gradient(left, white, black, white);
+            background: -moz-linear-gradient(left, white, black, white);
+            background: -o-linear-gradient(left, white, black, white);
+            background: linear-gradient(to right, white, black, white);
+            margin-right:0px; 
+            margin-left:0px;
+            margin-bottom:0px;
+            margin-top:0px;
         }
 </style>
 
@@ -379,7 +402,7 @@ $( document ).ready(function() {
                                 var foto=item.rutfoto == null || item.rutfoto === "" ?'./img/desapsf.jpg':'./img/fotos/'+partefoto;
                                 var sexo=item.sexo=='M'?'Masculino':'Femenino';
                                 var origen=item.origen==null?'S/D':item.origen;
-                                htmlElement = $('<div onclick="getDetail('+item.id+');" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 " id="'+item.id+'"><div class="panel ficha-desaparecidos"><div class="panel-body"><div class="col-xs-4"><span><img class="image_mini " src="'+foto+'" onerror="epic(this);" width="100" height="150"/></span></div><div class="data_mini col-xs-8"><span class="glyphicon glyphicon-user"></span> '+item.nombre+' '+ item.apat +' '+ item.amat +'<br><br><span class="glyphicon glyphicon-calendar"></span> '+item.edad+' años<br><span class="glyphicon glyphicon-random"></span> '+sexo+'<br><span class="glyphicon glyphicon-question-sign">Extraviado:'+item.fextrav+'</span></div></div></div></div>');
+                                htmlElement = $('<div onclick="getDetail('+item.id+');" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 " id="'+item.id+'"><div class="panel ficha-desaparecidos"><div class="panel-body"><div class="col-xs-4"><span><img class="image_mini " src="'+foto+'" onerror="epic(this);" width="100" height="150"/></span></div><div class="data_mini col-xs-8"> '+item.nombre+' '+ item.apat +' '+ item.amat +'<br><hr class="separador"><br> '+item.edad+' años<br><hr class="separador"> '+sexo+'<br><hr class="separador"><span>Extraviado:'+item.fextrav+'</span><br><hr class="separador"><br><input type="button" name="" value="VER MÁS DETALLES" class="boton-detalles"></div></div></div></div>');
                                 //<span class="glyphicon glyphicon-home"></span> '+origen+'</small></span>
                                 $('#resultsDiv').append(htmlElement);
                               });
@@ -439,6 +462,48 @@ $( "#search" ).click( function () {
 });
 
 */
+            function getDetail(id){
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json',
+                    url: './index.php/consultaById',
+                    dataType: "json",                  
+                    data: JSON.stringify({
+                        id: id,
+                    }),
+                    success: function (data) {
+                        $('#detailsDiv').empty();
+                        $.each(data, function(key, item) {
+                            if (key=="error_code"){
+                                htmlElement = $('<h4>No existen resultados para la busqueda realizada</h4>');
+                                $('#detailsDiv').append(htmlElement);
+                                return false;
+                            }
+                            var partefoto="";
+                            if(item.rutfoto!=null){
+                                 partefoto=item.rutfoto.split("\\").pop();
+                            }
+                                var foto=item.rutfoto == null || item.rutfoto === "" ?'./img/desapsfdeta.png':'./img/fotos/'+partefoto;
+
+                            var sexo=item.sexo=='M'?'Masculino':'Femenino';
+                            var origen=item.origen==null?'S/D':item.origen;
+                            htmlElement = $('<div class="detailDiv" id="'+item.id+'"><a href="#close" class="btn-close" aria-hidden="true" onclick="closeModal();">×</a><span> <table style="margin-left:12%;" width="80%"><tr><td style="text-align:center;"><img  onerror="epic2(this);" class="image_detail" src="'+foto+'"/></td></tr><tr><td style="text-align:left;">'+item.nombre+' '+ item.apat +' '+ item.amat +'<br> SEXO: '+sexo  +'<br> EDAD:'+ item.edad + '<br> NACIONALIDAD: '+item.nac +'<br> ORIGINARIO: '+origen +'<br> ESTADO: '+item.estado + '<br> LUGAR DE EXTRAVIO: '+ item.mun + '<br> FECHA DE EXTRAVIO: '+item.fextrav +'<br> ESTATURA: '+item.est +'<br> COMPLEXION: '+item.compl +'<br> OJOS: '+item.ojos +'<br> PIEL: '+item.piel +'<br> CABELLO: '+item.cab +'<br> TIPO DE CABELLO: '+item.tcab +'<br> NARIZ: '+ item.nariz +'<br> LABIOS: '+item.labios +'<br> CEJAS: '+item.cejas +'</td></tr></table></span></div><br>');
+                            var infoContacto=$('<div style="font-size:13px; font-weight:lighter;"><span>SI LO HA VISTO O LO RECONOCE COMUNIQUESE A: <br><span class="glyphicon glyphicon-phone-alt"></span>  2288416170 Ext. 3000  <span class="glyphicon glyphicon-earphone"></span>  2288120841, <img src="./img/whatsapp.png" width="19" height="19"/>  2281704493 </span><br><span class="glyphicon glyphicon-envelope"></span>  localizarlosfiscalia_ver@veracruz.gob.mx <br> Su información será anónima y confidencial </div>');
+
+                                /*<br>Fiscalía Especializada para la Atención de Denuncias por Personas Desparecidas <br> Privada del Tecnológico No. 101 Segundo Piso Col. Moctezuma. Xalapa, Veracruz, C.P 91096 */
+                            $('#detailsDiv').append(htmlElement);
+                            $('#detailsDiv').append(infoContacto);
+
+                        });
+                        //.style.visibility="visible";
+                        $('#detailsDiv').css("visibility", "visible");
+                        $('#warningDiv').css("visibility", "visible");
+                        var scrollPos = $('#detailsDiv').offset().top;
+                      $(window).scrollTop(scrollPos);
+
+                    }
+                });
+            }
 function limpiar(){
     $('#nombre').val('');
     $('#paterno').val('');
