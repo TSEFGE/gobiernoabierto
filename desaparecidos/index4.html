@@ -19,7 +19,6 @@
 
 
 <style type="text/css">
-
     .top-to-bottom {
         border-width: 3px;
         
@@ -72,6 +71,15 @@
         border-color: #444644; 
     ;
     }
+        .ficha-desaparecidos{
+            background: #f2f2f2;
+            border: 2px solid #f2f2f2;
+            border-radius: 20px;
+            box-shadow: 0px 0px 15px 5px #888888;
+            padding: 5px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
 </style>
 
 <script>
@@ -295,41 +303,93 @@ $( document ).ready(function() {
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-    <!-- Modal -->
-    <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header modal-header-default">
-                    <div class="row">
-                        <div class="col-md-10 col-xs-10" align="center">
-                            <div class="form-group">
-                                <div id="resultsDivNombre"></div>
+        <!-- Modal de mostrar los resultados
+
+        <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header modal-header-default">
+                        <div class="row">
+                            <div class="col-md-10 col-xs-10" align="center">
+                                <div class="form-group">
+                                    <div id="resultsDivNombre"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-xs-2">
+                                <div class="form-group">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-2 col-xs-2">
-                            <div class="form-group">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12" align="center">
+                                <div class="form-group">
+                                    <div id="resultsDivDetalles"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 col-xs-12" align="center">
-                            <div class="form-group">
-                                <div id="resultsDivDetalles"></div>
-                            </div>
-                        </div>
+                    <div class="modal-body">
+                        <div id="resultsDiv"></div>
                     </div>
                 </div>
-                <div class="modal-body">
-                    <div id="resultsDiv"></div>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+            </div>
+        </div>
+
+        modal -->
+
+        
+
+        <div>
+            <div class="row" id="resultsDiv">
+                
+            </div>
+        </div>
 
 
 <script>
     
+            /*----------prueba de funcion------------*/
+
+            $( "#search" ).click( function () {
+                    $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json',
+                        url: 'index.php/consulta',
+                        dataType: "json",                  
+                          data: JSON.stringify({
+                              nombre: $("#nombre").val(),
+                              paterno: $("#paterno").val(),
+                              materno: $("#materno").val(),
+                              sexo: $("#sexo").val(),
+                              edad: $("#edad").val()
+                          }),
+                          success: function (data) {
+                            $('#resultsDiv').empty();
+                             $.each(data, function(key, item) {
+                                if (key=="error_code"){
+                                    htmlElement = $('<h4>No existen resultados para la busqueda realizada</h4>');
+                                    $('#resultsDiv').append(htmlElement);
+                                    return false;
+                                }
+                                var partefoto="";
+                                if(item.rutfoto!=null){
+                                    partefoto=item.rutfoto.split("\\").pop();
+                                }
+                                var foto=item.rutfoto == null || item.rutfoto === "" ?'./img/desapsf.jpg':'./img/fotos/'+partefoto;
+                                var sexo=item.sexo=='M'?'Masculino':'Femenino';
+                                var origen=item.origen==null?'S/D':item.origen;
+                                htmlElement = $('<div onclick="getDetail('+item.id+');" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 " id="'+item.id+'"><div class="panel ficha-desaparecidos"><div class="panel-body"><div class="col-xs-4"><span><img class="image_mini " src="'+foto+'" onerror="epic(this);" width="100" height="150"/></span></div><div class="data_mini col-xs-8"><span class="glyphicon glyphicon-user"></span> '+item.nombre+' '+ item.apat +' '+ item.amat +'<br><br><span class="glyphicon glyphicon-calendar"></span> '+item.edad+' años<br><span class="glyphicon glyphicon-random"></span> '+sexo+'<br><span class="glyphicon glyphicon-question-sign">Extraviado:'+item.fextrav+'</span></div></div></div></div>');
+                                //<span class="glyphicon glyphicon-home"></span> '+origen+'</small></span>
+                                $('#resultsDiv').append(htmlElement);
+                              });
+                          }
+                    });
+            });
+
+
+            /*----------------funcion original--------------------------*/
+            /*
 $( "#search" ).click( function () {
     $('#resultsDivNombre').empty();
     $('#resultsDiv').empty();
@@ -378,6 +438,7 @@ $( "#search" ).click( function () {
     }
 });
 
+*/
 function limpiar(){
     $('#nombre').val('');
     $('#paterno').val('');
