@@ -1,0 +1,40 @@
+.header{
+    margin-right: -10px;
+    padding-right: -10px;
+    max-width: 95%;
+    right: 0px;
+}
+.navbar{
+    border-radius: 0;
+    background-color: #444644;
+    border-color: #444644;
+    color: #fff;
+}
+.navbar-header{
+    background-color: #444644;
+    border-color: #444644;
+    color: #fff;
+}
+.navbar-toggle{
+    background-color: #202320;
+}
+.navbar-toggle .icon-bar {
+    color: #fff;
+    background-color: #fff;
+}
+.navbar-nav > li > a,
+.navbar-nav > li > a{
+    color: #fff;
+}
+.navbar-nav > li > a:hover,
+.navbar-nav > li > a:focus{
+    background-color: #012F66;
+    border-color: #012F66;
+    color: #fff;
+}
+
+.barra{
+    margin: 0 auto;
+    min-width: 100%;
+    margin-bottom: 10px;
+}
