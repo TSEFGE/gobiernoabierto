@@ -77,4 +77,7 @@ body {
     .footer-container{
         text-align: center;
     }
+    .lineaFooter{
+        border-left: 0px;
+    }
 }
