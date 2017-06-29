@@ -108,6 +108,27 @@
             margin-bottom:0px;
             margin-top:0px;
         }
+
+        .agradecimiento{
+            color: #967f3d; 
+            padding-top: 10px; 
+            padding-left: 20px; 
+            padding-right: 20px; 
+            border-radius: 0px 0px 25px 25px; 
+            background: #fef6dd; 
+            margin-right:-2px; 
+            margin-left:-2px;
+        }
+
+        .numeros-contacto{
+            padding: 10px; 
+            padding-left: 20px; 
+            padding-right: 20px;
+            color: #ffffff;  
+            background: #8e8e8e; 
+            margin-right:-2px; 
+            margin-left:-2px;
+        }
 	</style>
 
     <script>
@@ -338,40 +359,19 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
-        <!-- Modal de mostrar los resultados
+        <!-- Modal de mostrar los resultadosmodal -->
+        <div class="col-xs-12 ">
 
-        <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header modal-header-default">
-                        <div class="row">
-                            <div class="col-md-10 col-xs-10" align="center">
-                                <div class="form-group">
-                                    <div id="resultsDivNombre"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-xs-2">
-                                <div class="form-group">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12" align="center">
-                                <div class="form-group">
-                                    <div id="resultsDivDetalles"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div id="resultsDiv"></div>
+            <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+                <div class="modal-dialog">
+                    <div class="modal-content ficha-desaparecidos" id="detailsDiv">
+
+                        
                     </div>
                 </div>
             </div>
-        </div>
 
-        modal -->
+        </div>
 
         
 
@@ -414,7 +414,7 @@
                                 var foto=item.rutfoto == null || item.rutfoto === "" ?'./img/desapsf.jpg':'./img/fotos/'+partefoto;
                                 var sexo=item.sexo=='M'?'Masculino':'Femenino';
                                 var origen=item.origen==null?'S/D':item.origen;
-                                htmlElement = $('<div onclick="getDetail('+item.id+');" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 " id="'+item.id+'"><div class="panel ficha-desaparecidos"><div class="panel-body"><div class="col-xs-4"><span><img class="image_mini " src="'+foto+'" onerror="epic(this);" width="100" height="150"/></span></div><div class="data_mini col-xs-8"> '+item.nombre+' '+ item.apat +' '+ item.amat +'<br><hr class="separador"><br> '+item.edad+' años<br><hr class="separador"> '+sexo+'<br><hr class="separador"><span>Extraviado:'+item.fextrav+'</span><br><hr class="separador"><br><input type="button" name="" value="VER MÁS DETALLES" class="boton-detalles"></div></div></div></div>');
+                                htmlElement = $('<div onclick="getDetail('+item.id+');" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 " id="'+item.id+'"><div class="panel ficha-desaparecidos"><div class="panel-body"><div class="col-xs-4"><span><img class="image_mini " src="'+foto+'" onerror="epic(this);" width="100" height="150"/></span></div><div class="data_mini col-xs-8"> '+item.nombre+' '+ item.apat +' '+ item.amat +'<br><hr class="separador"><br> '+item.edad+' años<br><hr class="separador"> '+sexo+'<br><hr class="separador"><span>Extraviado:'+item.fextrav+'</span><br><hr class="separador"><br><input type="button" name="" value="VER MÁS DETALLES" class="boton-detalles" ></div></div></div></div>');
                                 //<span class="glyphicon glyphicon-home"></span> '+origen+'</small></span>
                                 $('#resultsDiv').append(htmlElement);
                               });
@@ -501,18 +501,18 @@
 
                             var sexo=item.sexo=='M'?'Masculino':'Femenino';
                             var origen=item.origen==null?'S/D':item.origen;
-                            htmlElement = $('<div class="detailDiv" id="'+item.id+'"><a href="#close" class="btn-close" aria-hidden="true" onclick="closeModal();">×</a><span> <table style="margin-left:12%;" width="80%"><tr><td style="text-align:center;"><img  onerror="epic2(this);" class="image_detail" src="'+foto+'"/></td></tr><tr><td style="text-align:left;">'+item.nombre+' '+ item.apat +' '+ item.amat +'<br> SEXO: '+sexo  +'<br> EDAD:'+ item.edad + '<br> NACIONALIDAD: '+item.nac +'<br> ORIGINARIO: '+origen +'<br> ESTADO: '+item.estado + '<br> LUGAR DE EXTRAVIO: '+ item.mun + '<br> FECHA DE EXTRAVIO: '+item.fextrav +'<br> ESTATURA: '+item.est +'<br> COMPLEXION: '+item.compl +'<br> OJOS: '+item.ojos +'<br> PIEL: '+item.piel +'<br> CABELLO: '+item.cab +'<br> TIPO DE CABELLO: '+item.tcab +'<br> NARIZ: '+ item.nariz +'<br> LABIOS: '+item.labios +'<br> CEJAS: '+item.cejas +'</td></tr></table></span></div><br>');
-                            var infoContacto=$('<div style="font-size:13px; font-weight:lighter;"><span>SI LO HA VISTO O LO RECONOCE COMUNIQUESE A: <br><span class="glyphicon glyphicon-phone-alt"></span>  2288416170 Ext. 3000  <span class="glyphicon glyphicon-earphone"></span>  2288120841, <img src="./img/whatsapp.png" width="19" height="19"/>  2281704493 </span><br><span class="glyphicon glyphicon-envelope"></span>  localizarlosfiscalia_ver@veracruz.gob.mx <br> Su información será anónima y confidencial </div>');
+                            htmlElement = $('<div class="modal-body "><div class="row"><div class="col-xs-12 col-sm-4"><span><img class="image_mini " src="'+foto+'" onerror="epic(this);" width="150" height="195"/></span></div><br><br><div class="data_mini col-xs-12 col-sm-8">'+item.nombre+' '+ item.apat +' '+ item.amat +'<br><hr class="separador"><br>'+item.edad+' años<br><hr class="separador"> '+sexo+'<br><hr class="separador"><span>Extraviado:'+item.fextrav+'</span><br><hr class="separador"><br><input type="button" name="" value="OCULTAR DETALLES" class="boton-detalles" data-dismiss="modal"><br><br></div><div><h4><b>DESCRIPCIÓN</b></h4></div><div class="col-xs-6">Estatura: '+item.est +'<br>Complexión: '+item.compl +'<br>Ojos: '+item.ojos +'<br>Piel: '+item.piel +'<br>Cabello: '+item.cab +'<br></div><div class="col-xs-6">Tipo de Cabello: '+item.tcab +'<br>Nariz: '+ item.nariz +'<br> Labios: '+item.labios +'<br> Cejas: '+item.cejas +'</div></div></div><div class="numeros-contacto"><span> <h4><b>SI LO HA VISTO O LO RECONOCE</b></h4>COMUNIQUESE A:<br><span class="glyphicon glyphicon-phone-alt"></span>2288416170 Ext. 3000 <br><span class="glyphicon glyphicon-earphone"></span>  2288120841 <br><img src="./img/whatsapp.png" width="19" height="19"/>2281704493</span><br><span class="glyphicon glyphicon-envelope"></span>localizarlosfiscalia_ver@veracruz.goib.mx<br>SU INFORMACIÓN SERÁ ANÓNIMA Y CONFIDENCIAL.</div><div class="agradecimiento" ><p><b>Si detecta</b> información incoreccta, agradeceremos lo comunique al:<br>Tel: (228) 8120841</p></div>');
 
                                 /*<br>Fiscalía Especializada para la Atención de Denuncias por Personas Desparecidas <br> Privada del Tecnológico No. 101 Segundo Piso Col. Moctezuma. Xalapa, Veracruz, C.P 91096 */
                             $('#detailsDiv').append(htmlElement);
-                            $('#detailsDiv').append(infoContacto);
+
+                            $('#success').modal('show');
 
                         });
                         //.style.visibility="visible";
                         $('#detailsDiv').css("visibility", "visible");
                         $('#warningDiv').css("visibility", "visible");
-                        var scrollPos = $('#detailsDiv').offset().top;
+                        var scrollPos = $('#detailsDiv');
                       $(window).scrollTop(scrollPos);
 
                     }
@@ -534,13 +534,6 @@
                 c.src='./img/desapsf.jpg';
             };
 
-            function limpiar(){
-                $('#nombre').val('');
-                $('#paterno').val('');
-                $('#materno').val('');
-                $('#sexo').val('');
-                $('#fechaNacimientotxt').val('');
-            };
         </script>
     </div>
 
