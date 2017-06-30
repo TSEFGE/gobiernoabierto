@@ -228,6 +228,7 @@
             <h5>Publicar datos de personas desaparecidas tiene como fin su <strong>búsqueda y localización</strong> , por lo que no se vulnera el derecho a su privacidad.</h5>
         </div>
 
+
         <!-- Modal -->
         <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -315,8 +316,9 @@
                             $('#resultsDiv').empty();
                              $.each(data, function(key, item) {
                                 if (key=="error_code"){
-                                    htmlElement = $('<h4>No existen resultados para la busqueda realizada</h4>');
-                                    $('#resultsDiv').append(htmlElement);
+                                    /*htmlElement = $('<h4>No existen resultados para la busqueda realizada</h4>');
+                                    $('#resultsDiv').append(htmlElement);*/
+                                    $("#myModal").modal();
                                     return false;
                                 }
                                 var partefoto="";
@@ -447,6 +449,18 @@
             };
 
         </script>
+    </div>
+
+    <!--Modal No se encontraron resultados-->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header alert-danger">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span></button>
+                    <h4 class="modal-title" id="myModalLabel"><strong>No existen resultados</strong> para la busqueda realizada</h4>
+                </div>
+          </div>
+        </div>
     </div>
 
     <footer class="footer">
