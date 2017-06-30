@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="es">
+<html ng-app="detenidosApp" lang="es">
 <head>
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!--<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/bootstrap-theme.css">
 	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
-	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker3.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker3.standalone.min.css">
 	<!--Mis estilos-->
 	<link rel="stylesheet" href="css/cssfonts.css">
 	<link rel="stylesheet" href="css/sticky-footer.css">
@@ -15,7 +17,14 @@
 	<link rel="stylesheet" href="css/ficha.css">
 	<link rel="stylesheet" href="css/formulario.css">
 
-	<meta charset="UTF-8">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!--<script src="js/jquery-3.2.1.js"></script>
+	<script src="js/bootstrap.js"></script>-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/locales/bootstrap-datepicker.es.min.js"></script>
+	
 	<title>Gobierno Abierto - Registro Público de Búsqueda y Localización de Personas Detenidas</title>
 	<link rel="icon" href="img/icon.png" sizes="192x192">
 </head>
@@ -126,31 +135,33 @@
 			</div> 
 			<div class="panel-body"> 
 				<div class="box-body">
-					<div class="row">
+					<div class="row" id="searchDiv">
+					<form id="detenido" method="POST" action=""></form>
 						<div class="col-xs-12 col-sm-6 col-md-2">
 							<div class="form-group">
 								<label for="nombre">Nombre:</label>
-								<input type="text" class="form-control" id="nombre" required>
+								<input type="text" id="nombre" name="nombre" onkeyup="mayus();" ng-model="nombre" class="form-control required ng-valid ng-dirty" ng-required="required" required>
+
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-2 lineaForm">
 							<div class="form-group">
 								<label for="paterno">Apellido Paterno:</label>
-								<input type="text" class="form-control" id="paterno" required>
+								<input type="text" id="paterno" name="paterno" onkeyup="mayus();" ng-model="paterno" class="form-control required ng-valid ng-dirty" ng-required="required" required>
 							</div>
 						</div>
 						<div class="clearfix hidden-md hidden-lg"></div>
 						<div class="col-xs-12 col-sm-6 col-md-2 lineaForm">
 							<div class="form-group">
 								<label for="materno">Apellido Materno:</label>
-								<input type="text" class="form-control" id="materno" required>
+								<input type="text" id="materno" name="materno" onkeyup="mayus();" ng-model="materno" class="form-control required ng-valid ng-dirty" ng-required="required" required>
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-2 lineaForm">
 							<div class="form-group">
 								<label for="sexo">Sexo</label>
 								<div>
-									<select class="form-control" id="sexo" required>
+									<select id="sexo" name="sexo" ng-model="sexo" class="form-control required ng-valid ng-dirty" required>
 									<option value="">Sexo</option>
 										<option value="m">Masculino (M)</option>
 										<option value="f">Femenino(F)</option>
@@ -162,18 +173,20 @@
 							<div class="form-group">
 								<label for="fechaNacimiento">Fecha Nacimiento:</label>
 								<div class='input-group date' id='fechaNacimiento'>
-									<input type='text' placeholder="dd/mm/aaaa" class="form-control" id='fechaNacimientotxt' required/>
+									<input type="text" class="form-control ng-valid" id="fechaNacimiento" name="fechaNacimiento" ng-model="fechaNacimiento" placeholder="dd/mm/aaaa" required>
 									<span class="input-group-addon">
 										<span class="glyphicon glyphicon-calendar"></span>
 									</span>
 								</div>
 							</div>
 						</div>
+					</form>
 					</div>
 					<div class="row">
 						<div class="col-xs-6 col-md-2">
 							<div class="form-group">
-								<button type="submit" class="btn btn-info btn-block" ng-click="getDetencion()" id="search" value="Buscar"><h6>Buscar</h6></button>
+								<button type="submit" class="btn btn-info btn-block" onclick="getDetencion();" id="search" value="Buscar"><h6>Buscar</h6></button>
+								<input class="btn btn-info btn-block" ng-click="getDetencion()" id="search" type="button" value="Buscar">
 							</div>
 						</div>
 						<div class="col-xs-6 col-md-2">
@@ -189,52 +202,73 @@
 			</div>    
 		</div>
 
-		<div class="row datos">
-			<div class="row titulo">
-			<div class="col-xs-6">
-				<strong>Nombre Apellido Apellido</strong>
+
+
+
+		<div class="hrDiv" style="width:95%; margin-top:10px;"></div>
+        <div class="alert alert-amarillo" id="messageDiv" style="display:none; width:95%; margin-left: 2.5%; margin-top: 30px; color:#FF0000; font-weight:bolder;">
+            <span class="i-info"></span><strong>{{message}}</strong>.
+        </div>
+
+		<div class="row datos" id="resultsDiv" style="display:block;">
+			<div id="datosDetencion">
+				<div class="titulo">
+					<div class="col-xs-12 col-md-6">
+						<strong><span class="data">{{ itemnombre }} {{ itempaterno }} {{ itemmaterno }}</span></strong>
+					</div>
+					<div class="col-xs-12 col-md-6 text-right">
+						<strong>DATOS DE LA PUESTA A DISPOSICIÓN</strong>
+					</div>
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<p><strong>Fecha de Detención:</strong><span class="data">{{ itemfechaInicio }}</span></p>
+					<p><strong>Fecha de Finalización:</strong><span class="data">{{ itemfechaFin }}</span></p>
+					<p><strong>Lugar:</strong><span class="data">{{ itemunidad }}</span></p>
+					<p><strong>Dirección:</strong><span class="data">{{ itemdireccion }}</span></p>
+					<p><strong>Teléfono:</strong><span class="data">{{ itemtelefono }}</span></p>
+					<p><strong>Fiscal de distrito:</strong><span class="data">{{ itemfiscal }}</span></p>
+				</div>
 			</div>
-			<div class="col-xs-6 text-right">
-				<strong>DATOS DE LA PUESTA A DISPOSICIÓN</strong>
-			</div>
-			</div>
-			<div class="col-xs-12">
-				<p><strong>Fecha de Detención:</strong> 2017-05-28<strong> Hora:</strong> 12:15:49</p>
-				<p><strong>Fecha de Finalización:</strong> 2017-05-31<strong> Hora:</strong> 15:15:49</p>
-				<p><strong>Lugar:</strong> wqrwrwwrwrwqr</p>
-				<p><strong>Dirección:</strong> wqrwrwrwrwr</p>
-				<p><strong>Teléfono:</strong> wqrwqrwrwqr</p>
-				<p><strong>Fiscal de distrito:</strong> wrwrwqrwqrqwr</p>
+			<div class="col-xs-12 col-md-6">
+				Ubicación UIPJ donde esta el detenido
+				<div id="map"></div>
+				<script type="text/javascript">
+			    	var map;
+			    	var marker ;
+			    	function initMap() {
+			    		map = new google.maps.Map(document.getElementById('map'), {
+			    			center: {lat: 19.5078175, lng: -96.8770843},
+			    			zoom: 15
+			    		});
+			    		marker= new google.maps.Marker({
+			    			position:  {lat: 19.5078175, lng: -96.8770843},
+			    			map: map,
+			    			animation: google.maps.Animation.DROP,
+			    			title: 'Fiscalía General de Justicia del Estado de Veracruz de Ignacio de la Llave'
+			    		});
+			    		marker.setAnimation(google.maps.Animation.BOUNCE);
+			    		marker.addListener('click', toggleBounce);
+			    	}
+			    	function toggleBounce() {
+			    		if (marker.getAnimation() !== null) {
+			    			marker.setAnimation(null);
+			    		} else {
+			    			marker.setAnimation(google.maps.Animation.BOUNCE);
+			    		}
+			    	}
+			    	function displayHelp(){
+			    		$('#ayudaDiv').css("visibility", "visible");
+			    	}
+			    	function closeHelp(){
+			    		$('#ayudaDiv').css("visibility", "hidden");
+			    	}
+			    </script>
 			</div>
 		</div>
 		<div class="alert alert-warning alert-dismissable fade in">
 			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 			<strong>IMPORTANTE:</strong> Los resultados de esta consulta están sujetos a homonimia.
 		</div>
-
-		<div class="row datos">
-			<div class="row titulo">
-			<div class="col-xs-6">
-				<strong>Nombre Apellido Apellido</strong>
-			</div>
-			<div class="col-xs-6 text-right">
-				<strong>DATOS DE LA PUESTA A DISPOSICIÓN</strong>
-			</div>
-			</div>
-			<div class="col-xs-12">
-				<p><strong>Fecha de Detención:</strong> 2017-05-28<strong> Hora:</strong> 12:15:49</p>
-				<p><strong>Fecha de Finalización:</strong> 2017-05-31<strong> Hora:</strong> 15:15:49</p>
-				<p><strong>Lugar:</strong> wqrwrwwrwrwqr</p>
-				<p><strong>Dirección:</strong> wqrwrwrwrwr</p>
-				<p><strong>Teléfono:</strong> wqrwqrwrwqr</p>
-				<p><strong>Fiscal de distrito:</strong> wrwrwqrwqrqwr</p>
-			</div>
-		</div>
-		<div class="alert alert-warning alert-dismissable fade in">
-			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			<strong>IMPORTANTE:</strong> Los resultados de esta consulta están sujetos a homonimia.
-		</div>
-
 	</div>
 
 	
@@ -277,33 +311,44 @@
 		</div>
 	</footer>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
-	<!--<script src="js/jquery-3.2.1.js"></script>
-	<script src="js/bootstrap.js"></script>-->
-	<script src="js/bootstrap-datepicker.min.js"></script>
+	
 	<script>
-        $( document ).ready(function() {
+		$( document ).ready(function() {
             $(function (){
                 $('#fechaNacimiento').datepicker({
-                	clearBtn: true,
-				    language: "es-ES",
-				    autoclose: true,
-				    todayHighlight: true,
-				    toggleActive: true,
-				    maxViewMode: 4
+                	    format: "dd/mm/yyyy",
+					    weekStart: 0,
+					    endDate: "today",
+					    todayBtn: "linked",
+					    language: "es",
+					    orientation: "top right",
+					    multidate: false,
+					    todayHighlight: true,
+					    autoclose: true
                 });
             });
         });
 
+		function mayus() {
+    		var x = document.getElementById("nombre");
+    		x.value = x.value.toUpperCase();
+    		var x = document.getElementById("materno");
+    		x.value = x.value.toUpperCase();
+    		var x = document.getElementById("paterno");
+    		x.value = x.value.toUpperCase();
+		}
+        
         function limpiar(){
             $('#nombre').val('');
             $('#paterno').val('');
             $('#materno').val('');
             $('#sexo').val('');
-            $('#fechaNacimientotxt').val('');
+            $('#fechaNacimiento').val('');
         };
     </script>
+    <!--Del original-->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>    
+    <script src="js/detenidos.js"></script>
 </body>
 </html>
