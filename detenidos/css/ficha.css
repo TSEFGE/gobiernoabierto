@@ -1,0 +1,22 @@
+.datos{
+	border: 1px solid #444644;
+	margin-left: 4px;
+	margin-right: 4px;
+	margin-bottom: 8px;
+	background-color: #F1F1F1;
+}
+
+.titulo{
+	background-color: #444644;
+	color: #fff;
+	line-height: 30px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+.datos p{
+	margin-bottom: 0px;
+}
+
+.alert{
+	margin-bottom: 20px;
+}

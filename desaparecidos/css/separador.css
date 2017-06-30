@@ -1,0 +1,12 @@
+.separador{
+    border:none;
+    height: 2px;
+    background: -webkit-linear-gradient(left, white, black, white);
+    background: -moz-linear-gradient(left, white, black, white);
+    background: -o-linear-gradient(left, white, black, white);
+    background: linear-gradient(to right, white, black, white);
+    margin-right:0px; 
+    margin-left:0px;
+    margin-bottom:0px;
+    margin-top:0px;
+}

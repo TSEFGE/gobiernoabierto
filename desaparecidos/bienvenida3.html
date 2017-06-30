@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link href="css/custom.css" rel="stylesheet" type="text/css" />
+	<link href="css/botonazul.css" rel="stylesheet" type="text/css" />
+	<link href="css/botongris.css" rel="stylesheet" type="text/css" />
+	<link href="css/botongrisoscuro.css" rel="stylesheet" type="text/css" />
+	<link href="css/modal.css" rel="stylesheet" type="text/css" />
+	<link href="css/alertamarillo.css" rel="stylesheet" type="text/css" />
+	<link href="css/cssfonts.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet" href="css/sticky-footer.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+	
+	<style type="text/css" media="screen">
+		.top-to-bottom {
+            border-width: 3px;
+            
+            -webkit-border-image: 
+              -webkit-gradient(linear, 0 0, 0 100%, from(black), to(rgba(0, 0, 0, 0))) 1 100%;
+            -webkit-border-image: 
+              -webkit-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
+            -moz-border-image:
+              -moz-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;    
+            -o-border-image:
+              -o-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
+            border-image:
+              linear-gradient(to bottom, black, rgba(0, 0, 0, 0)) 1 100%;
+
+            border-width: 3px;
+            
+            -webkit-border-image: 
+              -webkit-gradient(linear, 0 100%, 0 0, from(black), to(rgba(0, 0, 0, 0))) 1 100%;
+            -webkit-border-image: 
+              -webkit-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;
+            -moz-border-image:
+              -moz-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;  
+            -o-border-image:
+              -o-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;
+            border-image:
+              linear-gradient(to top, black, rgba(0, 0, 0, 0)) 1 100%;
+        }
+
+		.menu li {
+            border-right: 1px solid #9B9A9A;
+            float: left;
+            list-style: none outside none;
+            padding-left: 5px;
+            padding-right: 5px;
+            width: auto;
+        }
+
+        .menu li:last-child {
+            border-right:none;
+        }
+
+
+    	.panel-default > .panel-heading-custom {
+    	    background: #8e8e8e; 
+    	    color: #fff;
+    	;
+    	}
+        .panel-default > .panel-heading-customd {
+            background: #444644; 
+            color: #fff;
+            border-color: #444644; 
+        
+        }
+
+		.estilo-bienvenida{
+			background: #f2f2f2;
+			border: 2px solid #f2f2f2;
+			border-radius: 25px;
+			box-shadow: 8px 8px 8px 6px #888888;
+		}
+
+		.navbar{
+		    border-radius: 10px;
+		    background-color: #444644;
+		    border-color: #444644;
+		    color: #fff;
+		    box-shadow: 3px 3px 6px 5px #888888;
+		}	
+
+		@media (max-width: 768px){
+		    .navbar {
+		    	border-radius: 0px;
+			    background-color: #444644;
+			    border-color: #444644;
+			    color: #fff;
+			    margin-top: 15px;
+			    box-shadow: 0px 0px 0px 16px #444644;
+		    }
+		}
+	</style>
+
+</head>
+<body>
+	<div class="container">
+
+
+		<header>
+			<div class="row">
+				<div class="col-md-4 col-xs-3">
+					<div class="form-group">
+						<img src="./img/logo.png" align="left" border="1" width="100" height="100"/>
+					</div>
+				</div>
+				<div class="col-md-4 col-xs-9">
+					<div class="form-group">
+						<br>
+						<h5 align="center">REGISTRO PÚBLICO DE BÚSQUEDA DE PERSONAS DESAPARECIDAS</h5>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<br>
+					</div>
+				</div>
+			</div>
+
+			<div class="row mimenu" align="right">
+				<div class="col-xs-12 col-md-2 col-lg-4 "></div>
+				<div class="col-xs-12 col-md-10 col-lg-8 ">
+					<nav class="navbar">
+						<div class="container-fluid">
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+							</div>
+							<div class="collapse navbar-collapse" id="myNavbar">
+								<ul class="nav navbar-nav navbar-right menu">
+									<li class="top-to-bottom" data-toggle="tooltip" data-placement="top" title="Bienvenida">
+										<a href="./bienvenida.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Bienvenida</a>
+									</li>
+									<li class="top-to-bottom" data-toggle="tooltip" data-placement="top" title="Descargar Archivo">
+										<a href="./desaparecidos.xlsx"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar</a>
+									</li>
+									<li class="top-to-bottom" data-toggle="tooltip" data-placement="top" title="Infografía">
+										<a href="./img/infografia.pdf"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infografía</a>
+									</li>
+									<li class="top-to-bottom" data-toggle="tooltip" data-placement="top" title="Estadística">
+										<a href="http://www.transparenciamexico.mx/User/Workspace/Archivos/PDF/29/INCISO-C-75903.pdf"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Estadística</a>
+									</li>
+									<li class="top-to-bottom" data-toggle="tooltip" data-placement="top" title="Guía para la Denuncia de Personas Desaparecidas">
+										<a href="./img/cartel.pdf"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Guía</a>
+									</li>
+									<li class="top-to-bottom" data-toggle="tooltip" data-placement="top" title="Consulta la Ayuda para el uso del sitio">
+										<a href="#"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ayuda</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</header>
+		<br>
+		<br>
+
+		<div id="myCarousel" class="carousel slide" data-ride="carousel" align="center">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<img src="la.jpg" alt="Los Angeles" style="width:40%;">
+				</div>
+
+				<div class="item">
+					<img src="chicago.jpg" alt="Chicago" style="width:40%;">
+				</div>
+
+				<div class="item">
+					<img src="ny.jpg" alt="New york" style="width:40%;">
+				</div>
+			</div>
+
+			<!-- Left and right controls -->
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#myCarousel" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading panel-heading-customd" align="center"><h4>Llama al Centro de Atención Telefónica (228) 841-61-70<br>
+				y proporciona los datos de la persona que buscas para que te auxilien en el proceso si así lo prefieres.</h4>
+			</div>
+		</div>
+
+		<div class="container estilo-bienvenida">
+			<h1><b>GOBIERNO ABIERTO</b></h1>
+			<div class="post-entry" style="text-align:justify;">
+				<p>Consolidar un Gobierno Abierto, requiere de actores honestamente comprometidos con la transparencia, la participaci&oacute;n ciudadana, el combate a la corrupci&oacute;n, la rendici&oacute;n de cuentas y el uso estrat&eacute;gico de las tecnolog&iacute;as de la informaci&oacute;n, encaminados a construir una pol&iacute;tica de estado que garanticen la colaboraci&oacute;n activa de una sociedad cada d&iacute;a m&aacute;s informada y exigente.</p>
+				<p>Con esta voluntad pol&iacute;tica en el a&ntilde;o 2011, M&eacute;xico se suma a la Alianza para el Gobierno Abierto (AGA) construyendo un espacio de di&aacute;logo e intercambio de ideas que busca, en colaboraci&oacute;n con la sociedad civil, que el gobierno en todos sus niveles, asuma compromisos con el potencial de transformar la calidad de vida de las personas.</p>
+				<p>Voluntad que comparte la Fiscal&iacute;a General del Estado de Veracruz, convencida de que s&oacute;lo la libre circulaci&oacute;n de la informaci&oacute;n p&uacute;blica y la construcci&oacute;n de espacios de participaci&oacute;n ciudadana, permite discutir temas de relevancia desde un espacio incluyente y participativo, sum&aacute;ndose as&iacute; a la integraci&oacute;n del Secretariado T&eacute;cnico Local para la implementaci&oacute;n del Gobierno Abierto en el Estado de Veracruz, cuya estrategia impuls&oacute; el Instituto Nacional de Transparencia, Acceso a la Informaci&oacute;n y Protecci&oacute;n de Datos Personales (INAI), en coordinaci&oacute;n con el Instituto Veracruzano de Acceso a la Informaci&oacute;n y Protecci&oacute;n de Datos Personales (IVAI).</p>
+				<p>En conjunto con la Agrupaci&oacute;n de Derechos Humanos Xochit&eacute;petl, A.C., se firm&oacute; el <strong>Plan de Acci&oacute;n Local de Gobierno Abierto del Estado de Veracruz</strong>, asumiendo el compromiso de poner al alcance de la ciudadan&iacute;a, dos plataformas tecnol&oacute;gicas: el <strong>Registro P&uacute;blico de Personas Desaparecidas</strong> y, <strong>el Registro P&uacute;blico de B&uacute;squeda y Localizaci&oacute;n de Personas Detenidas.</strong></p>
+				<p>Ambos proyectos est&aacute;n alineados al Plan de Acci&oacute;n 2013-2015 de la Alianza para el Gobierno Abierto y responden a reclamos sociales, que la Fiscal&iacute;a atiende bajo un esquema de transparencia, rendici&oacute;n de cuentas y participaci&oacute;n ciudadana, a trav&eacute;s del uso de las Tecnolog&iacute;as de la Informaci&oacute;n y la Comunicaci&oacute;n, impulsando una nueva relaci&oacute;n entre gobierno y sociedad, que fortalezca la confianza en la procuraci&oacute;n de justicia e inhiba la corrupci&oacute;n, brindando resultados tangibles, medibles y replicables.</p>
+				<p>La participaci&oacute;n de la Fiscal&iacute;a, en este ejercicio local de Gobierno Abierto, refrenda el compromiso de dar soluci&oacute;n a problemas p&uacute;blicos a trav&eacute;s de la construcci&oacute;n de espacios de di&aacute;logo, colaboraci&oacute;n, participaci&oacute;n y retroalimentaci&oacute;n con la ciudadan&iacute;a, bajo una agenda com&uacute;n. El bienestar de las y los veracruzanos.</p>
+				<p style="text-align: center;"><strong>Lic. Jorge Winckler Ort&iacute;z</strong></p>
+				<p style="text-align: center;"><strong>&nbsp;</strong><strong>Fiscal General del Estado de Veracruz de Ignacio de la Llave</strong></p>
+			</div>
+		</div>
+
+	</div>
+	<br><br>
+	<footer class="footer">
+		<div class="row footer-area-wrap">
+			<div class="container">
+				<div class="col-xs-12 col-md-4">
+					<img src="./img/logo-footer.png" alt="Fiscalia General del Estado" width="200">
+				</div>
+				<div class="col-xs-12 col-md-4 lineaFooter">
+					<h4 class="negrita">Contacto</h4>
+					<br>
+					Circuito Rafael Guízar y Valencia No. 707, Colonia Reserva Territorial C.P. 91096 Xalapa, Veracruz.
+					<br>
+					Teléfono: 01 228 841 6170
+					<br>
+					contacto@fiscaliaveracruz.gob.mx
+				</div>
+				<div class="col-xs-12 col-md-4 lineaFooter">
+					<h4 class="negrita">Visitante No.</h4>
+					<div class="textwidget"><a href="http://www.easycounter.com/es/">
+						<img src="//www.easycounter.com/counter.php?contactodetenidos" border="0" alt="Contador"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-container">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-md-10">
+						<div>Copyright © 2017 Fiscalía General del Estado de Veracruz , DCIIT</div>
+					</div>
+					<div class="col-xs-12 col-md-2 ">
+						<a href="http://facebook.com/fgeveracruz/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+						<a href="http://twitter.com/FGE_Veracruz"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+						<a href="https://www.youtube.com/channel/UC464yhyQ9Zc6FYkPyN69cgA"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	
+</body>
+</html>
