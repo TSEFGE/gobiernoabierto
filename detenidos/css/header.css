@@ -40,6 +40,42 @@
     margin-bottom: 10px;
 }
 
+.titulo1, .titulo2{
+    font-family: 'neosanspro-bold';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1rem;
+}
+@media (min-width: 420px) {
+    .titulo1, .titulo2{
+        font-size: 1.5rem;
+    }
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .titulo1, .titulo2{
+        font-size: 2rem;
+    }
+}
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .titulo1, .titulo2{
+        font-size: 2.5rem;
+    }
+}
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .titulo1, .titulo2{
+        font-size: 3.1rem;
+    }
+}
+.titulo1{
+    color: #8E8E8E;
+}
+.titulo2{
+    color: #54555A;
+}
+
 
 media (max-width: 768px){
     .navbar {
