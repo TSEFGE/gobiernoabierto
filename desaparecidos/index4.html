@@ -20,7 +20,10 @@
     <link rel="stylesheet" href="css/separador.css">
     
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker3.standalone.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/locales/bootstrap-datepicker.es.min.js"></script>
 
 
 	<style type="text/css">
@@ -123,8 +126,7 @@
         	</div>
         	<div class="col-md-4 col-xs-9">
         		<div class="form-group">
-        			<br>
-    		    	<h5 align="center">REGISTRO PÚBLICO DE BÚSQUEDA DE PERSONAS DESAPARECIDAS</h5>
+    		    	<h3 align="center"><strong>REGISTRO PÚBLICO DE BÚSQUEDA<br> DE PERSONAS DESAPARECIDAS</strong></h3>
         		</div>
         	</div>
         	<div class="col-md-4">
@@ -173,8 +175,12 @@
                 </div>
             </div>
         </header>
-    	<br>
-    	<br>
+
+        <div class="row barra">
+            <div class="col-xs-12">
+                <img class="img-responsive center" src="./img/barra.png"/>
+            </div>
+        </div>
 
     	<div id="myCarousel" class="carousel slide" data-ride="carousel" align="center">
     	    <!-- Indicators -->
@@ -186,18 +192,18 @@
 
     	    <!-- Wrapper for slides -->
     	    <div class="carousel-inner">
-    	      <div class="item active">
-    	        <img src="la.jpg" alt="Los Angeles" style="width:40%;">
-    	      </div>
+                <div class="item active">
+                    <img src="img/slide1.jpg" alt="Slide1" style="width:80%;">
+                </div>
 
-    	      <div class="item">
-    	        <img src="chicago.jpg" alt="Chicago" style="width:40%;">
-    	      </div>
-    	    
-    	      <div class="item">
-    	        <img src="ny.jpg" alt="New york" style="width:40%;">
-    	      </div>
-    	    </div>
+                <div class="item">
+                    <img src="img/slide1.jpg" alt="Slide2" style="width:80%;">
+                </div>
+
+                <div class="item">
+                    <img src="img/slide1.jpg" alt="Slide3" style="width:80%;">
+                </div>
+            </div>
 
     	    <!-- Left and right controls -->
     	    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -354,6 +360,21 @@
 
 
         <script>
+        $( document ).ready(function() {
+            $(function (){
+                $('#fechaNacimientotxt').datepicker({
+                        format: "dd/mm/yyyy",
+                        weekStart: 0,
+                        endDate: "today",
+                        todayBtn: "linked",
+                        language: "es",
+                        orientation: "top right",
+                        multidate: false,
+                        todayHighlight: true,
+                        autoclose: true
+                });
+            });
+        });
             
             /*----------prueba de funcion------------*/
 
@@ -525,9 +546,9 @@
                 </div>
                 <div class="col-xs-12 col-md-4 lineaFooter">
                     <h4 class="negrita">Visitante No.</h4>
-                    <div class="textwidget"><a href="http://www.easycounter.com/es/">
+                    <!--<div class="textwidget"><a href="http://www.easycounter.com/es/">
                         <img src="//www.easycounter.com/counter.php?contactodetenidos" border="0" alt="Contador"></a>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
