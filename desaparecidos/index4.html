@@ -18,89 +18,16 @@
     <link rel="stylesheet" href="css/sticky-footer.css">
     <link rel="stylesheet" href="css/fichadesaparecido.css">
     <link rel="stylesheet" href="css/separador.css">
-    
+    <link rel="stylesheet" href="css/ficha-detalles.css">
+    <link rel="stylesheet" href="css/panel-default.css">
+
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
 
 
-	<style type="text/css">
-        .top-to-bottom {
-            border-width: 3px;
-            
-            -webkit-border-image: 
-              -webkit-gradient(linear, 0 0, 0 100%, from(black), to(rgba(0, 0, 0, 0))) 1 100%;
-            -webkit-border-image: 
-              -webkit-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
-            -moz-border-image:
-              -moz-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;    
-            -o-border-image:
-              -o-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
-            border-image:
-              linear-gradient(to bottom, black, rgba(0, 0, 0, 0)) 1 100%;
-
-            border-width: 3px;
-            
-            -webkit-border-image: 
-              -webkit-gradient(linear, 0 100%, 0 0, from(black), to(rgba(0, 0, 0, 0))) 1 100%;
-            -webkit-border-image: 
-              -webkit-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;
-            -moz-border-image:
-              -moz-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;  
-            -o-border-image:
-              -o-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;
-            border-image:
-              linear-gradient(to top, black, rgba(0, 0, 0, 0)) 1 100%;
-        }
-
-        .menu li {
-            border-right: 1px solid #9B9A9A;
-            float: left;
-            list-style: none outside none;
-            padding-left: 5px;
-            padding-right: 5px;
-            width: auto;
-        }
-
-        .menu li:last-child {
-            border-right:none;
-        }
-
-
-    	.panel-default > .panel-heading-custom {
-    	    background: #8e8e8e; 
-    	    color: #fff;
-    	;
-    	}
-        .panel-default > .panel-heading-customd {
-            background: #444644; 
-            color: #fff;
-            border-color: #444644; 
-        ;
-        }
-
-        
-
-        .agradecimiento{
-            color: #967f3d; 
-            padding-top: 10px; 
-            padding-left: 20px; 
-            padding-right: 20px; 
-            border-radius: 0px 0px 25px 25px; 
-            background: #fef6dd; 
-            margin-right:-2px; 
-            margin-left:-2px;
-        }
-
-        .numeros-contacto{
-            padding: 10px; 
-            padding-left: 20px; 
-            padding-right: 20px;
-            color: #ffffff;  
-            background: #8e8e8e; 
-            margin-right:-2px; 
-            margin-left:-2px;
-        }
+	<style type="text/css">    
 	</style>
+
 
     <script>
         $( document ).ready(function() {
@@ -385,7 +312,7 @@
                                 var foto=item.rutfoto == null || item.rutfoto === "" ?'./img/desapsf.jpg':'./img/fotos/'+partefoto;
                                 var sexo=item.sexo=='M'?'Masculino':'Femenino';
                                 var origen=item.origen==null?'S/D':item.origen;
-                                htmlElement = $('<div onclick="getDetail('+item.id+');" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 " id="'+item.id+'"><div class="panel ficha-desaparecidos"><div class="panel-body"><div class="col-xs-4"><span><img class="image_mini " src="'+foto+'" onerror="epic(this);" width="100" height="150"/></span></div><div class="data_mini col-xs-8"> '+item.nombre+' '+ item.apat +' '+ item.amat +'<br><hr class="separador"><br> '+item.edad+' años<br><hr class="separador"> '+sexo+'<br><hr class="separador"><span>Extraviado:'+item.fextrav+'</span><br><hr class="separador"><br><input type="button" name="" value="VER MÁS DETALLES" class="boton-detalles" ></div></div></div></div>');
+                                htmlElement = $('<div onclick="getDetail('+item.id+');" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 " id="'+item.id+'"><div class="panel ficha-desaparecidos"><div class="panel-body"><div class="col-xs-4"><span><img class="image_mini " src="'+foto+'" onerror="epic(this);" width="100" height="150"/></span></div><div class="data_mini col-xs-8"> '+item.nombre+' '+ item.apat +' '+ item.amat +'<br><hr class="separador"><br> '+item.edad+' años<br><hr class="separador"> '+sexo+'<br><hr class="separador"><span>Extraviado:'+item.fextrav+'</span><br><hr class="separador"><br><input type="button" name="" value="VER M&Aacute;S DETALLES" class="boton-detalles" ></div></div></div></div>');
                                 //<span class="glyphicon glyphicon-home"></span> '+origen+'</small></span>
                                 $('#resultsDiv').append(htmlElement);
                               });
@@ -472,7 +399,7 @@
 
                             var sexo=item.sexo=='M'?'Masculino':'Femenino';
                             var origen=item.origen==null?'S/D':item.origen;
-                            htmlElement = $('<div class="modal-body "><div class="row"><div class="col-xs-12 col-sm-4"><span><img class="image_mini " src="'+foto+'" onerror="epic(this);" width="150" height="195"/></span></div><br><br><div class="data_mini col-xs-12 col-sm-8">'+item.nombre+' '+ item.apat +' '+ item.amat +'<br><hr class="separador"><br>'+item.edad+' años<br><hr class="separador"> '+sexo+'<br><hr class="separador"><span>Extraviado:'+item.fextrav+'</span><br><hr class="separador"><br><input type="button" name="" value="OCULTAR DETALLES" class="boton-detalles" data-dismiss="modal"><br><br></div><div><h4 style="padding-left:15px;"><b>DESCRIPCIÓN</b></h4></div><div class="col-xs-6">Estatura: '+item.est +'<br>Complexión: '+item.compl +'<br>Ojos: '+item.ojos +'<br>Piel: '+item.piel +'<br>Cabello: '+item.cab +'<br></div><div class="col-xs-6">Tipo de Cabello: '+item.tcab +'<br>Nariz: '+ item.nariz +'<br> Labios: '+item.labios +'<br> Cejas: '+item.cejas +'</div></div></div><div class="numeros-contacto"><span> <h4 style="color:#12188e;"><b>SI LO HA VISTO O LO RECONOCE</b></h4>COMUNIQUESE A:<br><span class="glyphicon glyphicon-phone-alt"></span>2288416170 Ext. 3000 <br><span class="glyphicon glyphicon-earphone"></span>  2288120841 <br><img src="./img/whatsapp.png" width="19" height="19"/>2281704493</span><br><span class="glyphicon glyphicon-envelope"></span>localizarlosfiscalia_ver@veracruz.goib.mx<br>SU INFORMACIÓN SERÁ ANÓNIMA Y CONFIDENCIAL.</div><div class="agradecimiento" ><p><b>Si detecta</b> información incoreccta, agradeceremos lo comunique al:<br>Tel: (228) 8120841</p></div>');
+                            htmlElement = $('<div class="modal-body "><div class="row"><div class="col-xs-12 col-sm-4"><span><img class="image_mini " src="'+foto+'" onerror="epic(this);" width="150" height="195"/></span></div><br><br><div class="data_mini col-xs-12 col-sm-8">'+item.nombre+' '+ item.apat +' '+ item.amat +'<br><hr class="separador"><br>'+item.edad+' años<br><hr class="separador"> '+sexo+'<br><hr class="separador"><span>Extraviado:'+item.fextrav+'</span><br><hr class="separador"><br><input type="button" name="" value="OCULTAR DETALLES" class="boton-detalles" data-dismiss="modal"><br><br></div><div><h4 style="padding-left:15px;"><b>DESCRIPCI&Oacute;N</b></h4></div><div class="col-xs-6">Estatura: '+item.est +'<br>Complexi&oacute;n: '+item.compl +'<br>Ojos: '+item.ojos +'<br>Piel: '+item.piel +'<br>Cabello: '+item.cab +'<br></div><div class="col-xs-6">Tipo de Cabello: '+item.tcab +'<br>Nariz: '+ item.nariz +'<br> Labios: '+item.labios +'<br> Cejas: '+item.cejas +'</div></div></div><div class="numeros-contacto"><span> <h4 style="color:#12188e;"><b>SI LO HA VISTO O LO RECONOCE</b></h4>COMUNIQUESE A:<br><span class="glyphicon glyphicon-phone-alt"></span>2288416170 Ext. 3000 <br><span class="glyphicon glyphicon-earphone"> </span>2288120841 <br><img src="./img/whatsapp.png" width="19" height="19"/>2281704493</span><br><span class="glyphicon glyphicon-envelope"></span>localizarlosfiscalia_ver@veracruz.goib.mx<br>SU INFORMACIÓN SER&Aacute; AN&Oacute;NIMA Y CONFIDENCIAL.</div><div class="agradecimiento" ><p><b>Si detecta</b> informaci&oacute;n incoreccta, agradeceremos lo comunique al:<br>Tel: (228) 8120841</p></div>');
 
                                 /*<br>Fiscalía Especializada para la Atención de Denuncias por Personas Desparecidas <br> Privada del Tecnológico No. 101 Segundo Piso Col. Moctezuma. Xalapa, Veracruz, C.P 91096 */
                             $('#detailsDiv').append(htmlElement);

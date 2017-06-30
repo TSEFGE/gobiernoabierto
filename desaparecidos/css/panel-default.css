@@ -1,0 +1,51 @@
+.top-to-bottom {
+    border-width: 3px;
+
+    -webkit-border-image: 
+    -webkit-gradient(linear, 0 0, 0 100%, from(black), to(rgba(0, 0, 0, 0))) 1 100%;
+    -webkit-border-image: 
+    -webkit-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
+    -moz-border-image:
+    -moz-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;    
+    -o-border-image:
+    -o-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
+    border-image:
+    linear-gradient(to bottom, black, rgba(0, 0, 0, 0)) 1 100%;
+
+    border-width: 3px;
+
+    -webkit-border-image: 
+    -webkit-gradient(linear, 0 100%, 0 0, from(black), to(rgba(0, 0, 0, 0))) 1 100%;
+    -webkit-border-image: 
+    -webkit-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;
+    -moz-border-image:
+    -moz-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;  
+    -o-border-image:
+    -o-linear-gradient(bottom, black, rgba(0, 0, 0, 0)) 1 100%;
+    border-image:
+    linear-gradient(to top, black, rgba(0, 0, 0, 0)) 1 100%;
+}
+
+.menu li {
+    border-right: 1px solid #9B9A9A;
+    float: left;
+    list-style: none outside none;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: auto;
+}
+
+.menu li:last-child {
+    border-right:none;
+}
+
+
+.panel-default > .panel-heading-custom {
+    background: #8e8e8e; 
+    color: #fff;
+}
+.panel-default > .panel-heading-customd {
+    background: #444644; 
+    color: #fff;
+    border-color: #444644; 
+}
