@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/sticky-footer.css">
+    <link rel="stylesheet" href="css/fichadesaparecido.css">
+    <link rel="stylesheet" href="css/separador.css">
     
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
@@ -76,38 +78,7 @@
         ;
         }
 
-        .ficha-desaparecidos{
-            background: #f2f2f2;
-            border: 2px solid #f2f2f2;
-            border-radius: 25px;
-            box-shadow: 0px 0px 5px 3px #888888;
-        }
-
-        .boton-detalles{
-            border:none;
-            text-decoration: none;
-            width: 100%;
-            color: #ffffff;
-            background-color: #000000;
-        }
-          
-        .boton-detalles:hover{
-            background-color: #434141;
-            text-decoration: none;
-        }
-
-        .separador{
-            border:none;
-            height: 2px;
-            background: -webkit-linear-gradient(left, white, black, white);
-            background: -moz-linear-gradient(left, white, black, white);
-            background: -o-linear-gradient(left, white, black, white);
-            background: linear-gradient(to right, white, black, white);
-            margin-right:0px; 
-            margin-left:0px;
-            margin-bottom:0px;
-            margin-top:0px;
-        }
+        
 
         .agradecimiento{
             color: #967f3d; 
@@ -501,7 +472,7 @@
 
                             var sexo=item.sexo=='M'?'Masculino':'Femenino';
                             var origen=item.origen==null?'S/D':item.origen;
-                            htmlElement = $('<div class="modal-body "><div class="row"><div class="col-xs-12 col-sm-4"><span><img class="image_mini " src="'+foto+'" onerror="epic(this);" width="150" height="195"/></span></div><br><br><div class="data_mini col-xs-12 col-sm-8">'+item.nombre+' '+ item.apat +' '+ item.amat +'<br><hr class="separador"><br>'+item.edad+' años<br><hr class="separador"> '+sexo+'<br><hr class="separador"><span>Extraviado:'+item.fextrav+'</span><br><hr class="separador"><br><input type="button" name="" value="OCULTAR DETALLES" class="boton-detalles" data-dismiss="modal"><br><br></div><div><h4><b>DESCRIPCIÓN</b></h4></div><div class="col-xs-6">Estatura: '+item.est +'<br>Complexión: '+item.compl +'<br>Ojos: '+item.ojos +'<br>Piel: '+item.piel +'<br>Cabello: '+item.cab +'<br></div><div class="col-xs-6">Tipo de Cabello: '+item.tcab +'<br>Nariz: '+ item.nariz +'<br> Labios: '+item.labios +'<br> Cejas: '+item.cejas +'</div></div></div><div class="numeros-contacto"><span> <h4><b>SI LO HA VISTO O LO RECONOCE</b></h4>COMUNIQUESE A:<br><span class="glyphicon glyphicon-phone-alt"></span>2288416170 Ext. 3000 <br><span class="glyphicon glyphicon-earphone"></span>  2288120841 <br><img src="./img/whatsapp.png" width="19" height="19"/>2281704493</span><br><span class="glyphicon glyphicon-envelope"></span>localizarlosfiscalia_ver@veracruz.goib.mx<br>SU INFORMACIÓN SERÁ ANÓNIMA Y CONFIDENCIAL.</div><div class="agradecimiento" ><p><b>Si detecta</b> información incoreccta, agradeceremos lo comunique al:<br>Tel: (228) 8120841</p></div>');
+                            htmlElement = $('<div class="modal-body "><div class="row"><div class="col-xs-12 col-sm-4"><span><img class="image_mini " src="'+foto+'" onerror="epic(this);" width="150" height="195"/></span></div><br><br><div class="data_mini col-xs-12 col-sm-8">'+item.nombre+' '+ item.apat +' '+ item.amat +'<br><hr class="separador"><br>'+item.edad+' años<br><hr class="separador"> '+sexo+'<br><hr class="separador"><span>Extraviado:'+item.fextrav+'</span><br><hr class="separador"><br><input type="button" name="" value="OCULTAR DETALLES" class="boton-detalles" data-dismiss="modal"><br><br></div><div><h4 style="padding-left:15px;"><b>DESCRIPCIÓN</b></h4></div><div class="col-xs-6">Estatura: '+item.est +'<br>Complexión: '+item.compl +'<br>Ojos: '+item.ojos +'<br>Piel: '+item.piel +'<br>Cabello: '+item.cab +'<br></div><div class="col-xs-6">Tipo de Cabello: '+item.tcab +'<br>Nariz: '+ item.nariz +'<br> Labios: '+item.labios +'<br> Cejas: '+item.cejas +'</div></div></div><div class="numeros-contacto"><span> <h4 style="color:#12188e;"><b>SI LO HA VISTO O LO RECONOCE</b></h4>COMUNIQUESE A:<br><span class="glyphicon glyphicon-phone-alt"></span>2288416170 Ext. 3000 <br><span class="glyphicon glyphicon-earphone"></span>  2288120841 <br><img src="./img/whatsapp.png" width="19" height="19"/>2281704493</span><br><span class="glyphicon glyphicon-envelope"></span>localizarlosfiscalia_ver@veracruz.goib.mx<br>SU INFORMACIÓN SERÁ ANÓNIMA Y CONFIDENCIAL.</div><div class="agradecimiento" ><p><b>Si detecta</b> información incoreccta, agradeceremos lo comunique al:<br>Tel: (228) 8120841</p></div>');
 
                                 /*<br>Fiscalía Especializada para la Atención de Denuncias por Personas Desparecidas <br> Privada del Tecnológico No. 101 Segundo Piso Col. Moctezuma. Xalapa, Veracruz, C.P 91096 */
                             $('#detailsDiv').append(htmlElement);
