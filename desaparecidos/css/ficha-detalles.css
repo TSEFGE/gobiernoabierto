@@ -1,0 +1,20 @@
+.agradecimiento{
+    color: #967f3d; 
+    padding-top: 10px; 
+    padding-left: 20px; 
+    padding-right: 20px; 
+    border-radius: 0px 0px 25px 25px; 
+    background: #fef6dd; 
+    margin-right:-2px; 
+    margin-left:-2px;
+}
+
+.numeros-contacto{
+    padding: 10px; 
+    padding-left: 20px; 
+    padding-right: 20px;
+    color: #ffffff;  
+    background: #8e8e8e; 
+    margin-right:-2px; 
+    margin-left:-2px;
+}
