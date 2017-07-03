@@ -87,8 +87,18 @@
         box-shadow: none;
     }
 
+
     .container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header{
         border-radius: 10px;
+    }
+
+}
+
+@media (min-width: 768px){
+    .navbar-nav>li {
+        border-right: 2px solid;    
+        border-image: linear-gradient(to top, #444644, rgba(255, 255, 255, 0.5), #444644) 1 100%;
+
     }
 
 }
