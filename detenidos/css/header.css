@@ -46,6 +46,11 @@
     -moz-osx-font-smoothing: grayscale;
     font-size: 1rem;
 }
+
+.separador-menu{
+    border-right: 1px solid #ffffff;
+}
+
 @media (min-width: 420px) {
     .titulo1, .titulo2{
         font-size: 1.5rem;
@@ -77,7 +82,7 @@
 }
 
 
-media (max-width: 768px){
+@media (max-width: 768px){
     .navbar {
         background-color: #444644;
         border-color: #444644;
@@ -90,5 +95,6 @@ media (max-width: 768px){
     .container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header{
         border-radius: 10px;
     }
+
 
 }
