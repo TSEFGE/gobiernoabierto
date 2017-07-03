@@ -102,7 +102,7 @@
         <img class="img-responsive center barra" src="./img/barra.png"/>
         
 
-    	<div id="myCarousel" class="carousel slide" data-ride="carousel" align="center">
+    	<div id="myCarousel" class="carousel slide" data-ride="carousel" align="center" data-interval="8000">
     	    <!-- Indicators -->
     	    <ol class="carousel-indicators">
     	      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -278,6 +278,15 @@
             </div>
         </div>
 
+        <!--<div class="row">
+            <div>
+                <div class="form-group">
+                    <button type="button" href='javascript:;' onclick="MostrarS();" class="btn btn-gris btn-block"><h6>Siguiente</h6></button>
+                </div>
+            </div>
+        </div>-->
+
+        <input type="hidden" name="muestra"  id="muestra" value="0">
 
         <script>
         $( document ).ready(function() {
@@ -341,7 +350,10 @@
                                 //<span class="glyphicon glyphicon-home"></span> '+origen+'</small></span>
                                 $('#resultsDiv').append(htmlElement);
                                 sta = sta+1;
+                                $("#muestra").val(sta);
+
                                 }else{
+                                    //alert('Prueba'+ $("#muestra").val() );
                                     return false;
                                 }
                               });
@@ -458,6 +470,60 @@
             function epic(c) {
                 c.onerror='';
                 c.src='./img/desapsf.jpg';
+            };
+
+            function limpiar(){
+                    $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json',
+                        url: 'index.php/consulta',
+                        dataType: "json",                  
+                          data: JSON.stringify({
+                              nombre: $("#nombre").val(),
+                              paterno: $("#paterno").val(),
+                              materno: $("#materno").val(),
+                              sexo: $("#sexo").val(),
+                              edad: $("#edad").val()
+                          }),
+                          success: function (data) {
+                            $('#resultsDiv').empty();
+                            var sta = 0;
+                             $.each(data, function(key, item) {
+                                if (key=="error_code"){
+                                    /*htmlElement = $('<h4>No existen resultados para la busqueda realizada</h4>');
+                                    $('#resultsDiv').append(htmlElement);*/
+                                    $("#myModal").modal();
+                                    return false;
+                                }
+                                var partefoto="";
+                                if(item.rutfoto!=null){
+                                    partefoto=item.rutfoto.split("\\").pop();
+                                }
+
+                                 var max_size=data.length;
+                                 
+                                 var elements_per_page = 6;
+                                 var limit = elements_per_page;
+                                
+
+
+                                if(sta < elements_per_page){ 
+                                var foto=item.rutfoto == null || item.rutfoto === "" ?'./img/desapsf.jpg':'./img/fotos/'+partefoto;
+                                var sexo=item.sexo=='M'?'Masculino':'Femenino';
+                                var origen=item.origen==null?'S/D':item.origen;
+                                htmlElement = $('<div onclick="getDetail('+item.id+');" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 " id="'+item.id+'"><div class="panel ficha-desaparecidos"><div class="panel-body"><div class="col-xs-4"><span><img class="image_mini " src="'+foto+'" onerror="epic(this);" width="100" height="150"/></span></div><div class="data_mini col-xs-8"> '+item.nombre+' '+ item.apat +' '+ item.amat +'<br><hr class="separador"><br> '+item.edad+' años<br><hr class="separador"> '+sexo+'<br><hr class="separador"><span>Extraviado:'+item.fextrav+'</span><br><hr class="separador"><br><input type="button" name="" value="VER M&Aacute;S DETALLES" class="boton-detalles" ></div></div></div></div>');
+                                //<span class="glyphicon glyphicon-home"></span> '+origen+'</small></span>
+                                $('#resultsDiv').append(htmlElement);
+                                sta = sta+1;
+                                $("#muestra").val(sta);
+
+                                }else{
+                                    alert('Prueba'+ $("#muestra").val() );
+                                    return false;
+                                }
+                              });
+                          }
+                    });
             };
 
         </script>
