@@ -18,6 +18,11 @@
     text-decoration: none;
 }
 
+.imagen-detalles{
+    text-align: center;
+}
+
+
 .ficha-detalles {
     width: 500px;
     margin: auto;
