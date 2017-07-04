@@ -102,9 +102,6 @@
         background-color: #444644;
         border-color: #444644;
         color: #fff;
-        margin-left: -15px;
-        margin-right: -15px;
-        box-shadow: none;
     }
 
 
@@ -120,5 +117,11 @@
         border-image: linear-gradient(to top, #444644, rgba(255, 255, 255, 0.5), #444644) 1 100%;
 
     }
+/*prueba*/
+    .navbar-right {
+    float: none !important;
+    margin: auto;
+    }
+
 
 }
