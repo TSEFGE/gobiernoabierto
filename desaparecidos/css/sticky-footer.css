@@ -6,7 +6,7 @@ html {
 }
 body {
     /* Margin bottom by footer height */
-    margin-bottom: 310px;
+    margin-bottom: 190px;
 }
 .footer {
     position: absolute;
@@ -14,29 +14,17 @@ body {
     min-width: 100%;
     padding-top: 12px;
     /* Set the fixed height of the footer here */
-    height: 310px;
-    //font: normal 10px/20px Verdana, Helvetica, sans-serif;
-    //line-height: normal;
-    //padding-top: 20px;
+    height: 190px;
 }
 
-
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. 
-.container {
-    width: auto;
-    max-width: 680px;
-    padding: 0 15px;
-}*/
 
 /* #Footer */
 .footer-area-wrap {
     background-color: #55565a;
     box-shadow: inset 2px 12px 23px -6px rgba(0,0,0,0.35);
     color: #fff;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin-right: 0px;
 }
 #footer-area {
@@ -55,12 +43,12 @@ body {
 
 .lineaFooter{
     border-left: 1px solid #fff;
-    height: 200px;
+    height: 140px;
 }
 
 .footer-container{
-    min-height: 50px;
-    line-height: 50px;
+    min-height: 30px;
+    line-height: 30px;
 }
 .fa{
     color: #000;

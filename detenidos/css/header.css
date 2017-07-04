@@ -88,13 +88,7 @@
     font-size: 1rem;
 }
 
-<<<<<<< HEAD
-=======
-.separador-menu{
-    border-right: 1px solid #ffffff;
-}
 
->>>>>>> e548cc17c5b3a5a2e741bf5e0bd9f83e7b112a43
 @media (min-width: 420px) {
     .titulo1, .titulo2{
         font-size: 1.5rem;
@@ -139,14 +133,7 @@
 }
 
 
-<<<<<<< HEAD
 
-
-
-
-
-=======
->>>>>>> e548cc17c5b3a5a2e741bf5e0bd9f83e7b112a43
 @media (max-width: 768px){
     .navbar {
         background-color: #444644;
@@ -160,9 +147,4 @@
     .container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header{
         border-radius: 5px;
     }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> e548cc17c5b3a5a2e741bf5e0bd9f83e7b112a43
 }
