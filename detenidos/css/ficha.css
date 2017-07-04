@@ -7,14 +7,38 @@
 }
 
 .titulo{
+	min-height: 30px;
+	height: 100%;
 	background-color: #444644;
 	color: #fff;
 	line-height: 30px;
 	margin-left: 0px;
 	margin-right: 0px;
 }
+@media (max-width: 768px) {
+    .disp{
+    	text-align: left;
+    }
+}
+@media (min-width: 768px) {
+    .disp{
+    	text-align: right;
+    }
+}
 .datos p{
 	margin-bottom: 0px;
+}
+
+.informacion{
+	margin: 5px 5px 10px 10px;
+}
+
+input[type=text]{
+	text-transform: uppercase;
+}
+#map {
+	width: 100%;
+	height: 400px;
 }
 
 .alert{
