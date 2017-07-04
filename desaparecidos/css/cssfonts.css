@@ -55,9 +55,15 @@ h1, h2, h4, h5, h6, div {
     -moz-osx-font-smoothing: grayscale;
 }
 
+
 h3 {
   font-family: 'neosanspro-lightitalic';
   -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
+.fuente-ficha {
+  font-family: 'neosanspro-bold';
+  -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
