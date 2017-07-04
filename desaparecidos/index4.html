@@ -276,17 +276,17 @@
 </div>
 
 <div class="row">
-            <div class="col-md-2 col-xs-6 ">
+            <div class="col-md-2 col-xs-4">
                 <div class="form-group">
                     <button type="button" href='javascript:;' id="siguiente" onclick="MostrarS();" class="btn btn-gris btn-block"><h6>Siguiente</h6></button>
                 </div>
             </div>
-            <div class="col-md-2 col-xs-6 ">
+            <div class="col-md-2 col-xs-4">
                 <div class="form-group">
                     <div id="paginas"></div>
                 </div>
             </div>
-            <div class="col-md-2 col-xs-6 ">
+            <div class="col-md-2 col-xs-4">
                 <div class="form-group">
                     <button type="button" href='javascript:;' id="anterior" onclick="MostrarA();" class="btn btn-gris btn-block"><h6>Anterior</h6></button>
                 </div>
@@ -319,10 +319,8 @@
     /*----------prueba de funcion------------*/
 
     $( "#search" ).click( function () {
-	$('#siguiente').show();
-    $('#anterior').show();
-	$('#paginas').empty();
-                var pagina = 0;
+	   $('#paginas').empty();
+        var pagina = 0;
         $.ajax({
             type: 'POST',
             contentType: 'application/json',
@@ -337,12 +335,12 @@
           }),
             success: function (data) {
 				datos = data;
-					var elements_per_page = 6;
-                        var max_size=data.length;
-                        var pagtot=parseInt(max_size/elements_per_page);
-                        if (max_size > pagtot) {
-                            pagtot = pagtot + 1
-                        }
+				var elements_per_page = 6;
+                var max_size=data.length;
+                var pagtot=parseInt(max_size/elements_per_page);
+                if (max_size > pagtot) {
+                    pagtot = pagtot + 1
+                }
                 $('#resultsDiv').empty();
                 var sta = 0;
                 $.each(data, function(key, item) {
@@ -350,7 +348,9 @@
 
                                     $("#myModal").modal();
                                     return false;
-                                }
+                    }
+                    $('#siguiente').show();
+                    $('#anterior').show();
                                 var partefoto="";
                                 if(item.rutfoto!=null){
                                     partefoto=item.rutfoto.split("\\").pop();
@@ -370,7 +370,7 @@
                                 sta = sta+1;
 								$("#muestra").val(sta);
                             }else{
-pagina = pagina+1;
+                                pagina = pagina+1;
                                 $("#pags").val(pagina);
                                 //alert($("#pags").val());
                                 htmlElement = $('<div>Página: '+pagina+' de '+pagtot+'</div>');
@@ -455,7 +455,6 @@ pagina = pagina+1;
                     pagtot = pagtot + 1
                 }
                 $('#paginas').empty();
-
                 $('#resultsDiv').empty();
                 $.each(datos, function(key, item) {
                     if (key=="error_code"){
@@ -480,7 +479,6 @@ pagina = pagina+1;
                     }else{
                         pagina = pagina+1;
                         $("#pags").val(pagina);
-                        //alert($("#pags").val());
                         htmlElement = $('<div>Página: '+pagina+' de '+pagtot+'</div>');
                         $('#paginas').append(htmlElement);
                         return false;
@@ -489,12 +487,18 @@ pagina = pagina+1;
             };
 
             function MostrarA(){
+                var pagina = parseInt($("#pags").val());
                 var elemento = parseInt($("#muestra").val());
                 var sta = 0;
                 var elements_per_page = 6;
                 elemento = elemento - (2*elements_per_page);
                 var limit = elements_per_page + elemento;   
-                var max_size=datos.length;       
+                var max_size=datos.length;    
+                var pagtot=parseInt(max_size/elements_per_page);
+                if (max_size > pagtot) {
+                    pagtot = pagtot + 1
+                }
+                $('#paginas').empty();
                 $('#resultsDiv').empty();
                 $.each(datos, function(key, item) {
                     if (key=="error_code"){
@@ -512,12 +516,16 @@ pagina = pagina+1;
                             var origen=item.origen==null?'S/D':item.origen;
                             htmlElement = $('<div onclick="getDetail('+item.id+');" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 " id="'+item.id+'"> <div class="panel-ficha ficha-desaparecidos"> <div class="panel-body"> <div class="col-xs-4"> <span><img class="image_mini " src="'+foto+'" onerror="epic(this);" width="100" height="150"/></span> </div> <div class="data_mini ficha col-xs-8"> <p class="fuente-ficha padding"> '+item.nombre+' '+ item.apat +' '+ item.amat +'</p> <hr class="padding separador"> <p class="padding"> '+item.edad+' años</p> <hr class="separador padding"> <p class="padding"> '+sexo+'</p> <hr class="padding separador"> <p class="padding">Extraviado:'+item.fextrav+'</p> <hr class="padding separador"> </div> </div> <div class="panel-footer"> <input type="button" name="" value="VER M&Aacute;S DETALLES" class="boton-detalles" > </div> </div> </div>');
                                         //<span class="glyphicon glyphicon-home"></span> '+origen+'</small></span>
-                            $('#resultsDiv').append(htmlElement);
+                                $('#resultsDiv').append(htmlElement);
                                             //alert("Prueba "+$("#muestra").val()+"sta "+ sta+ "elements"+ elements_per_page+ "elemento "+ elemento+ "limit "+ limit+ "max_size "+ max_size);
                         }
                         sta = sta+1;
                         $("#muestra").val(sta);
                     }else{
+                        pagina = pagina-1;
+                        $("#pags").val(pagina);
+                        htmlElement = $('<div>Página: '+pagina+' de '+pagtot+'</div>');
+                        $('#paginas').append(htmlElement);
                         return false;
                     }
                 });           
