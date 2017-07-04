@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="detenidosApp" lang="es">
+<html ng-app="detenidosApp">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,9 +14,8 @@
 	<link rel="stylesheet" href="css/cssfonts.css">
 	<link rel="stylesheet" href="css/sticky-footer.css">
 	<link rel="stylesheet" href="css/header.css">
-	<link rel="stylesheet" href="css/ficha.css">
 	<link rel="stylesheet" href="css/formulario.css">
-
+	<link rel="stylesheet" href="css/ficha.css">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -25,18 +24,19 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/locales/bootstrap-datepicker.es.min.js"></script>
 	<!--Del original-->
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>    
-    <script src="js/detenidos.js"></script>
+	<script defer src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>    
+    <script defer src="js/detenidos.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="HandheldFriendly" content="true">
 	
 	<title>Gobierno Abierto - Registro Público de Búsqueda y Localización de Personas Detenidas</title>
 	<link rel="icon" href="img/icon.png" sizes="192x192">
 </head>
-<body>
+<body ng-controller="UnidadesController as Busqueda">
 	<div class="container">
 		<header>
 			<div class="row mimenu">
-		    	<div class="col-md-2 col-xs-3">
+		    	<div class="col-md-2 col-xs-3 logotipo">
 				    <img src="./img/logo.png" align="left" border="1" width="100" height="100"/>
 		    	</div>
 		    	<div class="col-md-8 col-xs-9">
@@ -45,8 +45,7 @@
 		    	</div>
 		    </div>
 		    <div class="row mimenu" align="right">
-		    	<div class="col-xs-12 col-md-5 col-lg-6 "></div>
-		    	<div class="col-xs-12 col-md-7 col-lg-6 ">
+		    	<div class="col-xs-12">
 		    		<nav class="navbar">
 						<div class="container-fluid">
 							<div class="navbar-header">
@@ -57,7 +56,7 @@
 								</button>
 							</div>
 							<div class="collapse navbar-collapse" id="myNavbar">
-								<ul class="nav navbar-nav navbar-right">
+								<ul class="nav navbar-nav">
 									<li data-toggle="tooltip" data-placement="top" title="Bienvenida">
 										<a href="./bienvenida.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Bienvenida</a>
 									</li>
@@ -80,8 +79,7 @@
 
 		<img class="img-responsive center barra" src="./img/barra.png"/>
 
-
-		<div id="myCarousel" class="carousel slide" data-ride="carousel" align="center">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel" align="left" data-interval="8000">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -91,15 +89,31 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="img/slide1.jpg" alt="Slide1" style="width:80%;">
+					<img class="visible-xs" src="img/slide1.jpg" alt="Slide1">
+					<img class="hidden-xs" src="img/slide2.jpg" alt="Slide1">
+					<div class="visible-xs text-slider">
+						<p style="margin: 0px;">Los familiares de</p>
+						<h3 style="margin: 0px;"><strong>PERSONAS DETENIDAS</strong></h3>
+						<p>podrán ubicar, desde cualquier computadora, la Unidad Integral de Procuración de justicia donde se encuentra puesto a disposición el presunto inculpado.</p>
+					</div>
 				</div>
-
 				<div class="item">
-					<img src="img/slide1.jpg" alt="Slide2" style="width:80%;">
+					<img class="visible-xs" src="img/slide1.jpg" alt="Slide1">
+					<img class="hidden-xs" src="img/slide2.jpg" alt="Slide1">
+					<div class="visible-xs text-slider">
+						<p style="margin: 0px;">Los familiares de</p>
+						<h2 style="margin: 0px;"><strong>PERSONAS DETENIDAS</strong></h2>
+						<p>podrán ubicar, desde cualquier computadora, la Unidad Integral de Procuración de justicia donde se encuentra puesto a disposición el presunto inculpado.</p>
+					</div>
 				</div>
-
 				<div class="item">
-					<img src="img/slide1.jpg" alt="Slide3" style="width:80%;">
+					<img class="visible-xs" src="img/slide1.jpg" alt="Slide1">
+					<img class="hidden-xs" src="img/slide2.jpg" alt="Slide1">
+					<div class="visible-xs text-slider">
+						<p style="margin: 0px;">Los familiares de</p>
+						<h2 style="margin: 0px;"><strong>PERSONAS DETENIDAS</strong></h2>
+						<p>podrán ubicar, desde cualquier computadora, la Unidad Integral de Procuración de justicia donde se encuentra puesto a disposición el presunto inculpado.</p>
+					</div>
 				</div>
 			</div>
 			<!-- Left and right controls -->
@@ -116,7 +130,7 @@
 		<!--media query para tamaño de letra chico-->
 		<div class="panel panel1">
 			<div class="panel-heading panel-heading-customd" align="center">
-				<h5>Llama al Centro de Atención Telefónica (228) 841-61-70<br>
+				<h5 class="info-llama">Llama al Centro de Atención Telefónica (228) 841-61-70<br>
 				y proporciona los datos de la persona que buscas para que te auxilien en el proceso si así lo prefieres.</h5>
 			</div>
 		</div>
@@ -134,10 +148,10 @@
 					</div>
 				</div>-->
 			</div> 
-			<div class="panel-body"> 
-				<div class="box-body">
-					<div class="row" id="searchDiv">
-						<form id="detenido" method="POST" action="">
+			<div class="panel-body" id="searchDiv">
+				<form id="detenido" method="POST" action="" autocomplete="off">
+					<div class="box-body">
+						<div class="row">
 							<div class="col-xs-12 col-sm-6 col-md-2">
 								<div class="form-group">
 									<label for="nombre">Nombre:</label>
@@ -163,9 +177,9 @@
 									<label for="sexo">Sexo</label>
 									<div>
 										<select id="sexo" name="sexo" ng-model="sexo" class="form-control required ng-valid ng-dirty" required>
-										<option value="">Sexo</option>
-											<option value="m">Masculino (M)</option>
-											<option value="f">Femenino(F)</option>
+											<option value="">Sexo</option>
+											<option value="Masculino">Masculino</option>
+											<option value="Femenino">Femenino</option>
 										</select>
 									</div>
 								</div>
@@ -173,7 +187,7 @@
 							<div class="col-xs-12 col-sm-6 col-md-3 lineaForm">
 								<div class="form-group">
 									<label for="fechaNacimiento">Fecha Nacimiento:</label>
-									<div class='input-group date' id='fechaNacimiento'>
+									<div class='input-group date' id='calendario'>
 										<input type="text" class="form-control ng-valid" id="fechaNacimiento" name="fechaNacimiento" ng-model="fechaNacimiento" placeholder="dd/mm/aaaa" required>
 										<span class="input-group-addon">
 											<span class="glyphicon glyphicon-calendar"></span>
@@ -181,94 +195,96 @@
 									</div>
 								</div>
 							</div>
-						</form>
-					</div>
-					<div class="row">
-						<div class="col-xs-6 col-md-2">
-							<div class="form-group">
-								<button type="submit" class="btn btn-info btn-block" onclick="getDetencion();" id="search" value="Buscar"><h6>Buscar</h6></button>
-								<input class="btn btn-info btn-block" ng-click="getDetencion()" id="search" type="button" value="Buscar">
+						</div>
+						<div class="row">
+							<div class="col-xs-6 col-md-2">
+								<div class="form-group">
+									<input class="btn btn-info btn-block" ng-click="getDetencion()" id="search" type="button" value="Buscar">
+								</div>
+							</div>
+							<div class="col-xs-6 col-md-2">
+								<div class="form-group">
+									<button type="button" href='javascript:;' onclick="limpiar();" class="btn btn-default btn-block">Limpiar</button>
+								</div>
+							</div>
+							<div class="col-xs-12 col-md-8 text-right">
+								<h6 class="help-block"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ayuda</h6>
 							</div>
 						</div>
-						<div class="col-xs-6 col-md-2">
-							<div class="form-group">
-								<button type="button" href='javascript:;' onclick="limpiar();" class="btn btn-default btn-block"><h6>Limpiar</h6></button>
-							</div>
-						</div>
-						<div class="col-xs-12 col-md-8 text-right">
-							<h6 class="help-block"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ayuda</h6>
-						</div>
 					</div>
-				</div>
-			</div>    
+				</form>
+			</div>
 		</div>
 
 
 
 
-		<div class="hrDiv" style="width:95%; margin-top:10px;"></div>
-        <div class="alert alert-amarillo" id="messageDiv" style="display:none; width:95%; margin-left: 2.5%; margin-top: 30px; color:#FF0000; font-weight:bolder;">
-            <span class="i-info"></span><strong>{{message}}</strong>.
-        </div>
+        <div class="alert alert-danger" id="messageDiv" style="display:none;">
+			<span class="i-info"></span><strong>{{message}}</strong>
+		</div>
 
-		<div class="row datos" id="resultsDiv" style="display:none;">
-			<div id="datosDetencion" style="display:block;">
-				<div class="titulo">
-					<div class="col-xs-12 col-md-6">
-						<strong><span class="data">{{ itemnombre }} {{ itempaterno }} {{ itemmaterno }}</span></strong>
+		<div id="resultsDiv" style="display:none;">
+			<div class="datos">
+				<div class="row titulo">
+					<div class="col-xs-12 col-sm-6">
+						<strong><span>{{ itemnombre }} {{ itempaterno }} {{ itemmaterno }}</span></strong>
 					</div>
-					<div class="col-xs-12 col-md-6 text-right">
+					<div class="col-xs-12 col-sm-6 disp">
 						<strong>DATOS DE LA PUESTA A DISPOSICIÓN</strong>
 					</div>
 				</div>
-				<div class="col-xs-12 col-md-6">
-					<p><strong>Fecha de Detención:</strong><span class="data">{{ itemfechaInicio }}</span></p>
-					<p><strong>Fecha de Finalización:</strong><span class="data">{{ itemfechaFin }}</span></p>
-					<p><strong>Lugar:</strong><span class="data">{{ itemunidad }}</span></p>
-					<p><strong>Dirección:</strong><span class="data">{{ itemdireccion }}</span></p>
-					<p><strong>Teléfono:</strong><span class="data">{{ itemtelefono }}</span></p>
-					<p><strong>Fiscal de distrito:</strong><span class="data">{{ itemfiscal }}</span></p>
+				<div class="row informacion">
+					<div class="col-xs-12 col-md-12">
+						<p><strong>Fecha de Detención: </strong><span>{{ itemfechaInicio }}</span></p>
+						<p><strong>Fecha de Finalización: </strong><span>{{ itemfechaFin }}</span></p>
+						<p><strong>Lugar: </strong><span>{{ itemunidad }}</span></p>
+						<p><strong>Dirección: </strong><span>{{ itemdireccion }}</span></p>
+						<p><strong>Teléfono: </strong><span>{{ itemtelefono }}</span></p>
+						<p><strong>Fiscal de distrito: </strong><span>{{ itemfiscal }}</span></p>
+					</div>
+					<div class="col-xs-12 col-md-12">
+						<strong>Ubicación UIPJ donde esta el detenido</strong>
+						<div id="map"></div>
+						<script defer type="text/javascript">
+							var map;
+							var marker ;
+							function initMap() {
+								map = new google.maps.Map(document.getElementById('map'), {
+									center: {lat: 19.5078175, lng: -96.8770843},
+									zoom: 15
+								});
+								marker= new google.maps.Marker({
+									position:  {lat: 19.5078175, lng: -96.8770843},
+									map: map,
+									animation: google.maps.Animation.DROP,
+									title: 'Fiscalía General de Justicia del Estado de Veracruz de Ignacio de la Llave'
+								});
+								marker.setAnimation(google.maps.Animation.BOUNCE);
+								marker.addListener('click', toggleBounce);
+							}
+							function toggleBounce() {
+								if (marker.getAnimation() !== null) {
+									marker.setAnimation(null);
+								} else {
+									marker.setAnimation(google.maps.Animation.BOUNCE);
+								}
+							}
+							function displayHelp(){
+								$('#ayudaDiv').css("visibility", "visible");
+							}
+							function closeHelp(){
+								$('#ayudaDiv').css("visibility", "hidden");
+							}
+						</script>
+						<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuYqLjlGsm5hgBHyhny5ODQKwjnqSbs30&callback=initMap">
+						</script>
+					</div>
 				</div>
 			</div>
-			<div class="col-xs-12 col-md-6">
-				Ubicación UIPJ donde esta el detenido
-				<div id="map"></div>
-				<script type="text/javascript">
-			    	var map;
-			    	var marker ;
-			    	function initMap() {
-			    		map = new google.maps.Map(document.getElementById('map'), {
-			    			center: {lat: 19.5078175, lng: -96.8770843},
-			    			zoom: 15
-			    		});
-			    		marker= new google.maps.Marker({
-			    			position:  {lat: 19.5078175, lng: -96.8770843},
-			    			map: map,
-			    			animation: google.maps.Animation.DROP,
-			    			title: 'Fiscalía General de Justicia del Estado de Veracruz de Ignacio de la Llave'
-			    		});
-			    		marker.setAnimation(google.maps.Animation.BOUNCE);
-			    		marker.addListener('click', toggleBounce);
-			    	}
-			    	function toggleBounce() {
-			    		if (marker.getAnimation() !== null) {
-			    			marker.setAnimation(null);
-			    		} else {
-			    			marker.setAnimation(google.maps.Animation.BOUNCE);
-			    		}
-			    	}
-			    	function displayHelp(){
-			    		$('#ayudaDiv').css("visibility", "visible");
-			    	}
-			    	function closeHelp(){
-			    		$('#ayudaDiv').css("visibility", "hidden");
-			    	}
-			    </script>
+			<div class="col-xs-12 alert alert-warning alert-dismissable fade in">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>IMPORTANTE:</strong> Los resultados de esta consulta están sujetos a homonimia.
 			</div>
-		</div>
-		<div class="alert alert-warning alert-dismissable fade in">
-			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			<strong>IMPORTANTE:</strong> Los resultados de esta consulta están sujetos a homonimia.
 		</div>
 		
 	</div>
@@ -278,7 +294,7 @@
 		<div class="row footer-area-wrap">
 			<div class="container">
 				<div class="col-xs-12 col-md-4">
-					<img src="./img/logo-footer.png" alt="Fiscalia General del Estado" width="200">
+					<img src="./img/logo-footer.png" alt="Fiscalia General del Estado" width="140">
 				</div>
 				<div class="col-xs-12 col-md-4 lineaFooter">
 					<h4 class="negrita">Contacto</h4>
@@ -317,13 +333,13 @@
 	<script>
 		$( document ).ready(function() {
             $(function (){
-                $('#fechaNacimiento').datepicker({
-                	    format: "dd/mm/yyyy",
+                $('#calendario').datepicker({
+                	    format: "yyyy/mm/dd",
 					    weekStart: 0,
-					    endDate: "today",
+					    //endDate: "today",
 					    todayBtn: "linked",
 					    language: "es",
-					    orientation: "top right",
+					    orientation: "auto",
 					    multidate: false,
 					    todayHighlight: true,
 					    autoclose: true
