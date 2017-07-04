@@ -26,8 +26,8 @@
     border-color: #444644;
     color: #fff;
     box-shadow: 3px 3px 6px 5px #888888;
-    height: 30px;
     margin-bottom: 15px;
+    min-height: 30px;
 }
 .nav .navbar-nav{
     max-height: 30px;
@@ -39,6 +39,9 @@
 }
 .navbar-toggle{
     background-color: #202320;
+    margin: 5px;
+    margin-right: 15px;
+    padding: 7px 8px
 }
 .navbar-toggle .icon-bar {
     color: #fff;
@@ -47,7 +50,8 @@
 .navbar-nav > li > a,
 .navbar-nav > li > a{
     color: #fff;
-    padding: 15px 15px;
+    padding: 8px 15px;
+    margin: 0px;
 }
 .navbar-nav > li > a:hover,
 .navbar-nav > li > a:focus{
@@ -111,6 +115,10 @@
     }
     .navbar .navbar-collapse {
         text-align: center;
+    }
+    li.lineamenu{
+        border-right: 2px solid;
+        border-image: linear-gradient(to top, #444644, rgba(255,255,255,0.5), #444644) 1 100%;
     }
     .text-slider>p{
         font-size: 2rem;
