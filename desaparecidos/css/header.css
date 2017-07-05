@@ -68,6 +68,10 @@
 }
 
 /*Slider*/
+.slider{
+    min-height: 0px;
+    max-height: 290px;
+}
 .carousel-indicators>li{
     background-color: #fff;
     border-color: #555659;
@@ -91,6 +95,9 @@
 .text-slider>p{
     font-size: 1rem;
 }
+.info-llama{
+    font-size: 1rem;
+}
 @media (min-width: 420px) {
     .titulo1, .titulo2{
         font-size: 1.5rem;
@@ -100,6 +107,9 @@
     }
     .text-slider>h3{
         font-size: 2.5rem;
+    }
+    .info-llama{
+        font-size: 1.4rem;
     }
 }
 /* Small devices (tablets, 768px and up) */
@@ -120,11 +130,17 @@
     .text-slider>h3{
         font-size: 3rem;
     }
+    .info-llama{
+        font-size: 1.6rem;
+    }
 }
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
     .titulo1, .titulo2{
         font-size: 2.5rem;
+    }
+    .info-llama{
+        font-size: 1.8rem;
     }
 }
 /* Large devices (large desktops, 1200px and up) */
@@ -132,9 +148,37 @@
     .titulo1, .titulo2{
         font-size: 3.1rem;
     }
+    .info-llama{
+        font-size: 2rem;
+    }
+}
+.modal {
+  text-align: center;
+  padding: 0!important;
 }
 
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
 
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.modal-dialog, .modal-content, .modal-header{
+    border-radius: 5px;
+}
+
+#modal2{
+    background-color: #FDDDDD;
+    border: 1px solid  #933432;
+}
 
 
 
