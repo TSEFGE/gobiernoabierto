@@ -394,8 +394,6 @@
                                 }
 
                                 var limit = elements_per_page;
-                                
-
 
                                 if(sta < elements_per_page){ 
                                     var foto=item.rutfoto == null || item.rutfoto === "" ?'./img/desapsf.jpg':'./img/fotos/'+partefoto;
@@ -535,13 +533,15 @@
             function MostrarA(){
                 var pagina = parseInt($("#pags").val());
                 var elemento = parseInt($("#muestra").val());
+                alert(pagina+','+elemento);
                 var sta = 0;
                 var elements_per_page = 6;
-                elemento = elemento - (2*elements_per_page);
+                elemento = elemento - (elements_per_page);
                 var limit = elements_per_page + elemento;   
                 var max_size=datos.length;    
                 var pagtot=parseInt(max_size/elements_per_page);
-                if (max_size > pagtot) {
+                var pagreal=max_size/elements_per_page;
+                if (pagreal > pagtot) {
                     pagtot = pagtot + 1;
                 }
                 if(pagina > 1){
