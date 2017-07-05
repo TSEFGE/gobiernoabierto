@@ -3,4 +3,46 @@
 	border: 2px solid #f2f2f2;
 	border-radius: 25px;
 	box-shadow: 8px 8px 8px 6px #888888;
-}   
+}
+.titulo-b{
+	font-size: 1.5rem;
+}
+.texto-b{
+	font-size: 0.9rem;
+}
+
+@media (min-width: 420px) {
+    .titulo-b{
+		font-size: 1.7rem;
+	}
+	.texto-b{
+		font-size: 0.9rem;
+	}
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .titulo-b{
+		font-size: 2rem;
+	}
+	.texto-b{
+		font-size: 1rem;
+	}
+}
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .titulo-b{
+		font-size: 2.2rem;
+	}
+	.texto-b{
+		font-size: 1.2rem;
+	}
+}
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .titulo-b{
+		font-size: 2.5rem;
+	}
+	.texto-b{
+		font-size: 1.5rem;
+	}
+}
