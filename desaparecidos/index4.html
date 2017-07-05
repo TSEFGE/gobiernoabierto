@@ -73,7 +73,7 @@
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
                             <li class="lineamenu" title="Bienvenida">
-                                <a href="./bienvenida.html" ><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Bienvenida</a>
+                                <a href="./bienvenida.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Bienvenida</a>
 
                             </li>
                             <li class="lineamenu" title="Descargar Archivo">
@@ -85,7 +85,7 @@
                                     <li><a href="http://www.transparenciamexico.mx/User/Workspace/Archivos/PDF/29/INCISO-C-75903.pdf"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Estadística</a></li>
                                 </ul>
                             </li>
-                            <li class="lineamenu" title="Descargar Archivo">
+    						<li class="lineamenu" title="Descargar Archivo">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Detenidos<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="../detenidos/index2.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Busqueda  </a></li>
@@ -93,7 +93,7 @@
                                     <li><a href="../detenidos/img/grafica.png"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Estadística</a></li>
                                     <li><a href="../detenidos/img/manual.pdf"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ayuda</a></li>
                                 </ul>
-                            </li> 
+                            </li>
                             <li title="Descargar Archivo">
                                 <a href="http://fiscaliaveracruz.gob.mx/"> Fiscalia</a>
                             </li>
@@ -109,7 +109,7 @@
 <img class="img-responsive center barra" src="./img/barra.png"/>
 
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" align="center" data-interval="8000">
+ <div id="myCarousel" class="carousel slide" data-ride="carousel" align="left" data-interval="8000">
    <!-- Indicators -->
    <ol class="carousel-indicators">
      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -118,17 +118,32 @@
  </ol>
 
  <!-- Wrapper for slides -->
- <div class="carousel-inner">
+            <div class="carousel-inner slider">
     <div class="item active">
-        <img src="img/slide1.jpg" alt="Slide1" style="width:80%;">
+                    <img class="visible-xs" src="img/slide1.jpg" alt="Slide1">
+                    <img class="hidden-xs" src="img/slide2.jpg" alt="Slide1">
+                    <div class="visible-xs text-slider">
+                        <h3 style="margin: 0px;"><strong>PERSONAS DESAPARECIDAS</strong></h3>
+                        <p>Consulta de personas reportadas como desaparecidas en el Estado y colaboraciones con Fiscalías y Procuradurías del País.</p>
+                    </div>
     </div>
 
     <div class="item">
-        <img src="img/slide1.jpg" alt="Slide2" style="width:80%;">
+                    <img class="visible-xs" src="img/slide1.jpg" alt="Slide1">
+                    <img class="hidden-xs" src="img/slide2.jpg" alt="Slide1">
+                    <div class="visible-xs text-slider">
+                        <h3 style="margin: 0px;"><strong>PERSONAS DESAPARECIDAS</strong></h3>
+                        <p>Consulta de personas reportadas como desaparecidas en el Estado y colaboraciones con Fiscalías y Procuradurías del País.</p>
+                    </div>
     </div>
 
     <div class="item">
-        <img src="img/slide1.jpg" alt="Slide3" style="width:80%;">
+                    <img class="visible-xs" src="img/slide1.jpg" alt="Slide1">
+                    <img class="hidden-xs" src="img/slide2.jpg" alt="Slide1">
+                    <div class="visible-xs text-slider">
+                        <h3 style="margin: 0px;"><strong>PERSONAS DESAPARECIDAS</strong></h3>
+                        <p>Consulta de personas reportadas como desaparecidas en el Estado y colaboraciones con Fiscalías y Procuradurías del País.</p>
+                    </div>
     </div>
 </div>
 
@@ -143,7 +158,7 @@
 </a>
 </div>
 <div class="panel panel-default">
-  <div class="panel-heading panel-heading-customd" align="center"><h4>Llama al Centro de Atención Telefónica (228) 841-61-70<br>
+  <div class="panel-heading panel-heading-customd" align="center"><h4 class="info-llama">Llama al Centro de Atención Telefónica (228) 841-61-70<br>
     y proporciona los datos de la persona que buscas para que te auxilien en el proceso si así lo prefieres.</h4></div>
 </div>
 <p>
@@ -208,23 +223,31 @@
             <button type="button" href='javascript:;' onclick="limpiar();" class="btn btn-gris btn-block"><h6>Limpiar</h6></button>
         </div>
     </div>
-    <div class="col-md-2 col-xs-2">
-        <div class="form-group">
+    <div class="col-xs-12 col-md-8 text-right">
+                                <h6><a onclick="displayHelp();" title="Consulta la Ayuda para el uso del sitio" class="help-block" style="cursor: pointer;"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ayuda</a></h6>
+                                    
+    </div>
         </div>
     </div>
-    <div class="col-md-2 col-xs-2">
-        <div class="form-group">
         </div>
     </div>
-    <div class="col-md-2 col-xs-2">
-        <div class="form-group">
+
+<!--Modal ayuda-->
+        <!-- Modal -->
+<div id="modalHelp" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">REGISTRO PUBLICO DE PERSONAS DESAPARECIDAS</h4>
         </div>
+      <div class="modal-body text-justify">
+        <p>Este registro está integrado por los datos de las personas no localizadas, las cuales fueron reportadas ante esta autoridad. Este registro solo contiene información de las personas que no han sido localizadas. El proceso de búsqueda en este Registro de Personas no Localizadas es de fácil uso, por lo que usted podrá realizar la búsqueda por uno, todos o la combinación de los rubros de: Nombre, Apellido Paterno, Apellido Materno, Edad y/o Sexo. Posterior a colocar la información por la que usted desea realizar la búsqueda, debe realizar un clic en el botón de Buscar, y en la parte inferior de la pantalla se desplegará las fotos de las personas no localizadas. Si desea visualizar más detalle de la persona no localizada deberá realizar un clic sobre la imagen de la foto a consultar.</p>
     </div>
-    <div class="col-md-2 col-xs-2">
-        <div class="form-group">
-            <h6><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ayuda</h6>
-        </div>
-    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 </div>
 </div>
 </div>    
@@ -252,7 +275,7 @@
 <!-- Modal -->
 <div class="modal fade" id="danger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" id="modal2">
             <div class="modal-header modal-header-danger">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
@@ -286,17 +309,17 @@
 </div>
 
 <div class="row">
-            <div class="col-md-2 col-xs-6 ">
+            <div class="col-md-2 col-xs-4">
                 <div class="form-group">
                     <button type="button" href='javascript:;' id="siguiente" onclick="MostrarS();" class="btn btn-gris btn-block"><h6>Siguiente</h6></button>
                 </div>
             </div>
-            <div class="col-md-2 col-xs-6 ">
+            <div class="col-md-2 col-xs-4">
                 <div class="form-group">
                     <div id="paginas"></div>
                 </div>
             </div>
-            <div class="col-md-2 col-xs-6 ">
+            <div class="col-md-2 col-xs-4">
                 <div class="form-group">
                     <button type="button" href='javascript:;' id="anterior" onclick="MostrarA();" class="btn btn-gris btn-block"><h6>Anterior</h6></button>
                 </div>
@@ -304,11 +327,15 @@
         </div>
 
         <input type="hidden" name="muestra"  id="muestra" value="0">
-		<input type="hidden" name="pags"  id="pags" value="0">
+        <input type="hidden" name="pags"  id="pags" value="0">
 
 <script>
+    function displayHelp(){
+               $("#modalHelp").modal();
+             }
+
     $( document ).ready(function() {
-	$('#siguiente').hide();
+	    $('#siguiente').hide();
         $('#anterior').hide();
         var datos;
         $(function (){
@@ -318,7 +345,7 @@
                 endDate: "today",
                 todayBtn: "linked",
                 language: "es",
-                orientation: "top right",
+                orientation: "auto",
                 multidate: false,
                 todayHighlight: true,
                 autoclose: true
@@ -329,10 +356,8 @@
     /*----------prueba de funcion------------*/
 
     $( "#search" ).click( function () {
-	$('#siguiente').show();
-    $('#anterior').show();
-                $('#paginas').empty();
-                var pagina = 0;
+	   $('#paginas').empty();
+        var pagina = 0;
         $.ajax({
             type: 'POST',
             contentType: 'application/json',
@@ -347,12 +372,12 @@
           }),
             success: function (data) {
 				datos = data;
-					var elements_per_page = 6;
-                        var max_size=data.length;
-                        var pagtot=parseInt(max_size/elements_per_page);
-                        if (max_size > pagtot) {
-                            pagtot = pagtot + 1
-                        }
+				var elements_per_page = 6;
+                var max_size=data.length;
+                var pagtot=parseInt(max_size/elements_per_page);
+                if (max_size > pagtot) {
+                    pagtot = pagtot + 1
+                }
                 $('#resultsDiv').empty();
                 var sta = 0;
                 $.each(data, function(key, item) {
@@ -360,7 +385,9 @@
 
                                     $("#myModal").modal();
                                     return false;
-                                }
+                    }
+                    $('#siguiente').show();
+                    $('#anterior').show();
                                 var partefoto="";
                                 if(item.rutfoto!=null){
                                     partefoto=item.rutfoto.split("\\").pop();
@@ -380,7 +407,7 @@
                                 sta = sta+1;
 								$("#muestra").val(sta);
                             }else{
-								pagina = pagina+1;
+                                pagina = pagina+1;
                                 $("#pags").val(pagina);
                                 //alert($("#pags").val());
                                 htmlElement = $('<div>Página: '+pagina+' de '+pagtot+'</div>');
@@ -454,16 +481,18 @@
     };
 
             function MostrarS(){
-				var pagina = parseInt($("#pags").val());
+                var pagina = parseInt($("#pags").val());
                 var elemento = parseInt($("#muestra").val());
                 var sta = 0;
                 var elements_per_page = 6;
                 var limit = elements_per_page + elemento;   
                 var max_size= parseInt(datos.length);
                 var pagtot=parseInt(max_size/elements_per_page);
-                if (max_size > pagtot) {
-                    pagtot = pagtot + 1
+                var pagreal=max_size/elements_per_page;
+                if (pagreal > pagtot) {
+                    pagtot = pagtot + 1;
                 }
+                if(pagina < pagtot){
                 $('#paginas').empty();
                 $('#resultsDiv').empty();
                 $.each(datos, function(key, item) {
@@ -481,29 +510,42 @@
                             var sexo=item.sexo=='M'?'Masculino':'Femenino';
                             var origen=item.origen==null?'S/D':item.origen;
                             htmlElement = $('<div onclick="getDetail('+item.id+');" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 " id="'+item.id+'"><div class="panel ficha-desaparecidos"><div class="panel-body"><div class="col-xs-4"><span><img class="image_mini " src="'+foto+'" onerror="epic(this);" width="100" height="150"/></span></div><div class="data_mini col-xs-8"> '+item.nombre+' '+ item.apat +' '+ item.amat +'<br><hr class="separador"><br> '+item.edad+' años<br><hr class="separador"> '+sexo+'<br><hr class="separador"><span>Extraviado:'+item.fextrav+'</span><br><hr class="separador"><br><input type="button" name="" value="VER M&Aacute;S DETALLES" class="boton-detalles" ></div></div></div></div>');
-                                        //<span class="glyphicon glyphicon-home"></span> '+origen+'</small></span>
                             $('#resultsDiv').append(htmlElement);
                         }
                         sta = sta+1;
+                        if(sta == max_size){
+                            pagina = pagina+1;
+                            $("#pags").val(pagina);
+                            htmlElement = $('<div>Página: '+pagina+' de '+pagtot+'</div>');
+                            $('#paginas').append(htmlElement);
+                            return false;
+                        }
                         $("#muestra").val(sta);
                     }else{
-						pagina = pagina+1;
+                        pagina = pagina+1;
                         $("#pags").val(pagina);
-                        //alert($("#pags").val());
                         htmlElement = $('<div>Página: '+pagina+' de '+pagtot+'</div>');
                         $('#paginas').append(htmlElement);
                         return false;
                     }
-                });           
+                });      
+            }
             };
 
             function MostrarA(){
+                var pagina = parseInt($("#pags").val());
                 var elemento = parseInt($("#muestra").val());
                 var sta = 0;
                 var elements_per_page = 6;
                 elemento = elemento - (2*elements_per_page);
                 var limit = elements_per_page + elemento;   
-                var max_size=datos.length;       
+                var max_size=datos.length;    
+                var pagtot=parseInt(max_size/elements_per_page);
+                if (max_size > pagtot) {
+                    pagtot = pagtot + 1;
+                }
+                if(pagina > 1){
+                $('#paginas').empty();
                 $('#resultsDiv').empty();
                 $.each(datos, function(key, item) {
                     if (key=="error_code"){
@@ -521,15 +563,20 @@
                             var origen=item.origen==null?'S/D':item.origen;
                             htmlElement = $('<div onclick="getDetail('+item.id+');" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 " id="'+item.id+'"><div class="panel ficha-desaparecidos"><div class="panel-body"><div class="col-xs-4"><span><img class="image_mini " src="'+foto+'" onerror="epic(this);" width="100" height="150"/></span></div><div class="data_mini col-xs-8"> '+item.nombre+' '+ item.apat +' '+ item.amat +'<br><hr class="separador"><br> '+item.edad+' años<br><hr class="separador"> '+sexo+'<br><hr class="separador"><span>Extraviado:'+item.fextrav+'</span><br><hr class="separador"><br><input type="button" name="" value="VER M&Aacute;S DETALLES" class="boton-detalles" ></div></div></div></div>');
                                         //<span class="glyphicon glyphicon-home"></span> '+origen+'</small></span>
-                            $('#resultsDiv').append(htmlElement);
-                                            //alert("Prueba "+$("#muestra").val()+"sta "+ sta+ "elements"+ elements_per_page+ "elemento "+ elemento+ "limit "+ limit+ "max_size "+ max_size);
+                                $('#resultsDiv').append(htmlElement);
+                                           
                         }
                         sta = sta+1;
                         $("#muestra").val(sta);
                     }else{
+                        pagina = pagina-1;
+                        $("#pags").val(pagina);
+                        htmlElement = $('<div>Página: '+pagina+' de '+pagtot+'</div>');
+                        $('#paginas').append(htmlElement);
                         return false;
                     }
-                });           
+                });       
+                }    
             };
 </script>
 </div>
