@@ -109,7 +109,7 @@
 <img class="img-responsive center barra" src="./img/barra.png"/>
 
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" align="center" data-interval="8000">
+ <div id="myCarousel" class="carousel slide" data-ride="carousel" align="left" data-interval="8000">
    <!-- Indicators -->
    <ol class="carousel-indicators">
      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -118,17 +118,32 @@
  </ol>
 
  <!-- Wrapper for slides -->
- <div class="carousel-inner">
+            <div class="carousel-inner slider">
     <div class="item active">
-        <img src="img/slide1.jpg" alt="Slide1" style="width:80%;">
+                    <img class="visible-xs" src="img/slide1.jpg" alt="Slide1">
+                    <img class="hidden-xs" src="img/slide2.jpg" alt="Slide1">
+                    <div class="visible-xs text-slider">
+                        <h3 style="margin: 0px;"><strong>PERSONAS DESAPARECIDAS</strong></h3>
+                        <p>Consulta de personas reportadas como desaparecidas en el Estado y colaboraciones con Fiscalías y Procuradurías del País.</p>
+                    </div>
     </div>
 
     <div class="item">
-        <img src="img/slide1.jpg" alt="Slide2" style="width:80%;">
+                    <img class="visible-xs" src="img/slide1.jpg" alt="Slide1">
+                    <img class="hidden-xs" src="img/slide2.jpg" alt="Slide1">
+                    <div class="visible-xs text-slider">
+                        <h3 style="margin: 0px;"><strong>PERSONAS DESAPARECIDAS</strong></h3>
+                        <p>Consulta de personas reportadas como desaparecidas en el Estado y colaboraciones con Fiscalías y Procuradurías del País.</p>
+                    </div>
     </div>
 
     <div class="item">
-        <img src="img/slide1.jpg" alt="Slide3" style="width:80%;">
+                    <img class="visible-xs" src="img/slide1.jpg" alt="Slide1">
+                    <img class="hidden-xs" src="img/slide2.jpg" alt="Slide1">
+                    <div class="visible-xs text-slider">
+                        <h3 style="margin: 0px;"><strong>PERSONAS DESAPARECIDAS</strong></h3>
+                        <p>Consulta de personas reportadas como desaparecidas en el Estado y colaboraciones con Fiscalías y Procuradurías del País.</p>
+                    </div>
     </div>
 </div>
 
@@ -143,7 +158,7 @@
 </a>
 </div>
 <div class="panel panel-default">
-  <div class="panel-heading panel-heading-customd" align="center"><h4>Llama al Centro de Atención Telefónica (228) 841-61-70<br>
+  <div class="panel-heading panel-heading-customd" align="center"><h4 class="info-llama">Llama al Centro de Atención Telefónica (228) 841-61-70<br>
     y proporciona los datos de la persona que buscas para que te auxilien en el proceso si así lo prefieres.</h4></div>
 </div>
 <p>
@@ -208,23 +223,31 @@
             <button type="button" href='javascript:;' onclick="limpiar();" class="btn btn-gris btn-block"><h6>Limpiar</h6></button>
         </div>
     </div>
-    <div class="col-md-2 col-xs-2">
-        <div class="form-group">
+    <div class="col-xs-12 col-md-8 text-right">
+                                <h6><a onclick="displayHelp();" title="Consulta la Ayuda para el uso del sitio" class="help-block" style="cursor: pointer;"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ayuda</a></h6>
+                                    
+    </div>
         </div>
     </div>
-    <div class="col-md-2 col-xs-2">
-        <div class="form-group">
         </div>
     </div>
-    <div class="col-md-2 col-xs-2">
-        <div class="form-group">
+
+<!--Modal ayuda-->
+        <!-- Modal -->
+<div id="modalHelp" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">REGISTRO PUBLICO DE PERSONAS DESAPARECIDAS</h4>
         </div>
+      <div class="modal-body text-justify">
+        <p>Este registro está integrado por los datos de las personas no localizadas, las cuales fueron reportadas ante esta autoridad. Este registro solo contiene información de las personas que no han sido localizadas. El proceso de búsqueda en este Registro de Personas no Localizadas es de fácil uso, por lo que usted podrá realizar la búsqueda por uno, todos o la combinación de los rubros de: Nombre, Apellido Paterno, Apellido Materno, Edad y/o Sexo. Posterior a colocar la información por la que usted desea realizar la búsqueda, debe realizar un clic en el botón de Buscar, y en la parte inferior de la pantalla se desplegará las fotos de las personas no localizadas. Si desea visualizar más detalle de la persona no localizada deberá realizar un clic sobre la imagen de la foto a consultar.</p>
     </div>
-    <div class="col-md-2 col-xs-2">
-        <div class="form-group">
-            <h6><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ayuda</h6>
-        </div>
-    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 </div>
 </div>
 </div>    
@@ -252,7 +275,7 @@
 <!-- Modal -->
 <div class="modal fade" id="danger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" id="modal2">
             <div class="modal-header modal-header-danger">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
@@ -307,6 +330,10 @@
         <input type="hidden" name="pags"  id="pags" value="0">
 
 <script>
+    function displayHelp(){
+               $("#modalHelp").modal();
+             }
+
     $( document ).ready(function() {
 	    $('#siguiente').hide();
         $('#anterior').hide();
@@ -318,7 +345,7 @@
                 endDate: "today",
                 todayBtn: "linked",
                 language: "es",
-                orientation: "top right",
+                orientation: "auto",
                 multidate: false,
                 todayHighlight: true,
                 autoclose: true
