@@ -304,11 +304,11 @@
         </div>
 
         <input type="hidden" name="muestra"  id="muestra" value="0">
-<input type="hidden" name="pags"  id="pags" value="0">
+        <input type="hidden" name="pags"  id="pags" value="0">
 
 <script>
     $( document ).ready(function() {
-	$('#siguiente').hide();
+	    $('#siguiente').hide();
         $('#anterior').hide();
         var datos;
         $(function (){
@@ -466,6 +466,7 @@
                 if (pagreal > pagtot) {
                     pagtot = pagtot + 1;
                 }
+                if(pagina < pagtot){
                 $('#paginas').empty();
                 $('#resultsDiv').empty();
                 $.each(datos, function(key, item) {
@@ -483,10 +484,16 @@
                             var sexo=item.sexo=='M'?'Masculino':'Femenino';
                             var origen=item.origen==null?'S/D':item.origen;
                             htmlElement = $('<div onclick="getDetail('+item.id+');" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 " id="'+item.id+'"><div class="panel ficha-desaparecidos"><div class="panel-body"><div class="col-xs-4"><span><img class="image_mini " src="'+foto+'" onerror="epic(this);" width="100" height="150"/></span></div><div class="data_mini col-xs-8"> '+item.nombre+' '+ item.apat +' '+ item.amat +'<br><hr class="separador"><br> '+item.edad+' años<br><hr class="separador"> '+sexo+'<br><hr class="separador"><span>Extraviado:'+item.fextrav+'</span><br><hr class="separador"><br><input type="button" name="" value="VER M&Aacute;S DETALLES" class="boton-detalles" ></div></div></div></div>');
-                                        //<span class="glyphicon glyphicon-home"></span> '+origen+'</small></span>
                             $('#resultsDiv').append(htmlElement);
                         }
                         sta = sta+1;
+                        if(sta == max_size){
+                            pagina = pagina+1;
+                            $("#pags").val(pagina);
+                            htmlElement = $('<div>Página: '+pagina+' de '+pagtot+'</div>');
+                            $('#paginas').append(htmlElement);
+                            return false;
+                        }
                         $("#muestra").val(sta);
                     }else{
                         pagina = pagina+1;
@@ -495,7 +502,8 @@
                         $('#paginas').append(htmlElement);
                         return false;
                     }
-                });           
+                });      
+            }
             };
 
             function MostrarA(){
@@ -508,13 +516,16 @@
                 var max_size=datos.length;    
                 var pagtot=parseInt(max_size/elements_per_page);
                 if (max_size > pagtot) {
-                    pagtot = pagtot + 1
+                    pagtot = pagtot + 1;
                 }
+                if(pagina > 1){
                 $('#paginas').empty();
                 $('#resultsDiv').empty();
                 $.each(datos, function(key, item) {
                     if (key=="error_code"){
                         $("#myModal").modal();
+                        $('#siguiente').hide();
+                        $('#anterior').hide();
                         return false;
                     }
                     var partefoto="";
@@ -540,7 +551,8 @@
                         $('#paginas').append(htmlElement);
                         return false;
                     }
-                });           
+                });       
+                }    
             };
 </script>
 </div>
