@@ -61,10 +61,29 @@
     color: #fff;
 }
 
+/*Barra*/
 .barra{
     margin: 0 auto;
     min-width: 100%;
     margin-bottom: 1rem;
+}
+
+/*navbar submenu*/
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+    background-color: #012F66;
+}
+
+.navbar-nav .open .dropdown-menu {
+    background-color: #444644;
+}
+
+.dropdown-menu > li > a{
+    color: #ffffff;
+}
+
+.dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+    color: #ffffff;
+    background-color: #012F66;
 }
 
 /*Slider*/

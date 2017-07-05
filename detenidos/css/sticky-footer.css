@@ -58,7 +58,9 @@ body {
     color: #012f66;
 }
 .negrita{
-    font-weight: bolder;
+    font-family: 'neosanspro-bold';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 @media (max-width: 990px) {

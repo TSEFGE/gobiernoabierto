@@ -236,8 +236,7 @@ angular.module('detenidosApp', [])
        $scope.getDetencion = function() {
             if($('#nombre').val()== "" || $('#paterno').val()=="" || $('#materno').val()=="" || $('#sexo').val()=="" || $('#fechaNacimiento').val()==""){
               $("#resultsDiv").css("display", "none");
-              $("#messageDiv").css("display", "block");
-              $scope.message="Debe proporcionar TODOS  los datos (nombre, paterno, materno, sexo, fecha Nacimiento) para realizar la busqueda";
+              $("#faltanDatos").modal();
               return;
             }  
             
@@ -258,17 +257,16 @@ angular.module('detenidosApp', [])
             .success(function (data, status, headers, config) {
                if(data.error_code==418){
                 $("#resultsDiv").css("display", "none");
-                $("#messageDiv").css("display", "block");
-                $scope.message="No se encontró ningún registro, favor de verificar los datos proporcionados";
+                //$("#messageDiv").css("display", "block");
+                //$scope.message="No se encontró ningún registro, favor de verificar los datos proporcionados";
               }
               if(data.error_code!=undefined){
                 $("#resultsDiv").css("display", "none");
-                $("#messageDiv").css("display", "block");
-                $scope.message = data.error_message;
+                $("#noHayRegistro").modal();
               }
               else{
                 limpiarResultados();
-                $("#resultsDiv").css("display", "block");
+                $("#resultsDiv").show();
                  var pos = new google.maps.LatLng(data[0].latitud,data[0].longitud);
                  marker.setPosition(pos);
                  map.setCenter(marker.getPosition());
