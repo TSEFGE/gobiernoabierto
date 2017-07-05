@@ -454,7 +454,6 @@
     };
 
             function MostrarS(){
-                //alert($("#pags").val()+','+ $("#muestra").val()+','+datos.length);
                 var pagina = parseInt($("#pags").val());
                 var elemento = parseInt($("#muestra").val());
                 var sta = 0;
@@ -524,8 +523,6 @@
                 $.each(datos, function(key, item) {
                     if (key=="error_code"){
                         $("#myModal").modal();
-                        $('#siguiente').hide();
-                        $('#anterior').hide();
                         return false;
                     }
                     var partefoto="";
