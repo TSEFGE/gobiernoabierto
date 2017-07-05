@@ -1,4 +1,4 @@
-.separador{
+.separador,.separador2{
     border:none;
     height: 2px;
     background: -webkit-linear-gradient(left, white, #8e8e8e, white);

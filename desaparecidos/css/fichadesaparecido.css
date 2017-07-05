@@ -18,6 +18,11 @@
     text-decoration: none;
 }
 
+.imagen-detalles{
+    text-align: center;
+}
+
+
 .ficha-detalles {
     width: 500px;
     margin: auto;
@@ -30,15 +35,21 @@
     height: 246px;
     margin-bottom: 20px;
 }
-@media (max-width: 768px) {
+
+@media (max-width: 767px) {
+    .panel-ficha {
+        height: auto;
+    }
+}
+
+@media (max-width: 767px) {
     .padding{
         padding-left: 5px;
 
     } 
 
     .panel-ficha {
-        height: 260px;
-        margin-bottom: 20px;
+        height: auto;
     }   
 }
 
@@ -47,6 +58,8 @@
         width: auto;
     }
 }
+
+
 
 @media (max-width: 370px) {
     .padding{
