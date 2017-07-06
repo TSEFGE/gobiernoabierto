@@ -149,16 +149,20 @@
 
 		<div class="panel"> 
 			<div class="panel-heading panel2">
-				<h3 class="panel-title">Busca Personas turnadas ante el Ministerio Público</h3> 
-				<!--<div class="panel-title">
-					<div class="row">
-						<div class="col-xs-6">
-						</div>
-						<div class="col-xs-6 text-right">
-							<h5>Corte de revisión de su actualización mensual: 22/05/17</h5>
-						</div>
+				<div class="row">
+					<div class="col-xs-12 col-md-6">
+						<h3 class="panel-title text-left">Busca Personas turnadas ante el Ministerio Público</h3>
 					</div>
-				</div>-->
+					<div class="col-xs-12 col-md-6 label-corte">
+						<h3 class="panel-title" id="divfecha">Corte de revisión de su actualización mensual: </h3>
+						<script>
+							var f = new Date();
+							var fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+							var valorDiv = $("#divfecha").html();
+							$("#divfecha").html(valorDiv + fecha);
+						</script> 
+					</div>
+				</div>
 			</div> 
 			<div class="panel-body" id="searchDiv">
 				<form id="detenido" method="POST" action="" autocomplete="off">
