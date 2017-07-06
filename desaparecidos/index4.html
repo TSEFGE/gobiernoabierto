@@ -308,17 +308,17 @@
 </div>
 
 <div class="row">
-            <div class="col-md-2 col-xs-4">
+            <div class="col-md-4 col-xs-4">
                 <div class="form-group">
                     <button type="button" href='javascript:;' id="siguiente" onclick="MostrarS();" class="btn btn-gris btn-block"><h6>Siguiente</h6></button>
                 </div>
             </div>
-            <div class="col-md-2 col-xs-4">
+            <div class="col-md-4 col-xs-4">
                 <div class="form-group">
-                    <div id="paginas"></div>
+                    <div align="center" id="paginas"></div>
                 </div>
             </div>
-            <div class="col-md-2 col-xs-4">
+            <div class="col-md-4 col-xs-4">
                 <div class="form-group">
                     <button type="button" href='javascript:;' id="anterior" onclick="MostrarA();" class="btn btn-gris btn-block"><h6>Anterior</h6></button>
                 </div>
@@ -327,6 +327,7 @@
 
         <input type="hidden" name="muestra"  id="muestra" value="0">
         <input type="hidden" name="pags"  id="pags" value="0">
+        <input type="hidden" name="pags2"  id="pags2" value="0">
 
 <script>
     function displayHelp(){
@@ -357,6 +358,7 @@
     $( "#search" ).click( function () {
 	   $('#paginas').empty();
         var pagina = 0;
+        var paginaA = 0;
         $.ajax({
             type: 'POST',
             contentType: 'application/json',
@@ -370,8 +372,8 @@
               edad: $("#edad").val()
           }),
             success: function (data) {
-				datos = data;
-				var elements_per_page = 6;
+				        datos = data;
+				        var elements_per_page = 6;
                 var max_size=data.length;
                 var pagtot=parseInt(max_size/elements_per_page);
                 if (max_size > pagtot) {
@@ -405,16 +407,18 @@
                         	        //<span class="glyphicon glyphicon-home"></span> '+origen+'</small></span>
                                 $('#resultsDiv').append(htmlElement);
                                 sta = sta+1;
-								$("#muestra").val(sta);
+								                $("#muestra").val(sta);
                             }else{
                                 pagina = pagina+1;
                                 $("#pags").val(pagina);
                                 //alert($("#pags").val());
-                                htmlElement = $('<div>Página: '+pagina+' de '+pagtot+'</div>');
+                                htmlElement = $('<div>Página: '+pagina+' de '+pagtot+' <br>Total de elementos: '+max_size+'</div>');
                                 $('#paginas').append(htmlElement);
                                 return false;
                             }
                         });
+                                paginaA = paginaA+1;
+                                $("#pags2").val(paginaA);
             }
         });
     });
@@ -486,6 +490,7 @@
 
             function MostrarS(){
                 var pagina = parseInt($("#pags").val());
+                var paginaA = parseInt($("#pags2").val());
                 var elemento = parseInt($("#muestra").val());
                 var sta = 0;
                 var elements_per_page = 6;
@@ -523,7 +528,7 @@
                         if(sta == max_size){
                             pagina = pagina+1;
                             $("#pags").val(pagina);
-                            htmlElement = $('<div>Página: '+pagina+' de '+pagtot+'</div>');
+                            htmlElement = $('<div>Página: '+pagina+' de '+pagtot+' <br>Total de elementos: '+max_size+'</div>');
                             $('#paginas').append(htmlElement);
                             return false;
                         }
@@ -531,28 +536,41 @@
                     }else{
                         pagina = pagina+1;
                         $("#pags").val(pagina);
-                        htmlElement = $('<div>Página: '+pagina+' de '+pagtot+'</div>');
+                        htmlElement = $('<div>Página: '+pagina+' de '+pagtot+' <br>Total de elementos: '+max_size+'</div>');
                         $('#paginas').append(htmlElement);
                         return false;
                     }
                 });      
+                paginaA = paginaA+1;
+                $("#pags2").val(paginaA);
             }
             };
 
             function MostrarA(){
                 var pagina = parseInt($("#pags").val());
+                var paginaA = parseInt($("#pags2").val());
                 var elemento = parseInt($("#muestra").val());
-                alert(pagina+','+elemento);
                 var sta = 0;
                 var elements_per_page = 6;
-                elemento = elemento - (elements_per_page);
-                var limit = elements_per_page + elemento;   
                 var max_size=datos.length;    
                 var pagtot=parseInt(max_size/elements_per_page);
                 var pagreal=max_size/elements_per_page;
                 if (pagreal > pagtot) {
                     pagtot = pagtot + 1;
                 }
+                if(paginaA > 2){
+                  if(paginaA==pagtot){
+                    var x = (pagtot*elements_per_page)-max_size;
+                    elemento = ((elemento+x)-(elements_per_page*2))+1;  
+                  }else{
+                    elemento = elemento -(elements_per_page*2);
+                  }
+                }
+                else{
+                   elemento = elemento - (paginaA*elements_per_page);
+                }
+                var limit = elements_per_page + elemento;   
+
                 if(pagina > 1){
                 $('#paginas').empty();
                 $('#resultsDiv').empty();
@@ -575,18 +593,23 @@
                             var origen=item.origen==null?'S/D':item.origen;
                             htmlElement = $('<div onclick="getDetail('+item.id+');" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 " id="'+item.id+'"> <div class="panel-ficha ficha-desaparecidos"> <div class="panel-body"> <div class="col-xs-4"> <span><img style="border: 4px solid #919396;" class="image_mini " src="'+foto+'" onerror="epic(this);" width="100" height="150"/></span> </div> <div class="data_mini ficha col-xs-8"> <p class="fuente-ficha padding"> '+item.nombre+' '+ item.apat +' '+ item.amat +'</p> <hr class="padding separador"> <p class="padding"> '+item.edad+' años</p> <hr class="separador padding"> <p class="padding"> '+sexo+'</p> <hr class="padding separador"> <p class="padding">Extraviado:'+item.fextrav+'</p> <hr class="padding separador"> </div> </div> <div class="panel-footer"> <input type="button" name="" value="VER M&Aacute;S DETALLES" class="boton-detalles" > </div> </div> </div>');
                                 $('#resultsDiv').append(htmlElement);
-                                           
+
+                              //alert(sta);
                         }
                         sta = sta+1;
                         $("#muestra").val(sta);
                     }else{
                         pagina = pagina-1;
+                        
                         $("#pags").val(pagina);
-                        htmlElement = $('<div>Página: '+pagina+' de '+pagtot+'</div>');
+                        
+                        htmlElement = $('<div>Página: '+pagina+' de '+pagtot+' <br>Total de elementos: '+max_size+'</div>');
                         $('#paginas').append(htmlElement);
                         return false;
                     }
-                });       
+                });  
+                paginaA = paginaA-1;
+                $("#pags2").val(paginaA);     
                 }    
             };
 </script>
