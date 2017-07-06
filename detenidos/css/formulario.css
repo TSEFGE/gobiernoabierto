@@ -17,6 +17,9 @@
 .panel-title{
 	line-height: 20px;
 }
+.label-corte{
+  text-align: left;
+}
 
 .lineaForm{
     border-left: 1px solid #919396;
@@ -60,14 +63,17 @@
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .info-llama{
-		font-size: 1.6rem;
-	}
+  		font-size: 1.6rem;
+  	}
 }
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
     .info-llama{
 		font-size: 1.8rem;
 	}
+  .label-corte{
+      text-align: right;
+    }
 }
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
