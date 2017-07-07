@@ -55,6 +55,10 @@
     display: none;
 }
 
+input {
+    text-transform: uppercase;
+}
+
 @media (max-width: 991px) {
     .imagenlogin{
         display: none;
