@@ -566,7 +566,11 @@
                   }
                 }
                 else{
-                   elemento = elemento - (paginaA*elements_per_page);
+                  if(pagtot == 2){
+                    elemento = elemento - elements_per_page;
+                  }else{
+                    elemento = elemento - (paginaA*elements_per_page);
+                  }
                 }
                 var limit = elements_per_page + elemento;   
 
