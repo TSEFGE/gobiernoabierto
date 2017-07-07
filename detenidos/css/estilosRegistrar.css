@@ -1,0 +1,75 @@
+input {
+	text-transform: uppercase;
+}
+/*Nuevos*/
+.ng-scope{
+	padding-top: 0px;
+}
+.barra{
+	margin-top: 15px;
+}
+.panel2{
+	background-color: #919393;
+}
+
+.btn-gris {
+  color: #fff;
+  background-color: #919396;
+  border-color: #646363;
+}
+.btn-gris:focus,
+.btn-gris.focus {
+  color: #fff;
+  background-color: #646363;
+  border-color: #222222;
+}
+.btn-gris:hover {
+  color: #fff;
+  background-color: #646363;
+  border-color: #58595B;
+}
+.btn-gris:active,
+.btn-gris.active{
+  color: #fff;
+  background-color: #646363;
+  border-color: #58595B;
+}
+td{
+	padding: 0px;
+	font-size: 1rem;
+	color:  #000000;
+}
+.ajuste{
+	white-space: nowrap;
+}
+.cabecera{
+	background-color: #919393;
+	color: #fff;
+	font-size: 1.3rem;
+	border: 3px solid #000;
+}
+@media (min-width: 768px) {
+	td{
+		font-size: 1.1rem;
+	}
+	.cabecera{
+		font-size: 1.4rem;
+	}
+}
+@media (min-width: 992px) {
+	td{
+		font-size: 1.2rem;
+	}
+	.cabecera{
+		font-size: 1.5rem;
+	}
+}
+@media (min-width: 1200px) {
+	td{
+		font-size: 1.3rem;
+	}
+	.cabecera{
+		font-size: 1.6rem;
+	}
+}
+
