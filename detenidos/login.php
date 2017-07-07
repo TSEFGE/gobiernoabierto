@@ -68,7 +68,7 @@
                                     <a class="manual" href="https://drive.google.com/open?id=0B3WZvqbqPu3pRzJKWEVVXzFzbEk"><i class="fa fa-book" aria-hidden="true"></i><br>Manual de Usuario</a>
                                 </div>
                                 <div class="col-xs-6">
-                                    <a class="manual" href="https://drive.google.com/open?id=0B3WZvqbqPu3pRzJKWEVVXzFzbEk"><i class="fa fa-book" aria-hidden="true"></i><br>Contraseña olvidada</a>
+                                    <a class="manual" href="https://drive.google.com/open?id=0B3WZvqbqPu3pRzJKWEVVXzFzbEk"><i class="fa fa-key" aria-hidden="true"></i><br>Recuperar Contraseña</a>
                                 </div>
                             </form>
                         </div>
