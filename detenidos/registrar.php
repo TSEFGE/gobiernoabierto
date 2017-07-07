@@ -315,17 +315,17 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
             <table id="detenidos" class="display table-striped table-hover" cellspacing="0" width="100%">
                 <thead class="cabecera">
                     <tr>
-                        <th></th>
-                        <th>Nombre</th>
-                        <th>Paterno</th>
-                        <th>Materno</th>
-                        <th>Sexo</th>
-                        <th>Fecha Nac.</th>
-                        <th>Fec. Inicio Detención</th>
-                        <th>Fec. Fin Detención</th>
-                        <th>Unidad</th>
-                        <th>Ubicación</th>
-                        <th></th>
+                        <th style="padding: 10px;"></th>
+                        <th style="padding: 10px;">Nombre</th>
+                        <th style="padding: 10px;">Paterno</th>
+                        <th style="padding: 10px;">Materno</th>
+                        <th style="padding: 10px;">Sexo</th>
+                        <th style="padding: 10px;">Fecha Nac.</th>
+                        <th style="padding: 10px;">Fec. Inicio Detención</th>
+                        <th style="padding: 10px;">Fec. Fin Detención</th>
+                        <th style="padding: 10px;">Unidad</th>
+                        <th style="padding: 10px;">Ubicación</th>
+                        <th style="padding: 10px;"></th>
                     </tr>
                 </thead>
             </table>
