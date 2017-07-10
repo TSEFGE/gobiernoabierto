@@ -94,6 +94,8 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                     <li title="Página principal" class="lineamenu">
                                         <a href="http://fiscaliaveracruz.gob.mx/"> Fiscalia</a>
                                     </li>
+                                    <li class="active lineamenu"><a data-toggle="pill" href="#home"><span class="fa fa-user-plus" aria-hidden="true"></span> Registrar detención</a></li>
+                                    <li class="lineamenu"><a data-toggle="pill" href="#menu1"><span class="fa fa-file" aria-hidden="true"></span> Generar Reporte</a></li>
                                     <li>
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog" aria-hidden="true"></span> Ajustes<span class="caret"></span></a>
                                         <ul class="dropdown-menu">
@@ -102,8 +104,9 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                             <li title="Cerrar sesión"><a href="logout.php"><span class="fa fa-sign-out" aria-hidden="true"></span> Cerrar sesión  </a></li>
                                         </ul>
                                     </li>
-                                    
                                 </ul>
+
+  
                             </div>
                         </div>
                     </nav> 
@@ -156,179 +159,317 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
             </div>
         </div>
 
-        <div>
-            <form name="detenido" id="detenido" method="POST"  novalidate class="simple-form" ng-submit="todoList.submit()">
-                <div class="panel"> 
-                    <div class="panel-heading panel2">
-                        <h3 class="panel-title text-left"><img src="./img/personales.png" style="width:25px; height:25px;"/>  Datos Detenido</h3>
-                    </div> 
-                    <div class="panel-body" id="searchDiv">
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6 col-md-3">
-                                    <div class="form-group" style="padding-left: 15px;">
-                                        <label for="nombre">Nombre:</label>
-                                        <input type="text" id="nombre" name="nombre" ng-model="nombre" class="form-control required ng-valid ng-dirty" ng-required="required" required value="{{}}">
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-2 lineaForm">
-                                    <div class="form-group">
-                                        <label for="paterno">Apellido Paterno:</label>
-                                        <input type="text" id="paterno" name="paterno" ng-model="paterno" class="form-control ng-valid ng-dirty" ng-required="required" required>
-                                    </div>
-                                </div>
-                                <div class="clearfix hidden-md hidden-lg"></div>
-                                <div class="col-xs-12 col-sm-6 col-md-2 lineaForm">
-                                    <div class="form-group">
-                                        <label for="materno">Apellido Materno:</label>
-                                        <input type="text" id="materno" name="materno" ng-model="materno" class="form-control ng-valid ng-dirty" ng-required="required" required>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-2 lineaForm">
-                                    <div class="form-group">
-                                        <label for="sexo">Sexo</label>
-                                        <div>
-                                            <select id="sexo" name="sexo" ng-model="sexo" class="form-control required ng-valid ng-dirty" required>
-                                                <option>MASCULINO</option>
-                                                <option>FEMENINO</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-3 lineaForm">
-                                    <div class="form-group" style="padding-left: 15px;">
-                                        <label for="fechaNacimiento">Fecha Nacimiento:</label>
-                                        <div class="input-group date" id="datetimepicker0">
-                                            <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaNacimiento" data-format="yyyy/mm/dd" name="fechaNacimiento" ng-model="fechaNacimiento">
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar" ng-click="$scope.detenido.fechaNacimiento.setDirty(); $scope.detenido.fechaNacimiento.$valid=true; $scope.detenido.fechaNacimiento.$error.required=false;  $scope.detenido.fechaNacimiento.$error={}; "></span>
-                                            </span>
-                                        </div>
-                                        <script type="text/javascript">
-                                            $(function () {
-                                                $('#datetimepicker0').datetimepicker({format: 'YYYY/MM/DD',locale: 'es'});
-                                            });
-                                        </script>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="panel">
-                    <div class="panel-heading panel2">
-                        <h3 class="panel-title text-left"><img src="./img/detencion.png" style="width:25px; height:25px;"/>  Datos Detención</h3>
-                    </div> 
-                    <div class="panel-body" id="searchDiv">
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6 col-md-3">
-                                    <div class="form-group" style="padding-left: 15px;">
-                                        <label for="nombre">Unidad:</label>
-                                        <div>
-                                            <select  id="idUnidad" ng-model="idUnidad" name="idUnidad" class="form-control required ng-valid ng-dirty" required>
-                                                <option ng-repeat="unidad in todoList.unidades" value="{{unidad.id}}">{{unidad.nombre}}</option>
-                                                <option value="">Seleccionar Unidad</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-3 lineaForm">
-                                    <div class="form-group" style="padding-left: 15px;">
-                                        <label for="paterno">Ubicación:</label>
-                                        <input id="ubicacion" ng-model="ubicacion" type="text" class="form-control ng-valid ng-dirty" ng-required="required" required>
-                                    </div>
-                                </div>
-                                <div class="clearfix hidden-md hidden-lg"></div>
-                                <div class="col-xs-12 col-sm-6 col-md-3 lineaForm">
-                                    <div class="form-group" style="padding-left: 15px;">
-                                        <label for="fechaInicio">Fec. Inicio Detención:</label>
-                                        <div class="input-group date" id="datetimepicker1">
-                                            <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaInicio" data-format="yyyy/mm/dd hh:mm:ss" name="fechaInicio" ng-model="fechaInicio">
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar" ng-click="$scope.detenido.fechaInicio.setDirty(); $scope.detenido.fechaInicio.$valid=true; $scope.detenido.fechaInicio.$error.required=false;  $scope.detenido.fechaInicio.$error={}; "></span>
-                                            </span>
-                                        </div>
-                                        <script type="text/javascript">
-                                            $(function () {
-                                                $('#datetimepicker1').datetimepicker({format: 'YYYY/MM/DD HH:mm:ss',locale: 'es'});
-                                            });
-                                        </script>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-3 lineaForm">
-                                    <div class="form-group" style="padding-left: 15px;">
-                                        <label for="fechaFin">Fec. Fin Detención:</label>
-                                        <div class="input-group date" id="datetimepicker2">
-                                            <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaFin" data-format="yyyy/mm/dd hh:mm:ss" name="fechaFin"  ng-model="fechaFin" >
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
-                                        </div>
-                                        <script type="text/javascript">
-                                            $(function () {
-                                              $('#datetimepicker2').datetimepicker( {format: 'YYYY/MM/DD HH:mm:ss',locale: 'es'});
-                                            });
-                                        </script>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="alert alert-warning">
-                    <span class="i-info"></span> Todos los campos son requeridos para realizar el registro de la detención.
-                </div>
-
-                
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
                 <div>
-                    <input type="button" class="btn btn-gris" id="search" value="Agregar" ng-click="addDetenido()">
-                    <input class="btn btn-gris" onclick="limpiar();" type="button" id="reset" value="Limpiar">
+                    <form name="detenido" id="detenido" method="POST"  novalidate class="simple-form" ng-submit="todoList.submit()">
+                        <div class="panel"> 
+                            <div class="panel-heading panel2">
+                                <h3 class="panel-title text-left"><img src="./img/personales.png" style="width:25px; height:25px;"/>  Datos Detenido</h3>
+                            </div> 
+                            <div class="panel-body" id="searchDiv">
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="form-group" style="padding-left: 15px;">
+                                                <label for="nombre">Nombre:</label>
+                                                <input type="text" id="nombre" name="nombre" ng-model="nombre" class="form-control required ng-valid ng-dirty" ng-required="required" required value="{{}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-2 lineaForm">
+                                            <div class="form-group">
+                                                <label for="paterno">Apellido Paterno:</label>
+                                                <input type="text" id="paterno" name="paterno" ng-model="paterno" class="form-control ng-valid ng-dirty" ng-required="required" required>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix hidden-md hidden-lg"></div>
+                                        <div class="col-xs-12 col-sm-6 col-md-2 lineaForm">
+                                            <div class="form-group">
+                                                <label for="materno">Apellido Materno:</label>
+                                                <input type="text" id="materno" name="materno" ng-model="materno" class="form-control ng-valid ng-dirty" ng-required="required" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-2 lineaForm">
+                                            <div class="form-group">
+                                                <label for="sexo">Sexo</label>
+                                                <div>
+                                                    <select id="sexo" name="sexo" ng-model="sexo" class="form-control required ng-valid ng-dirty" required>
+                                                        <option>MASCULINO</option>
+                                                        <option>FEMENINO</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-3 lineaForm">
+                                            <div class="form-group" style="padding-left: 15px;">
+                                                <label for="fechaNacimiento">Fecha Nacimiento:</label>
+                                                <div class="input-group date" id="datetimepicker0">
+                                                    <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaNacimiento" data-format="yyyy/mm/dd" name="fechaNacimiento" ng-model="fechaNacimiento">
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar" ng-click="$scope.detenido.fechaNacimiento.setDirty(); $scope.detenido.fechaNacimiento.$valid=true; $scope.detenido.fechaNacimiento.$error.required=false;  $scope.detenido.fechaNacimiento.$error={}; "></span>
+                                                    </span>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    $(function () {
+                                                        $('#datetimepicker0').datetimepicker({format: 'YYYY/MM/DD',locale: 'es'});
+                                                    });
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <input  type="button" class="btn btn-gris" name="actualizar" id="actualizar" value="Actualizar" style="display: none;"  ng-click="updateDetenido()">
-                    <input  class="btn btn-gris" onclick="cancelarEdicion();" type="button" id="cancelar" name="cancelar" value="Cancelar" style="display: none;">
+                        </div>
 
-                    <input type="hidden" id="idDetencion" value="">
+                        <div class="panel">
+                            <div class="panel-heading panel2">
+                                <h3 class="panel-title text-left"><img src="./img/detencion.png" style="width:25px; height:25px;"/>  Datos Detención</h3>
+                            </div> 
+                            <div class="panel-body" id="searchDiv">
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="form-group" style="padding-left: 15px;">
+                                                <label for="nombre">Unidad:</label>
+                                                <div>
+                                                    <select  id="idUnidad" ng-model="idUnidad" name="idUnidad" class="form-control required ng-valid ng-dirty" required>
+                                                        <option ng-repeat="unidad in todoList.unidades" value="{{unidad.id}}">{{unidad.nombre}}</option>
+                                                        <option value="">Seleccionar Unidad</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-3 lineaForm">
+                                            <div class="form-group" style="padding-left: 15px;">
+                                                <label for="paterno">Ubicación:</label>
+                                                <input id="ubicacion" ng-model="ubicacion" type="text" class="form-control ng-valid ng-dirty" ng-required="required" required>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix hidden-md hidden-lg"></div>
+                                        <div class="col-xs-12 col-sm-6 col-md-3 lineaForm">
+                                            <div class="form-group" style="padding-left: 15px;">
+                                                <label for="fechaInicio">Fec. Inicio Detención:</label>
+                                                <div class="input-group date" id="datetimepicker1">
+                                                    <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaInicio" data-format="yyyy/mm/dd hh:mm:ss" name="fechaInicio" ng-model="fechaInicio">
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar" ng-click="$scope.detenido.fechaInicio.setDirty(); $scope.detenido.fechaInicio.$valid=true; $scope.detenido.fechaInicio.$error.required=false;  $scope.detenido.fechaInicio.$error={}; "></span>
+                                                    </span>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    $(function () {
+                                                        $('#datetimepicker1').datetimepicker({format: 'YYYY/MM/DD HH:mm:ss',locale: 'es'});
+                                                    });
+                                                </script>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-3 lineaForm">
+                                            <div class="form-group" style="padding-left: 15px;">
+                                                <label for="fechaFin">Fec. Fin Detención:</label>
+                                                <div class="input-group date" id="datetimepicker2">
+                                                    <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaFin" data-format="yyyy/mm/dd hh:mm:ss" name="fechaFin"  ng-model="fechaFin" >
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    $(function () {
+                                                      $('#datetimepicker2').datetimepicker( {format: 'YYYY/MM/DD HH:mm:ss',locale: 'es'});
+                                                    });
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-warning">
+                            <span class="i-info"></span> Todos los campos son requeridos para realizar el registro de la detención.
+                        </div>
+
+                        
+                        <div>
+                            <input type="button" class="btn btn-gris" id="search" value="Agregar" ng-click="addDetenido()">
+                            <input class="btn btn-gris" onclick="limpiar();" type="button" id="reset" value="Limpiar">
+
+                            <input  type="button" class="btn btn-gris" name="actualizar" id="actualizar" value="Actualizar" style="display: none;"  ng-click="updateDetenido()">
+                            <input  class="btn btn-gris" onclick="cancelarEdicion();" type="button" id="cancelar" name="cancelar" value="Cancelar" style="display: none;">
+
+                            <input type="hidden" id="idDetencion" value="">
+                        </div>
+                    </form>
+
+                    <!--Modal Debe capturar todos los datos para registrar la detención -->
+                    <div id="modalCapturar" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-lg" role="document" >
+                            <div class="modal-content" id="modal1">
+                                <div class="modal-header alert-warning">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span></button>
+                                    <h4 class="modal-title neosansproregular" id="myModalLabel">Debe capturar <strong class="neosansprobold">TODOS</strong> los datos para registrar la detención.</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="resultsDiv"> 
+                        {{ message }}
+                    </div>
                 </div>
-            </form>
 
-            <div id="resultsDiv"> 
-                {{ message }}
+                <div>
+                    <?php
+                        if($_SESSION['userLevel']==1){
+                    ?>
+                        <button class="btn btn-gris" id="removeBtn" ng-click="removeDetenido()">Borrar</button>
+                    <?php
+                        }
+                    ?>
+                        <button class="btn btn-gris" id="editBtn" ng-click="editDetenido()">Editar</button>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="detenidos" class="display table-striped table-hover" cellspacing="0" width="100%">
+                        <thead class="cabecera">
+                            <tr>
+                                <th style="padding: 10px;"></th>
+                                <th style="padding: 10px;">Nombre</th>
+                                <th style="padding: 10px;">Paterno</th>
+                                <th style="padding: 10px;">Materno</th>
+                                <th style="padding: 10px;">Sexo</th>
+                                <th style="padding: 10px;">Fecha Nac.</th>
+                                <th style="padding: 10px;">Fec. Inicio Detención</th>
+                                <th style="padding: 10px;">Fec. Fin Detención</th>
+                                <th style="padding: 10px;">Unidad</th>
+                                <th style="padding: 10px;">Ubicación</th>
+                                <th style="padding: 10px;"></th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <div>
-            <?php
-                if($_SESSION['userLevel']==1){
-            ?>
-                <button class="btn btn-gris" id="removeBtn" ng-click="removeDetenido()">Borrar</button>
-            <?php
-                }
-            ?>
-                <button class="btn btn-gris" id="editBtn" ng-click="editDetenido()">Editar</button>
-        </div>
+            <div id="menu1" class="tab-pane fade">
+                <div>
+                    <form name="reporte" id="reporte" method="POST" novalidate class="simple-form" ng-submit="todoList.submit()">
+                        <div class="panel"> 
+                            <div class="panel-heading panel2">
+                                <h3 class="panel-title text-left"><img src="./img/personales.png" style="width:25px; height:25px;"/>  Generar Reporte de Detenciones</h3>
+                            </div> 
+                            <div class="panel-body" id="searchDiv2">
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-3" style="padding-left: 15px;">
+                                            <div class="form-group">
+                                                <label for="tipo">Tipo de reporte:</label>
+                                                <div>
+                                                    <select id="tipo" name="tipo" ng-model="tipo" class="form-control required ng-valid ng-dirty" required>
+                                                        <option>Por unidad</option>
+                                                        <option>Por usuario</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-3 lineaForm" style="padding-left: 15px;">
+                                            <div class="form-group">
+                                                <label for="fechaNacimiento">De:</label>
+                                                <div class='input-group date' id='datetimepicker3'>
+                                                    <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaInicioReporte" data-format="yyyy/mm/dd" name="fechaInicioReporte" ng-model="fechaInicioReporte">
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-3 lineaForm" style="padding-left: 15px;">
+                                            <div class="form-group">
+                                                <label for="fechaNacimiento">A:</label>
+                                                <div class='input-group date' id='datetimepicker4'>
+                                                    <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaFinReporte" data-format="yyyy/mm/dd" name="fechaFinReporte" ng-model="fechaFinReporte">
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script type="text/javascript">
+                                            $(function () {
+                                                $('#datetimepicker3').datetimepicker({format: 'YYYY/MM/DD',locale: 'es'});
+                                                $('#datetimepicker4').datetimepicker({
+                                                    format: 'YYYY/MM/DD',
+                                                    locale: 'es'
+                                                });
 
-        <div class="table-responsive">
-            <table id="detenidos" class="display table-striped table-hover" cellspacing="0" width="100%">
-                <thead class="cabecera">
-                    <tr>
-                        <th style="padding: 10px;"></th>
-                        <th style="padding: 10px;">Nombre</th>
-                        <th style="padding: 10px;">Paterno</th>
-                        <th style="padding: 10px;">Materno</th>
-                        <th style="padding: 10px;">Sexo</th>
-                        <th style="padding: 10px;">Fecha Nac.</th>
-                        <th style="padding: 10px;">Fec. Inicio Detención</th>
-                        <th style="padding: 10px;">Fec. Fin Detención</th>
-                        <th style="padding: 10px;">Unidad</th>
-                        <th style="padding: 10px;">Ubicación</th>
-                        <th style="padding: 10px;"></th>
-                    </tr>
-                </thead>
-            </table>
+                                                $("#datetimepicker3").on("dp.change", function (e) {
+                                                    $('#datetimepicker4').data("DateTimePicker").minDate(e.date);
+                                                });
+                                                $("#datetimepicker4").on("dp.change", function (e) {
+                                                    $('#datetimepicker3').data("DateTimePicker").maxDate(e.date);
+                                                });
+                                            });
+                                        </script>
+                                        <div class="clearfix"></div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6 col-md-3" style="padding-left: 15px;">
+                                                <div class="form-group">
+                                                    <input type="button" class="btn btn-gris" id="search" value="Generar" ng-click="addDetenido()">
+                                                    <input class="btn btn-gris" onclick="borrar();" type="button" id="reset" value="Limpiar">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            function borrar(){
+                                                $('#tipo').val('');
+                                                $('#datetimepicker3').val('');
+                                                $('#datetimepicker4').val('');
+                                            };
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-warning">
+                            <span class="i-info"></span> Todos los campos son requeridos para realizar el reporte.
+                        </div>
+                    </form>
+
+                    <div id="resultsDiv2"> 
+                        {{ message }}
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="reportes" class="display table-striped table-hover" cellspacing="0" width="100%">
+                        <thead class="cabecera">
+                            <tr>
+                                <th style="padding: 10px;"></th>
+                                <th style="padding: 10px;">Unidad</th>
+                                <th style="padding: 10px;">No. Detenidos</th>
+                                <th style="padding: 10px;">Fec. Inicio Reporte</th>
+                                <th style="padding: 10px;">Fec. Fin Reporte</th>
+                                <th style="padding: 10px;"></th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="reportes2" class="display table-striped table-hover" cellspacing="0" width="100%">
+                        <thead class="cabecera">
+                            <tr>
+                                <th style="padding: 10px;"></th>
+                                <th style="padding: 10px;">Fiscal</th>
+                                <th style="padding: 10px;">Unidad</th>
+                                <th style="padding: 10px;">No. Detenidos</th>
+                                <th style="padding: 10px;">Fec. Inicio Reporte</th>
+                                <th style="padding: 10px;">Fec. Fin Reporte</th>
+                                <th style="padding: 10px;"></th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
         </div>
 
     </div>

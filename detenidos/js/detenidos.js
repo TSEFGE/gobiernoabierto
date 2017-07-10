@@ -50,8 +50,9 @@ angular.module('detenidosApp', [])
        		var url='./index.php/addDetenido';
 	        var data=new Object();
           if($('#nombre').val()=="" || $('#paterno').val()=="" ||$('#materno').val()=="" || $('#sexo').val()=="" || $('#fechaNacimiento').val()=="" || $('#idUnidad').val()=="" || $('#fechaInicio').val()=="" || $('#fechaFin').val()==""){
-               $scope.message="Debe capturar todos los datos para registrar la detención";
-               $("#resultsDiv").css("display", "block");
+               //$scope.message="Debe capturar todos los datos para registrar la detención";
+               //$("#resultsDiv").css("display", "block");
+               $("#modalCapturar").modal();
                return;
           }
 
