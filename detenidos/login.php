@@ -81,10 +81,10 @@
 
 
 
-</body>
 <footer>
     <img src="img/footerlogin.jpg" width="100%"/>        
 </footer>
+</body>
 </html>
 
 

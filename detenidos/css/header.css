@@ -85,6 +85,45 @@
     margin-bottom: 1rem;
 }
 
+
+/*imagen sustitura de slider*/
+
+.imgdetenidos1{
+    display: block;
+}
+.imgdetenidos2{
+    display: none;
+}
+.imgdetenidos3{
+    display: none;
+}
+
+@media (max-width: 990px) {
+    .imgdetenidos1{
+        display: none;
+    }
+    .imgdetenidos2{
+        display: block;
+    }
+    .imgdetenidos3{
+        display: none;
+    }
+}
+
+@media (max-width: 490px ) {
+    .imgdetenidos1{
+        display: none;
+    }
+    .imgdetenidos2{
+        display: none;
+    }
+    .imgdetenidos3{
+        display: block;
+    }
+    
+}
+
+
 /*Slider*/
 .slider{
     min-height: 0px;
