@@ -218,4 +218,10 @@
     .container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header{
         border-radius: 5px;
     }
+
+    .titulos{
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
 }

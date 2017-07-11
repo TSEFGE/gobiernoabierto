@@ -173,6 +173,7 @@
 }
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+
     .titulo1, .titulo2{
         font-size: 2rem;
     }
@@ -256,6 +257,12 @@
     .container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header{
         border-radius: 5px;
     }
+
+    .titulos{
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
 
 }
 
