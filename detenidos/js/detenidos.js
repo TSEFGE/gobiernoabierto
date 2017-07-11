@@ -52,7 +52,12 @@ angular.module('detenidosApp', [])
           if($('#nombre').val()=="" || $('#paterno').val()=="" ||$('#materno').val()=="" || $('#sexo').val()=="" || $('#fechaNacimiento').val()=="" || $('#idUnidad').val()=="" || $('#fechaInicio').val()=="" || $('#fechaFin').val()==""){
                //$scope.message="Debe capturar todos los datos para registrar la detención";
                //$("#resultsDiv").css("display", "block");
-               $("#modalCapturar").modal();
+               //$("#modalCapturar").modal();
+               swal(
+                  'Atención',
+                  'Debe capturar TODOS los datos para registrar la detención.',
+                  'warning'
+                );
                return;
           }
 
@@ -76,14 +81,25 @@ angular.module('detenidosApp', [])
        		$http.post(url, dataJSON, config)
             .success(function (data, status, headers, config) {
                limpiar();
-               $scope.message="El registro fue agregado exitosamente";
-               $("#resultsDiv").css("display", "block");
+               //$scope.message="El registro fue agregado exitosamente";
+               //$("#resultsDiv").css("display", "block");
+               //$("#modalInfo").modal();
+               swal(
+                  'Hecho',
+                  'El registro fue agregado exitosamente.',
+                  'success'
+                );
                $('#detenidos').DataTable().ajax.reload();
 	           })
             .error(function (data, status, headers, config) {
                limpiar();
-               $scope.message="Hubo un error al intentar agregar el registro favor de reintentar,  en caso de que el error persista comunicarse al 228-841-61-70 ext. 3238";
-               $("#resultsDiv").css("display", "block");
+               //$scope.message="Hubo un error al intentar agregar el registro favor de reintentar,  en caso de que el error persista comunicarse al 228-841-61-70 ext. 3238";
+               //$("#resultsDiv").css("display", "block");
+               swal(
+                  'Atención',
+                  'Hubo un error al intentar agregar el registro favor de reintentar,  en caso de que el error persista comunicarse al 228-841-61-70 ext. 3238.',
+                  'error'
+                );
             });
            
     	};
@@ -109,14 +125,26 @@ angular.module('detenidosApp', [])
             $http.post(url, dataJSON, config)
             .success(function (data, status, headers, config) {
                limpiar();
-               $scope.message2="El registro fue eliminado exitosamente";
+               //$scope.message="El registro fue eliminado exitosamente";
+               //$("#modalInfo").modal();
+               swal(
+                  'Hecho',
+                  'El registro fue eliminado exitosamente.',
+                  'success'
+                );
                $('#detenidos').DataTable().ajax.reload();
              })
             
             .error(function (data, status, headers, config) {
                limpiar();
-               $scope.message="Hubo un error al intentar agregar el registro favor de reintentar,  en caso de que el error persista comunicarse al 228-841-61-70 ext. 3238";
-               $("#resultsDiv").css("display", "block");
+               //$scope.message="Hubo un error al intentar elimniar el registro favor de reintentar,  en caso de que el error persista comunicarse al 228-841-61-70 ext. 3238";
+               //$("#resultsDiv").css("display", "block");
+               //$("#modalInfo").modal();
+               swal(
+                  'Atención',
+                  'Hubo un error al intentar elimniar el registro favor de reintentar,  en caso de que el error persista comunicarse al 228-841-61-70 ext. 3238.',
+                  'error|'
+                );
             });
       };
        
@@ -125,7 +153,12 @@ angular.module('detenidosApp', [])
             var data=$('#detenidos').DataTable().row('.selected').data();
             $('#detenidos').DataTable().$('tr.selected').removeClass('selected');
             if(data == undefined){
-                alert('Debe seleccionar un registro antes de seleccionar el boton Editar');
+                //alert('Debe seleccionar un registro antes de seleccionar el boton Editar.');
+                swal(
+                  'Atención',
+                  'Debe seleccionar un registro antes de seleccionar el botón Editar.',
+                  'warning'
+                );
                 $('#search').show();
                 $('#reset').show();
                 $('#actualizar').hide();
@@ -148,15 +181,15 @@ angular.module('detenidosApp', [])
             $('#reset').hide();
             $('#actualizar').show();
             $('#cancelar').show();
-
        };
 
       $scope.updateDetenido = function() {
           var url='./index.php/updateDetenido';
           var data=new Object();
           if($('#nombre').val()=="" || $('#paterno').val()=="" ||$('#materno').val()=="" || $('#sexo').val()=="" || $('#fechaNacimiento').val()=="" || $('#idUnidad').val()=="" || $('#fechaInicio').val()=="" || $('#fechaFin').val()==""){
-               $scope.message="Debe capturar todos los datos para registrar la detención";
-               $("#resultsDiv").css("display", "block");
+               //$scope.message="Debe capturar todos los datos para registrar la detención";
+               //$("#resultsDiv").css("display", "block");
+               $("#modalCapturar").modal();
                return;
           }
             data.nombre= $scope.nombre.trim().toUpperCase();
@@ -185,7 +218,12 @@ angular.module('detenidosApp', [])
                      $('#detenidos').DataTable().ajax.reload();
              })
             .error(function (data, status, headers, config) {
-                alert('Hubo un error al actualizar el registro, por favor intentar nuevamente o comunicar al administrador.')
+                //alert('Hubo un error al actualizar el registro, por favor intentar nuevamente o comunicar al administrador.')
+                swal(
+                  'Atención',
+                  'Hubo un error al actualizar el registro, por favor intentar nuevamente o comunicar al administrador.',
+                  'error'
+                );
             });
       };
 
@@ -193,11 +231,23 @@ angular.module('detenidosApp', [])
           var url='./index.php/updatePassword';
           var data=new Object();
           if($('#idUsuario').val()=="" || $('#current_password').val()=="" ||$('#new_password').val()==""  ||$('#confirm_password').val()==""){
-               $scope.messagePassword="Especificar todos los datos solicitados";
+               //$scope.messagePassword="Especificar todos los datos solicitados";
+               //$("#pwError").modal();
+                swal(
+                  'Atención',
+                  'Debes especificar todos los datos solicitados.',
+                  'error'
+                );
                return;
           }
         if($('#new_password').val()!=$('#confirm_password').val()){
-               $scope.messagePassword="No coincide la contraseña nueva y su confirmación";
+               //$scope.messagePassword="No coincide la contraseña nueva y su confirmación";
+               //$("#pwError").modal();
+               swal(
+                  'Atención',
+                  'No coincide la contraseña nueva y su confirmación.',
+                  'warning'
+                );
                return;
           }
             data.idUsuario= $('#idUsuario').val().trim().toUpperCase();
@@ -216,14 +266,33 @@ angular.module('detenidosApp', [])
           $http.post(url, dataJSON, config)
             .success(function (data, status, headers, config) {
                     if(data.error_code){
-                      $scope.messagePassword="La contraseña anterior no coincide o existió un error al intentar actualizarla";        
+                      //$scope.messagePassword="La contraseña anterior no coincide o existió un error al intentar actualizarla";        
+                      //$("#pwError").modal();
+                      swal(
+                        'Atención',
+                        'La contraseña anterior no coincide o existió un error al intentar actualizarla.',
+                        'error'
+                      );
                    }
                    else{
-                       $scope.messagePassword="La contraseña ha sido actualizada"; 
+                       $('#pwModal').modal('hide');
+                       //$scope.messagePassword="La contraseña ha sido actualizada";
+                       //$("#pwError").modal();
+                       swal(
+                        'Hecho',
+                        'La contraseña ha sido actualizada.',
+                        'success'
+                      );
                    }
              })
             .error(function (data, status, headers, config) {
-                $scope.messagePassword="La contraseña anterior no coincide o existió un error al intentar actualizarla";
+                //$scope.messagePassword="La contraseña anterior no coincide o existió un error al intentar actualizarla";
+                //$("#pwError").modal();
+                swal(
+                  'Atención',
+                  'La contraseña anterior no coincide o existió un error al intentar actualizarla.',
+                  'error'
+                );
             });
       };
       
@@ -267,7 +336,8 @@ angular.module('detenidosApp', [])
               }
               else{
                 limpiarResultados();
-                $("#resultsDiv").show();
+                $("#resultsDiv").css("display", "block");
+                //$("#resultsDiv").show();
                  var pos = new google.maps.LatLng(data[0].latitud,data[0].longitud);
                  marker.setPosition(pos);
                  map.setCenter(marker.getPosition());
