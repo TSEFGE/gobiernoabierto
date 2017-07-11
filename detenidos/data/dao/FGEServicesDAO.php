@@ -146,5 +146,24 @@ $getLastId=true;
         else 
              throw new Exception('La contraseña anterior no coincide o existió un error al intentar actualizarla');
     }
+
+    public function getReporte($fechaInicial=null, $fechaFinal=null) {
+
+    $condition=""; 
+    if (empty($fechaInicial) || empty($fechaFinal))  
+        throw new Exception('Es necesario especificar las dos fechas para realizar la búsqueda');
+    if (!empty($fechaInicial) && !empty($fechaFinal))
+        $condition .= ' WHERE d.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
+
+        $sqlSelect = 'SELECT d.`idUnidad`, u.`nombre`, COUNT(d.`idDetenido`)Detenidos, d.`fechaInicio` FROM `detencion` d
+                    INNER JOIN `unidad` u ON d.`idUnidad` = u.`id`'
+                    . $condition .'
+                    GROUP BY d.`idUnidad`' ;
+        $result = $this->select($sqlSelect);
+        if(count($result) >= 1)
+            return $result;
+        else 
+            return NULL;
+    }
 }
 ?>
