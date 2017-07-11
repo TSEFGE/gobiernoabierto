@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/cssfonts.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/formulario.css">
 
     
 </head>
@@ -68,7 +69,7 @@
                                     <a class="manual" href="https://drive.google.com/open?id=0B3WZvqbqPu3pRzJKWEVVXzFzbEk"><i class="fa fa-book" aria-hidden="true"></i><br>Manual de Usuario</a>
                                 </div>
                                 <div class="col-xs-6">
-                                    <a class="manual" href="https://drive.google.com/open?id=0B3WZvqbqPu3pRzJKWEVVXzFzbEk"><i class="fa fa-key" aria-hidden="true"></i><br>Recuperar Contraseña</a>
+                                    <a class="manual" href="#" data-toggle="modal" data-target="#modalRecupera"><i class="fa fa-key" aria-hidden="true"></i><br>Recuperar Contraseña</a>
                                 </div>
                             </form>
                         </div>
@@ -79,11 +80,39 @@
         </div>
         <br><br><br><br><br>
 
+        <div id="modalRecupera" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title text-center"><strong>Recupera tu contraseña</strong></h4>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div class="form-group form-inline">
+                            <label for="email">Ingresa tu correo electrónico</label>
+                            <div >
+                                <input type="email" class="form-control" id="email" name="email" style="width: 70%">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" onclick="borrar();" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button ng-click="updatePassword()" class="btn btn-primary" id="password_modal_save">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
 
 <footer>
     <img src="img/footerlogin.jpg" width="100%"/>        
 </footer>
+<script>
+        function borrar() {
+            $("#email").val("");
+        };
+    </script>
 </body>
 </html>
 

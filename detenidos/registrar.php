@@ -10,6 +10,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
 <html ng-app="detenidosApp">
 <head>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="HandheldFriendly" content="true">
@@ -98,7 +99,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                         <a href="http://fiscaliaveracruz.gob.mx/"> Fiscalia</a>
                                     </li>
                                     <li class="active lineamenu"><a data-toggle="pill" href="#home"><span class="fa fa-user-plus" aria-hidden="true"></span> Registrar detención</a></li>
-                                    <li class="lineamenu"><a data-toggle="pill" href="#menu1"><span class="fa fa-file" aria-hidden="true"></span> Generar Reporte</a></li>
+                                    <li class="lineamenu"><a data-toggle="pill" href="#reporte"><span class="fa fa-file" aria-hidden="true"></span> Generar Reporte</a></li>
                                     <li>
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog" aria-hidden="true"></span> Ajustes<span class="caret"></span></a>
                                         <ul class="dropdown-menu">
@@ -154,9 +155,9 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                     <div class="modal-footer">
                         <button ng-click="limpiarUpdatePassword()" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                         <button ng-click="updatePassword()" class="btn btn-primary" id="password_modal_save">Guardar</button>
-                        <div>
+                        <!--<div>
                             {{ messagePassword }}
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
@@ -386,7 +387,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                 </div>
             </div>
 
-            <div id="menu1" class="tab-pane fade">
+            <div id="reporte" class="tab-pane fade">
                 <div>
                     <form name="reporte" id="reporte" method="POST" novalidate class="simple-form" ng-submit="todoList.submit()">
                         <div class="panel"> 
@@ -396,7 +397,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                             <div class="panel-body" id="searchDiv2">
                                 <div class="box-body">
                                     <div class="row">
-                                        <div class="col-xs-12 col-sm-6 col-md-3" style="padding-left: 15px;">
+                                        <!--<div class="col-xs-12 col-sm-6 col-md-3" style="padding-left: 15px;">
                                             <div class="form-group">
                                                 <label for="tipo">Tipo de reporte:</label>
                                                 <div>
@@ -406,12 +407,12 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 col-md-3 lineaForm" style="padding-left: 15px;">
+                                        </div>-->
+                                        <div class="col-xs-12 col-sm-6 col-md-3" style="padding-left: 15px;">
                                             <div class="form-group">
-                                                <label for="fechaNacimiento">De:</label>
+                                                <label for="fechaInicial">De:</label>
                                                 <div class='input-group date' id='datetimepicker3'>
-                                                    <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaInicioReporte" data-format="yyyy/mm/dd" name="fechaInicioReporte" ng-model="fechaInicioReporte">
+                                                    <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaInicial" data-format="yyyy/mm/dd" name="fechaInicial" ng-model="fechaInicial">
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
@@ -420,9 +421,9 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                         </div>
                                         <div class="col-xs-12 col-sm-6 col-md-3 lineaForm" style="padding-left: 15px;">
                                             <div class="form-group">
-                                                <label for="fechaNacimiento">A:</label>
+                                                <label for="fechaFinal">A:</label>
                                                 <div class='input-group date' id='datetimepicker4'>
-                                                    <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaFinReporte" data-format="yyyy/mm/dd" name="fechaFinReporte" ng-model="fechaFinReporte">
+                                                    <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaFinal" data-format="yyyy/mm/dd" name="fechaFinal" ng-model="fechaFinal">
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
@@ -456,7 +457,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                         </div>
                                         <script>
                                             function borrar(){
-                                                $('#tipo').val('');
+                                                //$('#tipo').val('');
                                                 $('#datetimepicker3').val('');
                                                 $('#datetimepicker4').val('');
                                             };
@@ -465,47 +466,37 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                 </div>
                             </div>
                         </div>
-
-                        <div class="alert alert-warning">
-                            <span class="i-info"></span> Todos los campos son requeridos para realizar el reporte.
-                        </div>
                     </form>
-
-                    <div id="resultsDiv2"> 
-                        {{ message }}
-                    </div>
                 </div>
 
                 <div class="table-responsive">
-                    <table id="reportes" class="display table-striped table-hover" cellspacing="0" width="100%">
+                    <table id="reportes" class="display table-striped table-hover table-bordered" cellspacing="0" width="100%">
                         <thead class="cabecera">
                             <tr>
-                                <th style="padding: 10px;"></th>
                                 <th style="padding: 10px;">Unidad</th>
                                 <th style="padding: 10px;">No. Detenidos</th>
-                                <th style="padding: 10px;">Fec. Inicio Reporte</th>
-                                <th style="padding: 10px;">Fec. Fin Reporte</th>
-                                <th style="padding: 10px;"></th>
                             </tr>
                         </thead>
+                        <tbody>
+                            <?php
+                                $mysqli = new mysqli("localhost", "root", "", "detenidos");
+                                $stmt = $mysqli->prepare("SELECT unidad.nombre, COUNT(idUnidad) AS cantidad FROM detencion INNER JOIN unidad WHERE unidad.id = detencion.idUnidad AND detencion.fechaInicio BETWEEN '2017-01-01' AND '2017-07-01' GROUP BY idUnidad ");
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+                                while ($row = $result->fetch_assoc()) {
+                                    $row['nombre']=utf8_encode ( $row['nombre'] );
+                            ?>
+                            <tr>
+                                <th style="padding: 10px;"><?php echo $row['nombre']; ?></th>
+                                <th style="padding: 10px;"><?php echo $row['cantidad']; ?></th>
+                            </tr>
+                            <?php
+                                }
+                            ?>
+                        </tbody>
                     </table>
                 </div>
 
-                <div class="table-responsive">
-                    <table id="reportes2" class="display table-striped table-hover" cellspacing="0" width="100%">
-                        <thead class="cabecera">
-                            <tr>
-                                <th style="padding: 10px;"></th>
-                                <th style="padding: 10px;">Fiscal</th>
-                                <th style="padding: 10px;">Unidad</th>
-                                <th style="padding: 10px;">No. Detenidos</th>
-                                <th style="padding: 10px;">Fec. Inicio Reporte</th>
-                                <th style="padding: 10px;">Fec. Fin Reporte</th>
-                                <th style="padding: 10px;"></th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
             </div>
         </div>
 
