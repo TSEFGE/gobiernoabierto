@@ -36,7 +36,7 @@ class FGEServicesDAO extends GenericDAO {
     if (!empty($sexo))
         $condition = empty($condition) ? 'sexo like \'%'.$sexo .'%\'': $condition . ' AND sexo like \'%'.$sexo .'%\''; 
     if (!empty($edad))
-        $condition = empty($condition) ? 'edad like \'%'.$edad .'%\'': $condition . ' AND edad like \'%'.$edad .'%\'';     
+        $condition = empty($condition) ? 'edad = \''.$edad .'\'': $condition . ' AND edad = \''.$edad .'\'';     
     $sqlSelect = 'SELECT id,nombre, apat, amat, sexo, edad, origen, rutfoto,mun,estado,DATE_FORMAT(fextrav,\'%d-%m-%Y\') fextrav FROM desaparecidos WHERE '.$condition . ' AND tipo="INTERNO" AND public=1 AND status=1 order by apat,amat, nombre asc' ;
     //$sqlSelect = 'SELECT id,nombre, apat, amat, sexo, edad, origen, rutfoto,mun,estado,DATE_FORMAT(fextrav,\'%d-%m-%Y\') fextrav FROM desaparecidos2 WHERE '.$condition . '  order by apat,amat, nombre asc' ;
         $this->logger->debug('getDesaparecidosByParams: ' . $sqlSelect);
