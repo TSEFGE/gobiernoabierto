@@ -155,7 +155,7 @@ $getLastId=true;
     if (!empty($fechaInicial) && !empty($fechaFinal))
         $condition .= ' WHERE d.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
 
-        $sqlSelect = 'SELECT d.`idUnidad`, u.`nombre`, COUNT(d.`idDetenido`)Detenidos, d.`fechaInicio` FROM `detencion` d
+        $sqlSelect = 'SELECT d.`idUnidad`, u.`nombre`, COUNT(d.`idDetenido`)detenidos, d.`fechaInicio` FROM `detencion` d
                     INNER JOIN `unidad` u ON d.`idUnidad` = u.`id`'
                     . $condition .'
                     GROUP BY d.`idUnidad`' ;

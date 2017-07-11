@@ -358,4 +358,44 @@ angular.module('detenidosApp', [])
               }
             });
         };
+
+       $scope.getReporte = function() {
+            if($('#fechaInicial').val()== "" || $('#fechaFinal').val()==""){
+              $("#resultsDiv").css("display", "none");
+              $("#faltanDatos").modal();
+              return;
+            }  
+            
+            var url='./index.php/getReporte';
+            var data=new Object();
+            data.idUnidad=$scope.idUnidad;
+            data.nombre=$scope.nombre;
+            data.detenidos=$scope.detenidos;
+            data.fechaInicio=$scope.fechaInicio;
+            var dataJSON=JSON.stringify(data);
+            var config = {
+                headers : {
+                    'Content-Type': 'application/json;charset=utf-8;'
+            }
+            };
+            $http.post(url, dataJSON, config)
+            .success(function (data, status, headers, config) {
+               if(data.error_code==418){
+                $("#resultsDiv").css("display", "none");
+              }
+              if(data.error_code!=undefined){
+                $("#resultsDiv").css("display", "none");
+                $("#noHayRegistro").modal();
+              }
+              else{
+                limpiarResultados();
+                $("#resultsDiv").css("display", "block");
+                
+                 $scope.itemidUnidad=data[0].idUnidad;
+                 $scope.itemnombre=data[0].nombre;
+                 $scope.itemdetenidos=data[0].detenidos;
+                 $scope.itemfechaInicio=data[0].fechaInicio;
+              }
+            });
+        };
     });
