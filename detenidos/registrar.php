@@ -413,7 +413,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                             <div class="form-group">
                                                 <label for="fechaInicial">De:</label>
                                                 <div class='input-group date' id='datetimepicker3'>
-                                                    <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaInicial" data-format="yyyy/mm/dd" name="fechaInicial" ng-model="fechaInicial">
+                                                    <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaInicial" data-format="yyyy-mm-dd" name="fechaInicial" ng-model="fechaInicial">
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
@@ -424,7 +424,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                             <div class="form-group">
                                                 <label for="fechaFinal">A:</label>
                                                 <div class='input-group date' id='datetimepicker4'>
-                                                    <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaFinal" data-format="yyyy/mm/dd" name="fechaFinal" ng-model="fechaFinal">
+                                                    <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaFinal" data-format="yyyy-mm-dd" name="fechaFinal" ng-model="fechaFinal">
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
@@ -433,9 +433,9 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                         </div>
                                         <script type="text/javascript">
                                             $(function () {
-                                                $('#datetimepicker3').datetimepicker({format: 'YYYY/MM/DD',locale: 'es'});
+                                                $('#datetimepicker3').datetimepicker({format: 'YYYY-MM-DD',locale: 'es'});
                                                 $('#datetimepicker4').datetimepicker({
-                                                    format: 'YYYY/MM/DD',
+                                                    format: 'YYYY-MM-DD',
                                                     locale: 'es'
                                                 });
 
@@ -451,7 +451,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-6 col-md-3" style="padding-left: 15px;">
                                                 <div class="form-group">
-                                                    <input type="button" class="btn btn-gris" id="search" value="Generar" ng-click="getReporte()">
+                                                    <button type="submit" class="btn btn-gris" id="searchRep" name="searchRep" value="Buscar">Buscar</button>
                                                     <input class="btn btn-gris" onclick="borrar();" type="button" id="reset" value="Limpiar">
                                                 </div>
                                             </div>
@@ -461,6 +461,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                                 //$('#tipo').val('');
                                                 $('#datetimepicker3').val('');
                                                 $('#datetimepicker4').val('');
+                                                $('#divReporte').empty();
                                             };
                                         </script>
                                     </div>
@@ -474,27 +475,13 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                     <table id="reportes" class="display table-striped table-hover table-bordered" cellspacing="0" width="99%">
                         <thead class="cabecera">
                             <tr>
-                                <th style="padding: 10px;">Unidad</th>
+                                <th style="padding: 10px;">id</th>
+                                <th style="padding: 10px;">Nombre Unidad</th>
                                 <th style="padding: 10px;">No. Detenidos</th>
+                                <th style="padding: 10px;">Fecha Inicial</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php
-                                $mysqli = new mysqli("localhost", "root", "", "detenidos");
-                                $stmt = $mysqli->prepare("SELECT unidad.nombre, COUNT(idUnidad) AS cantidad FROM detencion INNER JOIN unidad WHERE unidad.id = detencion.idUnidad AND detencion.fechaInicio BETWEEN '2017-01-01' AND '2017-07-01' GROUP BY idUnidad ");
-                                $stmt->execute();
-                                $result = $stmt->get_result();
-                                while ($row = $result->fetch_assoc()) {
-                                    $row['nombre']=utf8_encode ( $row['nombre'] );
-                            ?>
-                            <tr>
-                                <th style="padding: 10px;"><?php echo $row['nombre']; ?></th>
-                                <th style="padding: 10px;"><?php echo $row['cantidad']; ?></th>
-                            </tr>
-                            <?php
-                                }
-                            ?>
-                        </tbody>
+                        <tbody id="divReporte"></tbody>
                     </table>
                 </div>
                 <script>
@@ -503,11 +490,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                             "order": [[ 1, "desc" ]],
                             "pagingType": "full_numbers",
                             "language": {
-                                "lengthMenu": "Mostrando _MENU_ registros por página",
-                                "zeroRecords": "Ningún resultado encontrado",
-                                "info": "Página _PAGE_ de _PAGES_",
-                                "infoEmpty": "Ningús resultado disponible",
-                                "infoFiltered": "(obtenido de _MAX_ registros)",
                                 "decimal": ".",
                                 "thousands": ",",
                                 "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
@@ -524,5 +506,48 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
     <footer>
         <img class="img-responsive center barra" src="./img/barra.png"/>
     </footer>
+
+    <script>
+        $( "#searchRep" ).click( function () {
+            if($("#fechaInicial").val()=="" && $("#fechaFinal").val() == ""){
+                swal(
+                    'Atención',
+                    'Debe capturar TODOS los datos para generar el reporte.',
+                    'warning'
+                );
+                return false;
+            }
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json',
+                url: 'index.php/getReporte',
+                dataType: "json",                  
+                data: JSON.stringify({
+                    fechaInicial: $("#fechaInicial").val(),
+                    fechaFinal: $("#fechaFinal").val()
+                }),
+                success: function (data) {
+                    $('#divReporte').empty();
+
+
+                    $.each(data, function(key, item) {
+                        if (key=="error_code"){
+                            swal(
+                                'Atención',
+                                'No se encontraron registros para generar el reporte.',
+                                'warning'
+                            );
+                            return false;
+                        }
+                        //console.log(item);
+                        htmlElement = $('<tr><td>'+item.idUnidad+'</td><td>'+item.nombre+'</td><td>'+item.detenidos+'</td><td>'+item.fechaInicio+'</td></tr>');
+                        $('#divReporte').append(htmlElement);
+                        
+
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html> 
