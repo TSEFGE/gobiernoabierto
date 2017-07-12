@@ -509,14 +509,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
 
     <script>
         $( "#searchRep" ).click( function () {
-            if($("#fechaInicial").val()=="" && $("#fechaFinal").val() == ""){
-                swal(
-                    'Atención',
-                    'Debe capturar TODOS los datos para generar el reporte.',
-                    'warning'
-                );
-                return false;
-            }
+
             $.ajax({
                 type: 'POST',
                 contentType: 'application/json',

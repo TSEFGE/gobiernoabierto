@@ -146,16 +146,23 @@ $getLastId=true;
              throw new Exception('La contraseña anterior no coincide o existió un error al intentar actualizarla');
     }
 
-    public function getReporte($fechaInicial=null, $fechaFinal=null) {
+    public function getReporte($fechaInicial=null, $fechaFinal=null, $idUsuario=null, $idNivel=null) {
 
     $condition=""; 
-    if (empty($fechaInicial) || empty($fechaFinal))  
-        throw new Exception('Es necesario especificar las dos fechas para realizar la búsqueda');
-    if (!empty($fechaInicial) && !empty($fechaFinal))
-        $condition .= ' WHERE d.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
+    /*if (empty($fechaInicial) || empty($fechaFinal))  
+        throw new Exception('Es necesario especificar las dos fechas para realizar la búsqueda');*/
+        if($idNivel == 1){
+            //$condition .= ' WHERE us.`level` = \''.$idNivel .'\''; 
+        }
+        else{
+            $condition .= ' WHERE us.`level` = \''.$idNivel .'\' AND d.`idUsuario` = \''.$idUsuario .'\''; 
+        }
+        if (!empty($fechaInicial) && !empty($fechaFinal))
+        $condition .= ' AND d.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
 
         $sqlSelect = 'SELECT d.`idUnidad`, u.`nombre`, COUNT(d.`idDetenido`)detenidos, d.`fechaInicio` FROM `detencion` d
-                    INNER JOIN `unidad` u ON d.`idUnidad` = u.`id`'
+                    INNER JOIN `unidad` u ON d.`idUnidad` = u.`id`
+                    INNER JOIN `db_users` us ON d.`idUsuario` = us.`id`'
                     . $condition .'
                     GROUP BY d.`idUnidad`' ;
         $result = $this->select($sqlSelect);
