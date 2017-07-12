@@ -33,7 +33,7 @@ if( $password1 != "" && $password2 != "" && $idusuario != "" && $token != "" ){
 					$usuario = $resultado->fetch_assoc();
 					if( sha1( $usuario['idusuario'] === $idusuario ) ){
 						if( $password1 === $password2 ){
-							$sql = "UPDATE db_users SET password = '".sha1($password1)."' WHERE id = ".$usuario['idusuario'];
+							$sql = "UPDATE db_users SET password = '".$password1."' WHERE id = ".$usuario['idusuario'];
 							$resultado = $conexion->query($sql);
 							if($resultado){
 								$sql = "DELETE FROM tblreseteopass WHERE token = '$token';";

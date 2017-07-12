@@ -49,10 +49,10 @@
                             
                             <form method="post" action="authentication.php">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario" maxlength="100">
+                                    <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario" maxlength="100" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" maxlength="100">
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" maxlength="100" required>
                                 </div>
                                 <?php
                                 $E1 ="El usuario y/o clave son incorrectas, vuelva a intentarlo";
@@ -91,7 +91,7 @@
                         <div class="form-group form-inline">
                             <label for="email">Ingresa tu correo electrónico</label>
                             <div >
-                                <input type="email" class="form-control" id="email" name="email" style="width: 70%">
+                                <input type="email" class="form-control" id="email" name="email" style="width: 70%" required>
                             </div>
                         </div>
                         <div id="mensaje"></div>
