@@ -481,20 +481,26 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                 <th style="padding: 10px;">Fecha Inicial</th>
                             </tr>
                         </thead>
-                        <tbody id="divReporte"></tbody>
                     </table>
                 </div>
                 <script>
                     $(document).ready(function () {
                         $('#reportes').DataTable( {
-                            "order": [[ 1, "desc" ]],
+                            "order": [[ 2, "desc" ]],
                             "pagingType": "full_numbers",
                             "language": {
                                 "decimal": ".",
                                 "thousands": ",",
                                 "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-                            }
+                            },
+                            "columns": [
+                                { "data": "idUnidad"},
+                                { "data": "nombre"},
+                                { "data": "detenidos"},
+                                { "data": "fechaInicio"}
+                            ]
                         });
+                        
                     });
                 </script>
                 <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
@@ -514,14 +520,14 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                 type: 'POST',
                 contentType: 'application/json',
                 url: 'index.php/getReporte',
-                dataType: "json",                  
+                dataType: "json",
                 data: JSON.stringify({
                     fechaInicial: $("#fechaInicial").val(),
                     fechaFinal: $("#fechaFinal").val()
                 }),
                 success: function (data) {
-                    $('#divReporte').empty();
-
+                    var tablaR = $('#reportes').DataTable();
+                    tablaR.clear().draw();
 
                     $.each(data, function(key, item) {
                         if (key=="error_code"){
@@ -532,12 +538,12 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                             );
                             return false;
                         }
-                        //console.log(item);
-                        htmlElement = $('<tr><td>'+item.idUnidad+'</td><td>'+item.nombre+'</td><td>'+item.detenidos+'</td><td>'+item.fechaInicio+'</td></tr>');
-                        $('#divReporte').append(htmlElement);
-                        
-
+                        //htmlElement = $('<tr><td>'+item.idUnidad+'</td><td>'+item.nombre+'</td><td>'+item.detenidos+'</td><td>'+item.fechaInicio+'</td></tr>');
+                        //$('#divReporte').append(htmlElement);
                     });
+                    //var json_str =  JSON.stringify(data);//Convierte el json a string
+                    //alert(json_str);
+                    tablaR.rows.add( data ).draw();
                 }
             });
         });
