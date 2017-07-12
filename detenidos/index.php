@@ -194,7 +194,7 @@ $app->post('/updatePassword', function () use ($app, $logger,$dao) {
       echo json_encode($response, JSON_UNESCAPED_UNICODE);
 });
 
-$app->get('/getReporte', function () use ($app, $logger,$dao) {
+$app->post('/getReporte', function () use ($app, $logger,$dao) {
     $app->response()->header('Content-Type', 'application/json; charset=utf-8');
     $response = array();
     $request =$app->request()->getBody()!=='' ? json_decode($app->request()->getBody()): null;    
