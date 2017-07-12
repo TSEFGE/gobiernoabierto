@@ -20,6 +20,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
     <!--<link href="./libjs/bootstrap-combined.min.css" rel="stylesheet">-->
     <link href="https://eonasdan.github.io/bootstrap-datetimepicker/css/prettify-1.0.css" rel="stylesheet">
     <link href="https://eonasdan.github.io/bootstrap-datetimepicker/css/base.css" rel="stylesheet">
@@ -450,7 +451,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-6 col-md-3" style="padding-left: 15px;">
                                                 <div class="form-group">
-                                                    <input type="button" class="btn btn-gris" id="search" value="Generar" ng-click="addDetenido()">
+                                                    <input type="button" class="btn btn-gris" id="search" value="Generar" ng-click="getReporte()">
                                                     <input class="btn btn-gris" onclick="borrar();" type="button" id="reset" value="Limpiar">
                                                 </div>
                                             </div>
@@ -470,7 +471,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                 </div>
 
                 <div class="table-responsive">
-                    <table id="reportes" class="display table-striped table-hover table-bordered" cellspacing="0" width="100%">
+                    <table id="reportes" class="display table-striped table-hover table-bordered" cellspacing="0" width="99%">
                         <thead class="cabecera">
                             <tr>
                                 <th style="padding: 10px;">Unidad</th>
@@ -496,6 +497,25 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                         </tbody>
                     </table>
                 </div>
+                <script>
+                    $(document).ready(function () {
+                        $('#reportes').DataTable( {
+                            "order": [[ 1, "desc" ]],
+                            "pagingType": "full_numbers",
+                            "language": {
+                                "lengthMenu": "Mostrando _MENU_ registros por página",
+                                "zeroRecords": "Ningún resultado encontrado",
+                                "info": "Página _PAGE_ de _PAGES_",
+                                "infoEmpty": "Ningús resultado disponible",
+                                "infoFiltered": "(obtenido de _MAX_ registros)",
+                                "decimal": ".",
+                                "thousands": ",",
+                                "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                            }
+                        });
+                    });
+                </script>
+                <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 
             </div>
         </div>
