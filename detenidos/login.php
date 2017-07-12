@@ -46,14 +46,13 @@
                             <h2> INICIA SESI&Oacute;N</h2>
 
                             <h5>¡Bienvenido!</h5>
-                            <!--<form method="post" action="login2.php">-->
                             
                             <form method="post" action="authentication.php">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario" maxlength="100">
+                                    <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario" maxlength="100" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" maxlength="100">
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" maxlength="100" required>
                                 </div>
                                 <?php
                                 $E1 ="El usuario y/o clave son incorrectas, vuelva a intentarlo";
@@ -83,6 +82,7 @@
         <div id="modalRecupera" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
+                    <form method="post" id="frmRestablecer" action="validaremail.php">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title text-center"><strong>Recupera tu contraseña</strong></h4>
@@ -91,19 +91,36 @@
                         <div class="form-group form-inline">
                             <label for="email">Ingresa tu correo electrónico</label>
                             <div >
-                                <input type="email" class="form-control" id="email" name="email" style="width: 70%">
+                                <input type="email" class="form-control" id="email" name="email" style="width: 70%" required>
                             </div>
                         </div>
+                        <div id="mensaje"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" onclick="borrar();" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button ng-click="updatePassword()" class="btn btn-primary" id="password_modal_save">Aceptar</button>
+                        <input type="submit" class="btn btn-primary" value="Recuperar contraseña" >
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
 
-
+<script>
+      $(document).ready(function(){
+        $("#frmRestablecer").submit(function(event){
+          event.preventDefault();
+          $.ajax({
+            url:'validaremail.php',
+            type:'post',
+            dataType:'json',
+            data:$("#frmRestablecer").serializeArray()
+          }).done(function(respuesta){
+            $("#mensaje").html(respuesta.mensaje);
+            $("#email").val('');
+          });
+        });
+      });
+    </script>
 
 <footer>
     <img src="img/footerlogin.jpg" width="100%"/>        

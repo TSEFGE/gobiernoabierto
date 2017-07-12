@@ -1,5 +1,16 @@
-<?php
+<?php 
+	$token = $_GET['token'];
+	$idusuario = $_GET['idusuario'];
+	
+	$conexion = new mysqli('localhost', 'root', '', 'detenidos');
 
+	$sql = "SELECT * FROM tblreseteopass WHERE token = '$token'";
+	$resultado = $conexion->query($sql);
+	
+	if( $resultado->num_rows > 0 ){
+		$usuario = $resultado->fetch_assoc();
+
+		if( sha1($usuario['idusuario']) == $idusuario ){
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,24 +59,24 @@
 
 					<img class="img-responsive imagenlogin2" src="img/complementlogin2.jpg" alt="" >
 					<div class="login">
-						<h2>RECUPERA TU CONTRASEÑA</h2><br>
+						<h2>RECUPERA TU CONTRASEÑA</h2>
 						
+						<h5>¡Bienvenido!</h5>
 
-						<form method="post" action="PENDIENTE POR DEFINIR">
+						<form method="post" action="cambiarpassword.php">
+												
 							<div class="form-group">
-								<input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario" maxlength="100">
+								<input type="password" class="form-control" name="password1" placeholder="Nueva Contraseña" required>
 							</div>
 							
 							<div class="form-group">
-								<input type="newpassword" class="form-control" name="newpassword" id="newpassword" placeholder="Nueva Contraseña" maxlength="100">
+								<input type="password" class="form-control" name="password2" placeholder="confirmar Contraseña" required>
 							</div>
 							
-							<div class="form-group">
-								<input type="passwordconfirm" class="form-control" name="passwordconfirm" id="passwordconfirm" placeholder="confirmar Contraseña" maxlength="100">
-							</div>
-
+							<input type="hidden" name="token" value="<?php echo $token ?>">
+              				<input type="hidden" name="idusuario" value="<?php echo $idusuario ?>">
 							<div class="login-button-row">
-								<input type="submit" name="login-submit" id="login-submit" value="Enviar" title="Login now"><br><br>
+								<input type="submit" class="btn btn-primary" value="Recuperar contraseña" ><br><br>
 
 							</div>
 							
@@ -84,3 +95,13 @@
 	</footer>
 </body>
 </html>							
+<?php
+		}
+		else{
+			header('Location:login.php');
+		}
+	}
+	else{
+		header('Location:login.php');
+	}
+?>
