@@ -14,7 +14,7 @@ if (isset($_POST['login-submit'])) {
         // down to our error message about providing both pieces of information.
     if (isset($_POST['usuario']) && isset($_POST['password'])) {
         $usuario = $_POST['usuario'];
-        $password = $_POST['password'];
+        $password = strtoupper($_POST['password']);
 
 
 
@@ -24,11 +24,20 @@ if (isset($_POST['login-submit'])) {
             // These values follow the user around the site and will be tested on each page.
 
         if (count($result)>0){
-            $_SESSION['is_auth'] = true;
-            $_SESSION['idUsuario'] = $result[0]['id'];
-            $_SESSION['userLevel'] = $result[0]['level'];
-            $_SESSION['idUnidad'] = $result[0]['idUnidad'];
-            header('location: registrar.php');
+            $hash = $result[0]['password'];
+            if (password_verify($password, $hash)) {
+                $_SESSION['is_auth'] = true;
+                $_SESSION['idUsuario'] = $result[0]['id'];
+                $_SESSION['userLevel'] = $result[0]['level'];
+                $_SESSION['idUnidad'] = $result[0]['idUnidad'];
+                header('location: registrar.php');
+            } else {
+                $_SESSION['is_auth'] = false;
+                session_destroy();
+                $error = "1";
+                header("location:login.php?error=".$error);
+            }
+            
 
         }
         else{

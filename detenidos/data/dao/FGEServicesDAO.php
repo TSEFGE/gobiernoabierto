@@ -123,7 +123,8 @@ $getLastId=true;
 
             $user = mysql_real_escape_string($user);
             $password = mysql_real_escape_string($password);
-            $sqlSelect='SELECT id, username, password, name, level,idUnidad FROM db_users WHERE username="'.$user.'" and password ="'.$password.'"';
+            $sqlSelect='SELECT id, username, password, name, level,idUnidad FROM db_users WHERE username="'.$user.'" ';
+            //$sqlSelect='SELECT id, username, password, name, level,idUnidad FROM db_users WHERE username="'.$user.'" and password ="'.$password.'"';
          //   $this->logger->debug('auth-> |Usuario:' . $user. '|ip:'.$ip);
             $row=$this->select($sqlSelect);
             return $row;
@@ -137,13 +138,25 @@ $getLastId=true;
         if (empty($idUsuario) || empty($password))  
             throw new Exception('Es necesario especificar TODOS los datos para actualizar el registro');
 
-        $sqlSelect = 'UPDATE db_users SET password="'.$password.'" where id='.$idUsuario .' and password="'.$current.'"';
-        $result=$this->update($sqlSelect);
-        //$this->logger->debug('updatePassword-> |Usuario:' . $idUsuario. '|ip:'.$ip);
-        if(count($result) >= 1)
-            return $result;
-        else 
-             throw new Exception('La contraseña anterior no coincide o existió un error al intentar actualizarla');
+        $conexion = new mysqli('localhost', 'root', '', 'detenidos');
+        $sql = "SELECT * FROM db_users WHERE id = '$idUsuario'";
+        $resultado = $conexion->query($sql);
+        $usuario = $resultado->fetch_assoc();
+        $hash = $usuario['password'];
+
+        if (password_verify($current, $hash)) {
+            $password = password_hash($password, PASSWORD_BCRYPT, array("cost" => 10));
+            $sqlSelect = 'UPDATE db_users SET password="'.$password.'" where id='.$idUsuario .'';
+            $result=$this->update($sqlSelect);
+            //$this->logger->debug('updatePassword-> |Usuario:' . $idUsuario. '|ip:'.$ip);
+            if(count($result) >= 1)
+                return $result;
+            else 
+                 throw new Exception('La contraseña anterior no coincide o existió un error al intentar actualizarla');
+        }
+
+
+        
     }
 
     public function getReporte($fechaInicial=null, $fechaFinal=null) {

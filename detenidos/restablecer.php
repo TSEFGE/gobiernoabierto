@@ -1,6 +1,6 @@
 <?php 
-	$token = $_GET['token'];
-	$idusuario = $_GET['idusuario'];
+	$token = mysql_real_escape_string($_GET['token']);
+	$idusuario = mysql_real_escape_string($_GET['idusuario']);
 	
 	$conexion = new mysqli('localhost', 'root', '', 'detenidos');
 
