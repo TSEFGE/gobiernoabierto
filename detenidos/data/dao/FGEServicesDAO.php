@@ -154,7 +154,9 @@ $getLastId=true;
         if($idNivel == 1){
             //$condition .= ' WHERE us.`level` = \''.$idNivel .'\''; 
         }
-        else{
+        else if($idNivel == 2){
+            $condition .= ' u.`region` IN (SELECT ubicacion FROM regiones WHERE idFiscal = \''.$idUsuario .'\''; 
+        }else{
             $condition .= ' WHERE us.`level` = \''.$idNivel .'\' AND d.`idUsuario` = \''.$idUsuario .'\''; 
         }
         if (!empty($fechaInicial) && !empty($fechaFinal))
