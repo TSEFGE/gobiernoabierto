@@ -12,10 +12,10 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="HandheldFriendly" content="true">
     <link rel="icon" href="img/icon.png" sizes="192x192">
     <title>Gobierno Abierto - Registro Público de Personas Detenidas</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -29,8 +29,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
     <link rel="stylesheet" type="text/css" href="./Editor-PHP-1.5.6/examples/resources/syntax/shCore.css">
     <!--<link rel="stylesheet" type="text/css" href="./Editor-PHP-1.5.6/examples/resources/demo.css">-->
     
-    
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--No funciona con una versión más reciente de jQuery debido al dataTable-->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.12.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.js"></script>
@@ -97,10 +96,10 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                             <div class="collapse navbar-collapse" id="myNavbar">
                                 <ul class="nav navbar-nav">
                                     <li title="Página principal" class="lineamenu">
-                                        <a href="http://fiscaliaveracruz.gob.mx/"> Fiscalia</a>
+                                        <a href="http://fiscaliaveracruz.gob.mx/" onclick="borrar();"> Fiscalía</a>
                                     </li>
-                                    <li class="active lineamenu"><a data-toggle="pill" href="#home"><span class="fa fa-user-plus" aria-hidden="true"></span> Registrar detención</a></li>
-                                    <li class="lineamenu"><a data-toggle="pill" href="#reporte"><span class="fa fa-file" aria-hidden="true"></span> Generar Reporte</a></li>
+                                    <li class="active lineamenu"><a data-toggle="pill" href="#home" onclick="borrar();"><span class="fa fa-user-plus" aria-hidden="true"></span> Registrar detención</a></li>
+                                    <li class="lineamenu"><a data-toggle="pill" href="#reporte" onclick="borrar();"><span class="fa fa-file" aria-hidden="true"></span> Generar Reporte</a></li>
                                     <li>
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog" aria-hidden="true"></span> Ajustes<span class="caret"></span></a>
                                         <ul class="dropdown-menu">
@@ -110,8 +109,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                         </ul>
                                     </li>
                                 </ul>
-
-  
                             </div>
                         </div>
                     </nav> 
@@ -119,9 +116,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
             </div>
         </header>
         <!--<img class="img-responsive center barra" src="./img/barra.png"/>-->
-        <!--<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"> </script> -->
-        <!-- <script type="text/javascript" src="./libjs/bootstrap.min.js"> </script>-->
-        <!--<script type="text/javascript" src="./libjs/bootstrap-datetimepicker-0.0.11/js/bootstrap-datetimepicker.min.js"> </script>-->
         <script type="text/javascript" src="https://eonasdan.github.io/bootstrap-datetimepicker/js/base.js"> </script>
         <script type="text/javascript" src="https://eonasdan.github.io/bootstrap-datetimepicker/js/prettify-1.0.min.js"> </script>
 
@@ -309,7 +303,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                         <div class="alert alert-warning">
                             <span class="i-info"></span> Todos los campos son requeridos para realizar el registro de la detención.
                         </div>
-
                         
                         <div>
                             <input type="button" class="btn btn-gris" id="search" value="Agregar" ng-click="addDetenido()">
@@ -458,10 +451,10 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                         </div>
                                         <script>
                                             function borrar(){
-                                                //$('#tipo').val('');
-                                                $('#datetimepicker3').val('');
-                                                $('#datetimepicker4').val('');
-                                                $('#divReporte').empty();
+                                                $('#fechaInicial').val('');
+                                                $('#fechaFinal').val('');
+                                                var tablaR = $('#reportes').DataTable();
+                                                tablaR.clear().draw();
                                             };
                                         </script>
                                     </div>

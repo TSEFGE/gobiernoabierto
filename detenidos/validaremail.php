@@ -40,7 +40,7 @@
 		mail($email, "Recuperar contrase&ntilde;a", $mensaje, $cabeceras);
 	}
 	
-	$email = $_POST['email'];
+	$email = mysql_real_escape_string($_POST['email']);
 	$respuesta = new stdClass();
 
 	if( $email != "" ){   
@@ -54,12 +54,23 @@
 			$linkTemporal = generarLinkTemporal( $usuario['id'], $usuario['username'] );
       		if($linkTemporal){
         		enviarEmail( $email, $linkTemporal );
-        		$respuesta->mensaje = '<div class="alert alert-info"> Un correo ha sido enviado a su cuenta de email con las instrucciones para restablecer la contrase&ntilde;a </div>';
+        		/*echo "<script>alert('Ya te lo mandé xD');</script>";*/
+
+        		$respuesta->mensaje = 'correcto';
+        		//$respuesta->mensaje = '<div id="modalmensaje" class="modal fade" role="dialog"> <div class="modal-dialog modal-lg" role="document"> <div class="modal-content"> <div class="modal-header alert-info"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> </button> <h4 class="modal-title" id="myModalLabel"><strong>Un correo ha sido enviado a su cuenta de email con las instrucciones para restablecer la contrase&ntilde;a</h4> </div> </div> </div></div>';
+
       		}
    		}
-   		else
-   			$respuesta->mensaje = '<div class="alert alert-warning"> No existe una cuenta asociada a ese correo. </div>';
+   		else{	
+   			$respuesta->mensaje = 'noexiste';
+   			//$respuesta->mensaje = '<div id="modalmensaje" class="modal fade" role="dialog"> <div class="modal-dialog modal-lg" role="document"> <div class="modal-content"> <div class="modal-header alert-warning"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> </button> <h4 class="modal-title" id="myModalLabel">No existe una cuenta asociada a ese correo.</h4> </div> </div> </div> </div>';
+   		}
 	}
-	else
-   		$respuesta->mensaje= "Debes introducir el email de la cuenta";
- 	echo json_encode( $respuesta );
+	echo json_encode( $respuesta );
+?>
+
+
+ 	
+
+
+  
