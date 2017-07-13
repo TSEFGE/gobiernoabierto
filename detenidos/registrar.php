@@ -12,14 +12,15 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="HandheldFriendly" content="true">
     <link rel="icon" href="img/icon.png" sizes="192x192">
     <title>Gobierno Abierto - Registro Público de Personas Detenidas</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
     <!--<link href="./libjs/bootstrap-combined.min.css" rel="stylesheet">-->
     <link href="https://eonasdan.github.io/bootstrap-datetimepicker/css/prettify-1.0.css" rel="stylesheet">
     <link href="https://eonasdan.github.io/bootstrap-datetimepicker/css/base.css" rel="stylesheet">
@@ -28,8 +29,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
     <link rel="stylesheet" type="text/css" href="./Editor-PHP-1.5.6/examples/resources/syntax/shCore.css">
     <!--<link rel="stylesheet" type="text/css" href="./Editor-PHP-1.5.6/examples/resources/demo.css">-->
     
-    
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!--No funciona con una versión más reciente de jQuery debido al dataTable-->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.12.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.js"></script>
@@ -96,10 +96,10 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                             <div class="collapse navbar-collapse" id="myNavbar">
                                 <ul class="nav navbar-nav">
                                     <li title="Página principal" class="lineamenu">
-                                        <a href="http://fiscaliaveracruz.gob.mx/"> Fiscalia</a>
+                                        <a href="http://fiscaliaveracruz.gob.mx/" onclick="borrar();"> Fiscalía</a>
                                     </li>
-                                    <li class="active lineamenu"><a data-toggle="pill" href="#home"><span class="fa fa-user-plus" aria-hidden="true"></span> Registrar detención</a></li>
-                                    <li class="lineamenu"><a data-toggle="pill" href="#reporte"><span class="fa fa-file" aria-hidden="true"></span> Generar Reporte</a></li>
+                                    <li class="active lineamenu"><a data-toggle="pill" href="#home" onclick="borrar();"><span class="fa fa-user-plus" aria-hidden="true"></span> Registrar detención</a></li>
+                                    <li class="lineamenu"><a data-toggle="pill" href="#reporte" onclick="borrar();"><span class="fa fa-file" aria-hidden="true"></span> Generar Reporte</a></li>
                                     <li>
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog" aria-hidden="true"></span> Ajustes<span class="caret"></span></a>
                                         <ul class="dropdown-menu">
@@ -109,8 +109,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                         </ul>
                                     </li>
                                 </ul>
-
-  
                             </div>
                         </div>
                     </nav> 
@@ -118,9 +116,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
             </div>
         </header>
         <!--<img class="img-responsive center barra" src="./img/barra.png"/>-->
-        <!--<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"> </script> -->
-        <!-- <script type="text/javascript" src="./libjs/bootstrap.min.js"> </script>-->
-        <!--<script type="text/javascript" src="./libjs/bootstrap-datetimepicker-0.0.11/js/bootstrap-datetimepicker.min.js"> </script>-->
         <script type="text/javascript" src="https://eonasdan.github.io/bootstrap-datetimepicker/js/base.js"> </script>
         <script type="text/javascript" src="https://eonasdan.github.io/bootstrap-datetimepicker/js/prettify-1.0.min.js"> </script>
 
@@ -308,7 +303,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                         <div class="alert alert-warning">
                             <span class="i-info"></span> Todos los campos son requeridos para realizar el registro de la detención.
                         </div>
-
                         
                         <div>
                             <input type="button" class="btn btn-gris" id="search" value="Agregar" ng-click="addDetenido()">
@@ -412,7 +406,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                             <div class="form-group">
                                                 <label for="fechaInicial">De:</label>
                                                 <div class='input-group date' id='datetimepicker3'>
-                                                    <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaInicial" data-format="yyyy/mm/dd" name="fechaInicial" ng-model="fechaInicial">
+                                                    <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaInicial" data-format="yyyy-mm-dd" name="fechaInicial" ng-model="fechaInicial">
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
@@ -423,7 +417,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                             <div class="form-group">
                                                 <label for="fechaFinal">A:</label>
                                                 <div class='input-group date' id='datetimepicker4'>
-                                                    <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaFinal" data-format="yyyy/mm/dd" name="fechaFinal" ng-model="fechaFinal">
+                                                    <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaFinal" data-format="yyyy-mm-dd" name="fechaFinal" ng-model="fechaFinal">
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
@@ -432,9 +426,9 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                         </div>
                                         <script type="text/javascript">
                                             $(function () {
-                                                $('#datetimepicker3').datetimepicker({format: 'YYYY/MM/DD',locale: 'es'});
+                                                $('#datetimepicker3').datetimepicker({format: 'YYYY-MM-DD',locale: 'es'});
                                                 $('#datetimepicker4').datetimepicker({
-                                                    format: 'YYYY/MM/DD',
+                                                    format: 'YYYY-MM-DD',
                                                     locale: 'es'
                                                 });
 
@@ -450,16 +444,17 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-6 col-md-3" style="padding-left: 15px;">
                                                 <div class="form-group">
-                                                    <input type="button" class="btn btn-gris" id="search" value="Generar" ng-click="addDetenido()">
+                                                    <button type="submit" class="btn btn-gris" id="searchRep" name="searchRep" value="Buscar">Buscar</button>
                                                     <input class="btn btn-gris" onclick="borrar();" type="button" id="reset" value="Limpiar">
                                                 </div>
                                             </div>
                                         </div>
                                         <script>
                                             function borrar(){
-                                                //$('#tipo').val('');
-                                                $('#datetimepicker3').val('');
-                                                $('#datetimepicker4').val('');
+                                                $('#fechaInicial').val('');
+                                                $('#fechaFinal').val('');
+                                                var tablaR = $('#reportes').DataTable();
+                                                tablaR.clear().draw();
                                             };
                                         </script>
                                     </div>
@@ -470,32 +465,38 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                 </div>
 
                 <div class="table-responsive">
-                    <table id="reportes" class="display table-striped table-hover table-bordered" cellspacing="0" width="100%">
+                    <table id="reportes" class="display table-striped table-hover table-bordered" cellspacing="0" width="99%">
                         <thead class="cabecera">
                             <tr>
-                                <th style="padding: 10px;">Unidad</th>
+                                <th style="padding: 10px;">id</th>
+                                <th style="padding: 10px;">Nombre Unidad</th>
                                 <th style="padding: 10px;">No. Detenidos</th>
+                                <th style="padding: 10px;">Fecha Inicial</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <?php
-                                $mysqli = new mysqli("localhost", "root", "", "detenidos");
-                                $stmt = $mysqli->prepare("SELECT unidad.nombre, COUNT(idUnidad) AS cantidad FROM detencion INNER JOIN unidad WHERE unidad.id = detencion.idUnidad AND detencion.fechaInicio BETWEEN '2017-01-01' AND '2017-07-01' GROUP BY idUnidad ");
-                                $stmt->execute();
-                                $result = $stmt->get_result();
-                                while ($row = $result->fetch_assoc()) {
-                                    $row['nombre']=utf8_encode ( $row['nombre'] );
-                            ?>
-                            <tr>
-                                <th style="padding: 10px;"><?php echo $row['nombre']; ?></th>
-                                <th style="padding: 10px;"><?php echo $row['cantidad']; ?></th>
-                            </tr>
-                            <?php
-                                }
-                            ?>
-                        </tbody>
                     </table>
                 </div>
+                <script>
+                    $(document).ready(function () {
+                        $('#reportes').DataTable( {
+                            "order": [[ 2, "desc" ]],
+                            "pagingType": "full_numbers",
+                            "language": {
+                                "decimal": ".",
+                                "thousands": ",",
+                                "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                            },
+                            "columns": [
+                                { "data": "idUnidad"},
+                                { "data": "nombre"},
+                                { "data": "detenidos"},
+                                { "data": "fechaInicio"}
+                            ]
+                        });
+                        
+                    });
+                </script>
+                <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 
             </div>
         </div>
@@ -504,5 +505,41 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
     <footer>
         <img class="img-responsive center barra" src="./img/barra.png"/>
     </footer>
+
+    <script>
+        $( "#searchRep" ).click( function () {
+
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json',
+                url: 'index.php/getReporte',
+                dataType: "json",
+                data: JSON.stringify({
+                    fechaInicial: $("#fechaInicial").val(),
+                    fechaFinal: $("#fechaFinal").val()
+                }),
+                success: function (data) {
+                    var tablaR = $('#reportes').DataTable();
+                    tablaR.clear().draw();
+
+                    $.each(data, function(key, item) {
+                        if (key=="error_code"){
+                            swal(
+                                'Atención',
+                                'No se encontraron registros para generar el reporte.',
+                                'warning'
+                            );
+                            return false;
+                        }
+                        //htmlElement = $('<tr><td>'+item.idUnidad+'</td><td>'+item.nombre+'</td><td>'+item.detenidos+'</td><td>'+item.fechaInicio+'</td></tr>');
+                        //$('#divReporte').append(htmlElement);
+                    });
+                    //var json_str =  JSON.stringify(data);//Convierte el json a string
+                    //alert(json_str);
+                    tablaR.rows.add( data ).draw();
+                }
+            });
+        });
+    </script>
 </body>
 </html> 

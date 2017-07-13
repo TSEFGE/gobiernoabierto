@@ -199,13 +199,10 @@ $app->post('/getReporte', function () use ($app, $logger,$dao) {
     $response = array();
     $request =$app->request()->getBody()!=='' ? json_decode($app->request()->getBody()): null;    
     try{
-        if( empty($request) ||  empty($request->fechaInicial)  ||  empty($request->fechaFinal)){            
-            throw new Exception('Por favor especificar todos los campos, son necesarios para la búsqueda ', 417);
-        }
         $request = json_decode($app->request()->getBody());
         $fechaInicial = !empty($request->fechaInicial)?$request->fechaInicial:NULL;
         $fechaFinal = !empty($request->fechaFinal)?$request->fechaFinal:NULL;
-       $registros = $dao->getReporte();
+       $registros = $dao->getReporte($fechaInicial, $fechaFinal, $_SESSION['idUsuario'], $_SESSION['userLevel']);
         if (!$registros) {
             throw new Exception('No existe registro', 418);
         }
