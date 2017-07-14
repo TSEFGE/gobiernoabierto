@@ -190,19 +190,28 @@ $getLastId=true;
 
 /* pruebas de dao
 */
+    public function getEmail ($email){
+
+
+        $sql = " SELECT * FROM db_users WHERE correo = '$email' ";
+        $resultado = $this->select($sql);
+        
+        return $resultado;
+        
+    }
+
     public function generarLinkTemporal($idusuario, $username){
 
         $cadena = $idusuario.$username.rand(1,9999999).date('Y-m-d');
         $token = sha1($cadena);
-        
-        //$conexion = new mysqli('localhost', 'root', '', 'detenidos');
+        $estado=true;
 
-        $sql = "INSERT INTO tblreseteopass (idusuario, username, token, creado) VALUES($idusuario,'$username','$token',NOW());";
+        $sql = "INSERT INTO tblreseteopass (idusuario, username, token, creado, estado) VALUES($idusuario,'$username','$token',NOW() , $estado);";
 
         $resultado = $this->insert($sql);
 
         if($resultado){
-            $enlace = $_SERVER["SERVER_NAME"].'/proyectos/gobiernoabierto/detenidos/restablecer.php?idusuario='.sha1($idusuario).'&token='.$token;
+            $enlace = $_SERVER["SERVER_NAME"].'/proyectos/gobiernoabierto/detenidos/restablecer.php?idusuario='.sha1($idusuario).'&token='.$token.'&estado='.$estado;
             return $enlace;
         }
         else
@@ -232,21 +241,14 @@ $getLastId=true;
         mail($email, "Recuperar contrase&ntilde;a", $mensaje, $cabeceras);
     }
 
-    public function getEmail ($email){
-
-
-        $sql = " SELECT * FROM db_users WHERE correo = '$email' ";
-        $resultado = $this->select($sql);
-        
-        return $resultado;
-        
-    }
-
-    public function getToken ($token){    
-        
-        $sql = "SELECT * FROM tblreseteopass WHERE token = '$token'";
-        $resultado = $this->select($sql);
-        return $resultado;
+    public function getToken ($token,$estado){    
+        if ($estado==true) {
+            $sql = "SELECT * FROM tblreseteopass WHERE token = '$token' and estado = $estado";
+            $resultado = $this->select($sql);
+            return $resultado;
+        }
+        else
+            return null;
     }
 
     public function recuperarPass($password1,$idusuario){
@@ -261,8 +263,9 @@ $getLastId=true;
     }
 
     public function borrarToken($token){
-        $sql = "DELETE FROM tblreseteopass WHERE token = '$token';";
-        $resultado = $this->delete( $sql );
+        $sql = "UPDATE tblreseteopass SET estado = false WHERE token = '$token' AND estado = true;";
+        //"DELETE FROM tblreseteopass WHERE token = '$token';";
+        $resultado = $this->update( $sql );
     }
 //fin pruebas dao
 

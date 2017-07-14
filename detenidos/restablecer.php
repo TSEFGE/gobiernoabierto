@@ -6,13 +6,17 @@
 
 	$token = mysql_real_escape_string($_GET['token']);
 	$idusuario = mysql_real_escape_string($_GET['idusuario']);
+	$estado = mysql_real_escape_string($_GET['estado']);
 	
-	$resultado=$dao->getToken($token);
+	$resultado=$dao->getToken($token,$estado);
 	
 	if( count($resultado)>0){
 		$usuario = $resultado[0]['idusuario'];
       		
 		if( sha1($usuario) == $idusuario ){
+			$estadodb=$resultado[0]['estado'];
+			if ($estado==$estadodb) {
+				
 ?>
 <!DOCTYPE html>
 <html>
@@ -77,6 +81,7 @@
 							
 							<input type="hidden" name="token" value="<?php echo $token ?>">
               				<input type="hidden" name="idusuario" value="<?php echo $idusuario ?>">
+              				<input type="hidden" name="estado" value="<?php echo $estado ?>">
 							<div class="login-button-row">
 								<input type="submit" class="btn btn-primary" value="Recuperar contraseña" ><br><br>
 
@@ -98,6 +103,9 @@
 </body>
 </html>							
 <?php
+			}else{
+				header('Location:login.php');
+			}
 		}
 		else{
 			header('Location:login.php');
