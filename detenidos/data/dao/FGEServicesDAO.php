@@ -138,12 +138,10 @@ $getLastId=true;
         if (empty($idUsuario) || empty($password))  
             throw new Exception('Es necesario especificar TODOS los datos para actualizar el registro');
 
-        $conexion = new mysqli('localhost', 'root', '', 'detenidos');
-        $sql = "SELECT * FROM db_users WHERE id = '$idUsuario'";
-        $resultado = $conexion->query($sql);
-        $usuario = $resultado->fetch_assoc();
-        $hash = $usuario['password'];
-
+        $sqlSelect = "SELECT * FROM db_users WHERE id = '$idUsuario'";
+        $row=$this->select($sqlSelect);
+        $hash = $row[0]['password'];
+        
         if (password_verify($current, $hash)) {
             $password = password_hash($password, PASSWORD_BCRYPT, array("cost" => 10));
             $sqlSelect = 'UPDATE db_users SET password="'.$password.'" where id='.$idUsuario .'';
