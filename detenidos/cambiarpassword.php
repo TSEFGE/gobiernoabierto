@@ -1,4 +1,8 @@
 <?php 
+require 'vendor/autoload.php';
+include_once 'init.php';
+include_once __DATA_PATH__ . '/dao/FGEServicesDAO.php';
+$dao = new FGEServicesDAO();
 
 $password1 = mysql_real_escape_string(strtoupper($_POST['password1']));
 $password2 = mysql_real_escape_string(strtoupper($_POST['password2']));
@@ -6,6 +10,7 @@ $idusuario = mysql_real_escape_string($_POST['idusuario']);
 $token = mysql_real_escape_string($_POST['token']);
 
 if( $password1 != "" && $password2 != "" && $idusuario != "" && $token != "" ){
+	
 	?>
 	<!DOCTYPE html>
 	<html lang="es">
@@ -28,20 +33,18 @@ if( $password1 != "" && $password2 != "" && $idusuario != "" && $token != "" ){
 				<?php
 
 
-				$conexion = new mysqli('localhost', 'root', '', 'detenidos');
-				$sql = " SELECT * FROM tblreseteopass WHERE token = '$token' ";
+					$resultado=$dao->getToken($token);
+	
+				if( count($resultado)>0){
+					$usuario = $resultado[0]['idusuario'];
+					if( sha1($usuario) === $idusuario ){
 
-				$resultado = $conexion->query($sql);
-				if( $resultado->num_rows > 0 ){
-					$usuario = $resultado->fetch_assoc();
-					if( sha1( $usuario['idusuario'] === $idusuario ) ){
 						if( $password1 === $password2 ){
-							$hash = password_hash($password1, PASSWORD_BCRYPT, array("cost" => 10));
-							$sql = "UPDATE db_users SET password = '".$hash."' WHERE id = ".$usuario['idusuario'];
-							$resultado = $conexion->query($sql);
-							if($resultado){
-								$sql = "DELETE FROM tblreseteopass WHERE token = '$token';";
-								$resultado = $conexion->query( $sql );
+							$resultado = $dao->recuperarPass($password1,$usuario);
+							if($resultado!=null){
+								
+								$dao->borrarToken($token);
+								
 								?>
 								<script>
 									swal({
@@ -173,25 +176,7 @@ if( $password1 != "" && $password2 != "" && $idusuario != "" && $token != "" ){
 	<?php
 }
 else{
-	echo "<script>
-									swal({
-										  title: '¡Atención!',
-										  text: 'El token no es válido.',
-										  type: 'error',
-										  timer: 5000
-										}).then(
-										  function () {
-										  	location.href ='login.php';
-										  },
-										  // handling the promise rejection
-										  function (dismiss) {
-										    if (dismiss === 'timer') {
-										      location.href ='login.php';
-										    }
-										    location.href ='login.php';
-										  }
-										);
-								</script>";
+	
 	header('Location:login.php');
 }
 ?>

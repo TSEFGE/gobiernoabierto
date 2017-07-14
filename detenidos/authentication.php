@@ -13,7 +13,7 @@ if (isset($_POST['login-submit'])) {
         // Also check that our email address and password were passed along. If not, jump
         // down to our error message about providing both pieces of information.
     if (isset($_POST['usuario']) && isset($_POST['password'])) {
-        $usuario = $_POST['usuario'];
+        $usuario = strtoupper($_POST['usuario']);
         $password = strtoupper($_POST['password']);
 
 

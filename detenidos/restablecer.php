@@ -1,16 +1,18 @@
 <?php 
+	require 'vendor/autoload.php';
+	include_once 'init.php';
+	include_once __DATA_PATH__ . '/dao/FGEServicesDAO.php';
+	$dao = new FGEServicesDAO();
+
 	$token = mysql_real_escape_string($_GET['token']);
 	$idusuario = mysql_real_escape_string($_GET['idusuario']);
 	
-	$conexion = new mysqli('localhost', 'root', '', 'detenidos');
-
-	$sql = "SELECT * FROM tblreseteopass WHERE token = '$token'";
-	$resultado = $conexion->query($sql);
+	$resultado=$dao->getToken($token);
 	
-	if( $resultado->num_rows > 0 ){
-		$usuario = $resultado->fetch_assoc();
-
-		if( sha1($usuario['idusuario']) == $idusuario ){
+	if( count($resultado)>0){
+		$usuario = $resultado[0]['idusuario'];
+      		
+		if( sha1($usuario) == $idusuario ){
 ?>
 <!DOCTYPE html>
 <html>
