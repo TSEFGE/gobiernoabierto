@@ -163,12 +163,13 @@ $getLastId=true;
     /*if (empty($fechaInicial) || empty($fechaFinal))  
         throw new Exception('Es necesario especificar las dos fechas para realizar la búsqueda');*/
         if($idNivel == 1){
-            //$condition .= ' WHERE us.`level` = \''.$idNivel .'\''; 
+            $condition .= ' WHERE u.`region` IN (SELECT idRegion FROM regiones WHERE idFiscal = \''.$idUsuario .'\')'; 
         }
         else if($idNivel == 2){
-            $condition .= ' u.`region` IN (SELECT ubicacion FROM regiones WHERE idFiscal = \''.$idUsuario .'\''; 
+            $condition .= ' WHERE u.`distrito` IN (SELECT un.`distrito` FROM db_users u INNER JOIN unidad un ON u.`idUnidad` = un.`id`
+                        WHERE u.`id` = \''.$idUsuario .'\')'; 
         }else{
-            $condition .= ' WHERE us.`level` = \''.$idNivel .'\' AND d.`idUsuario` = \''.$idUsuario .'\''; 
+            $condition .= ' WHERE d.`idUsuario` = \''.$idUsuario .'\''; 
         }
         if (!empty($fechaInicial) && !empty($fechaFinal))
         $condition .= ' AND d.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
@@ -178,6 +179,7 @@ $getLastId=true;
                     INNER JOIN `db_users` us ON d.`idUsuario` = us.`id`'
                     . $condition .'
                     GROUP BY d.`idUnidad`' ;
+
         $result = $this->select($sqlSelect);
         if(count($result) >= 1)
             return $result;
