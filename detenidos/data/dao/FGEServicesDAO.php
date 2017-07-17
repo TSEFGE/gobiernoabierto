@@ -191,6 +191,28 @@ $getLastId=true;
     }
 
 
+    public function detalleReporte($idUnidad=null, $idUsuario=null, $idNivel=null) {
+
+    $condition=""; 
+    /*if (empty($fechaInicial) || empty($fechaFinal))  
+        throw new Exception('Es necesario especificar las dos fechas para realizar la búsqueda');*/
+        if($idNivel == 3){
+            $condition .= ' WHERE d.`idUnidad` = \''.$idUnidad .'\' AND d.`idUsuario` = \''.$idUsuario .'\''; 
+        }else{
+            $condition .= ' WHERE d.`idUnidad` = \''.$idUnidad .'\''; 
+        }
+
+        $sqlSelect = 'SELECT de.`nombre`, de.`paterno`, de.`materno`, d.`fechaInicio`, d.`fechaFin`, d.`ubicacion` FROM `detencion` d 
+                    INNER JOIN `detenido` de ON d.`idDetenido` = de.`id`'
+                    . $condition .'';
+        
+        $result = $this->select($sqlSelect);
+        if(count($result) >= 1)
+            return $result;
+        else 
+            return NULL;
+    }
+
 /* pruebas de dao
 */
     public function getEmail ($email){
@@ -216,7 +238,7 @@ $getLastId=true;
         $resultado = $this->insert($sql);
 
         if($resultado){
-            $enlace = $_SERVER["SERVER_NAME"].'/proyectos/gobiernoabierto/detenidos/restablecer.php?idusuario='.sha1($idusuario).'&token='.$token.'&estado='.$estado;
+            $enlace = $_SERVER["SERVER_NAME"].'/gobiernoabierto/detenidos/restablecer.php?idusuario='.sha1($idusuario).'&token='.$token.'&estado='.$estado;
             return $enlace;
         }
         else
