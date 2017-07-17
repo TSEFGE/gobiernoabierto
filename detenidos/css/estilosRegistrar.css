@@ -73,3 +73,7 @@ td{
 	}
 }
 
+table#reportes > tbody > tr{
+	cursor: pointer;
+}
+
