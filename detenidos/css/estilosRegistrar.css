@@ -46,7 +46,6 @@ td{
 	background-color: #919393;
 	color: #fff;
 	font-size: 1.3rem;
-	border: 2px solid #000;
 }
 @media (min-width: 768px) {
 	td{
@@ -77,3 +76,17 @@ table#reportes > tbody > tr{
 	cursor: pointer;
 }
 
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #E0E0E0;
+	color: #fff;
+}
+/*Para crear un scroll al modal*/
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 70%;
+    overflow-y: auto;
+    max-width: 100%;
+    overflow-x: auto;
+}

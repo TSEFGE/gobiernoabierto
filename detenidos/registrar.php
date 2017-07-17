@@ -503,8 +503,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                         $('#reportes tbody').on('click', 'tr', function () {
                             var data = tablaR.row( this ).data();
                             var idUnidad = data['idUnidad'];
-                            alert( 'Has dado clic en la fila de ' + data['nombre']);
-
+                            //alert( 'Has dado clic en la fila de ' + data['nombre']);
                             $.ajax({
                                 type: 'POST',
                                 contentType: 'application/json',
@@ -524,7 +523,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                             );
                                             return false;
                                         }
-                                        htmlElement = $('<tr><td>'+item.nombre+'</td><td>'+item.paterno+'</td><td>'+item.materno+'</td><td>'+item.fechaNacimiento+'</td><td>'+item.fechaInicio+'</td><td>'+item.fechaFin+'</td><td>'+item.ubicacion+'</td></tr>');
+                                        htmlElement = $('<tr><td>'+item.nombre+'</td><td>'+item.paterno+'</td><td>'+item.materno+'</td><td>'+item.fechaNacimiento+'</td><td>'+item.fechaInicio+'</td><td>'+item.fechaFin+'</td></tr>');
                                         $('#detalleReporte').append(htmlElement);
                                         $("#modalDetalleRep").modal();
                                     });
@@ -540,7 +539,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                 <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
             </div>
         </div>
-        <!--Falta configurar-->
+        
         <div id="modalDetalleRep" class="modal fade" role="dialog">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -549,13 +548,15 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                     </div>
                     <div class="modal-body text-center">
                         <div class="table-responsive">
-                            <table id="reportes" class="display table-striped table-hover table-bordered" cellspacing="0" width="99%">
+                            <table class="display table-striped table-hover table-bordered" cellspacing="0" width="99%">
                                 <thead class="cabecera">
                                     <tr>
-                                        <th style="padding: 10px;">id</th>
-                                        <th style="padding: 10px;">Nombre Unidad</th>
-                                        <th style="padding: 10px;">No. Detenidos</th>
-                                        <th style="padding: 10px;">Fecha Inicial</th>
+                                        <th style="padding: 10px;">Nombre</th>
+                                        <th style="padding: 10px;">Paterno</th>
+                                        <th style="padding: 10px;">Materno</th>
+                                        <th style="padding: 10px;">Fecha nacimiento</th>
+                                        <th style="padding: 10px;">Fec. Inicio Detención</th>
+                                        <th style="padding: 10px;">Fec. Fin Detención</th>
                                     </tr>
                                 </thead>
                                 <tbody id="detalleReporte"></tbody>
@@ -568,6 +569,12 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                 </div>
             </div>
         </div>
+        <script>
+            $(document).ready(function () {
+                var totalwidth = 190 * $('.list-group').length;
+                $('.cabecera').css('width', totalwidth);
+            }); 
+        </script>
 
     </div>
     <footer>
