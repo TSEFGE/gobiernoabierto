@@ -229,8 +229,10 @@ $getLastId=true;
 
         $cadena = $idusuario.$username.rand(1,9999999).date('Y-m-d');
         $token = sha1($cadena);
-        $estado=true;
-
+        $estado = true;
+        $comprobacion = "UPDATE tblreseteopass SET estado = false WHERE idusuario=$idusuario AND estado = true;";
+        $this->update($comprobacion);
+        
         $sql = "INSERT INTO tblreseteopass (idusuario, username, token, creado, estado) VALUES($idusuario,'$username','$token',NOW() , $estado);";
 
         $resultado = $this->insert($sql);
@@ -260,8 +262,8 @@ $getLastId=true;
         </html>';
 
         $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
-        $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $cabeceras .= 'From: RECUPERAR CONTRASE&ntilde;A:FGE <central@fiscalia.gob.mx>' . "\r\n";
+        $cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+        $cabeceras .= 'From: Fiscalia General Del Estado <central@fiscalia.gob.mx>' . "\r\n";
         
         mail($email, "Recuperar contrase&ntilde;a", $mensaje, $cabeceras);
     }

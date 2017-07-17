@@ -478,7 +478,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                 </div>
                 <script>
                     $(document).ready(function () {
-                        $('#reportes').DataTable( {
+                        var tablaR = $('#reportes').DataTable({
                             "order": [[ 2, "desc" ]],
                             "pagingType": "full_numbers",
                             "language": {
@@ -487,17 +487,85 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                 "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
                             },
                             "columns": [
-                                { "data": "idUnidad"},
-                                { "data": "nombre"},
-                                { "data": "detenidos"},
-                                { "data": "fechaInicio"}
+                            { "data": "idUnidad"},
+                            { "data": "nombre"},
+                            { "data": "detenidos"},
+                            { "data": "fechaInicio"}
+                            ],
+                            "columnDefs": [
+                            {
+                                "targets": [ 0 ],
+                                "visible": false,
+                                "searchable": false
+                            }
                             ]
                         });
-                        
+                        $('#reportes tbody').on('click', 'tr', function () {
+                            var data = tablaR.row( this ).data();
+                            var idUnidad = data['idUnidad'];
+                            alert( 'Has dado clic en la fila de ' + data['nombre']);
+
+                            $.ajax({
+                                type: 'POST',
+                                contentType: 'application/json',
+                                url: 'index.php/detalleReporte',
+                                dataType: "json",
+                                data: JSON.stringify({
+                                    idUnidad: idUnidad
+                                }),
+                                success: function (data) {//Comienza a dibujar en el modal
+                                    $('#detalleReporte').empty();
+                                    $.each(data, function(key, item) {
+                                        if (key=="error_code"){
+                                            swal(
+                                                'Atención',
+                                                'No se encontraron registros para generar el reporte.',
+                                                'warning'
+                                            );
+                                            return false;
+                                        }
+                                        htmlElement = $('<tr><td>'+item.nombre+'</td><td>'+item.paterno+'</td><td>'+item.materno+'</td><td>'+item.fechaNacimiento+'</td><td>'+item.fechaInicio+'</td><td>'+item.fechaFin+'</td><td>'+item.ubicacion+'</td></tr>');
+                                        $('#detalleReporte').append(htmlElement);
+                                        $("#modalDetalleRep").modal();
+                                    });
+                                    //var json_str =  JSON.stringify(data);//Convierte el json a string
+                                    //alert(json_str);
+                                }
+                            });
+
+                        });
+
                     });
                 </script>
                 <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-
+            </div>
+        </div>
+        <!--Falta configurar-->
+        <div id="modalDetalleRep" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div class="table-responsive">
+                            <table id="reportes" class="display table-striped table-hover table-bordered" cellspacing="0" width="99%">
+                                <thead class="cabecera">
+                                    <tr>
+                                        <th style="padding: 10px;">id</th>
+                                        <th style="padding: 10px;">Nombre Unidad</th>
+                                        <th style="padding: 10px;">No. Detenidos</th>
+                                        <th style="padding: 10px;">Fecha Inicial</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="detalleReporte"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -505,10 +573,9 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
     <footer>
         <img class="img-responsive center barra" src="./img/barra.png"/>
     </footer>
-
+    
     <script>
         $( "#searchRep" ).click( function () {
-
             $.ajax({
                 type: 'POST',
                 contentType: 'application/json',
@@ -521,7 +588,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                 success: function (data) {
                     var tablaR = $('#reportes').DataTable();
                     tablaR.clear().draw();
-
                     $.each(data, function(key, item) {
                         if (key=="error_code"){
                             swal(
@@ -531,8 +597,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                             );
                             return false;
                         }
-                        //htmlElement = $('<tr><td>'+item.idUnidad+'</td><td>'+item.nombre+'</td><td>'+item.detenidos+'</td><td>'+item.fechaInicio+'</td></tr>');
-                        //$('#divReporte').append(htmlElement);
                     });
                     //var json_str =  JSON.stringify(data);//Convierte el json a string
                     //alert(json_str);
