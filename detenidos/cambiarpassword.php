@@ -8,8 +8,10 @@ $password1 = mysql_real_escape_string(strtoupper($_POST['password1']));
 $password2 = mysql_real_escape_string(strtoupper($_POST['password2']));
 $idusuario = mysql_real_escape_string($_POST['idusuario']);
 $token = mysql_real_escape_string($_POST['token']);
+$estado = mysql_real_escape_string($_POST['estado']);
 
-if( $password1 != "" && $password2 != "" && $idusuario != "" && $token != "" ){
+
+if( $password1 != "" && $password2 != "" && $idusuario != "" && $token != "" && $estado == true){
 	
 	?>
 	<!DOCTYPE html>
@@ -33,7 +35,7 @@ if( $password1 != "" && $password2 != "" && $idusuario != "" && $token != "" ){
 				<?php
 
 
-					$resultado=$dao->getToken($token);
+					$resultado=$dao->getToken($token,$estado);
 	
 				if( count($resultado)>0){
 					$usuario = $resultado[0]['idusuario'];

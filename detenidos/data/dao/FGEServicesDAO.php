@@ -191,21 +191,54 @@ $getLastId=true;
     }
 
 
+    public function detalleReporte($idUnidad=null, $idUsuario=null, $idNivel=null) {
+
+    $condition=""; 
+    /*if (empty($fechaInicial) || empty($fechaFinal))  
+        throw new Exception('Es necesario especificar las dos fechas para realizar la búsqueda');*/
+        if($idNivel == 3){
+            $condition .= ' WHERE d.`idUnidad` = \''.$idUnidad .'\' AND d.`idUsuario` = \''.$idUsuario .'\''; 
+        }else{
+            $condition .= ' WHERE d.`idUnidad` = \''.$idUnidad .'\''; 
+        }
+
+        $sqlSelect = 'SELECT de.`nombre`, de.`paterno`, de.`materno`, d.`fechaInicio`, d.`fechaFin`, d.`ubicacion` FROM `detencion` d 
+                    INNER JOIN `detenido` de ON d.`idDetenido` = de.`id`'
+                    . $condition .'';
+        
+        $result = $this->select($sqlSelect);
+        if(count($result) >= 1)
+            return $result;
+        else 
+            return NULL;
+    }
+
 /* pruebas de dao
 */
+    public function getEmail ($email){
+
+
+        $sql = " SELECT * FROM db_users WHERE correo = '$email' ";
+        $resultado = $this->select($sql);
+        
+        return $resultado;
+        
+    }
+
     public function generarLinkTemporal($idusuario, $username){
 
         $cadena = $idusuario.$username.rand(1,9999999).date('Y-m-d');
         $token = sha1($cadena);
+        $estado = true;
+        $comprobacion = "UPDATE tblreseteopass SET estado = false WHERE idusuario=$idusuario AND estado = true;";
+        $this->update($comprobacion);
         
-        //$conexion = new mysqli('localhost', 'root', '', 'detenidos');
-
-        $sql = "INSERT INTO tblreseteopass (idusuario, username, token, creado) VALUES($idusuario,'$username','$token',NOW());";
+        $sql = "INSERT INTO tblreseteopass (idusuario, username, token, creado, estado) VALUES($idusuario,'$username','$token',NOW() , $estado);";
 
         $resultado = $this->insert($sql);
 
         if($resultado){
-            $enlace = $_SERVER["SERVER_NAME"].'/proyectos/gobiernoabierto/detenidos/restablecer.php?idusuario='.sha1($idusuario).'&token='.$token;
+            $enlace = $_SERVER["SERVER_NAME"].'/gobiernoabierto/detenidos/restablecer.php?idusuario='.sha1($idusuario).'&token='.$token.'&estado='.$estado;
             return $enlace;
         }
         else
@@ -229,27 +262,20 @@ $getLastId=true;
         </html>';
 
         $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
-        $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $cabeceras .= 'From: RECUPERAR CONTRASE&ntilde;A:FGE <central@fiscalia.gob.mx>' . "\r\n";
+        $cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+        $cabeceras .= 'From: Fiscalia General Del Estado <central@fiscalia.gob.mx>' . "\r\n";
         
         mail($email, "Recuperar contrase&ntilde;a", $mensaje, $cabeceras);
     }
 
-    public function getEmail ($email){
-
-
-        $sql = " SELECT * FROM db_users WHERE correo = '$email' ";
-        $resultado = $this->select($sql);
-        
-        return $resultado;
-        
-    }
-
-    public function getToken ($token){    
-        
-        $sql = "SELECT * FROM tblreseteopass WHERE token = '$token'";
-        $resultado = $this->select($sql);
-        return $resultado;
+    public function getToken ($token,$estado){    
+        if ($estado==true) {
+            $sql = "SELECT * FROM tblreseteopass WHERE token = '$token' and estado = $estado";
+            $resultado = $this->select($sql);
+            return $resultado;
+        }
+        else
+            return null;
     }
 
     public function recuperarPass($password1,$idusuario){
@@ -264,8 +290,9 @@ $getLastId=true;
     }
 
     public function borrarToken($token){
-        $sql = "DELETE FROM tblreseteopass WHERE token = '$token';";
-        $resultado = $this->delete( $sql );
+        $sql = "UPDATE tblreseteopass SET estado = false WHERE token = '$token' AND estado = true;";
+        //"DELETE FROM tblreseteopass WHERE token = '$token';";
+        $resultado = $this->update( $sql );
     }
 //fin pruebas dao
 

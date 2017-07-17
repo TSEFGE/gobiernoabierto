@@ -17,7 +17,7 @@ $dao = new FGEServicesDAO();
    		if(count($resultado)>0){
       		$usuario = $resultado[0]['username'];
       		$idusuario = $resultado[0]['id'];
-			   $linkTemporal = $dao->generarLinkTemporal( $idusuario, $usuario );
+            $linkTemporal = $dao->generarLinkTemporal( $idusuario, $usuario );
       		if($linkTemporal){
         		$dao->enviarEmail( $email, $linkTemporal );
 
