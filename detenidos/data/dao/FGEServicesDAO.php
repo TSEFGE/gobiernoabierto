@@ -202,8 +202,7 @@ $getLastId=true;
             $condition .= ' WHERE d.`idUnidad` = \''.$idUnidad .'\''; 
         }
 
-        $sqlSelect = 'SELECT de.`nombre`, de.`paterno`, de.`materno`, de.`fechaNacimiento`, d.`fechaInicio`, d.`fechaFin`, d.`ubicacion` FROM `detencion` d 
-                    INNER JOIN `detenido` de ON d.`idDetenido` = de.`id`'
+        $sqlSelect = 'SELECT de.`nombre`, de.`paterno`, de.`materno`, de.`fechaNacimiento`, d.`fechaInicio`, d.`fechaFin`, d.`ubicacion` FROM `detencion` d INNER JOIN `detenido` de ON d.`idDetenido` = de.`id`'
                     . $condition .'';
         
         $result = $this->select($sqlSelect);
