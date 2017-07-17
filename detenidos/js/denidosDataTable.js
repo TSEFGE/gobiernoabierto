@@ -48,10 +48,13 @@ $(document).ready(function() {
     } );
 */
   table =   $('#detenidos').DataTable( {
-         /*   language: {
-             //   "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-            },*/
+        language: {
+            "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        },
         dom: "Bfrtip",
+        buttons: [
+            'copy', 'csv', 'excel', 'print'
+        ],
         ajax: "./detenidos.php",
          columns: [
             {
@@ -81,11 +84,11 @@ $(document).ready(function() {
         select: {
             style:    'os',
             selector: 'td:first-child'
-        },
+        }/*,
         buttons: [
-      /* { extend: "edit"},
-             { extend: "remove" }        */
-        ]
+                extend: "edit"},
+             { extend: "remove" } 
+        ]*/
     } );
 /*
 $('#detenidos tbody').on( 'click', 'tr', function () {

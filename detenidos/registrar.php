@@ -21,12 +21,13 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
-    <!--<link href="./libjs/bootstrap-combined.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">
+    
     <link href="https://eonasdan.github.io/bootstrap-datetimepicker/css/prettify-1.0.css" rel="stylesheet">
     <link href="https://eonasdan.github.io/bootstrap-datetimepicker/css/base.css" rel="stylesheet">
     <link href="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
-
     <link rel="stylesheet" type="text/css" href="./Editor-PHP-1.5.6/examples/resources/syntax/shCore.css">
+    <!--<link href="./libjs/bootstrap-combined.min.css" rel="stylesheet">-->
     <!--<link rel="stylesheet" type="text/css" href="./Editor-PHP-1.5.6/examples/resources/demo.css">-->
     
     <!--No funciona con una versión más reciente de jQuery debido al dataTable-->
@@ -39,7 +40,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>    
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.js"></script>
 
-    <!--Para las tablas-->
+    <!--Para las tablas(Al parecer no son necesarios)-->
     <link rel="stylesheet" type="text/css" href="./Editor-PHP-1.5.6/css/editor.DataTables.min.css">
     <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
@@ -53,7 +54,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
     <script src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
     <link href="https://cdn.datatables.net/rowreorder/1.1.2/css/rowReorder.dataTables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/rowreorder/1.1.2/js/dataTables.rowReorder.min.js"></script>
-
     <link href="./Editor-PHP-1.5.6/css/editor.dataTables.min.css" rel="stylesheet">    
     <script type="text/javascript" language="javascript" src="./Editor-PHP-1.5.6/js/dataTables.editor.js"></script>
     <script type="text/javascript" language="javascript" src="./Editor-PHP-1.5.6/js/dataTables.editor.min.js"></script>
@@ -358,7 +358,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                         }
                     ?>
                         <button class="btn btn-gris" id="editBtn" ng-click="editDetenido()">Editar</button>
-                </div>
+                </div></br>
 
                 <div class="table-responsive">
                     <table id="detenidos" class="display table-striped table-hover" cellspacing="0" width="100%">
@@ -391,17 +391,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                             <div class="panel-body" id="searchDiv2">
                                 <div class="box-body">
                                     <div class="row">
-                                        <!--<div class="col-xs-12 col-sm-6 col-md-3" style="padding-left: 15px;">
-                                            <div class="form-group">
-                                                <label for="tipo">Tipo de reporte:</label>
-                                                <div>
-                                                    <select id="tipo" name="tipo" ng-model="tipo" class="form-control required ng-valid ng-dirty" required>
-                                                        <option>Por unidad</option>
-                                                        <option>Por usuario</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>-->
                                         <div class="col-xs-12 col-sm-6 col-md-3" style="padding-left: 15px;">
                                             <div class="form-group">
                                                 <label for="fechaInicial">De:</label>
@@ -482,8 +471,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                             "order": [[ 2, "desc" ]],
                             "pagingType": "full_numbers",
                             "language": {
-                                "decimal": ".",
-                                "thousands": ",",
                                 "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
                             },
                             "columns": [
@@ -498,6 +485,10 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                 "visible": false,
                                 "searchable": false
                             }
+                            ],
+                            dom: 'Bfrtip',
+                            buttons: [
+                                'copy', 'csv', 'excel', 'pdf', 'print'
                             ]
                         });
                         $('#reportes tbody').on('click', 'tr', function () {
@@ -527,8 +518,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                         $('#detalleReporte').append(htmlElement);
                                         $("#modalDetalleRep").modal();
                                     });
-                                    //var json_str =  JSON.stringify(data);//Convierte el json a string
-                                    //alert(json_str);
                                 }
                             });
 
@@ -537,9 +526,16 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                     });
                 </script>
                 <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+                <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+                <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+                <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+                <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+                <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+                <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
             </div>
         </div>
-        
+
         <div id="modalDetalleRep" class="modal fade" role="dialog">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -571,7 +567,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
         </div>
         <script>
             $(document).ready(function () {
-                var totalwidth = 190 * $('.list-group').length;
+                var totalwidth = 190 * $('.cabecera').length;
                 $('.cabecera').css('width', totalwidth);
             }); 
         </script>
