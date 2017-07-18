@@ -254,7 +254,7 @@ $app->post('/enviaReporte', function () use ($app, $logger,$dao) {
         $fechaInicial = !empty($request->fechaInicial)?$request->fechaInicial:NULL;
         $fechaFinal = !empty($request->fechaFinal)?$request->fechaFinal:NULL;
        $registros = $dao->enviaReporte($fechaInicial, $fechaFinal, $_SESSION['idUsuario'], $_SESSION['userLevel']);
-        
+        echo "Si llega";
         //Comprobación true false
         if (!$registros) {
             throw new Exception('No existe registro', 418);
