@@ -620,21 +620,21 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                     fechaFinal: $("#fechaFinal").val()
                 }),
                 success: function (data) {
-                    var tablaR = $('#reportes').DataTable();
-                    tablaR.clear().draw();
-                    $.each(data, function(key, item) {
-                        if (key=="error_code"){
+                        if (!data){
                             swal(
                                 'Atención',
-                                'No se encontraron registros para generar el reporte.',
-                                'warning'
+                                'No se ha podido mandar el reporte.',
+                                'error'
                             );
                             return false;
+                        }else{
+                            swal(
+                                'Hecho',
+                                'Reporte enviado con éxito.',
+                                'success'
+                            );
                         }
-                    });
-                    //var json_str =  JSON.stringify(data);//Convierte el json a string
-                    //alert(json_str);
-                    tablaR.rows.add( data ).draw();
+                    
                 }
             });
         });

@@ -215,7 +215,6 @@ $getLastId=true;
 */
     public function getEmail ($email){
 
-
         $sql = " SELECT * FROM db_users WHERE correo = '$email' ";
         $resultado = $this->select($sql);
         
@@ -294,7 +293,11 @@ $getLastId=true;
     }
 
 
-    public function enviarReporteEmail($fechaInicial=null, $fechaFinal=null, $idUsuario=null, $idNivel=null){
+    public function enviaReporte($fechaInicial=null, $fechaFinal=null, $idUsuario=null, $idNivel=null){
+        $sql = " SELECT * FROM db_users WHERE id = '$idUsuario' ";
+        $resultado = $this->select($sql);
+        $email = $resultado[0]['correo'];
+
 
         $condition=""; 
     /*if (empty($fechaInicial) || empty($fechaFinal))  
@@ -322,6 +325,13 @@ $getLastId=true;
 
         $result = $this->select($sqlSelect);
 
+        $tabla ="";
+        $tabla = '<table><tbody>';
+        while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+            $fila = '<tr><td>'.$row['nombre'].'</td><td>'.$row['detenidos'].'</td></tr>';
+            $tabla = $tabla.$fila;
+        }
+        $tabla = $tabla.'</tbody></table>';
 
         $mensaje = '<html>
         <head>
@@ -329,12 +339,9 @@ $getLastId=true;
         </head>
         <body>
             <p>Hemos recibido una petici&oacute;n para restablecer la contrase&ntilde;a de tu cuenta.</p>
-            <p>Si hiciste esta petici&oacute;n, haz clic en el siguiente enlace, si no hiciste esta petici&oacute;n puedes ignorar este correo.'
-                '</p>
-                <p>
-                    <strong>Enlace para restablecer tu contrase&ntilde;a</strong><br>
-                    <a href="'.$link.'"> Restablecer contrase&ntilde;a </a>
+            <p>Si hiciste esta petici&oacute;n, haz clic en el siguiente enlace, si no hiciste esta petici&oacute;n puedes ignorar este correo.
                 </p>
+                <div>'.$tabla.'</div>
         </body>
         </html>';
 
@@ -342,7 +349,12 @@ $getLastId=true;
         $cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
         $cabeceras .= 'From: Fiscalia General Del Estado <central@fiscalia.gob.mx>' . "\r\n";
         
-        mail($email, "Recuperar contraseña", $mensaje, $cabeceras);
+        $bool = mail($email, "Recuperar contraseña", $mensaje, $cabeceras);
+        if($bool){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     

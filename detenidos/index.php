@@ -253,14 +253,13 @@ $app->post('/enviaReporte', function () use ($app, $logger,$dao) {
         $request = json_decode($app->request()->getBody());
         $fechaInicial = !empty($request->fechaInicial)?$request->fechaInicial:NULL;
         $fechaFinal = !empty($request->fechaFinal)?$request->fechaFinal:NULL;
-       $registros = $dao->getReporte($fechaInicial, $fechaFinal, $_SESSION['idUsuario'], $_SESSION['userLevel']);
+       $registros = $dao->enviaReporte($fechaInicial, $fechaFinal, $_SESSION['idUsuario'], $_SESSION['userLevel']);
         
         //Comprobación true false
         if (!$registros) {
             throw new Exception('No existe registro', 418);
         }
         else{
-            echo json_encode($registros, JSON_UNESCAPED_UNICODE);
             return;
         }
     } catch (Exception $e) {
