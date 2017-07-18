@@ -302,10 +302,9 @@ $getLastId=true;
         $resultado = $this->select($sql);
         $email = $resultado[0]['correo'];
 
-
         $condition=""; 
-    /*if (empty($fechaInicial) || empty($fechaFinal))  
-    throw new Exception('Es necesario especificar las dos fechas para realizar la búsqueda');*/
+        /*if (empty($fechaInicial) || empty($fechaFinal))  
+        throw new Exception('Es necesario especificar las dos fechas para realizar la búsqueda');*/
         if($idNivel == 0){
                 //$condition .= ' WHERE u.`region` IN (SELECT idRegion FROM regiones WHERE idFiscal = \''.$idUsuario .'\')'; 
         }
@@ -328,37 +327,36 @@ $getLastId=true;
         GROUP BY d.`idUnidad`' ;
 
         $result = $this->select($sqlSelect);
+        $numfilas = count($result);
 
         $tabla ="";
-        $tabla = '<table><tbody>';
-        while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-            $fila = '<tr><td>'.$row['nombre'].'</td><td>'.$row['detenidos'].'</td></tr>';
-            $tabla = $tabla.$fila;
+        $tabla = '<table><thead><tr><th>Nombre de la unidad</th><th>No. de Detenidos</th></tr></thead><tbody>';
+        $counter= 0;
+        while ($counter < $numfilas) {
+            $fila = '<tr><td>'.$result[$counter]['nombre'].'</td><td>'.$result[$counter]['detenidos'].'</td></tr>';
+            $tabla .= $fila;
+            $counter++;
         }
-        $tabla = $tabla.'</tbody></table>';
+        $tabla .= '</tbody></table>';
 
         $mensaje = '<html>
         <head>
-            <title>Restablece tu contrase&ntilde;a</title>
+            <title>Reporte de detenciones</title>
         </head>
         <body>
-            <p>Hemos recibido una petici&oacute;n para restablecer la contrase&ntilde;a de tu cuenta.</p>
-            <p>Si hiciste esta petici&oacute;n, haz clic en el siguiente enlace, si no hiciste esta petici&oacute;n puedes ignorar este correo.
-                </p>
-                <div>'.$tabla.'</div>
+            <div>'.$tabla.'</div>
         </body>
         </html>';
+        $mensaje = utf8_decode($mensaje);
 
         $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
         $cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
         $cabeceras .= 'From: Fiscalia General Del Estado <central@fiscalia.gob.mx>' . "\r\n";
-        
-        $bool = mail($email, "Recuperar contraseña", $mensaje, $cabeceras);
-        if($bool){
-            return true;
-        }else{
-            return false;
-        }
+        $asunto = utf8_decode("Reporte de detenciones");
+        $bool = mail($email, $asunto, $mensaje, $cabeceras);
+        echo $bool;
+        die();
+        return $bool;
     }
 
     

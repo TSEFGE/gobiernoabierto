@@ -619,7 +619,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                     fechaInicial: $("#fechaInicial").val(),
                     fechaFinal: $("#fechaFinal").val()
                 }),
-                success: function (data) {
+                success: function (data) {//no se
                         if (!data){
                             swal(
                                 'Atención',
@@ -634,7 +634,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                 'success'
                             );
                         }
-                    
                 }
             });
         });
