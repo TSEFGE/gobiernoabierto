@@ -292,6 +292,62 @@ $getLastId=true;
         //"DELETE FROM tblreseteopass WHERE token = '$token';";
         $resultado = $this->update( $sql );
     }
+
+
+    public function enviarReporteEmail($fechaInicial=null, $fechaFinal=null, $idUsuario=null, $idNivel=null){
+
+        $condition=""; 
+    /*if (empty($fechaInicial) || empty($fechaFinal))  
+    throw new Exception('Es necesario especificar las dos fechas para realizar la búsqueda');*/
+        if($idNivel == 0){
+                //$condition .= ' WHERE u.`region` IN (SELECT idRegion FROM regiones WHERE idFiscal = \''.$idUsuario .'\')'; 
+        }
+        else if($idNivel == 1){
+            $condition .= ' WHERE u.`region` IN (SELECT idRegion FROM regiones WHERE idFiscal = \''.$idUsuario .'\')'; 
+        }
+        else if($idNivel == 2){
+            $condition .= ' WHERE u.`distrito` IN (SELECT un.`distrito` FROM db_users u INNER JOIN unidad un ON u.`idUnidad` = un.`id`
+            WHERE u.`id` = \''.$idUsuario .'\')'; 
+        }else{
+            $condition .= ' WHERE d.`idUsuario` = \''.$idUsuario .'\''; 
+        }
+        if (!empty($fechaInicial) && !empty($fechaFinal))
+            $condition .= ' AND d.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
+
+        $sqlSelect = 'SELECT d.`idUnidad`, u.`nombre`, COUNT(d.`idDetenido`)detenidos, d.`fechaInicio` FROM `detencion` d
+        INNER JOIN `unidad` u ON d.`idUnidad` = u.`id`
+        INNER JOIN `db_users` us ON d.`idUsuario` = us.`id`'
+        . $condition .'
+        GROUP BY d.`idUnidad`' ;
+
+        $result = $this->select($sqlSelect);
+
+
+        $mensaje = '<html>
+        <head>
+            <title>Restablece tu contrase&ntilde;a</title>
+        </head>
+        <body>
+            <p>Hemos recibido una petici&oacute;n para restablecer la contrase&ntilde;a de tu cuenta.</p>
+            <p>Si hiciste esta petici&oacute;n, haz clic en el siguiente enlace, si no hiciste esta petici&oacute;n puedes ignorar este correo.'
+                '</p>
+                <p>
+                    <strong>Enlace para restablecer tu contrase&ntilde;a</strong><br>
+                    <a href="'.$link.'"> Restablecer contrase&ntilde;a </a>
+                </p>
+        </body>
+        </html>';
+
+        $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+        $cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+        $cabeceras .= 'From: Fiscalia General Del Estado <central@fiscalia.gob.mx>' . "\r\n";
+        
+        mail($email, "Recuperar contraseña", $mensaje, $cabeceras);
+    }
+
+    
+
+    
 //fin pruebas dao
 
 }

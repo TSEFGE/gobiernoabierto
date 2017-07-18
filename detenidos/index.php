@@ -244,5 +244,34 @@ $app->post('/detalleReporte', function () use ($app, $logger,$dao) {
       echo json_encode($response, JSON_UNESCAPED_UNICODE);
 });
 
+
+$app->post('/enviaReporte', function () use ($app, $logger,$dao) {
+    $app->response()->header('Content-Type', 'application/json; charset=utf-8');
+    $response = array();
+    $request =$app->request()->getBody()!=='' ? json_decode($app->request()->getBody()): null;    
+    try{
+        $request = json_decode($app->request()->getBody());
+        $fechaInicial = !empty($request->fechaInicial)?$request->fechaInicial:NULL;
+        $fechaFinal = !empty($request->fechaFinal)?$request->fechaFinal:NULL;
+       $registros = $dao->getReporte($fechaInicial, $fechaFinal, $_SESSION['idUsuario'], $_SESSION['userLevel']);
+        
+        //Comprobación true false
+        if (!$registros) {
+            throw new Exception('No existe registro', 418);
+        }
+        else{
+            echo json_encode($registros, JSON_UNESCAPED_UNICODE);
+            return;
+        }
+    } catch (Exception $e) {
+        $response['error_code'] = $e->getCode();
+        $response['error_message'] = $e->getMessage();
+        $logger->debug('getUnidades: ' . $e->getMessage());
+
+    }
+      echo json_encode($response, JSON_UNESCAPED_UNICODE);
+});
+
+
 $app->run();
 ?>

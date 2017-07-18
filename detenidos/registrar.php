@@ -465,6 +465,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                         </thead>
                     </table>
                 </div>
+                <button type="submit" class="btn btn-gris" id="enviaReporte" name="enviaReporte" value="Buscar">Buscar</button>
                 <script>
                     $(document).ready(function () {
                         var tablaR = $('#reportes').DataTable({
@@ -583,6 +584,36 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                 type: 'POST',
                 contentType: 'application/json',
                 url: 'index.php/getReporte',
+                dataType: "json",
+                data: JSON.stringify({
+                    fechaInicial: $("#fechaInicial").val(),
+                    fechaFinal: $("#fechaFinal").val()
+                }),
+                success: function (data) {
+                    var tablaR = $('#reportes').DataTable();
+                    tablaR.clear().draw();
+                    $.each(data, function(key, item) {
+                        if (key=="error_code"){
+                            swal(
+                                'Atención',
+                                'No se encontraron registros para generar el reporte.',
+                                'warning'
+                            );
+                            return false;
+                        }
+                    });
+                    //var json_str =  JSON.stringify(data);//Convierte el json a string
+                    //alert(json_str);
+                    tablaR.rows.add( data ).draw();
+                }
+            });
+        });
+
+        $( "#enviaReporte" ).click( function () {
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json',
+                url: 'index.php/enviaReporte',
                 dataType: "json",
                 data: JSON.stringify({
                     fechaInicial: $("#fechaInicial").val(),
