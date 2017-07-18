@@ -172,16 +172,20 @@ $getLastId=true;
             $condition .= ' WHERE u.`distrito` IN (SELECT un.`distrito` FROM db_users u INNER JOIN unidad un ON u.`idUnidad` = un.`id`
                         WHERE u.`id` = \''.$idUsuario .'\')'; 
         }else{
-            $condition .= ' WHERE d.`idUsuario` = \''.$idUsuario .'\''; 
+            $condition .= ' WHERE de.`idUsuario` = \''.$idUsuario .'\''; 
         }
         if (!empty($fechaInicial) && !empty($fechaFinal))
         $condition .= ' AND d.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
 
-        $sqlSelect = 'SELECT d.`idUnidad`, u.`nombre`, COUNT(d.`idDetenido`)detenidos, d.`fechaInicio` FROM `detencion` d
-                    INNER JOIN `unidad` u ON d.`idUnidad` = u.`id`
-                    INNER JOIN `db_users` us ON d.`idUsuario` = us.`id`'
+        $sqlSelect = '(SELECT u.id, u.`nombre`, COUNT(de.`idDetenido`)detenidos, de.`fechaInicio` FROM `unidad` u
+                    LEFT JOIN `detencion` de ON u.`id` = de.`idUnidad`'
                     . $condition .'
-                    GROUP BY d.`idUnidad`' ;
+                    GROUP BY u.`id`)
+                    UNION
+                    (SELECT u.id, u.`nombre`, COUNT(de.`idDetenido`)detenidos, de.`fechaInicio` FROM `unidad` u
+                    RIGHT JOIN `detencion` de ON u.`id` = de.`idUnidad`' 
+                    . $condition .'
+                    GROUP BY u.`id`)';
         
         $result = $this->select($sqlSelect);
         if(count($result) >= 1)

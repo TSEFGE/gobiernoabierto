@@ -475,7 +475,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                 "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
                             },
                             "columns": [
-                            { "data": "idUnidad"},
+                            { "data": "id"},
                             { "data": "nombre"},
                             { "data": "detenidos"},
                             { "data": "fechaInicio"}
@@ -494,7 +494,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                         });
                         $('#reportes tbody').on('click', 'tr', function () {
                             var data = tablaR.row( this ).data();
-                            var idUnidad = data['idUnidad'];
+                            var idUnidad = data['id'];
                             //alert( 'Has dado clic en la fila de ' + data['nombre']);
                             $.ajax({
                                 type: 'POST',
