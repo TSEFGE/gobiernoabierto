@@ -150,31 +150,11 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                     <div class="modal-footer">
                         <button ng-click="limpiarUpdatePassword()" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                         <button ng-click="updatePassword()" class="btn btn-primary" id="password_modal_save">Guardar</button>
-                        <!--<div>
-                            {{ messagePassword }}
-                        </div>-->
                     </div>
                 </div>
             </div>
         </div>
         
-        <!--Este modal ya no se usará en caso de usar SweetAlert-->
-        <div id="pwError" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content alert-warning">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body text-center">
-                        {{ messagePassword }}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="tab-content">
             <div id="home" class="tab-pane fade in active">
                 <div>
@@ -225,11 +205,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                                         <span class="glyphicon glyphicon-calendar" ng-click="$scope.detenido.fechaNacimiento.setDirty(); $scope.detenido.fechaNacimiento.$valid=true; $scope.detenido.fechaNacimiento.$error.required=false;  $scope.detenido.fechaNacimiento.$error={}; "></span>
                                                     </span>
                                                 </div>
-                                                <script type="text/javascript">
-                                                    $(function () {
-                                                        $('#datetimepicker0').datetimepicker({format: 'YYYY/MM/DD',locale: 'es'});
-                                                    });
-                                                </script>
                                             </div>
                                         </div>
                                     </div>
@@ -272,11 +247,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                                         <span class="glyphicon glyphicon-calendar" ng-click="$scope.detenido.fechaInicio.setDirty(); $scope.detenido.fechaInicio.$valid=true; $scope.detenido.fechaInicio.$error.required=false;  $scope.detenido.fechaInicio.$error={}; "></span>
                                                     </span>
                                                 </div>
-                                                <script type="text/javascript">
-                                                    $(function () {
-                                                        $('#datetimepicker1').datetimepicker({format: 'YYYY/MM/DD HH:mm:ss',locale: 'es'});
-                                                    });
-                                                </script>
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-6 col-md-3 lineaForm">
@@ -288,11 +258,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
                                                 </div>
-                                                <script type="text/javascript">
-                                                    $(function () {
-                                                      $('#datetimepicker2').datetimepicker( {format: 'YYYY/MM/DD HH:mm:ss',locale: 'es'});
-                                                    });
-                                                </script>
                                             </div>
                                         </div>
                                     </div>
@@ -314,39 +279,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                             <input type="hidden" id="idDetencion" value="">
                         </div>
                     </form>
-
-                    <!--Modal Debe capturar todos los datos para registrar la detención -->
-                    <div id="modalCapturar" class="modal fade" role="dialog">
-                        <div class="modal-dialog modal-lg" role="document" >
-                            <div class="modal-content" id="modal1">
-                                <div class="modal-header alert-warning">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span></button>
-                                    <h4 class="modal-title neosansproregular" id="myModalLabel">Debe capturar <strong class="neosansprobold">TODOS</strong> los datos para registrar la detención.</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!--Este modal ya no se usará en caso de usar SweetAlert-->
-                    <div id="modalInfo" class="modal fade" role="dialog">
-                        <div class="modal-dialog modal-sm">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                <div class="modal-body text-center">
-                                    {{ message }}
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Este div ya no se usará en caso de usar SweetAlert-->
-                    <div id="resultsDiv"> 
-                        {{ message }}
-                    </div>
                 </div>
 
                 <div>
@@ -413,22 +345,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                                 </div>
                                             </div>
                                         </div>
-                                        <script type="text/javascript">
-                                            $(function () {
-                                                $('#datetimepicker3').datetimepicker({format: 'YYYY-MM-DD',locale: 'es'});
-                                                $('#datetimepicker4').datetimepicker({
-                                                    format: 'YYYY-MM-DD',
-                                                    locale: 'es'
-                                                });
-
-                                                $("#datetimepicker3").on("dp.change", function (e) {
-                                                    $('#datetimepicker4').data("DateTimePicker").minDate(e.date);
-                                                });
-                                                $("#datetimepicker4").on("dp.change", function (e) {
-                                                    $('#datetimepicker3').data("DateTimePicker").maxDate(e.date);
-                                                });
-                                            });
-                                        </script>
                                         <div class="clearfix"></div>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-6 col-md-3" style="padding-left: 15px;">
@@ -438,14 +354,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                                 </div>
                                             </div>
                                         </div>
-                                        <script>
-                                            function borrar(){
-                                                $('#fechaInicial').val('');
-                                                $('#fechaFinal').val('');
-                                                var tablaR = $('#reportes').DataTable();
-                                                tablaR.clear().draw();
-                                            };
-                                        </script>
                                     </div>
                                 </div>
                             </div>
@@ -465,77 +373,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                         </thead>
                     </table>
                 </div>
-                <button type="submit" class="btn btn-gris" id="enviaReporte" name="enviaReporte" value="Buscar">Buscar</button>
-                <script>
-                    $(document).ready(function () {
-                        var tablaR = $('#reportes').DataTable({
-                            "order": [[ 2, "desc" ]],
-                            "pagingType": "full_numbers",
-                            "language": {
-                                "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-                            },
-                            "columns": [
-                            { "data": "id"},
-                            { "data": "nombre"},
-                            { "data": "detenidos"},
-                            { "data": "fechaInicio"}
-                            ],
-                            "columnDefs": [
-                            {
-                                "targets": [ 0 ],
-                                "visible": false,
-                                "searchable": false
-                            }
-                            ],
-                            dom: 'Bfrtip',
-                            buttons: [
-                                'copy', 'csv', 'excel', 'pdf', 'print'
-                            ]
-                        });
-                        $('#reportes tbody').on('click', 'tr', function () {
-                            var data = tablaR.row( this ).data();
-                            var idUnidad = data['id'];
-                            //alert( 'Has dado clic en la fila de ' + data['nombre']);
-                            $.ajax({
-                                type: 'POST',
-                                contentType: 'application/json',
-                                url: 'index.php/detalleReporte',
-                                dataType: "json",
-                                data: JSON.stringify({
-                                    idUnidad: idUnidad
-                                }),
-                                success: function (data) {//Comienza a dibujar en el modal
-                                    $('#detalleReporte').empty();
-                                    var num = 1;
-                                    $.each(data, function(key, item) {
-                                        if (key=="error_code"){
-                                            swal(
-                                                'Atención',
-                                                'No se encontraron registros para generar el reporte.',
-                                                'warning'
-                                            );
-                                            return false;
-                                        }
-                                        htmlElement = $('<tr><td>'+num+'</td><td>'+item.nombre+'</td><td>'+item.paterno+'</td><td>'+item.materno+'</td><td>'+item.fechaNacimiento+'</td><td>'+item.fechaInicio+'</td><td>'+item.fechaFin+'</td></tr>');
-                                        num++;
-                                        $('#detalleReporte').append(htmlElement);
-                                        $("#modalDetalleRep").modal();
-                                    });
-                                }
-                            });
-
-                        });
-
-                    });
-                </script>
-                <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-                <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
-                <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-                <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
-                <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
-                <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
-                <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
+                <button type="submit" class="btn btn-gris" id="enviaReporte" name="enviaReporte" value="Buscar">Enviar Reporte por Correo</button>
             </div>
         </div>
 
@@ -545,7 +383,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-                    <div class="modal-body text-center">
+                    <div class="modal-body text-center cuerpo-modal">
                         <div class="table-responsive">
                             <table class="display table-striped table-hover table-bordered" cellspacing="0" width="99%">
                                 <thead class="cabecera">
@@ -569,19 +407,113 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                 </div>
             </div>
         </div>
-        <script>
-            $(document).ready(function () {
-                var totalwidth = 190 * $('.cabecera').length;
-                $('.cabecera').css('width', totalwidth);
-            }); 
-        </script>
 
     </div>
     <footer>
         <img class="img-responsive center barra" src="./img/barra.png"/>
     </footer>
     
-    <script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker0').datetimepicker({format: 'YYYY/MM/DD',locale: 'es'});
+        });
+
+        $(function () {
+            $('#datetimepicker1').datetimepicker({format: 'YYYY/MM/DD HH:mm:ss',locale: 'es'});
+        });
+        $(function () {
+            $('#datetimepicker2').datetimepicker( {format: 'YYYY/MM/DD HH:mm:ss',locale: 'es'});
+        });
+
+        $(function () {
+            $('#datetimepicker3').datetimepicker({format: 'YYYY-MM-DD',locale: 'es'});
+            $('#datetimepicker4').datetimepicker({
+                format: 'YYYY-MM-DD',
+                locale: 'es'
+            });
+            $("#datetimepicker3").on("dp.change", function (e) {
+                $('#datetimepicker4').data("DateTimePicker").minDate(e.date);
+            });
+            $("#datetimepicker4").on("dp.change", function (e) {
+                $('#datetimepicker3').data("DateTimePicker").maxDate(e.date);
+            });
+        });
+
+        function borrar(){
+            $('#fechaInicial').val('');
+            $('#fechaFinal').val('');
+            var tablaR = $('#reportes').DataTable();
+            tablaR.clear().draw();
+        };
+                                            
+        $(document).ready(function () {
+            var tablaR = $('#reportes').DataTable({
+                "order": [[ 2, "desc" ]],
+                "pagingType": "full_numbers",
+                "language": {
+                    "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+                "columns": [
+                { "data": "id"},
+                { "data": "nombre"},
+                { "data": "detenidos"},
+                { "data": "fechaInicio"}
+                ],
+                "columnDefs": [
+                {
+                    "targets": [ 0 ],
+                    "visible": false,
+                    "searchable": false
+                },
+                {
+                    "targets": [ 3 ],
+                    "visible": false,
+                    "searchable": false
+                }
+                ],
+                dom: 'Bfrtip',
+                buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+
+            $('#reportes tbody').on('click', 'tr', function () {
+                var data = tablaR.row( this ).data();
+                var idUnidad = data['id'];
+                 //alert( 'Has dado clic en la fila de ' + data['nombre']);           
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json',
+                    url: 'index.php/detalleReporte',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        idUnidad: idUnidad
+                    }),
+                    success: function (data) {//Comienza a dibujar en el modal
+                        $('#detalleReporte').empty();
+                        var num = 1;
+                        $.each(data, function(key, item) {
+                            if (key=="error_code"){
+                                swal(
+                                    'Atención',
+                                    'No se encontraron registros para generar el reporte.',
+                                    'warning'
+                                    );
+                                return false;
+                            }
+                            htmlElement = $('<tr><td>'+num+'</td><td>'+item.nombre+'</td><td>'+item.paterno+'</td><td>'+item.materno+'</td><td>'+item.fechaNacimiento+'</td><td>'+item.fechaInicio+'</td><td>'+item.fechaFin+'</td></tr>');
+                            num++;
+                            $('#detalleReporte').append(htmlElement);
+                            $("#modalDetalleRep").modal();
+                        });
+                    }
+                });
+            });
+
+            var totalwidth = 190 * $('.cabecera').length;
+            $('.cabecera').css('width', totalwidth);
+        });
+
         $( "#searchRep" ).click( function () {
             $.ajax({
                 type: 'POST',
@@ -622,8 +554,9 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                     fechaInicial: $("#fechaInicial").val(),
                     fechaFinal: $("#fechaFinal").val()
                 }),
-                success: function (data) {//no se
-                        if (!data){
+                success: function (data) {
+                    $.each(data, function(key, item) {
+                        if (key=="error_code"){
                             swal(
                                 'Atención',
                                 'No se ha podido mandar el reporte.',
@@ -631,15 +564,34 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                             );
                             return false;
                         }else{
-                            swal(
-                                'Hecho',
-                                'Reporte enviado con éxito.',
-                                'success'
-                            );
+                            if(item.estado == "enviado"){
+                                swal(
+                                    'Hecho',
+                                    'Se ha enviado correctamente el reporte.',
+                                    'success'
+                                );
+                                return true;
+                            }else{
+                                swal(
+                                    'Atención',
+                                    'No se ha podido mandar el reporte.',
+                                    'error'
+                                );
+                                return false;
+                            }
                         }
+                    });
                 }
             });
         });
     </script>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
 </body>
 </html> 
