@@ -175,7 +175,7 @@ $getLastId=true;
             $condition .= ' WHERE de.`idUsuario` = \''.$idUsuario .'\''; 
         }
         if (!empty($fechaInicial) && !empty($fechaFinal))
-        $condition .= ' AND d.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
+        $condition .= ' AND de.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
 
         $sqlSelect = '(SELECT u.id, u.`nombre`, COUNT(de.`idDetenido`)detenidos, de.`fechaInicio` FROM `unidad` u
                     LEFT JOIN `detencion` de ON u.`id` = de.`idUnidad`'
