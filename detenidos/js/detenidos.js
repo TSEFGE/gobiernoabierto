@@ -52,7 +52,6 @@ angular.module('detenidosApp', [])
           if($('#nombre').val()=="" || $('#paterno').val()=="" ||$('#materno').val()=="" || $('#sexo').val()=="" || $('#fechaNacimiento').val()=="" || $('#idUnidad').val()=="" || $('#fechaInicio').val()=="" || $('#fechaFin').val()==""){
                //$scope.message="Debe capturar todos los datos para registrar la detención";
                //$("#resultsDiv").css("display", "block");
-               //$("#modalCapturar").modal();
                swal(
                   'Atención',
                   'Debe capturar TODOS los datos para registrar la detención.',
@@ -83,7 +82,6 @@ angular.module('detenidosApp', [])
                limpiar();
                //$scope.message="El registro fue agregado exitosamente";
                //$("#resultsDiv").css("display", "block");
-               //$("#modalInfo").modal();
                swal(
                   'Hecho',
                   'El registro fue agregado exitosamente.',
@@ -126,7 +124,6 @@ angular.module('detenidosApp', [])
             .success(function (data, status, headers, config) {
                limpiar();
                //$scope.message="El registro fue eliminado exitosamente";
-               //$("#modalInfo").modal();
                swal(
                   'Hecho',
                   'El registro fue eliminado exitosamente.',
@@ -139,7 +136,6 @@ angular.module('detenidosApp', [])
                limpiar();
                //$scope.message="Hubo un error al intentar elimniar el registro favor de reintentar,  en caso de que el error persista comunicarse al 228-841-61-70 ext. 3238";
                //$("#resultsDiv").css("display", "block");
-               //$("#modalInfo").modal();
                swal(
                   'Atención',
                   'Hubo un error al intentar elimniar el registro favor de reintentar,  en caso de que el error persista comunicarse al 228-841-61-70 ext. 3238.',
@@ -232,7 +228,6 @@ angular.module('detenidosApp', [])
           var data=new Object();
           if($('#idUsuario').val()=="" || $('#current_password').val()=="" ||$('#new_password').val()==""  ||$('#confirm_password').val()==""){
                //$scope.messagePassword="Especificar todos los datos solicitados";
-               //$("#pwError").modal();
                 swal(
                   'Atención',
                   'Debes especificar todos los datos solicitados.',
@@ -242,7 +237,6 @@ angular.module('detenidosApp', [])
           }
         if($('#new_password').val()!=$('#confirm_password').val()){
                //$scope.messagePassword="No coincide la contraseña nueva y su confirmación";
-               //$("#pwError").modal();
                swal(
                   'Atención',
                   'No coincide la contraseña nueva y su confirmación.',
@@ -266,8 +260,7 @@ angular.module('detenidosApp', [])
           $http.post(url, dataJSON, config)
             .success(function (data, status, headers, config) {
                     if(data.error_code){
-                      //$scope.messagePassword="La contraseña anterior no coincide o existió un error al intentar actualizarla";        
-                      //$("#pwError").modal();
+                      //$scope.messagePassword="La contraseña anterior no coincide o existió un error al intentar actualizarla"; 
                       swal(
                         'Atención',
                         'La contraseña anterior no coincide o existió un error al intentar actualizarla.',
@@ -277,7 +270,6 @@ angular.module('detenidosApp', [])
                    else{
                        $('#pwModal').modal('hide');
                        //$scope.messagePassword="La contraseña ha sido actualizada";
-                       //$("#pwError").modal();
                        swal(
                         'Hecho',
                         'La contraseña ha sido actualizada.',
@@ -287,7 +279,6 @@ angular.module('detenidosApp', [])
              })
             .error(function (data, status, headers, config) {
                 //$scope.messagePassword="La contraseña anterior no coincide o existió un error al intentar actualizarla";
-                //$("#pwError").modal();
                 swal(
                   'Atención',
                   'La contraseña anterior no coincide o existió un error al intentar actualizarla.',
@@ -306,7 +297,11 @@ angular.module('detenidosApp', [])
        $scope.getDetencion = function() {
             if($('#nombre').val()== "" || $('#paterno').val()=="" || $('#materno').val()=="" || $('#sexo').val()=="" || $('#fechaNacimiento').val()==""){
               $("#resultsDiv").css("display", "none");
-              $("#faltanDatos").modal();
+              swal({
+                  title: '<h1>Atención</h1>',
+                  type: 'warning',
+                  html: '<h4>Debe proporcionar <strong>TODOS</strong> los datos (nombre, paterno, materno, sexo, fecha nacimiento) para realizar la búsqueda.</h4>'
+              });
               return;
             }  
             
@@ -332,7 +327,10 @@ angular.module('detenidosApp', [])
               }
               if(data.error_code!=undefined){
                 $("#resultsDiv").css("display", "none");
-                $("#noHayRegistro").modal();
+                swal({
+                  title: '<h1>Atención</h1>',
+                  type: 'error',
+                  html: '<h4><strong>No existe registro</strong> ó alguno de los datos proporcionados por la persona detenida son distintos a los especificados.</h4>'              });
               }
               else{
                 limpiarResultados();

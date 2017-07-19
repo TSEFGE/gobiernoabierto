@@ -4,8 +4,10 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.js"></script>
   <link href="css/botonazul.css" rel="stylesheet" type="text/css" />
   <link href="css/botongris.css" rel="stylesheet" type="text/css" />
   <link href="css/alertamarillo.css" rel="stylesheet" type="text/css" />
@@ -32,7 +34,7 @@
         </div>
         <div class="col-md-8 col-sm-9 col-xs-12 ">
           <div class="form-group">
-            <h3 class="titulos" align="center"><strong><span class="titulo1">REGISTRO PÚBLICO DE BÚSQUEDA</span><br><span class="titulo2">DE PERSONAS DESAPARECIDAS</span></strong></h3>
+            <h3 class="titulos" align="center"><strong><span class="titulo1 titulotamaño">REGISTRO PÚBLICO DE BÚSQUEDA</span><br><span class="titulo2 titulotamaño">DE PERSONAS DESAPARECIDAS</span></strong></h3>
           </div>
         </div>
       </div>
@@ -181,10 +183,8 @@
                 <button type="button" href='javascript:;' onclick="limpiar();" class="btn btn-gris btn-block"><h6>Limpiar</h6></button>
               </div>
             </div>
-            <div class="col-xs-12 col-md-8 text-right">
-              <h6><a onclick="displayHelp();" title="Consulta la Ayuda para el uso del sitio" class="help-block" style="cursor: pointer;">
-              <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ayuda</a>
-              </h6>                          
+            <div class="text-right pull-right">
+              <h6><a onclick="displayHelp();" title="Consulta la Ayuda para el uso del sitio" class="help-block" style="cursor: pointer; margin-right: 10px;"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ayuda</a></h6>                          
             </div>
           </div>
         </div>
@@ -199,7 +199,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title text-center">REGISTRO PUBLICO DE PERSONAS DESAPARECIDAS</h4>
+              <h4 class="modal-title text-center">REGISTRO PÚBLICO DE PERSONAS DESAPARECIDAS</h4>
           </div>
           <div class="modal-body text-justify">
             <p>Este registro está integrado por los datos de las personas no localizadas, las cuales fueron reportadas ante esta autoridad. Este registro sólo contiene información de las personas que no han sido localizadas. El proceso de búsqueda en este Registro de Personas no Localizadas es de fácil uso, por lo que usted podrá realizar la búsqueda por uno, todos o la combinación de los rubros de: Nombre, Apellido Paterno, Apellido Materno, Edad y/o Sexo. Posterior a colocar la información por la que usted desea realizar la búsqueda, debe realizar un clic en el botón de Buscar, y en la parte inferior de la pantalla se desplegará las fotos de las personas no localizadas. Si desea visualizar más detalle de la persona no localizada deberá realizar un clic sobre la imagen de la foto a consultar.</p>
@@ -284,7 +284,11 @@
     /*----------prueba de funcion------------*/
     $( "#search" ).click( function () {
       if($("#nombre").val()=="" && $("#paterno").val() == "" && $("#materno").val()=="" && $("#sexo").val()=="" && $('#edad').val() == ""){
-        $('#modalIngresa').modal();
+        swal({
+          title: '<h1>Atención</h1>',
+          type: 'warning',
+          html: '<h4">Debe proporcionar <strong>AL MENOS UN</strong> dato(nombre, paterno, materno, sexo, edad) para realizar la busqueda.</h4>'
+        });
         return false;
       }
       $('#paginas').empty();
@@ -314,7 +318,11 @@
           var sta = 0;
           $.each(data, function(key, item) {
             if (key=="error_code"){
-              $("#myModal").modal();
+              swal({
+                  title: '<h1>Atención</h1>',
+                  type: 'error',
+                  html: '<h4><strong>No existen resultados</strong> para la búsqueda realizada</h4>'
+              });
               return false;
             }
             $('#siguiente').show();
@@ -364,7 +372,11 @@
 
     function busca(){ 
       if($("#nombre").val()=="" && $("#paterno").val() == "" && $("#materno").val()=="" && $("#sexo").val()=="" && $('#edad').val() == ""){
-        $('#modalIngresa').modal();
+        swal({
+          title: '<h1>Atención</h1>',
+          type: 'warning',
+          html: '<h4">Debe proporcionar <strong>AL MENOS UN</strong> dato(nombre, paterno, materno, sexo, edad) para realizar la busqueda.</h4>'
+        });
         return false;
       }
       $('#paginas').empty();
@@ -394,7 +406,11 @@
           var sta = 0;
           $.each(data, function(key, item) {
             if (key=="error_code"){
-              $("#myModal").modal();
+              swal({
+                  title: '<h1>Atención</h1>',
+                  type: 'error',
+                  html: '<h4><strong>No existen resultados</strong> para la búsqueda realizada</h4>'
+              });
               return false;
             }
             $('#siguiente').show();
@@ -527,7 +543,11 @@
         $('#resultsDiv').empty();
         $.each(datos, function(key, item) {
           if (key=="error_code"){
-            $("#myModal").modal();
+            swal({
+                  title: '<h1>Atención</h1>',
+                  type: 'error',
+                  html: '<h4><strong>No existen resultados</strong> para la búsqueda realizada</h4>'
+              });
             return false;
           }
           var partefoto="";
@@ -605,7 +625,11 @@
         $('#resultsDiv').empty();
         $.each(datos, function(key, item) {
           if (key=="error_code"){
-            $("#myModal").modal();
+            swal({
+                  title: '<h1>Atención</h1>',
+                  type: 'error',
+                  html: '<h4><strong>No existen resultados</strong> para la búsqueda realizada</h4>'
+              });
             return false;
           }
           var partefoto="";
@@ -645,34 +669,6 @@
       }    
     };
     </script>
-  </div>
-
-  <!--Modal No se encontraron resultados-->
-  <div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header alert-danger">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-          </button>
-          <h4 class="modal-title" id="myModalLabel"><strong>No existen resultados</strong> para la busqueda realizada</h4>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!--Modal No se encontraron resultados-->
-  <div id="modalIngresa" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header alert-warning">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-          </button>
-          <h4 class="modal-title" id="myModalLabel">Debe proporcionar <strong>AL MENOS UN</strong> dato(nombre, paterno, materno, sexo, edad) para realizar la busqueda.</h4>
-        </div>
-      </div>
-    </div>
   </div>
 
 
