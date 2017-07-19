@@ -356,9 +356,13 @@ $getLastId=true;
         $cabeceras .= 'From: Fiscalia General Del Estado <central@fiscalia.gob.mx>' . "\r\n";
         $asunto = utf8_decode("Reporte de detenciones");
         $bool = mail($email, $asunto, $mensaje, $cabeceras);
-        echo $bool;
-        die();
-        return $bool;
+        if ($bool){
+            $estado = '{"estado":"enviado"}';
+            return $estado;
+        }else{
+            $estado = '{"estado":"error"}';
+            return $estado;
+        }
     }
 
     

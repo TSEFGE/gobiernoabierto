@@ -80,11 +80,12 @@ table#reportes > tbody > tr{
   background-color: #E0E0E0;
 	color: #fff;
 }
+
 /*Para crear un scroll al modal*/
 .modal-dialog{
     overflow-y: initial !important
 }
-.modal-body{
+.cuerpo-modal{
     height: 70%;
     overflow-y: auto;
     max-width: 100%;
