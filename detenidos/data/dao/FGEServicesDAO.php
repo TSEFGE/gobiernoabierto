@@ -261,8 +261,8 @@ $getLastId=true;
         $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
         $cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
         $cabeceras .= 'From: Fiscalia General Del Estado <central@fiscalia.gob.mx>' . "\r\n";
-        
-        mail($email, "Recuperar contrase&ntilde;a", $mensaje, $cabeceras);
+        $asunto=utf8_decode("Recuperar contraseña");        
+        mail($email, $asunto, $mensaje, $cabeceras);
     }
 
     public function getToken ($token,$estado){    
@@ -326,12 +326,14 @@ $getLastId=true;
         $numfilas = count($result);
 
         $tabla ="";
-        $tabla = '<table><thead><tr><th>Nombre de la unidad</th><th>No. de Detenidos</th></tr></thead><tbody>';
+        $tabla = '<table><thead><tr>No.<th></th><th>Nombre de la unidad</th><th>No. de Detenidos</th></tr></thead><tbody>';
+        $numero=1;
         $counter= 0;
         while ($counter < $numfilas) {
-            $fila = '<tr><td>'.$result[$counter]['nombre'].'</td><td>'.$result[$counter]['detenidos'].'</td></tr>';
+            $fila = '<tr><td>'.$numero.'</td><td>'.$result[$counter]['nombre'].'</td><td>'.$result[$counter]['detenidos'].'</td></tr>';
             $tabla .= $fila;
             $counter++;
+            $numero++;
         }
         $tabla .= '</tbody></table>';
 
