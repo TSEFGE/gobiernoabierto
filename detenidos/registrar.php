@@ -475,7 +475,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                 "url": "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
                             },
                             "columns": [
-                            { "data": "idUnidad"},
+                            { "data": "id"},
                             { "data": "nombre"},
                             { "data": "detenidos"},
                             { "data": "fechaInicio"}
@@ -494,7 +494,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                         });
                         $('#reportes tbody').on('click', 'tr', function () {
                             var data = tablaR.row( this ).data();
-                            var idUnidad = data['idUnidad'];
+                            var idUnidad = data['id'];
                             //alert( 'Has dado clic en la fila de ' + data['nombre']);
                             $.ajax({
                                 type: 'POST',
@@ -506,6 +506,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                 }),
                                 success: function (data) {//Comienza a dibujar en el modal
                                     $('#detalleReporte').empty();
+                                    var num = 1;
                                     $.each(data, function(key, item) {
                                         if (key=="error_code"){
                                             swal(
@@ -515,7 +516,8 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                             );
                                             return false;
                                         }
-                                        htmlElement = $('<tr><td>'+item.nombre+'</td><td>'+item.paterno+'</td><td>'+item.materno+'</td><td>'+item.fechaNacimiento+'</td><td>'+item.fechaInicio+'</td><td>'+item.fechaFin+'</td></tr>');
+                                        htmlElement = $('<tr><td>'+num+'</td><td>'+item.nombre+'</td><td>'+item.paterno+'</td><td>'+item.materno+'</td><td>'+item.fechaNacimiento+'</td><td>'+item.fechaInicio+'</td><td>'+item.fechaFin+'</td></tr>');
+                                        num++;
                                         $('#detalleReporte').append(htmlElement);
                                         $("#modalDetalleRep").modal();
                                     });
@@ -548,6 +550,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                             <table class="display table-striped table-hover table-bordered" cellspacing="0" width="99%">
                                 <thead class="cabecera">
                                     <tr>
+                                        <th style="text-align: right;"></th>
                                         <th style="padding: 10px;">Nombre</th>
                                         <th style="padding: 10px;">Paterno</th>
                                         <th style="padding: 10px;">Materno</th>
