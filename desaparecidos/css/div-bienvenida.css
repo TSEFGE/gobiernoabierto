@@ -10,6 +10,15 @@
 	text-decoration: none;
 }
 
+.titulos {
+    margin-top: 40px;
+}
+
+
+p {
+    font-size: 15px;
+}
+
 
 .planaccion a:hover{
 	text-decoration: none;
@@ -38,6 +47,7 @@
 	.texto-b{
 		font-size: 1rem;
 	}
+
 }
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
@@ -56,4 +66,10 @@
 	.texto-b{
 		font-size: 1.5rem;
 	}
+}
+@media (max-width: 768px) {
+	.titulos {
+    	margin-top: 0px;
+	}
+	
 }
