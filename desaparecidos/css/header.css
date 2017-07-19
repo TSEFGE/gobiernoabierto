@@ -10,7 +10,7 @@
     font-family: 'neosanspro-bold';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 1rem;
+    font-size: 2.5rem;
 }
 .titulo1{
     color: #8E8E8E;
@@ -25,9 +25,9 @@
     background-color: #444644;
     border-color: #444644;
     color: #fff;
-    box-shadow: 3px 3px 6px 5px #888888;
-	min-height: 30px;
+    box-shadow: 2px 3px 6px 1px #888888;
     margin-bottom: 15px;
+    min-height: 30px;
 }
 .nav .navbar-nav{
     max-height: 30px;
@@ -52,7 +52,6 @@
     color: #fff;
 	padding: 8px 15px;
     margin: 0;
-
 }
 .navbar-nav > li > a:hover,
 .navbar-nav > li > a:focus{
@@ -98,6 +97,16 @@
     display: none;
 }
 
+.slider-grande{
+    display: block;
+}
+.slider-media{
+    display: none;
+}
+.slider-mini{
+    display: none;
+}
+
 @media (max-width: 990px) {
     .imgdetenidos1{
         display: none;
@@ -106,6 +115,16 @@
         display: block;
     }
     .imgdetenidos3{
+        display: none;
+    }
+
+    .slider-grande{
+        display: none;
+    }
+    .slider-media{
+        display: block;
+    }
+    .slider-mini{
         display: none;
     }
 }
@@ -120,7 +139,18 @@
     .imgdetenidos3{
         display: block;
     }
-    
+    .slider-grande{
+        display: none;
+    }
+    .slider-media{
+        display: none;
+    }
+    .slider-mini{
+        display: block;
+    }
+    .titulotamaño{
+        font-size: 1.7rem;
+    }
 }
 
 
@@ -129,7 +159,6 @@
 /*Slider*/
 .slider{
     min-height: 0px;
-    max-height: 290px;
 }
 .carousel-indicators>li{
     background-color: #fff;
@@ -159,7 +188,7 @@
 }
 @media (min-width: 420px) {
     .titulo1, .titulo2{
-        font-size: 1.5rem;
+        font-size: 2.5rem;
     }
 	.text-slider>p{
         font-size: 1.5rem;
@@ -175,7 +204,7 @@
 @media (min-width: 768px) {
 
     .titulo1, .titulo2{
-        font-size: 2rem;
+        font-size: 3rem;
     }
 	.navbar .navbar-nav {
         display: inline-block;
@@ -248,7 +277,7 @@
         border-color: #444644;
         color: #fff;
 		box-shadow: none;
-        box-shadow: 3px 3px 6px 5px #888888;
+        box-shadow: 2px 3px 6px 1px #888888;
         margin-left: 0px;
         margin-right: 0px;
     }
