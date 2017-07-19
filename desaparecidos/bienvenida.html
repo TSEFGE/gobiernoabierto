@@ -193,13 +193,13 @@
     <div class="col-md-12 col-xs-12">
         <div class="form-group estilo-bienvenida" style="padding:10px">
         <select name="fuente" id="fuente" onchange="reajustar();">
-            <option value="10">10px</option>
-            <option value="12">12px</option>
-            <option value="14">14px</option>
-            <option value="16">16px</option>
-            <option value="18">18px</option>
-            <option value="20">20px</option>
+            <option value="">Tamaño de letra</option>
+            <option value="12">Chico</option>
+            <option value="14">Mediano</option>
+            <option value="18">Grande</option>
         </select>
+        <button onclick="aumentar();">A<span class="fa fa-plus" aria-hidden="true"></span></button>
+        <button onclick="disminuir();">A<span class="fa fa-minus" aria-hidden="true"></span></button>
             <h1 class="text-center titulo-b"><b>GOBIERNO ABIERTO</b></h1>
             <div class="text-justify texto-b">
                 <p>Consolidar un Gobierno Abierto, requiere de actores honestamente comprometidos con la transparencia, la participación ciudadana, el combate a la corrupción, la rendición de cuentas y el uso estratégico de las tecnologías de la información, encaminados a construir una política de estado que garanticen la colaboración activa de una sociedad cada día más informada y exigente.</p>
@@ -263,6 +263,24 @@
             var valor = valor.concat("px");
             //$('html').css('font-size', valor);
             $('p').css('font-size', valor);
+        };
+        function aumentar(){
+            var valor = $('p').css('fontSize');
+            valor = valor.substring(0,2);
+            if(valor < 18){
+                valor++;
+                valor = valor.toString().concat("px");
+                $('p').css('font-size', valor);
+            }
+        };
+        function disminuir(){
+            var valor = $('p').css('fontSize');
+            valor = valor.substring(0,2);
+            if(valor > 12){
+                valor--;
+                valor = valor.toString().concat("px");
+                $('p').css('font-size', valor);
+            }
         };
     </script>
     
