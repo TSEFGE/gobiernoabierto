@@ -163,19 +163,24 @@ $getLastId=true;
     /*if (empty($fechaInicial) || empty($fechaFinal))  
         throw new Exception('Es necesario especificar las dos fechas para realizar la búsqueda');*/
         if($idNivel == 0){
-            //$condition .= ' WHERE u.`region` IN (SELECT idRegion FROM regiones WHERE idFiscal = \''.$idUsuario .'\')'; 
+            if (!empty($fechaInicial) && !empty($fechaFinal))
+                $condition .= 'WHERE de.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
         }
         else if($idNivel == 1){
             $condition .= ' WHERE u.`region` IN (SELECT idRegion FROM regiones WHERE idFiscal = \''.$idUsuario .'\')'; 
+            if (!empty($fechaInicial) && !empty($fechaFinal))
+                $condition .= ' AND de.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
         }
         else if($idNivel == 2){
             $condition .= ' WHERE u.`distrito` IN (SELECT un.`distrito` FROM db_users u INNER JOIN unidad un ON u.`idUnidad` = un.`id`
                         WHERE u.`id` = \''.$idUsuario .'\')'; 
+            if (!empty($fechaInicial) && !empty($fechaFinal))
+                $condition .= ' AND de.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
         }else{
             $condition .= ' WHERE de.`idUsuario` = \''.$idUsuario .'\''; 
+            if (!empty($fechaInicial) && !empty($fechaFinal))
+                $condition .= ' AND de.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
         }
-        if (!empty($fechaInicial) && !empty($fechaFinal))
-        $condition .= ' AND de.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
 
         $sqlSelect = '(SELECT u.id, u.`nombre`, COUNT(de.`idDetenido`)detenidos, de.`fechaInicio` FROM `unidad` u
                     LEFT JOIN `detencion` de ON u.`id` = de.`idUnidad`'
