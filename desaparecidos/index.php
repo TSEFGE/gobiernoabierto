@@ -106,5 +106,31 @@ $app->post('/consultaById', function () use ($app, $logger,$dao) {
       echo json_encode($response, JSON_UNESCAPED_UNICODE);
 });
 
+
+$app->post('/insertInforme', function () use ($app, $logger,$dao) {
+    $app->response()->header('Content-Type', 'application/json; charset=utf-8');
+    $response = array();
+    try {
+        if($app->request()->getBody() === ''){
+            throw new Exception('Missing Data Fields', 417);
+        }
+        $request = json_decode($app->request()->getBody());
+        $id = !empty($request->id)?$request->id:NULL;
+        $informe = !empty($request->informe)?$request->informe:NULL;
+        $registros = $dao->insertInforme($id, $informe);
+        if (!$registros) {
+            throw new Exception('No data found', 418);
+        }
+        else{
+            echo json_encode($registros, JSON_UNESCAPED_UNICODE);
+            return;
+        }
+    } catch (Exception $e) {
+        $response['error_code'] = $e->getCode();
+        $response['error_message'] = $e->getMessage();
+    }
+      echo json_encode($response, JSON_UNESCAPED_UNICODE);
+});
+
 $app->run();
 ?>

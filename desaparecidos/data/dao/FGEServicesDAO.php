@@ -51,8 +51,8 @@ class FGEServicesDAO extends GenericDAO {
     public function getDesaparecidoById($id=null) {
     if (empty($id)){
         throw new Exception('Por favor especifique un id');
-    } 
-    $sqlSelect = " SELECT rutfoto, nombre, apat, amat, sexo, edad, nac, origen,estado,mun, DATE_FORMAT(fextrav,'%d-%m-%Y') fextrav ,est,compl,ojos,piel,cab,tcab,nariz,labios,cejas  FROM desaparecidos WHERE id=".$id;
+    }
+    $sqlSelect = " SELECT id, rutfoto, nombre, apat, amat, sexo, edad, nac, origen,estado,mun, DATE_FORMAT(fextrav,'%d-%m-%Y') fextrav ,est,compl,ojos,piel,cab,tcab,nariz,labios,cejas  FROM desaparecidos WHERE id=".$id;
     //    $sqlSelect = " SELECT rutfoto, nombre, apat, amat, sexo, edad, nac, origen,estado,mun, DATE_FORMAT(fextrav,'%d-%m-%Y') fextrav ,est,compl,ojos,piel,cab,tcab,nariz,labios,cejas  FROM desaparecidos2 WHERE id=".$id;
         $this->logger->debug('getDesaparecidoById: ' . $sqlSelect);
         $result = $this->select($sqlSelect);
@@ -61,5 +61,27 @@ class FGEServicesDAO extends GenericDAO {
         else 
             return NULL;
     }
+
+
+    public function insertInforme($id=null, $informe=null) {
+    if (empty($id)){
+        throw new Exception('Por favor especifique un id');
+    }
+    if (empty($informe)){
+        throw new Exception('Por favor especifique un informe');
+    }
+    $fecha = date('Y-m-d H:i:s');
+    $sqlInsert = "INSERT INTO tbl_avisos (idDesaparecido, aviso, fechaEnvio) VALUES ('$id','$informe','$fecha')";
+        $this->logger->debug('insertInforme: ' . $sqlInsert);
+        $result = $this->insert($sqlInsert);
+
+        if(count($result) >= 1)
+            $estado = '{"estado":"enviado"}';
+        else 
+            $estado = '{"estado":"error"}';
+
+        return $estado;
+    }
+
 }
 ?>
