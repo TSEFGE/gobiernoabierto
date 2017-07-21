@@ -484,7 +484,9 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                     url: 'index.php/detalleReporte',
                     dataType: "json",
                     data: JSON.stringify({
-                        idUnidad: idUnidad
+                        idUnidad: idUnidad,
+                        fechaInicial: $("#fechaInicial").val(),
+                        fechaFinal: $("#fechaFinal").val()
                     }),
                     success: function (data) {//Comienza a dibujar en el modal
                         $('#detalleReporte').empty();
