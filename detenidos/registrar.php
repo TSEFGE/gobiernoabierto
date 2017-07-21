@@ -326,7 +326,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                         <div class="col-xs-12 col-sm-6 col-md-3" style="padding-left: 15px;">
                                             <div class="form-group">
                                                 <label for="fechaInicial">De:</label>
-                                                <div class='input-group date' id='datetimepicker3'>
+                                                <div class="input-group date" id="datetimepicker3">
                                                     <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaInicial" data-format="yyyy-mm-dd" name="fechaInicial" ng-model="fechaInicial">
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
@@ -337,7 +337,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                         <div class="col-xs-12 col-sm-6 col-md-3 lineaForm" style="padding-left: 15px;">
                                             <div class="form-group">
                                                 <label for="fechaFinal">A:</label>
-                                                <div class='input-group date' id='datetimepicker4'>
+                                                <div class="input-group date" id="datetimepicker4">
                                                     <input type="text" class="form-control ng-valid" onclick="this.blur(); "keyup="this.blur();" id="fechaFinal" data-format="yyyy-mm-dd" name="fechaFinal" ng-model="fechaFinal">
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
@@ -422,15 +422,12 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
             $('#datetimepicker1').datetimepicker({format: 'YYYY/MM/DD HH:mm:ss',locale: 'es'});
         });
         $(function () {
-            $('#datetimepicker2').datetimepicker( {format: 'YYYY/MM/DD HH:mm:ss',locale: 'es'});
+            $('#datetimepicker2').datetimepicker({format: 'YYYY/MM/DD HH:mm:ss',locale: 'es'});
         });
 
         $(function () {
             $('#datetimepicker3').datetimepicker({format: 'YYYY-MM-DD',locale: 'es'});
-            $('#datetimepicker4').datetimepicker({
-                format: 'YYYY-MM-DD',
-                locale: 'es'
-            });
+            $('#datetimepicker4').datetimepicker({format: 'YYYY-MM-DD',locale: 'es'});
             $("#datetimepicker3").on("dp.change", function (e) {
                 $('#datetimepicker4').data("DateTimePicker").minDate(e.date);
             });
@@ -440,8 +437,8 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
         });
 
         function borrar(){
-            $('#fechaInicial').val('');
-            $('#fechaFinal').val('');
+            $('#datetimepicker3').data("DateTimePicker").clear();
+            $('#datetimepicker4').data("DateTimePicker").clear();
             var tablaR = $('#reportes').DataTable();
             tablaR.clear().draw();
         };

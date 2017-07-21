@@ -497,9 +497,12 @@
 
     function darInforme(id){
         $('#botonInforme').empty();
-        htmlElement = $('<button class="btn btn-primary" id="enviarInforme" onclick="enviarInforme('+id+');" >Enviar</button></div>');
+        htmlElement = $('<button ng-click="limpiarUpdatePassword()" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button><button class="btn btn-primary" id="enviarInforme" onclick="enviarInforme('+id+');" >Enviar</button></div>');
         $('#botonInforme').append(htmlElement);
         $("#modalInforme").modal();
+        $("#modalInforme").on("hidden.bs.modal", function () {
+            $("#informe").val("");
+        });
     }
 
     function enviarInforme(id){
@@ -518,7 +521,8 @@
                         'Hecho',
                         'Se ha enviado correctamente el informe, muchas gracias por su ayuda.',
                         'success'
-                        );
+                    );
+                    $("#informe").val("");
                     $("#modalInforme").modal('hide');
                     return true;
                 }else{
@@ -701,7 +705,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span></button>
                     <h4 class="modal-title text-center"><strong>Infórmanos sobre esta persona</strong></h4>
                 </div>
                 <div class="modal-body text-center">
