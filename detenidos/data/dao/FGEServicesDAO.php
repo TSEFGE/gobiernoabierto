@@ -215,7 +215,7 @@ $getLastId=true;
                 $condition .= ' AND d.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
         }
 
-        $sqlSelect = 'SELECT de.`nombre`, de.`paterno`, de.`materno`, de.`fechaNacimiento`, d.`fechaInicio`, d.`fechaFin`, d.`ubicacion` FROM `detencion` d INNER JOIN `detenido` de ON d.`idDetenido` = de.`id`' . $condition .'';
+        $sqlSelect = 'SELECT de.`nombre`, de.`paterno`, de.`materno`, DATE_FORMAT(de.`fechaNacimiento`, \'%d/%m/%Y\')fechaNacimiento, d.`fechaInicio`, d.`fechaFin`, d.`ubicacion` FROM `detencion` d INNER JOIN `detenido` de ON d.`idDetenido` = de.`id`' . $condition .'';
             
         $result = $this->select($sqlSelect);
         if(count($result) >= 1)
