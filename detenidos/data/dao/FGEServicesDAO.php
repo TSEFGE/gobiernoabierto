@@ -312,28 +312,37 @@ $getLastId=true;
         $email = $resultado[0]['correo'];
 
         $condition=""; 
-        /*if (empty($fechaInicial) || empty($fechaFinal))  
+    /*if (empty($fechaInicial) || empty($fechaFinal))  
         throw new Exception('Es necesario especificar las dos fechas para realizar la búsqueda');*/
         if($idNivel == 0){
-                //$condition .= ' WHERE u.`region` IN (SELECT idRegion FROM regiones WHERE idFiscal = \''.$idUsuario .'\')'; 
+            if (!empty($fechaInicial) && !empty($fechaFinal))
+                $condition .= 'WHERE de.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
         }
         else if($idNivel == 1){
             $condition .= ' WHERE u.`region` IN (SELECT idRegion FROM regiones WHERE idFiscal = \''.$idUsuario .'\')'; 
+            if (!empty($fechaInicial) && !empty($fechaFinal))
+                $condition .= ' AND de.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
         }
         else if($idNivel == 2){
             $condition .= ' WHERE u.`distrito` IN (SELECT un.`distrito` FROM db_users u INNER JOIN unidad un ON u.`idUnidad` = un.`id`
-            WHERE u.`id` = \''.$idUsuario .'\')'; 
+                        WHERE u.`id` = \''.$idUsuario .'\')'; 
+            if (!empty($fechaInicial) && !empty($fechaFinal))
+                $condition .= ' AND de.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
         }else{
-            $condition .= ' WHERE d.`idUsuario` = \''.$idUsuario .'\''; 
+            $condition .= ' WHERE de.`idUsuario` = \''.$idUsuario .'\''; 
+            if (!empty($fechaInicial) && !empty($fechaFinal))
+                $condition .= ' AND de.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
         }
-        if (!empty($fechaInicial) && !empty($fechaFinal))
-            $condition .= ' AND d.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
 
-        $sqlSelect = 'SELECT d.`idUnidad`, u.`nombre`, COUNT(d.`idDetenido`)detenidos, d.`fechaInicio` FROM `detencion` d
-        INNER JOIN `unidad` u ON d.`idUnidad` = u.`id`
-        INNER JOIN `db_users` us ON d.`idUsuario` = us.`id`'
-        . $condition .'
-        GROUP BY d.`idUnidad`' ;
+        $sqlSelect = '(SELECT u.id, u.`nombre`, COUNT(de.`idDetenido`)detenidos, de.`fechaInicio` FROM `unidad` u
+                    LEFT JOIN `detencion` de ON u.`id` = de.`idUnidad`'
+                    . $condition .'
+                    GROUP BY u.`id`)
+                    UNION
+                    (SELECT u.id, u.`nombre`, COUNT(de.`idDetenido`)detenidos, de.`fechaInicio` FROM `unidad` u
+                    RIGHT JOIN `detencion` de ON u.`id` = de.`idUnidad`' 
+                    . $condition .'
+                    GROUP BY u.`id`)';
 
         $result = $this->select($sqlSelect);
         $numfilas = count($result);

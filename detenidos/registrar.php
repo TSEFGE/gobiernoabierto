@@ -558,12 +558,13 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                         if (key=="error_code"){
                             swal(
                                 'Atención',
-                                'No se ha podido mandar el reporte.',
+                                'Ha ocurrido un error al mandar el reporte.',
                                 'error'
                             );
                             return false;
                         }else{
-                            if(item.estado == "enviado"){
+                            var json_str =  JSON.stringify(data);//Convierte el json a string
+                            if(json_str == '{"estado":"enviado"}'){
                                 swal(
                                     'Hecho',
                                     'Se ha enviado correctamente el reporte.',
