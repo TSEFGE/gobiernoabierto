@@ -225,9 +225,10 @@ $app->post('/detalleReporte', function () use ($app, $logger,$dao) {
     $request =$app->request()->getBody()!=='' ? json_decode($app->request()->getBody()): null;    
     try{
         $request = json_decode($app->request()->getBody());
-        //$fechaInicial = !empty($request->fechaInicial)?$request->fechaInicial:NULL;
+        $fechaInicial = !empty($request->fechaInicial)?$request->fechaInicial:NULL;
+        $fechaFinal = !empty($request->fechaFinal)?$request->fechaFinal:NULL;
         $idUnidad = !empty($request->idUnidad)?$request->idUnidad:NULL;
-       $registros = $dao->detalleReporte($idUnidad, $_SESSION['idUsuario'], $_SESSION['userLevel']);
+       $registros = $dao->detalleReporte($fechaInicial, $fechaFinal, $idUnidad, $_SESSION['idUsuario'], $_SESSION['userLevel']);
         if (!$registros) {
             throw new Exception('No existe registro', 418);
         }

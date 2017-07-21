@@ -200,19 +200,23 @@ $getLastId=true;
     }
 
 
-    public function detalleReporte($idUnidad=null, $idUsuario=null, $idNivel=null) {
+    public function detalleReporte($fechaInicial=null, $fechaFinal=null, $idUnidad=null, $idUsuario=null, $idNivel=null) {
 
     $condition=""; 
     /*if (empty($fechaInicial) || empty($fechaFinal))  
         throw new Exception('Es necesario especificar las dos fechas para realizar la búsqueda');*/
         if($idNivel == 3){
             $condition .= ' WHERE d.`idUnidad` = \''.$idUnidad .'\' AND d.`idUsuario` = \''.$idUsuario .'\''; 
+            if (!empty($fechaInicial) && !empty($fechaFinal))
+                $condition .= ' AND d.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
         }else{
             $condition .= ' WHERE d.`idUnidad` = \''.$idUnidad .'\''; 
+            if (!empty($fechaInicial) && !empty($fechaFinal))
+                $condition .= ' AND d.`fechaInicio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
         }
 
         $sqlSelect = 'SELECT de.`nombre`, de.`paterno`, de.`materno`, de.`fechaNacimiento`, d.`fechaInicio`, d.`fechaFin`, d.`ubicacion` FROM `detencion` d INNER JOIN `detenido` de ON d.`idDetenido` = de.`id`' . $condition .'';
-        
+            
         $result = $this->select($sqlSelect);
         if(count($result) >= 1)
             return $result;
