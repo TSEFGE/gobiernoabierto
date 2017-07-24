@@ -62,6 +62,27 @@ class FGEServicesDAO extends GenericDAO {
             return NULL;
     }
 
+
+    public function insertInforme($id=null, $informe=null) {
+    if (empty($id)){
+        throw new Exception('Por favor especifique un id');
+    }
+    if (empty($informe)){
+        throw new Exception('Por favor especifique un informe');
+    }
+    $fecha = date('Y-m-d H:i:s');
+    $sqlInsert = "INSERT INTO tbl_avisos (idDesaparecido, aviso, fechaEnvio) VALUES ('$id','$informe','$fecha')";
+        $this->logger->debug('insertInforme: ' . $sqlInsert);
+        $result = $this->insert($sqlInsert);
+
+        if(count($result) >= 1)
+            $estado = '{"estado":"enviado"}';
+        else 
+            $estado = '{"estado":"error"}';
+
+        return $estado;
+    }
+
     /*pruebas para link de compartir
     */
     public function getdesaparecidolink($id){
