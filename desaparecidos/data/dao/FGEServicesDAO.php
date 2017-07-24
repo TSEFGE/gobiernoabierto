@@ -52,7 +52,7 @@ class FGEServicesDAO extends GenericDAO {
     if (empty($id)){
         throw new Exception('Por favor especifique un id');
     } 
-    $sqlSelect = " SELECT rutfoto, nombre, apat, amat, sexo, edad, nac, origen,estado,mun, DATE_FORMAT(fextrav,'%d-%m-%Y') fextrav ,est,compl,ojos,piel,cab,tcab,nariz,labios,cejas  FROM desaparecidos WHERE id=".$id;
+    $sqlSelect = " SELECT id, rutfoto, nombre, apat, amat, sexo, edad, nac, origen,estado,mun, DATE_FORMAT(fextrav,'%d-%m-%Y') fextrav ,est,compl,ojos,piel,cab,tcab,nariz,labios,cejas  FROM desaparecidos WHERE id=".$id;
     //    $sqlSelect = " SELECT rutfoto, nombre, apat, amat, sexo, edad, nac, origen,estado,mun, DATE_FORMAT(fextrav,'%d-%m-%Y') fextrav ,est,compl,ojos,piel,cab,tcab,nariz,labios,cejas  FROM desaparecidos2 WHERE id=".$id;
         $this->logger->debug('getDesaparecidoById: ' . $sqlSelect);
         $result = $this->select($sqlSelect);
@@ -60,6 +60,18 @@ class FGEServicesDAO extends GenericDAO {
             return $result;
         else 
             return NULL;
+    }
+
+    /*pruebas para link de compartir
+    */
+    public function getdesaparecidolink($id){
+        $sqlSelect = 'SELECT id,nombre, apat, amat, sexo, edad, origen, rutfoto,mun,estado,DATE_FORMAT(fextrav,\'%d-%m-%Y\') fextrav FROM desaparecidos WHERE id='.$id ;
+        $result = $this->select($sqlSelect);
+        if(count($result) >= 1)
+            return $result;
+        else 
+            return NULL;
+
     }
 }
 ?>
