@@ -359,7 +359,7 @@ $getLastId=true;
         $numfilas = count($result);
 
         $tabla ="";
-        $tabla = '<table><thead><tr>No.<th></th><th>Nombre de la unidad</th><th>No. de Detenidos</th></tr></thead><tbody>';
+        $tabla = '<table border=1><thead><tr>No.<th></th><th>Nombre de la unidad</th><th>No. de Detenidos</th></tr></thead><tbody>';
         $numero=1;
         $counter= 0;
         while ($counter < $numfilas) {
