@@ -260,8 +260,19 @@ $getLastId=true;
         $mensaje = '<html>
         <head>
             <title>Restablece tu contrase&ntilde;a</title>
+            <style type="text/css" media="screen">
+                .titulo1, .titulo2{
+                    font-family: "neosanspro-bold";
+                    font-size: 2.5rem;
+                }
+                .logotipo{
+                    text-align: center;
+                }    
+            </style>
         </head>
         <body>
+            <img src="http://compukami.esy.es/barra3.png" width="100%">
+                <br>
             <p>Hemos recibido una petici&oacute;n para restablecer la contrase&ntilde;a de tu cuenta.</p>
             <p>Si hiciste esta petici&oacute;n, haz clic en el siguiente enlace, si no hiciste esta petici&oacute;n puedes ignorar este correo.</p>
             <p>
@@ -269,7 +280,7 @@ $getLastId=true;
                 <a href="'.$link.'"> Restablecer contrase&ntilde;a </a>
             </p>
         </body>
-        </html>';
+</html>';
 
         $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
         $cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
@@ -364,6 +375,8 @@ $getLastId=true;
             <title>Reporte de detenciones</title>
         </head>
         <body>
+            <img src="http://compukami.esy.es/barra2.png" width="100%">
+                <br>
             <div>'.$tabla.'</div>
         </body>
         </html>';
