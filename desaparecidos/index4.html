@@ -1,24 +1,32 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=5;">
+  <title>Gobierno Abierto - Registro Público de Personas Desaparecidas</title>
+  <link rel="icon" href="img/icon.png" sizes="192x192">
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.js"></script>
   <link href="css/botonazul.css" rel="stylesheet" type="text/css" />
   <link href="css/botongris.css" rel="stylesheet" type="text/css" />
   <link href="css/alertamarillo.css" rel="stylesheet" type="text/css" />
   <link href="css/cssfonts.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/sticky-footer.css">
   <link rel="stylesheet" href="css/fichadesaparecido.css">
   <link rel="stylesheet" href="css/separador.css">
   <link rel="stylesheet" href="css/ficha-detalles.css">
-  <link rel="stylesheet" href="css/panel-default.css">    
+  <link rel="stylesheet" href="css/panel-default.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.js"></script>
+  <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+  <!--.......................-->
 </head>
 
 <body>
@@ -59,16 +67,16 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Desaparecidos<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <li title="Consulta de Desaparecidos"><a href="index4.html">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Consulta  </a>
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Consulta</a>
                       </li>
                       <li title="Descargar Archivo"><a href="./desaparecidos.xlsx">
-                        <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar  </a>
+                        <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar</a>
                       </li>
-                      <li title="ir a Infografia"><a href="./img/infografia.pdf">
+                      <li title="ir a Infografía"><a href="./img/infografia.pdf">
                         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infografía</a>
                       </li>
-                      <li title="Estadisticas de Desaparecidos"><a href="http://www.transparenciamexico.mx/User/Workspace/Archivos/PDF/29/INCISO-C-75903.pdf">
-                        <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Estadística</a>
+                      <li title="Estadísticas de Desaparecidos"><a href="http://www.transparenciamexico.mx/User/Workspace/Archivos/PDF/29/INCISO-C-75903.pdf">
+                        <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Estadísticas</a>
                       </li>
                     </ul>
                   </li>
@@ -76,21 +84,18 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Detenidos<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <li title="Consulta de Detenidos"><a href="../detenidos/index2.html">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Consulta  </a>
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Consulta</a>
                       </li>
-                      <li title="ir a Infografia"><a href="../detenidos/img/infografia.pdf">
+                      <li title="ir a Infografía"><a href="../detenidos/img/infografia.pdf">
                         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infografía</a>
                       </li>
-                      <li title="Estadisticas de Detenidos"><a href="../detenidos/img/grafica.png">
-                        <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Estadística</a>
-                      </li>
-                      <li title="Ayuda"><a href="../detenidos/img/manual.pdf">
-                        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ayuda</a>
+                      <li title="Estadísticas de Detenidos"><a href="../detenidos/img/grafica.png">
+                        <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Estadísticas</a>
                       </li>
                     </ul>
                   </li>
                   <li title="Ir a Pagina Principal">
-                    <a href="http://fiscaliaveracruz.gob.mx/"> Fiscalia</a>
+                    <a href="http://fiscaliaveracruz.gob.mx/"> Fiscalía</a>
                   </li>
                 </ul>
               </div>
@@ -168,7 +173,7 @@
             <div class="col-md-2 col-xs-12">
               <div class="form-group">
                 <label for="edad">Edad:</label>
-                <input type='number' id="edad" min="1"  name="edad" placeholder="Al Desaparecer (años)" class="form-control" />
+                <input type='number' id="edad" min="1" name="edad" placeholder="Al Desaparecer (años)" class="form-control" />
               </div>
             </div>
           </div>
@@ -192,13 +197,11 @@
     </div>
 
     <!--Modal ayuda-->
-    <!-- Modal -->
     <div id="modalHelp" class="modal fade" role="dialog">
       <div class="modal-dialog">
-        <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span></button>
               <h4 class="modal-title text-center">REGISTRO PÚBLICO DE PERSONAS DESAPARECIDAS</h4>
           </div>
           <div class="modal-body text-justify">
@@ -213,7 +216,7 @@
 
     <div class="alert alert-warning-alt">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <h5>Publicar datos de personas desaparecidas tiene como fin su <strong>búsqueda y localización</strong> , por lo que no se vulnera el derecho a su privacidad.</h5>
+        <h5>Publicar datos de personas desaparecidas tiene como fin su <strong>búsqueda y localización</strong>, por lo que no se vulnera el derecho a su privacidad.</h5>
     </div>
 
     <!-- Modal de mostrar los resultadosmodal -->

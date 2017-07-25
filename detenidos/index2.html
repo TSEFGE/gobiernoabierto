@@ -3,12 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=5;" />
+	<title>Gobierno Abierto - Registro Público de Búsqueda y Localización de Personas Detenidas</title>
+	<link rel="icon" href="img/icon.png" sizes="192x192">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.css">
-	<!--<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/bootstrap-theme.css">
-	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker3.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker3.standalone.min.css">
 	<!--Mis estilos-->
@@ -21,18 +21,14 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.js"></script>
-	<!--<script src="js/jquery-3.2.1.js"></script>
-	<script src="js/bootstrap.js"></script>-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/locales/bootstrap-datepicker.es.min.js"></script>
 	<!--Del original-->
 	<script defer src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>    
     <script defer src="js/detenidos.js"></script>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="HandheldFriendly" content="true">
-	
-	<title>Gobierno Abierto - Registro Público de Búsqueda y Localización de Personas Detenidas</title>
-	<link rel="icon" href="img/icon.png" sizes="192x192">
+    <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+	<!--.......................-->
 </head>
 <body ng-controller="UnidadesController as Busqueda">
 	<div class="container">
@@ -65,28 +61,26 @@
 		    					<ul class="nav navbar-nav">
 		    						<li class="lineamenu" title="Bienvenida">
 		    							<a href="../desaparecidos/bienvenida.html" ><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Bienvenida</a>
-
 		    						</li>
 		    						<li class="lineamenu">
 		    							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Desaparecidos<span class="caret"></span></a>
 		    							<ul class="dropdown-menu">
 		    								<li title="Consulta de Desaparecidos"><a href="../desaparecidos/index4.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Consulta  </a></li>
 		    								<li title="Descargar Archivo"><a href="../desaparecidos/desaparecidos.xlsx"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar  </a></li>
-		    								<li title="ir a Infografia"><a href="../desaparecidos/img/infografia.pdf"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infografía</a></li>
-		    								<li title="Estadisticas de Desaparecidos"><a href="http://www.transparenciamexico.mx/User/Workspace/Archivos/PDF/29/INCISO-C-75903.pdf"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Estadística</a></li>
+		    								<li title="Ir a Infografía"><a href="../desaparecidos/img/infografia.pdf"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infografía</a></li>
+		    								<li title="Estadísticas de Desaparecidos"><a href="http://www.transparenciamexico.mx/User/Workspace/Archivos/PDF/29/INCISO-C-75903.pdf"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Estadísticas</a></li>
 		    							</ul>
 		    						</li>
 		    						<li class="lineamenu">
 		    							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Detenidos<span class="caret"></span></a>
 		    							<ul class="dropdown-menu">
 		    								<li title="Consulta de Detenidos"><a href="index2.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Consulta  </a></li>
-		    								<li title="ir a Infografia"><a href="./img/infografia.pdf"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infografía</a></li>
-		    								<li title="Estadisticas de Detenidos"><a href="./img/grafica.png"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Estadística</a></li>
-		    								<li title="Ayuda"><a href="./img/manual.pdf"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ayuda</a></li>
+		    								<li title="ir a Infografía"><a href="./img/infografia.pdf"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infografía</a></li>
+		    								<li title="Estadísticas de Detenidos"><a href="./img/grafica.png"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Estadísticas</a></li>
 		    							</ul>
 		    						</li> 
-		    						<li title="Ir a Pagina Principal">
-		    							<a href="http://fiscaliaveracruz.gob.mx/"> Fiscalia</a>
+		    						<li title="Ir a Página Principal">
+		    							<a href="http://fiscaliaveracruz.gob.mx/"> Fiscalía</a>
 		    						</li>
 		    					</ul>
 		    				</div>
@@ -149,9 +143,9 @@
 									<label for="sexo">Sexo</label>
 									<div>
 										<select id="sexo" name="sexo" ng-model="sexo" class="form-control required ng-valid ng-dirty" required>
-											<option value="">Sexo</option>
-											<option value="Masculino">Masculino</option>
-											<option value="Femenino">Femenino</option>
+											<option value="">SEXO</option>
+											<option value="Masculino">MASCULINO</option>
+											<option value="Femenino">FEMENINO</option>
 										</select>
 									</div>
 								</div>
@@ -250,12 +244,11 @@
 		
 	</div>
 
-	
 	<footer class="footer">
 		<div class="row footer-area-wrap">
 			<div class="container">
 				<div class="col-xs-12 col-sm-4">
-					<img src="./img/logo-footer.png" alt="Fiscalia General del Estado" width="140">
+					<img src="./img/logo-footer.png" alt="Fiscalía General del Estado" width="140">
 				</div>
 				<div class="col-xs-12 col-sm-4 lineaFooter">
 					<h4 class="negrita"><strong>Contacto</strong></h4>
@@ -277,7 +270,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 col-md-10">
-						<div>Copyright © 2017 Fiscalía General del Estado de Veracruz , DCIIT</div>
+						<div>Copyright © 2017 Fiscalía General del Estado de Veracruz, DCIIT</div>
 					</div>
 					<div class="col-xs-12 col-md-2 ">
 						<a href="http://facebook.com/fgeveracruz/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -289,7 +282,6 @@
 		</div>
 	</footer>
 
-	
 	<script>
 		$( document ).ready(function() {
             $(function (){

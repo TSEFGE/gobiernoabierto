@@ -55,7 +55,7 @@
     display: none;
 }
 
-input {
+input[type="text"], input[type="password"] {
     text-transform: uppercase;
 }
 

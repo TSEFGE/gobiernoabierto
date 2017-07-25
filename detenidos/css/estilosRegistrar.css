@@ -1,12 +1,15 @@
-input {
-	text-transform: uppercase;
+input[type="text"], input[type="password"], input[type="search"] {
+    text-transform: uppercase;
 }
-/*Nuevos*/
 .ng-scope{
 	padding-top: 0px;
 }
-.barra{
-	margin-top: 15px;
+.imgPanel{
+	width:25px;
+	height:25px;
+}
+.espacioForm{
+	padding-left: 15px;
 }
 .panel2{
 	background-color: #919393;

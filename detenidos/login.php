@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Gobierno Abierto - Registro Público de Personas Detenidas</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Gobierno Abierto - Registro Público de Personas Detenidas</title>
+    <link rel="icon" href="img/icon.png" sizes="192x192">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
 
     <link rel="stylesheet" href="css/cssfonts.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/formulario.css">
-
-    
 </head>
 <body>
     <div class="container">
@@ -43,10 +42,8 @@
 
                     <img class="img-responsive imagenlogin2" src="img/complementlogin2.jpg" alt="" >
                     <div class="login">
-                        <h2> INICIA SESI&Oacute;N</h2>
-
+                        <h2> INICIA SESIÓN</h2>
                         <h5>¡Bienvenido!</h5>
-
                         <form method="post" action="authentication.php">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario" maxlength="100" required>
@@ -55,7 +52,7 @@
                                 <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" maxlength="100" required>
                             </div>
                             <?php
-                            $E1 ="El usuario y/o clave son incorrectas, vuelva a intentarlo";
+                            $E1 ="El usuario y/o contraseña son incorrectas, vuelva a intentarlo.";
                             if (isset($_GET['error'])) {
                                 echo "<div class='errormsg'>".$E1."</div>";
                             }
@@ -105,7 +102,6 @@
         </div>
     </div>
 
-
     <div id="modalenviado" class="modal fade" role="dialog"> 
         <div class="modal-dialog modal-lg" role="document"> 
             <div class="modal-content"> 
@@ -113,7 +109,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
                         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> 
                     </button> 
-                    <h4 class="modal-title" id="myModalLabel"><strong>Un correo ha sido enviado a su cuenta de email con las instrucciones para restablecer la contrase&ntilde;a</h4> 
+                    <h4 class="modal-title" id="myModalLabel"><strong>Un correo ha sido enviado a su cuenta de email con las instrucciones para restablecer la contraseña.</h4> 
                 </div> 
             </div> 
         </div>
@@ -132,10 +128,10 @@
         </div> 
     </div>
 
-
     <footer>
         <img src="img/footerlogin.jpg" width="100%"/>        
     </footer>
+    
     <script>
         $(document).ready(function(){
             $("#frmRestablecer").submit(function(event){
