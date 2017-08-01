@@ -397,6 +397,14 @@ $getLastId=true;
     }
 
     
+    public function getUsuariosReporte() {
+        $sqlSelect = 'SELECT * FROM db_users where level < 2 order by level' ;
+        $result = $this->select($sqlSelect);
+        if(count($result) >= 1)
+            return $result;
+        else 
+            return NULL;
+    }
 
     
 //fin pruebas dao
