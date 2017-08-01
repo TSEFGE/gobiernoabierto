@@ -358,7 +358,10 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                     </form>
                 </div>
 
-                <button type="submit" class="btn btn-gris" id="enviaReporte" name="enviaReporte" value="Buscar">Enviar Reporte por Correo</button></br>
+                <button type="submit" class="btn btn-gris" id="enviaReporte" name="enviaReporte" value="Buscar">Enviar Reporte por Correo</button></br></br>
+                <div class="panel" style="padding: 0px;">
+                    <div class="panel-heading panel2 text-center"><h5 class="rango"></h5></div>
+                </div>
                 <div class="table-responsive">
                     <table id="reportes" class="display table-striped table-hover table-bordered" cellspacing="0" width="99%">
                         <thead class="cabecera">
@@ -513,6 +516,14 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
         });
 
         $( "#searchRep" ).click( function () {
+            var cadena1 = "Reporte generado de ";
+            var fecha1 = ($("#fechaInicial").val() == "") ? '2017-01-01' :  $("#fechaInicial").val();
+            var cadena2 = " a ";
+            var f = new Date();
+            var fecha = f.getFullYear() + "-" + (f.getMonth() +1) + "-"  + f.getDate();
+            var fecha2 = ($("#fechaFinal").val() == "") ? fecha :  $("#fechaFinal").val();
+            var cadena = cadena1.concat(fecha1, cadena2, fecha2);
+            $(".rango").html(cadena);
             $.ajax({
                 type: 'POST',
                 contentType: 'application/json',
