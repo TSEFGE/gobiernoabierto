@@ -508,6 +508,7 @@
         $("#modalInforme").modal();
         $("#modalInforme").on("hidden.bs.modal", function () {
             $("#informe").val("");
+            $('#success').modal('hide');
         });
     }
 
@@ -541,6 +542,8 @@
                 }
             }
         });
+        //var scrollPos = $('#detailsDiv');
+          //$(window).scrollTop(scrollPos);
     }
 
     function limpiar(){
