@@ -101,7 +101,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                         <a href="http://fiscaliaveracruz.gob.mx/" onclick="borrar();"> Fiscalía</a>
                                     </li>
                                     <li class="active lineamenu"><a data-toggle="pill" href="#home" onclick="borrar();"><span class="fa fa-user-plus" aria-hidden="true"></span> Registrar detención</a></li>
-                                    <li class="lineamenu"><a data-toggle="pill" href="#reporte" onclick="borrar();"><span class="fa fa-file" aria-hidden="true"></span> Generar Reporte</a></li>
+                                    <li class="lineamenu"><a data-toggle="pill" href="#reporte" onclick="borrar();"><span class="fa fa-file-text" aria-hidden="true"></span> Generar Reporte</a></li>
                                     <li>
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog" aria-hidden="true"></span> Ajustes<span class="caret"></span></a>
                                         <ul class="dropdown-menu">
@@ -160,7 +160,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                     <form name="detenido" id="detenido" method="POST"  novalidate class="simple-form" ng-submit="todoList.submit()">
                         <div class="panel"> 
                             <div class="panel-heading panel2">
-                                <h3 class="panel-title text-left"><img class="imgPanel" src="./img/personales.png"/>  Datos Detenido</h3>
+                                <h3 class="panel-title text-left"><i class="fa fa-address-card" aria-hidden="true"></i>  Datos Detenido</h3>
                             </div> 
                             <div class="panel-body" id="searchDiv">
                                 <div class="box-body">
@@ -189,8 +189,8 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                                 <label for="sexo">Sexo</label>
                                                 <div>
                                                     <select id="sexo" name="sexo" ng-model="sexo" class="form-control required ng-valid ng-dirty" required>
-                                                        <option>MASCULINO</option>
-                                                        <option>FEMENINO</option>
+                                                        <option value="MASCULINO">Hombre</option>
+                                                        <option value="FEMENINO">Mujer</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -214,7 +214,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
 
                         <div class="panel">
                             <div class="panel-heading panel2">
-                                <h3 class="panel-title text-left"><img class="imgPanel" src="./img/detencion.png"/>  Datos Detención</h3>
+                                <h3 class="panel-title text-left"><i class="fa fa-university" aria-hidden="true"></i> Datos Detención</h3>
                             </div> 
                             <div class="panel-body" id="searchDiv">
                                 <div class="box-body">
@@ -274,19 +274,17 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                             <input  type="button" class="btn btn-gris" name="actualizar" id="actualizar" value="Actualizar" style="display: none;"  ng-click="updateDetenido()">
                             <input  class="btn btn-gris" onclick="cancelarEdicion();" type="button" id="cancelar" name="cancelar" value="Cancelar" style="display: none;">
                             <input type="hidden" id="idDetencion" value="">
+
+                            <?php
+                                if($_SESSION['userLevel']==1){
+                            ?>
+                                <button class="btn btn-gris" id="removeBtn" ng-click="removeDetenido()">Borrar</button>
+                            <?php
+                                }
+                            ?>
+                                <button class="btn btn-gris" id="editBtn" ng-click="editDetenido()">Editar</button>
                         </div>
                     </form>
-                </div>
-
-                <div>
-                    <?php
-                        if($_SESSION['userLevel']==1){
-                    ?>
-                        <button class="btn btn-gris" id="removeBtn" ng-click="removeDetenido()">Borrar</button>
-                    <?php
-                        }
-                    ?>
-                        <button class="btn btn-gris" id="editBtn" ng-click="editDetenido()">Editar</button>
                 </div></br>
 
                 <div class="table-responsive">

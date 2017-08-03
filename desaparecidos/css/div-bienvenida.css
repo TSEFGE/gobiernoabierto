@@ -73,3 +73,10 @@ p {
 	}
 	
 }
+
+.btnw3{
+	background-color: #E8E8E8;
+}
+.btnw3:hover{
+	background-color: #CCCCCC;
+}
