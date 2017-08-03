@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/formulario.css">
+    <link rel="stylesheet" href="css/sticky-footer.css">
 </head>
 <body>
     <div class="container">
@@ -28,9 +29,10 @@
                     <br>
                 </div>
             </div>
+        <img src="img/barra.png" width="100%"/>
         </header>
     </div>
-
+<br><br>
     <div class="container-fluid">
         <div>
             <div class="col-xs-12  col-sm-2 col-md-2 col-lg-3"></div>
@@ -74,7 +76,7 @@
             <div class="col-xs-12 col-sm-2 col-md-2 col-lg-3"></div>
         </div>
     </div>
-    <br><br><br><br><br>
+    <br><br>
 
     <div id="modalRecupera" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -127,9 +129,28 @@
             </div> 
         </div> 
     </div>
-
-    <footer>
-        <img src="img/footerlogin.jpg" width="100%"/>        
+    
+            
+    <footer class="footer">
+        <div class="row footer-area-wrap">
+            <div class="container text-center">
+                    <img src="./img/logo-footer.png" alt="Fiscalía General del Estado" width="140">
+            </div>
+        </div>
+        <div class="footer-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-10">
+                        <div>Copyright © 2017 Fiscalía General del Estado de Veracruz, DCIIT</div>
+                    </div>
+                    <div class="col-xs-12 col-md-2 ">
+                        <a href="http://facebook.com/fgeveracruz/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="http://twitter.com/FGE_Veracruz"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="https://www.youtube.com/channel/UC464yhyQ9Zc6FYkPyN69cgA"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>        
     </footer>
     
     <script>

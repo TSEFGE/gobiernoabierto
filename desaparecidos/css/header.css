@@ -1,3 +1,4 @@
+
 .header{
     max-width: 95%;
     right: 0px;
@@ -25,7 +26,6 @@
     background-color: #444644;
     border-color: #444644;
     color: #fff;
-    box-shadow: 2px 3px 6px 1px #888888;
     margin-bottom: 15px;
     min-height: 30px;
 }
@@ -277,7 +277,6 @@
         border-color: #444644;
         color: #fff;
 		box-shadow: none;
-        box-shadow: 2px 3px 6px 1px #888888;
         margin-left: 0px;
         margin-right: 0px;
     }
