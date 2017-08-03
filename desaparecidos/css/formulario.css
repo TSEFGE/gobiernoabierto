@@ -1,0 +1,126 @@
+.panel{
+	background-color: #E4E5E6;
+	color: #000;
+}
+.panel1{
+	background-color: #8e8e8e;
+	color: #fff;
+}
+.info-llama{
+	font-size: 1.4rem;
+}
+
+.panel2{
+	background-color: #444644;
+	color: #fff;	
+}
+.panel-title{
+	line-height: 20px;
+}
+.label-corte{
+  text-align: left;
+}
+
+.lineaForm{
+    border-left: 1px solid #919396;
+    height: 5em;
+}
+.btn-azul{
+	font-family: 'neosanspro-regular';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color:  #48b0f7;
+    color: #fff;
+}
+.btn-azul:hover{
+	background-color:  #3B86B9;
+	color: #fff;
+}
+.btn-gris{
+	font-family: 'neosanspro-regular';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #cccccc;
+    color: #fff;
+}
+.btn-gris:hover{
+	background-color:  #919396;
+	color: #fff;
+}
+
+.modal-dialog, .modal-content, .modal-header{
+	border-radius: 5px;
+}
+
+#modal2{
+	background-color: #FDDDDD;
+	border: 1px solid  #933432;
+}
+#modal1{
+	background-color: #FEF6DD;
+	border: 2px solid  #967F35;
+}
+
+.neosanprobold{
+	font-family: 'neosanspro-bold';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.neosansproregular{
+	font-family: 'neosanspro-regular';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+input[type="email"]{
+  text-transform: none;
+}
+
+@media (max-width: 990px) {
+    .lineaForm{
+        border-left: 0px;
+    }
+}
+
+@media (min-width: 420px) {
+    .info-llama{
+    font-size: 1.4rem;
+  }
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .info-llama{
+      font-size: 1.6rem;
+    }
+    /*Centrar verticalmente modal*/
+    .modal {
+      text-align: center;
+      padding: 0!important;
+    }
+    .modal:before {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+      margin-right: -4px;
+    }
+    .modal-dialog {
+      display: inline-block;
+      text-align: left;
+      vertical-align: middle;
+    }
+}
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .info-llama{
+    font-size: 1.8rem;
+  }
+  .label-corte{
+      text-align: right;
+    }
+}
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .info-llama{
+    font-size: 2rem;
+  }
+}

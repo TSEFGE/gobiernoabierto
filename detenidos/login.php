@@ -64,11 +64,12 @@
 
                             </div>
                             <div class="col-xs-6">
-                                <a class="manual" href="https://drive.google.com/open?id=0B3WZvqbqPu3pRzJKWEVVXzFzbEk"><i class="fa fa-book" aria-hidden="true"></i><br>Manual de Usuario</a>
+                                <a class="help-block" href="https://drive.google.com/open?id=0B3WZvqbqPu3pRzJKWEVVXzFzbEk"><i class="fa fa-book" aria-hidden="true" style="color: #919396;"></i><br>Manual de Usuario</a>
                             </div>
                             <div class="col-xs-6">
-                                <a class="manual" href="#" data-toggle="modal" data-target="#modalRecupera"><i class="fa fa-key" aria-hidden="true"></i><br>Recuperar Contraseña</a>
+                                <a class="help-block" href="#" data-toggle="modal" data-target="#modalRecupera"><i class="fa fa-key" aria-hidden="true" style="color: #919396;"></i><br>Recuperar Contraseña</a>
                             </div>
+                            <br><br><br><br><br>
                         </form>
                     </div>
                 </div>
