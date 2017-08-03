@@ -202,7 +202,7 @@ $app->post('/getReporte', function () use ($app, $logger,$dao) {
         $request = json_decode($app->request()->getBody());
         $fechaInicial = !empty($request->fechaInicial)?$request->fechaInicial:NULL;
         $fechaFinal = !empty($request->fechaFinal)?$request->fechaFinal:NULL;
-       $registros = $dao->getReporte($fechaInicial, $fechaFinal, $_SESSION['idUsuario'], $_SESSION['userLevel']);
+        $registros = $dao->getReporte($fechaInicial, $fechaFinal, $_SESSION['idUsuario'], $_SESSION['userLevel']);
         if (!$registros) {
             throw new Exception('No existe registro', 418);
         }
@@ -218,6 +218,7 @@ $app->post('/getReporte', function () use ($app, $logger,$dao) {
     }
       echo json_encode($response, JSON_UNESCAPED_UNICODE);
 });
+
 
 $app->post('/detalleReporte', function () use ($app, $logger,$dao) {
     $app->response()->header('Content-Type', 'application/json; charset=utf-8');
