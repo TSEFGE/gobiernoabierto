@@ -1,0 +1,161 @@
+* {
+	padding:0;
+	margin:0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+ 
+body {background:#FEFEFE;}
+ 
+.menu_bar {
+	display:none;
+}
+ 
+.barranav {
+	width: 100%;
+}
+ 
+.barranav nav {
+	background:#444644;
+	z-index:1000;
+	border-radius: 5px;	
+	margin:20px auto;
+	margin-top: 0px;
+}
+ 
+.barranav nav ul {
+	list-style:none;
+}
+ 
+.barranav nav ul li {
+	display:inline-block;
+	position: relative;
+}
+ 
+.barranav nav ul li:hover {
+	background:#012f66;
+}
+ 
+.barranav nav ul li a {
+	color:#fff;
+	display:block;
+	text-decoration:none;
+	padding: 20px;
+	padding-bottom: 9px;
+    padding-top: 9px;
+
+}
+ 
+.barranav nav ul li a span {
+	margin-right:10px;
+}
+ 
+.barranav nav ul li:hover .children {
+	display:block;
+}
+ 
+.barranav nav ul li .children {
+	display: none;
+	background:#444644;
+	position: absolute;
+	width: 150%;
+	z-index:1000;
+}
+ 
+.barranav nav ul li .children li {
+	display:block;
+	overflow: hidden;
+	border-bottom: 1px solid rgba(255,255,255,.5);
+}
+ 
+.barranav nav ul li .children li a {
+	display: block;
+}
+ 
+.barranav nav ul li .children li a span {
+	float: left;
+	position: relative;
+	top:3px;
+	margin-right:0;
+	margin-left:10px;
+}
+ 
+.barranav nav ul li .caret {
+	position: relative;
+	top:3px;
+	margin-left:10px;
+	margin-right:0px;
+}
+ 
+
+
+@media screen and (max-width: 800px) {
+	body {
+		padding-top:33px;
+	}
+ 
+	.menu_bar {
+		display:block;
+		width:100%;
+		position: fixed;
+		top:0;
+		background:#444644;
+		z-index: 100;
+		margin-left: -15px;
+		height: 45px;	
+	}
+ 
+	.menu_bar .bt-menu {
+		display: block;
+		padding: 15px;
+		color: #fff;
+		overflow: hidden;
+		font-size: 25px;
+		font-weight: bold;
+		text-decoration: none;
+		padding-top: 8px;
+	}
+ 
+	.menu_bar span {
+		float: right;
+		font-size: 23px;
+	}
+ 
+	.barranav nav {
+		width: 50%;
+		height: 100%;
+		position: fixed;
+		right:100%;
+		margin: 0;
+		overflow: scroll;
+		margin-top: -146px;
+		border-radius: 0;
+	}
+ 
+	.barranav nav ul li {
+		display: block;
+		border-bottom:1px solid rgba(255,255,255,.5);
+	}
+ 
+	.barranav nav ul li a {
+		display: block;
+	}
+ 
+	.barranav nav ul li:hover .children {
+		display: none;
+	}
+ 
+	.barranav nav ul li .children {
+		width: 100%;
+		position: relative;
+	}
+ 
+	.barranav nav ul li .children li a {
+		margin-left:20px;
+	}
+ 
+	.barranav nav ul li .caret {
+		float: right;
+	}
+}

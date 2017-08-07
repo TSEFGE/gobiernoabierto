@@ -32,69 +32,80 @@
     <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 	<!--.......................-->
+    <link rel="stylesheet" href="css/estilosnav.css">
+    <script src="js/main.js"></script>
+    <style>
+    @media screen and (max-width: 800px) {
+      .barranav nav {
+        width: 50%;
+        height: 100%;
+        position: fixed;
+        right:100%;
+        margin: 0;
+        overflow: scroll;
+        margin-top: -202px;
+        border-radius: 0;
+      }
+    }
+  </style>
 </head>
 <body ng-controller="UnidadesController as Busqueda">
-	<div class="container">
 		<header>
-			<div class="row">
-				<div class="col-md-2 col-sm-3 col-xs-12 ">
-					<div class="logotipo">
-						<center>
-							<img src="./img/logo.png" align="center" border="1" width="100" height="100"/>
-						</center>
+			<div class="container conta">
+					<div class="row">
+						<div class="col-md-2 col-sm-3 col-xs-12 ">
+							<div class="logotipo">
+								<center>
+									<img src="./img/logo.png" align="center" border="1" width="100" height="100"/>
+								</center>
+							</div>
+						</div>
+						<div class="col-md-8 col-sm-9 col-xs-12 ">
+							<h3 class="titulos" align="center"><strong><span class="titulo1 titulotamaño">REGISTRO PÚBLICO DE BÚSQUEDA</span><br><span class="titulo2 titulotamaño">Y LOCALIZACIÓN DE PERSONAS DETENIDAS</span></strong></h3>
+							<br>
+						</div>
 					</div>
-				</div>
-				<div class="col-md-8 col-sm-9 col-xs-12 ">
-					<h3 class="titulos" align="center"><strong><span class="titulo1 titulotamaño">REGISTRO PÚBLICO DE BÚSQUEDA</span><br><span class="titulo2 titulotamaño">Y LOCALIZACIÓN DE PERSONAS DETENIDAS</span></strong></h3>
-					<br>
-				</div>
 			</div>
-		    <div class="row" align="right">
-		    	<div class="col-xs-12">
-		    		<nav class="navbar">
-		    			<div class="container-fluid">
-		    				<div class="navbar-header">
-		    					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-		    						<span class="icon-bar"></span>
-		    						<span class="icon-bar"></span>
-		    						<span class="icon-bar"></span>
-		    					</button>
-		    				</div>
-		    				<div class="collapse navbar-collapse" id="myNavbar" style="line-height: 0.429;">
-		    					<ul class="nav navbar-nav">
-		    						<li class="lineamenu" title="Bienvenida">
-		    							<a href="../desaparecidos/bienvenida.html" ><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Bienvenida</a>
-		    						</li>
-		    						<li class="lineamenu">
-		    							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Desaparecidos<span class="caret"></span></a>
-		    							<ul class="dropdown-menu">
-		    								<li title="Consulta de Desaparecidos"><a href="../desaparecidos/index4.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Consulta  </a></li>
-		    								<li title="Descargar Archivo"><a href="../desaparecidos/desaparecidos.xlsx"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar  </a></li>
-		    								<li title="Ir a Infografía"><a href="../desaparecidos/img/infografia.pdf"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infografía</a></li>
-		    								<li title="Estadísticas de Desaparecidos"><a href=" http://gobiernoabierto.fiscaliaveracruz.gob.mx/desaparecidos/img/GraficasDesaparecidosDic2016.pdf"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Estadísticas</a></li>
-		    								<li title="Guía para la Denuncia de Personas Desaparecidas"><a href="http://gobiernoabierto.fiscaliaveracruz.gob.mx/desaparecidos/img/cartel.pdf"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Guía</a>
-						                      </li>
-		    							</ul>
-		    						</li>
-		    						<li class="lineamenu">
-		    							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Detenidos<span class="caret"></span></a>
-		    							<ul class="dropdown-menu">
-		    								<li title="Consulta de Detenidos"><a href="index2.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Consulta  </a></li>
-		    								<li title="ir a Infografía"><a href="./img/infografia.pdf"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infografía</a></li>
-		    								<li title="Estadísticas de Detenidos"><a href="./img/grafica.png"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Estadísticas</a></li>
-		    							</ul>
-		    						</li> 
-		    						<li title="Ir a Página Principal">
-		    							<a href="http://fiscaliaveracruz.gob.mx/"> Fiscalía</a>
-		    						</li>
-		    					</ul>
-		    				</div>
-		    			</div>
-		    		</nav> 
-		    	</div>
+		    
+		    <div class="container">
+		    	<div class="barranav" >
+
+	                <div class="menu_bar">
+	                    <a href="#" class="bt-menu"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+	                </div>
+
+	                <nav class="text-center">
+	                    <ul>
+	                        <li class="lineamenu">
+	                            <a href="../desaparecidos/bienvenida.html" ><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Bienvenida</a>
+	                        </li><!--
+	                        --><li class="submenu lineamenu" id="submenudesaparecidos">
+	                            <a href="#">Desaparecidos<span class="caret"></span></a>
+	                            <ul class="children" id="desaparecidos">
+	                                <li title="Busqueda de Desaparecidos"><a href="../desaparecidos/index4.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Busqueda  </a></li>
+	                                <li title="Descargar Archivo"><a href="../desaparecidos/desaparecidos.xlsx"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>Descargar</a></li>
+	                                <li title="ir a Infografía"><a href="../desaparecidos/img/infografia.pdf"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>Infografía</a></li>
+	                                <li title="Estadísticas de Desaparecidos"><a href="http://www.transparenciamexico.mx/User/Workspace/Archivos/PDF/29/INCISO-C-75903.pdf"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Estadísticas</a></li>
+	                                <li title="Guía para la Denuncia de Personas Desaparecidas"><a href="http://gobiernoabierto.fiscaliaveracruz.gob.mx/desaparecidos/img/cartel.pdf"><span class="glyphicon glyphicon-book" arial-hidden="true"></span>Guía</a></li>
+	                            </ul>
+	                        </li><!--
+	                        --><li class="submenu lineamenu" id="submenudetenidos">
+	                            <a href="#">Detenidos<span class="caret"></span></a>
+	                            <ul class="children" id="detenidos">
+	                                <li title="Busqueda de Detenidos"><a href="index2.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Busqueda</a></li>
+	                                <li title="ir a Infografía"><a href="./img/infografia.pdf"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>Infografía</a></li>
+	                                <li title="Estadísticas de Detenidos"><a href="./img/grafica.png"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Estadísticas</a></li>
+	                            </ul>
+	                        </li><!--
+	                        --><li title="Ir a Pagina Principal">
+	                            <a href="http://fiscaliaveracruz.gob.mx/">Fiscalía</a>
+	                        </li>
+	                    </ul>
+	                </nav>
+            	</div>
 		    </div>
 		</header>
-
+	<div class="container conta">
 		<img class="img-responsive center barra" src="./img/barra.png"/>
 
 		<div>

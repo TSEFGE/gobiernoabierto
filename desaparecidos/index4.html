@@ -10,9 +10,11 @@
   <title>Gobierno Abierto - Registro Público de Personas Desaparecidas</title>
   <link rel="icon" href="img/icon.png" sizes="192x192">
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link href="css/botonazul.css" rel="stylesheet" type="text/css" />
   <link href="css/botongris.css" rel="stylesheet" type="text/css" />
   <link href="css/alertamarillo.css" rel="stylesheet" type="text/css" />
@@ -24,18 +26,32 @@
   <link rel="stylesheet" href="css/ficha-detalles.css">
   <link rel="stylesheet" href="css/panel-default.css">
   <link rel="stylesheet" href="css/formulario.css">
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="css/estilos.css">
+    <script src="js/main.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.js"></script>
   <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
   <!--.......................-->
+  <style>
+    @media screen and (max-width: 800px) {
+      .barranav nav {
+        width: 50%;
+        height: 100%;
+        position: fixed;
+        right:100%;
+        margin: 0;
+        overflow: scroll;
+        margin-top: -171px;
+        border-radius: 0;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <div class="container">
-    <header>
+  <header>
+    <div class="container conta">
       <div class="row">
         <div class="col-md-2 col-sm-3 col-xs-12 ">
           <div class="logotipo">
@@ -50,67 +66,46 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="container">
+      <div class="barranav" >
 
-      <div class="row mimenu " align="right">
-        <div class="col-xs-12">
-          <nav class="navbar">
-            <div class="container-fluid">
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-              </div>
-              <div class="collapse navbar-collapse" id="myNavbar" style="line-height: 0.429;">
-                <ul class="nav navbar-nav">
-                  <li class="lineamenu" title="Bienvenida">
-                    <a href="./bienvenida.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Bienvenida</a>
-                  </li>
-                  <li class="lineamenu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Desaparecidos<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li title="Consulta de Desaparecidos"><a href="index4.html">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Consulta</a>
-                      </li>
-                      <li title="Descargar Archivo"><a href="./desaparecidos.xlsx">
-                        <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Descargar</a>
-                      </li>
-                      <li title="ir a Infografía"><a href="./img/infografia.pdf">
-                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infografía</a>
-                      </li>
-                      <li title="Estadísticas de Desaparecidos"><a href=" http://gobiernoabierto.fiscaliaveracruz.gob.mx/desaparecidos/img/GraficasDesaparecidosDic2016.pdf">
-                        <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Estadísticas</a>
-                      </li>
-                      <li title="Guía para la Denuncia de Personas Desaparecidas"><a href="http://gobiernoabierto.fiscaliaveracruz.gob.mx/desaparecidos/img/cartel.pdf"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Guía</a>
-                      </li>
-                    </ul>
-                  </li>
-    						  <li class="lineamenu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Detenidos<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li title="Consulta de Detenidos"><a href="../detenidos/index2.html">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Consulta</a>
-                      </li>
-                      <li title="ir a Infografía"><a href="../detenidos/img/infografia.pdf">
-                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Infografía</a>
-                      </li>
-                      <li title="Estadísticas de Detenidos"><a href="../detenidos/img/grafica.png">
-                        <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Estadísticas</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li title="Ir a Pagina Principal">
-                    <a href="http://fiscaliaveracruz.gob.mx/"> Fiscalía</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav> 
+        <div class="menu_bar">
+          <a href="#" class="bt-menu"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
         </div>
-      </div>
-    </header>
 
+        <nav class="text-center">
+          <ul>
+            <li class="lineamenu">
+              <a href="./bienvenida.html" ><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Bienvenida</a>
+            </li><!--
+            --><li class="submenu lineamenu" id="submenudesaparecidos" >
+              <a href="#">Desaparecidos<span class="caret"></span></a>
+                <ul class="children" id="desaparecidos">
+                  <li title="Busqueda de Desaparecidos"><a href="index4.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Busqueda  </a></li>
+                  <li title="Descargar Archivo"><a href="./desaparecidos.xlsx"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>Descargar</a></li>
+                  <li title="ir a Infografía"><a href="./img/infografia.pdf"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>Infografía</a></li>
+                  <li title="Estadísticas de Desaparecidos"><a href="http://www.transparenciamexico.mx/User/Workspace/Archivos/PDF/29/INCISO-C-75903.pdf"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Estadísticas</a></li>
+                  <li title="Guía para la Denuncia de Personas Desaparecidas"><a href="http://gobiernoabierto.fiscaliaveracruz.gob.mx/desaparecidos/img/cartel.pdf"><span class="glyphicon glyphicon-book" arial-hidden="true"></span>Guía</a></li>
+                </ul>
+            </li><!--
+            --><li class="submenu lineamenu" id="submenudetenidos">
+                <a href="#">Detenidos<span class="caret"></span></a>
+                  <ul class="children" id="detenidos">
+                    <li title="Busqueda de Detenidos"><a href="../detenidos/index2.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Busqueda</a></li>
+                    <li title="ir a Infografía"><a href="../detenidos/img/infografia.pdf"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>Infografía</a></li>
+                    <li title="Estadísticas de Detenidos"><a href="../detenidos/img/grafica.png"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Estadísticas</a></li>
+                  </ul>
+            </li><!--
+            --><li title="Ir a Pagina Principal">
+                <a href="http://fiscaliaveracruz.gob.mx/">Fiscalía</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    </header>
+<div class="container conta">
     <img class="img-responsive center barra" src="./img/barra.png"/>
 
     <div>
