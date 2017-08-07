@@ -1,7 +1,7 @@
 $(document).ready(main);
  
 var contador = 1;
-var fuera = 0;
+
 
 
 function main () {
@@ -11,7 +11,7 @@ function main () {
 				left: '0'
 			});
 			contador = 0;
-			fuera=1;
+			
 		} else {
 			contador = 1;
 			$('nav').animate({
