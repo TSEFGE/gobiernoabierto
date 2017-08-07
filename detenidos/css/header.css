@@ -37,11 +37,14 @@
     color: #fff;
 }
 .navbar-toggle{
-    background-color: #222222;
+    background-color: #444644;
     margin: 5px;
     margin-right: 15px;
     padding: 7px 8px;
 }
+/*.navbar-toggle:hover{
+    background-color:#222222;
+}*/
 .navbar-toggle .icon-bar {
     color: #fff;
     background-color: #fff;
