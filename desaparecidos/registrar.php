@@ -7,7 +7,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
 }
 ?>
 
-<html>
+<html ng-app="detenidosApp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,6 +54,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
     <link href="https://cdn.datatables.net/rowreorder/1.1.2/css/rowReorder.dataTables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/rowreorder/1.1.2/js/dataTables.rowReorder.min.js"></script>
     
+    <script src="./js/desaparecidos.js"></script>
     <!--Mis estilos-->
     <link rel="stylesheet" href="css/cssfonts.css">
     <!--<link rel="stylesheet" href="css/sticky-footer.css">-->
@@ -69,7 +70,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
     <!--.......................-->
 </head>
 
-<body>
+<body ng-controller="UnidadesController as todoList">
     <div class="container">
         <header>
             <div class="row">

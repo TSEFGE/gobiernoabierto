@@ -156,5 +156,33 @@ $app->post('/Reporte', function () use ($app, $logger,$dao) {
 });
 
 
+$app->post('/updatePassword', function () use ($app, $logger,$dao) {
+    $app->response()->header('Content-Type', 'application/json; charset=utf-8');
+    $response = array();
+    $request =$app->request()->getBody()!=='' ? json_decode($app->request()->getBody()): null;
+    try {
+       /* if( empty($request) ||  empty($request->nombre)  ||  empty($request->paterno)  ||  empty($request->materno)  ||  empty($request->sexo)  ||  empty($request->fechaNacimiento)   ||  empty($request->idUnidad)  ||  empty($request->fechaInicio)  ||  empty($request->fechaFin)){            
+            throw new Exception('Por favor especificar todos los campos, son necesarios para el registro ', 417);
+        }*/
+       $idUsuario = !empty($request->idUsuario)?$request->idUsuario:NULL;
+       $current_password = !empty($request->current_password)?$request->current_password:NULL;
+       $new_password = !empty($request->new_password)?$request->new_password:NULL;
+       $usuario=$dao->updatePassword($idUsuario,$current_password,$new_password);
+        if (!$usuario) {
+            throw new Exception("error",418);
+        }
+        else{
+            echo json_encode($usuario, JSON_UNESCAPED_UNICODE);
+            return;
+        }
+    } catch (Exception $e) {
+        $response['error_code'] = $e->getCode();
+        $response['error_message'] = $e->getMessage();
+        $logger->debug('updatePassword: ' . $e->getMessage());
+    }
+      echo json_encode($response, JSON_UNESCAPED_UNICODE);
+});
+
+
 $app->run();
 ?>
