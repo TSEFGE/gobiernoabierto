@@ -114,6 +114,31 @@ class FGEServicesDAO extends GenericDAO {
         }
     }
 
+    public function updatePassword($idUsuario,$current,$password) {
+       // $ip = $_SERVER['HTTP_CLIENT_IP']?$_SERVER['HTTP_CLIENT_IP']:($_SERVER['HTTP_X_FORWARDE‌​D_FOR']?$_SERVER['HTTP_X_FORWARDED_FOR']:$_SERVER['REMOTE_ADDR']);
+
+        if (empty($idUsuario) || empty($password))  
+            throw new Exception('Es necesario especificar TODOS los datos para actualizar el registro');
+
+        $sqlSelect = "SELECT * FROM db_users WHERE id = '$idUsuario'";
+        $row=$this->select($sqlSelect);
+        $hash = $row[0]['password'];
+        
+        if (password_verify($current, $hash)) {
+            $password = password_hash($password, PASSWORD_BCRYPT, array("cost" => 10));
+            $sqlSelect = 'UPDATE db_users SET password="'.$password.'" where id='.$idUsuario .'';
+            $result=$this->update($sqlSelect);
+            //$this->logger->debug('updatePassword-> |Usuario:' . $idUsuario. '|ip:'.$ip);
+            if(count($result) >= 1)
+                return $result;
+            else 
+                 throw new Exception('La contraseña anterior no coincide o existió un error al intentar actualizarla');
+        }
+
+
+        
+    }
+
     public function Reporte($fechaInicial=null, $fechaFinal=null, $idUsuario=null, $idNivel=null) {
 
     $condition=""; 

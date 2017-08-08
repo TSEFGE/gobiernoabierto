@@ -91,7 +91,7 @@
                         <div class="form-group form-inline">
                             <label for="email">Ingresa tu correo electrónico</label>
                             <div >
-                                <input type="email" class="form-control" id="email" name="email" style="width: 70%" required>
+                                <input type="email" class="form-control center-block" id="email" name="email" style="width: 70%" required>
                             </div>
                         </div>
                         <div id="mensaje"></div>
