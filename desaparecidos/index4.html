@@ -105,7 +105,7 @@
             --><li class="submenu lineamenu" id="submenudesaparecidos" >
               <a href="#">Desaparecidos<span class="caret"></span></a>
                 <ul class="children" id="desaparecidos">
-                  <li title="Busqueda de Desaparecidos"><a href="index4.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Busqueda  </a></li>
+                  <li title="Busqueda de Desaparecidos"><a href="index4.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Búsqueda  </a></li>
                   <li title="Descargar Archivo"><a href="./desaparecidos.xlsx"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>Descargar</a></li>
                   <li title="ir a Infografía"><a href="./img/infografia.pdf"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>Infografía</a></li>
                   <li title="Estadísticas de Desaparecidos"><a href="http://www.transparenciamexico.mx/User/Workspace/Archivos/PDF/29/INCISO-C-75903.pdf"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Estadísticas</a></li>
@@ -115,7 +115,7 @@
             --><li class="submenu lineamenu" id="submenudetenidos">
                 <a href="#">Detenidos<span class="caret"></span></a>
                   <ul class="children" id="detenidos">
-                    <li title="Busqueda de Detenidos"><a href="../detenidos/index2.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Busqueda</a></li>
+                    <li title="Busqueda de Detenidos"><a href="../detenidos/index2.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Búsqueda</a></li>
                     <li title="ir a Infografía"><a href="../detenidos/img/infografia.pdf"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>Infografía</a></li>
                     <li title="Estadísticas de Detenidos"><a href="../detenidos/img/grafica.png"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Estadísticas</a></li>
                   </ul>
@@ -302,7 +302,7 @@
         swal({
           title: '<h1>Atención</h1>',
           type: 'warning',
-          html: '<h4">Debe proporcionar <strong>AL MENOS UN</strong> dato(nombre, paterno, materno, sexo, edad) para realizar la busqueda.</h4>'
+          html: '<h4">Debe proporcionar <strong>AL MENOS UN</strong> dato(nombre, paterno, materno, sexo, edad) para realizar la búsqueda.</h4>'
         });
         return false;
       }
@@ -390,7 +390,7 @@
         swal({
           title: '<h1>Atención</h1>',
           type: 'warning',
-          html: '<h4">Debe proporcionar <strong>AL MENOS UN</strong> dato(nombre, paterno, materno, sexo, edad) para realizar la busqueda.</h4>'
+          html: '<h4">Debe proporcionar <strong>AL MENOS UN</strong> dato(nombre, paterno, materno, sexo, edad) para realizar la búsqueda.</h4>'
         });
         return false;
       }
@@ -487,7 +487,7 @@
           $('#detailsDiv').empty();
           $.each(data, function(key, item) {
             if (key=="error_code"){
-              htmlElement = $('<h4>No existen resultados para la busqueda realizada</h4>');
+              htmlElement = $('<h4>No existen resultados para la búsqueda realizada</h4>');
               $('#detailsDiv').append(htmlElement);
               return false;
             }
@@ -550,7 +550,7 @@
                 if(data == '{"estado":"enviado"}'){
                     swal(
                         'Hecho',
-                        'Se ha enviado correctamente el informe, muchas gracias por su ayuda.',
+                        'Se ha enviado correctamente el informe, muchas gracias por su colaboración.',
                         'success'
                     );
                     $("#informe").val("");

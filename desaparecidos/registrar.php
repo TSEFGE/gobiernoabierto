@@ -12,7 +12,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=5;">
-    <title>Gobierno Abierto - Registro Público de Personas Detenidas</title>
+    <title>Gobierno Abierto - Registro Público de Personas Desaparecidas</title>
     <link rel="icon" href="img/icon.png" sizes="192x192">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -237,37 +237,6 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                             </tr>
                         </thead>
                     </table>
-                </div>
-            </div>
-        </div>
-
-        <div id="modalDetalleRep" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span></button>
-                    </div>
-                    <div class="modal-body text-center cuerpo-modal">
-                        <div class="table-responsive">
-                            <table class="display table-striped table-hover table-bordered" cellspacing="0" width="99%">
-                                <thead class="cabecera">
-                                    <tr>
-                                        <th style="text-align: right;"></th>
-                                        <th style="padding: 10px;">Nombre</th>
-                                        <th style="padding: 10px;">Paterno</th>
-                                        <th style="padding: 10px;">Materno</th>
-                                        <th style="padding: 10px;">Fecha nacimiento</th>
-                                        <th style="padding: 10px;">Fec. Inicio Detención</th>
-                                        <th style="padding: 10px;">Fec. Fin Detención</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="detalleReporte"></tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    </div>
                 </div>
             </div>
         </div>
