@@ -1,5 +1,5 @@
 <?php
-$conexion = new mysqli('localhost', 'root', '', 'detenidos');
+/*$conexion = new mysqli('localhost', 'root', '', 'detenidos');
 $sql = " SELECT id, password FROM db_users";
 $resultado = $conexion->query($sql);
 
@@ -12,4 +12,4 @@ if( $resultado->num_rows > 0 ){
 		$resultado2 = $conexion->query($sql);
 		echo $hash."<br>";
 	}
-}
+}*/
