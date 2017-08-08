@@ -94,5 +94,43 @@ class FGEServicesDAO extends GenericDAO {
             return NULL;
 
     }
+
+    public function authentication($user,$password) {
+
+        if (empty($user) || empty($password)){
+            session_destroy();
+            return false;
+        }
+        else{
+            $user = stripslashes($user);
+            $password = stripslashes($password);
+
+            $user = mysql_real_escape_string($user);
+            $password = mysql_real_escape_string($password);
+            $sqlSelect='SELECT id, username, password, name, level,idUnidad FROM db_users WHERE username="'.$user.'" ';
+
+            $row=$this->select($sqlSelect);
+            return $row;
+        }
+    }
+
+    public function Reporte($fechaInicial=null, $fechaFinal=null, $idUsuario=null, $idNivel=null) {
+
+    $condition=""; 
+    /*if (empty($fechaInicial) || empty($fechaFinal))  
+        throw new Exception('Es necesario especificar las dos fechas para realizar la búsqueda');*/
+        if($idNivel == 0){
+            if (!empty($fechaInicial) && !empty($fechaFinal))
+                $condition .= 'WHERE a.`fechaEnvio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
+        }
+
+        $sqlSelect = 'SELECT a.`id`, a.`idDesaparecido`, CONCAT_WS(" ", d.`Nombre`, d.`APat`, d.`AMat`)nombre, a.`aviso`, a.`fechaEnvio` FROM `tbl_avisos` a INNER JOIN `desaparecidos` d ON a.`idDesaparecido` = d.`Id` '.$condition;
+        
+        $result = $this->select($sqlSelect);
+        if(count($result) >= 1)
+            return $result;
+        else 
+            return NULL;
+    }   
 }
 ?>

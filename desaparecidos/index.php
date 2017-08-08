@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,9 +17,6 @@ $logger = Logger::getLogger("index.php");
 $app = new \Slim\Slim(array(
     'debug' => false
         ));
-
-
-
 $app->get('/', function () {
     echo ''; 
 });
@@ -131,6 +128,33 @@ $app->post('/insertInforme', function () use ($app, $logger,$dao) {
     }
       echo json_encode($response, JSON_UNESCAPED_UNICODE);
 });
+
+$app->post('/Reporte', function () use ($app, $logger,$dao) {
+    $app->response()->header('Content-Type', 'application/json; charset=utf-8');
+    $response = array();
+    $request =$app->request()->getBody()!=='' ? json_decode($app->request()->getBody()): null;   
+
+    try{
+        $request = json_decode($app->request()->getBody());
+        $fechaInicial = !empty($request->fechaInicial)?$request->fechaInicial:NULL;
+        $fechaFinal = !empty($request->fechaFinal)?$request->fechaFinal:NULL;
+        $registros = $dao->Reporte($fechaInicial, $fechaFinal, $_SESSION['idUsuario'], $_SESSION['userLevel']);
+        if (!$registros) {
+            throw new Exception('No existe registro', 418);
+        }
+        else{
+            echo json_encode($registros, JSON_UNESCAPED_UNICODE);
+            return;
+        }
+    } catch (Exception $e) {
+        $response['error_code'] = $e->getCode();
+        $response['error_message'] = $e->getMessage();
+        $logger->debug('Reporte: ' . $e->getMessage());
+
+    }
+      echo json_encode($response, JSON_UNESCAPED_UNICODE);
+});
+
 
 $app->run();
 ?>
