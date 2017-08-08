@@ -70,11 +70,29 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
     <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
     <!--.......................-->
+    <link rel="stylesheet" href="css/estilosnav.css">
+    <script src="js/main.js"></script>
+    <style>
+        
+    @media screen and (max-width: 800px) {
+      .barranav nav {
+        width: 50%;
+        height: 100%;
+        position: fixed;
+        right:100%;
+        margin: 0;
+        overflow: scroll;
+        margin-top: -103px;
+        border-radius: 0;
+      }
+    }
+</style>
+
 </head>
 
 <body ng-controller="UnidadesController as todoList">
-    <div class="container">
-        <header>
+    <header>
+        <div class="container conta">
             <div class="row">
                 <div class="col-md-2 col-xs-3 logotipo">
                     <img src="./img/logo.png" align="left" border="1" width="100" height="100"/>
@@ -84,40 +102,45 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                     <br>
                 </div>
             </div>
-            <div class="row" align="right">
-                <div class="col-xs-12">
-                    <nav class="navbar">
-                        <div class="container-fluid">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
-                            <div class="collapse navbar-collapse" id="myNavbar">
-                                <ul class="nav navbar-nav">
-                                    <li title="Página principal" class="lineamenu">
-                                        <a href="http://fiscaliaveracruz.gob.mx/" onclick="borrar();"> Fiscalía</a>
-                                    </li>
-                                    <li class="active lineamenu"><a data-toggle="pill" href="#home" onclick="borrar();"><span class="fa fa-user-plus" aria-hidden="true"></span> Registrar detención</a></li>
-                                    <li class="lineamenu"><a data-toggle="pill" href="#reporte" onclick="borrar();"><span class="fa fa-file-text" aria-hidden="true"></span> Generar Reporte</a></li>
-                                    <li>
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog" aria-hidden="true"></span> Ajustes<span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li title="Cambiar contraseña" style="cursor: pointer;"><a data-toggle="modal" data-target="#pwModal"><span class="fa fa-key" aria-hidden="true"></span> Cambiar contraseña</a>
-                                            </li>
-                                            <li title="Cerrar sesión"><a href="logout.php"><span class="fa fa-sign-out" aria-hidden="true"></span> Cerrar sesión</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav> 
-                </div>
-            </div>
-        </header>
+        </div>
 
+        
+        
+        <div class="container">
+            <div class="barranav" >
+                <div class="menu_bar">
+                    <a href="#" class="bt-menu"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+                </div>
+
+                <nav class="text-center">
+                    <ul>
+                        <li title="Página principal" class="lineamenu">
+                            <a href="http://fiscaliaveracruz.gob.mx/" onclick="borrar();"> Fiscalía</a>
+                        </li><!--
+                        --><li class="active lineamenu conta">
+                            <a data-toggle="pill" href="#home" onclick="borrar();"><span class="fa fa-user-plus" aria-hidden="true"></span> Registrar detención</a>
+                        </li><!--
+                        --><li class="lineamenu conta">
+                            <a data-toggle="pill" href="#reporte" onclick="borrar();"><span class="fa fa-file-text" aria-hidden="true"></span> Generar Reporte</a>
+                        </li><!--
+                        --><li class="submenu" id="submenudetenidos">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog" aria-hidden="true"></span> Ajustes<span class="caret"></span></a>
+                            <ul class="children" id="detenidos">
+                                <li title="Cambiar contraseña" class="conta" style="cursor: pointer;">
+                                    <a data-toggle="modal" data-target="#pwModal"><span class="fa fa-key" aria-hidden="true"></span> Cambiar contraseña</a>
+                                </li>
+                                <li title="Cerrar sesión">
+                                    <a href="logout.php"><span class="fa fa-sign-out" aria-hidden="true"></span> Cerrar sesión</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+    </header>
+    <div class="container conta">
         <div id="pwModal" class="modal fade" role="dialog">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
