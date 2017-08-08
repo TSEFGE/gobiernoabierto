@@ -123,8 +123,8 @@ $getLastId=true;
             $user = stripslashes($user);
             $password = stripslashes($password);
 
-            $user = mysql_real_escape_string($user);
-            $password = mysql_real_escape_string($password);
+            $user = mysql_real_escape_string($conexion,$user);
+            $password = mysql_real_escape_string($conexion,$password);
             $sqlSelect='SELECT id, username, password, name, level,idUnidad FROM db_users WHERE username="'.$user.'" ';
             //$sqlSelect='SELECT id, username, password, name, level,idUnidad FROM db_users WHERE username="'.$user.'" and password ="'.$password.'"';
          //   $this->logger->debug('auth-> |Usuario:' . $user. '|ip:'.$ip);
