@@ -250,6 +250,62 @@ class FGEServicesDAO extends GenericDAO {
         $resultado = $this->update( $sql );
     }
 
+    public function enviaReporte($fechaInicial=null, $fechaFinal=null, $idUsuario=null, $idNivel=null){
+        $sql = " SELECT * FROM db_users WHERE id = '$idUsuario' ";
+        $resultado = $this->select($sql);
+        $email = $resultado[0]['correo'];
+
+        $condition=""; 
+    /*if (empty($fechaInicial) || empty($fechaFinal))  
+        throw new Exception('Es necesario especificar las dos fechas para realizar la búsqueda');*/
+        if($idNivel == 0){
+            if (!empty($fechaInicial) && !empty($fechaFinal))
+                $condition .= 'WHERE a.`fechaEnvio` BETWEEN \''.$fechaInicial .'\' AND \''.$fechaFinal .'\''; 
+        }
+
+        $sqlSelect = 'SELECT a.`id`, a.`idDesaparecido`, CONCAT_WS(" ", d.`Nombre`, d.`APat`, d.`AMat`)nombre, a.`aviso`, a.`fechaEnvio` FROM `tbl_avisos` a INNER JOIN `desaparecidos` d ON a.`idDesaparecido` = d.`Id` '.$condition;
+
+        $result = $this->select($sqlSelect);
+        $numfilas = count($result);
+
+        $tabla ="";
+        $tabla = '<table border=1><thead><tr>No.<th></th><th>Nombre Desaparecido</th><th>Informe</th><th>Fecha Envío</th></tr></thead><tbody>';
+        $numero=1;
+        $counter= 0;
+        while ($counter < $numfilas) {
+            $fila = '<tr><td>'.$numero.'</td><td>'.$result[$counter]['nombre'].'</td><td>'.$result[$counter]['aviso'].'</td><td>'.$result[$counter]['fechaEnvio'].'</td></tr>';
+            $tabla .= $fila;
+            $counter++;
+            $numero++;
+        }
+        $tabla .= '</tbody></table>';
+
+        $mensaje = '<html>
+        <head>
+            <title>Reporte General de Informes Anónimos</title>
+        </head>
+        <body>
+            <img src="http://compukami.esy.es/barra2.png" width="100%">
+                <br>
+            <div>'.$tabla.'</div>
+        </body>
+        </html>';
+        $mensaje = utf8_decode($mensaje);
+
+        $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+        $cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+        $cabeceras .= 'From: Fiscalia General Del Estado <central@fiscalia.gob.mx>' . "\r\n";
+        $asunto = utf8_decode("Reporte General de Informes Anónimos ");
+        $bool = mail($email, $asunto, $mensaje, $cabeceras);
+        if ($bool){
+            $estado = '{"estado":"enviado"}';
+            return $estado;
+        }else{
+            $estado = '{"estado":"error"}';
+            return $estado;
+        }
+    }
+
 
 }
 ?>
