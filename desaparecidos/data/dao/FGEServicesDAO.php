@@ -131,6 +131,100 @@ class FGEServicesDAO extends GenericDAO {
             return $result;
         else 
             return NULL;
-    }   
+    }
+
+    /* funciones para recuperacion de contraseña*/
+
+    public function getEmail ($email){
+
+        $sql = " SELECT * FROM db_users WHERE correo = '$email' ";
+        $resultado = $this->select($sql);
+        
+        return $resultado;
+        
+    }
+
+    public function generarLinkTemporal($idusuario, $username){
+
+        $cadena = $idusuario.$username.rand(1,9999999).date('Y-m-d');
+        $token = sha1($cadena);
+        $estado = true;
+        $comprobacion = "UPDATE tblreseteopass SET estado = false WHERE idusuario=$idusuario AND estado = true;";
+        $this->update($comprobacion);
+        
+        $sql = "INSERT INTO tblreseteopass (idusuario, username, token, creado, estado) VALUES($idusuario,'$username','$token',NOW() , $estado);";
+
+        $resultado = $this->insert($sql);
+
+        if($resultado){
+            $enlace = $_SERVER["SERVER_NAME"].'/gobiernoabierto/desaparecidos/restablecer.php?idusuario='.sha1($idusuario).'&token='.$token.'&estado='.$estado;
+            return $enlace;
+        }
+        else
+            return FALSE;
+    }
+
+    public function enviarEmail( $email, $link ){
+
+        $mensaje = '<html>
+        <head>
+            <title>Restablece tu contrase&ntilde;a</title>
+            <style type="text/css" media="screen">
+                .titulo1, .titulo2{
+                    font-family: "neosanspro-bold";
+                    font-size: 2.5rem;
+                }
+                .logotipo{
+                    text-align: center;
+                }    
+            </style>
+        </head>
+        <body>
+            <img src="http://compukami.esy.es/barra3.png" width="100%">
+                <br>
+            <p>Hemos recibido una petici&oacute;n para restablecer la contrase&ntilde;a de tu cuenta.</p>
+            <p>Si hiciste esta petici&oacute;n, haz clic en el siguiente enlace, si no hiciste esta petici&oacute;n puedes ignorar este correo.</p>
+            <p>
+                <strong>Enlace para restablecer tu contrase&ntilde;a</strong><br>
+                <a href="'.$link.'"> Restablecer contrase&ntilde;a </a>
+            </p>
+        </body>
+</html>';
+
+        $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+        $cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+        $cabeceras .= 'From: Fiscalia General Del Estado <central@fiscalia.gob.mx>' . "\r\n";
+        $asunto=utf8_decode("Recuperar contraseña");        
+        mail($email, $asunto, $mensaje, $cabeceras);
+    }
+
+    public function getToken ($token,$estado){    
+        if ($estado==true) {
+            $sql = "SELECT * FROM tblreseteopass WHERE token = '$token' and estado = $estado";
+            $resultado = $this->select($sql);
+            return $resultado;
+        }
+        else
+            return null;
+    }
+
+    public function recuperarPass($password1,$idusuario){
+        $hash = password_hash($password1, PASSWORD_BCRYPT, array("cost" => 10));
+        $sql = "UPDATE db_users SET password = '".$hash."' WHERE id = ".$idusuario;
+        $resultado = $this->update($sql);
+        if(count($resultado) >= 1)
+            return $resultado;
+        else 
+            return NULL;
+
+    }
+
+    public function borrarToken($token){
+        $sql = "UPDATE tblreseteopass SET estado = false WHERE token = '$token' AND estado = true;";
+        //"DELETE FROM tblreseteopass WHERE token = '$token';";
+        $resultado = $this->update( $sql );
+    }
+
+
 }
 ?>
