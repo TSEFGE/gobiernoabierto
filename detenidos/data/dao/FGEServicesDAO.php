@@ -113,6 +113,8 @@ $getLastId=true;
 
     public function authentication($user,$password) {
        // $ip = $_SERVER['HTTP_CLIENT_IP']?$_SERVER['HTTP_CLIENT_IP']:($_SERVER['HTTP_X_FORWARDE‌​D_FOR']?$_SERVER['HTTP_X_FORWARDED_FOR']:$_SERVER['REMOTE_ADDR']);
+       $conexion = new mysqli('localhost', 'web', 'W3b2015_@', 'detenidos');
+
         if (empty($user) || empty($password)){
             session_destroy();
             return false;
