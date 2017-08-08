@@ -18,4 +18,6 @@
     background: #8e8e8e; 
     margin-right:-2px; 
     margin-left:-2px;
+    margin-bottom: -2px;
+    border-radius: 0 0 7px 7px;
 }
