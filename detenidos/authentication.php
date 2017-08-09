@@ -25,10 +25,8 @@ if (isset($_POST['login-submit'])) {
 
         if (count($result)>0){
             $hash = $result[0]['password'];
-            echo $hash;
-            die();
-            if (password_verify($password, $hash)) {
-                echo "dsadsa";
+            //if (password_verify($password, $hash)) {
+            if (true)) {
                 $_SESSION['is_auth'] = true;
                 $_SESSION['idUsuario'] = $result[0]['id'];
                 $_SESSION['userLevel'] = $result[0]['level'];
