@@ -125,7 +125,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                         </li><!--
                         --><li class="submenu" id="submenudetenidos">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog" aria-hidden="true"></span> Ajustes<span class="caret"></span></a>
-                            <ul class="children" id="detenidos">
+                            <ul class="children" id="detenidos2">
                                 <li title="Cambiar contraseña" class="conta" style="cursor: pointer;">
                                     <a data-toggle="modal" data-target="#pwModal"><span class="fa fa-key" aria-hidden="true"></span> Cambiar contraseña</a>
                                 </li>
