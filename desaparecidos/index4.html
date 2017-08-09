@@ -27,49 +27,15 @@
   <link rel="stylesheet" href="css/panel-default.css">
   <link rel="stylesheet" href="css/formulario.css">
   <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/medianavdesaparecidos.css">
     <script src="js/main.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.js"></script>
   <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
   <!--.......................-->
-  <style>
-    @media screen and (max-width: 800px) {
-      .barranav nav {
-        width: 50%;
-        height: 100%;
-        position: fixed;
-        right:100%;
-        margin: 0;
-        overflow: scroll;
-        margin-top: -103px;
-        border-radius: 0;
-      }
-      .menu_bar {
-          
-          margin-left: -40px;
-      }
-
-    }
-
-    @media screen and (max-width: 767px) {
-      .barranav nav {
-        width: 50%;
-        height: 100%;
-        position: fixed;
-        right:100%;
-        margin: 0;
-        overflow: scroll;
-        margin-top: -175px;
-        border-radius: 0;
-      }
-      .menu_bar {
-          
-          margin-left: -15px;
-      }
-    }
-    
-  </style>
+  
+  
 </head>
 
 <body>
@@ -104,7 +70,7 @@
             </li><!--
             --><li class="submenu lineamenu" id="submenudesaparecidos" >
               <a href="#">Desaparecidos<span class="caret"></span></a>
-                <ul class="children" id="desaparecidos">
+                <ul class="children" id="mdesaparecidos">
                   <li title="Busqueda de Desaparecidos"><a href="index4.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Busqueda  </a></li>
                   <li title="Descargar Archivo"><a href="./desaparecidos.xlsx"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>Descargar</a></li>
                   <li title="ir a Infografía"><a href="./img/infografia.pdf"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>Infografía</a></li>
@@ -114,7 +80,7 @@
             </li><!--
             --><li class="submenu lineamenu" id="submenudetenidos">
                 <a href="#">Detenidos<span class="caret"></span></a>
-                  <ul class="children" id="detenidos">
+                  <ul class="children" id="mdetenidos">
                     <li title="Busqueda de Detenidos"><a href="../detenidos/index2.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Busqueda</a></li>
                     <li title="ir a Infografía"><a href="../detenidos/img/infografia.pdf"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>Infografía</a></li>
                     <li title="Estadísticas de Detenidos"><a href="../detenidos/img/grafica.png"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Estadísticas</a></li>

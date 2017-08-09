@@ -113,8 +113,7 @@ $getLastId=true;
 
     public function authentication($user,$password) {
        // $ip = $_SERVER['HTTP_CLIENT_IP']?$_SERVER['HTTP_CLIENT_IP']:($_SERVER['HTTP_X_FORWARDE‌​D_FOR']?$_SERVER['HTTP_X_FORWARDED_FOR']:$_SERVER['REMOTE_ADDR']);
-       $conexion = new mysqli('localhost', 'web', 'W3b2015_@', 'detenidos');
-
+       
         if (empty($user) || empty($password)){
             session_destroy();
             return false;
@@ -123,8 +122,8 @@ $getLastId=true;
             $user = stripslashes($user);
             $password = stripslashes($password);
 
-            $user = mysql_real_escape_string($user,$conexion);
-            $password = mysql_real_escape_string($password,$conexion);
+            $user = mysql_real_escape_string($user);
+            $password = mysql_real_escape_string($password);
             $sqlSelect='SELECT id, username, password, name, level,idUnidad FROM db_users WHERE username="'.$user.'" ';
             //$sqlSelect='SELECT id, username, password, name, level,idUnidad FROM db_users WHERE username="'.$user.'" and password ="'.$password.'"';
          //   $this->logger->debug('auth-> |Usuario:' . $user. '|ip:'.$ip);

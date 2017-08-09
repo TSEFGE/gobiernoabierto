@@ -17,8 +17,8 @@ function main () {
 			$('nav').animate({
 				left: '-100%'
 			});
-			$('#submenudetenidos').children('#detenidos').slideUp();
-			$('#submenudesaparecidos').children('#desaparecidos').slideUp();	
+			$('#submenudetenidos').children('#mdetenidos').slideUp();
+			$('#submenudesaparecidos').children('#mdesaparecidos').slideUp();	
 		}
 	});
 
@@ -29,8 +29,8 @@ function main () {
 			$('nav').animate({
 				left: '-100%'
 				});
-			$('#submenudetenidos').children('#detenidos').slideUp();
-			$('#submenudesaparecidos').children('#desaparecidos').slideUp();	
+			$('#submenudetenidos').children('#mdetenidos').slideUp();
+			$('#submenudesaparecidos').children('#mdesaparecidos').slideUp();	
 		
 	});
  
@@ -42,13 +42,13 @@ function main () {
 	*/
 
 	$('#submenudesaparecidos').click(function(){
-		$(this).children('#desaparecidos').slideToggle();
+		$(this).children('#mdesaparecidos').slideToggle();
 		
-		$('#submenudetenidos').children('#detenidos').slideUp();	
+		$('#submenudetenidos').children('#mdetenidos').slideUp();	
 	});
 
 	$('#submenudetenidos').click(function(){
-		$(this).children('#detenidos').slideToggle() ;
-		$('#submenudesaparecidos').children('#desaparecidos').slideUp();	
+		$(this).children('#mdetenidos').slideToggle() ;
+		$('#submenudesaparecidos').children('#mdesaparecidos').slideUp();	
 	});
 }

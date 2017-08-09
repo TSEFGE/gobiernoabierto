@@ -1,0 +1,40 @@
+@media screen and (max-width: 800px) {
+    .barranav nav {
+        margin-top: -103px;
+    }
+    .menu_bar {
+        margin-left: -40px;
+    }
+}
+
+@media screen and (max-width: 787px) {
+    .menu_bar{
+        margin-left: -34px;
+    }
+}
+
+@media screen and (max-width: 776px) {
+    .menu_bar{
+        margin-left: -28px;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    .menu_bar{
+        margin-left: -24px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .barranav nav {
+        margin-top: -175px;
+    }
+    .menu_bar {
+        margin-left: -15px;
+    }
+}
+
+@media screen and (max-width: 287px) {
+    .barranav nav {
+        margin-top: -197px;
+    }
+}

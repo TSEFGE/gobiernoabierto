@@ -1,0 +1,25 @@
+ @media screen and (max-width: 800px) {
+    .barranav nav {
+        margin-top: -103px;
+    }
+    .menu_bar {   
+        margin-left: -40px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .barranav nav {
+        margin-top: -146px;
+    }
+    .menu_bar {   
+        margin-left: -15px;
+    }
+}
+
+@media screen and (max-width: 265px) {
+    .barranav nav {
+        margin-top: -172px;
+    }
+    .menu_bar {   
+        margin-left: -15px;
+    }
+}
