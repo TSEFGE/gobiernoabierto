@@ -41,7 +41,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.js"></script>
 
     <!--Para las tablas(Al parecer no son necesarios)-->
-    <link rel="stylesheet" type="text/css" href="./Editor-PHP-1.5.6/css/editor.DataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="./Editor-PHP-1.5.6/css/editor.dataTables.min.css">
     <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <link href="https://cdn.datatables.net/autofill/2.1.2/css/autoFill.dataTables.min.css" rel="stylesheet">
