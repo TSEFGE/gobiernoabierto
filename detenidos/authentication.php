@@ -26,7 +26,7 @@ if (isset($_POST['login-submit'])) {
         if (count($result)>0){
             $hash = $result[0]['password'];
             //if (password_verify($password, $hash)) {
-            if (true)) {
+            if (true) {
                 $_SESSION['is_auth'] = true;
                 $_SESSION['idUsuario'] = $result[0]['id'];
                 $_SESSION['userLevel'] = $result[0]['level'];
@@ -38,8 +38,6 @@ if (isset($_POST['login-submit'])) {
                 $error = "1";
                 header("location:login.php?error=".$error);
             }
-            
-
         }
         else{
             $_SESSION['is_auth'] = false;
