@@ -7,7 +7,7 @@ include_once __DATA_PATH__ . '/dao/FGEServicesDAO.php';
 $dao = new FGEServicesDAO();
 
 
-	$email = mysql_real_escape_string($_POST['email']);
+	$email = $_POST['email'];
 	$respuesta = new stdClass();
 
 	if( $email != "" ){   
