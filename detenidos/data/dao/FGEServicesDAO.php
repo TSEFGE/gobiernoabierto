@@ -125,8 +125,8 @@ $getLastId=true;
 
            // $user = mysql_real_escape_string($user,$conexion);
            // $password = mysql_real_escape_string($password,$conexion);
-            //$sqlSelect='SELECT id, username, password, name, level,idUnidad FROM db_users WHERE username="'.$user.'" ';
-            $sqlSelect='SELECT id, username, password, name, level,idUnidad FROM db_users2 WHERE username="'.$user.'" and password ="'.$password.'"';
+            $sqlSelect='SELECT id, username, password, name, level,idUnidad FROM db_users WHERE username="'.$user.'" ';
+            //$sqlSelect='SELECT id, username, password, name, level,idUnidad FROM db_users2 WHERE username="'.$user.'" and password ="'.$password.'"';
          //   $this->logger->debug('auth-> |Usuario:' . $user. '|ip:'.$ip);
             $row=$this->select($sqlSelect);
             return $row;
