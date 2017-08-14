@@ -91,6 +91,9 @@ body {background:#FEFEFE;}
 
 
 @media screen and (max-width: 800px) {
+	.ng-scope {
+		padding-top:33px;
+	}
 	body {
 		padding-top:33px;
 	}

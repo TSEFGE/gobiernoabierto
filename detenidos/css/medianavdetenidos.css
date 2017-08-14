@@ -1,6 +1,6 @@
 @media screen and (max-width: 800px) {
   .barranav nav {
-     margin-top: -137px;
+     margin-top: -171px;
  }
  .menu_bar {   
      margin-left: -40px;
@@ -28,7 +28,7 @@
 
 @media screen and (max-width: 768px) {
   .barranav nav {
-     margin-top: -107px;
+     margin-top: -141px;
  }
  .menu_bar {
      margin-left: -24px;
@@ -37,7 +37,7 @@
 
 @media screen and (max-width: 767px) {
   .barranav nav {
-    margin-top: -179px;
+    margin-top: -211px;
  }
  .menu_bar {
      margin-left: -15px;
@@ -46,50 +46,50 @@
 
 @media screen and (max-width: 553px) {
   .barranav nav {
-     margin-top: -207px;
+     margin-top: -211px;
  }
 }
 
 @media screen and (max-width: 537px) {
   .barranav nav {
-     margin-top: -207px;
+     margin-top: -238px;
  }
 }
 
 
 @media screen and (max-width: 447px) {
   .barranav nav {
-     margin-top: -235px;
+     margin-top: -238px;
  }
 }
 
 @media screen and (max-width: 433px) {
   .barranav nav {
-     margin-top: -235px;
+     margin-top: -265px;
  }
 }
 
 
 @media screen and (max-width: 419px) {
   .barranav nav {
-     margin-top: -176px;
+     margin-top: -209px;
  }
 }
 
 @media screen and (max-width: 385px) {
   .barranav nav {
-     margin-top: -202px;
+     margin-top: -209px;
  }
 }
 
 @media screen and (max-width: 374px) {
   .barranav nav {
-     margin-top: -202px;
+     margin-top: -235px;
  }
 }
 
 @media screen and (max-width: 313px) {
   .barranav nav {
-     margin-top: -229px;
+     margin-top: -235px;
  }
 }
