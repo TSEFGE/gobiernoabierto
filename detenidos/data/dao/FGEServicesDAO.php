@@ -125,7 +125,7 @@ $getLastId=true;
 
            // $user = mysql_real_escape_string($user,$conexion);
            // $password = mysql_real_escape_string($password,$conexion);
-            $sqlSelect='SELECT id, username, password, name, level,idUnidad FROM db_users WHERE username="'.$user.'" ';
+            $sqlSelect='SELECT id, username, password, activacion, name, level,idUnidad FROM db_users WHERE username="'.$user.'" ';
             //$sqlSelect='SELECT id, username, password, name, level,idUnidad FROM db_users2 WHERE username="'.$user.'" and password ="'.$password.'"';
          //   $this->logger->debug('auth-> |Usuario:' . $user. '|ip:'.$ip);
             $row=$this->select($sqlSelect);
@@ -408,8 +408,107 @@ $getLastId=true;
             return NULL;
     }
 
-    
 //fin pruebas dao
 
+//validacion del estado de la cuenta
+
+    public function generarLinkActivacion($idusuario, $username){
+
+        
+        $comprobacion = "SELECT id, username, password, activacion, name, level,idUnidad FROM db_users WHERE id = ".$idusuario;
+        $resultado = $this->select($comprobacion);
+      
+        if(count($resultado) >= 1){
+        
+            $estado=$resultado[0]['activacion'];
+     
+            $enlace = $_SERVER["SERVER_NAME"].'/gobiernoabierto/detenidos/activacion.php?idusuario='.$idusuario.'&nameusuario='.sha1($username).'&estado='.$estado;
+            return $enlace;
+        }
+        else
+            return FALSE;
+    }
+
+    public function enviarEmailActivacion( $email, $link ){
+
+        $mensaje = '<html>
+        <head>
+            <title>Activación de cuenta</title>
+            <style type="text/css" media="screen">
+                .titulo1, .titulo2{
+                    font-family: "neosanspro-bold";
+                    font-size: 2.5rem;
+                }
+                .logotipo{
+                    text-align: center;
+                }    
+            </style>
+        </head>
+        <body>
+            <img src="http://compukami.esy.es/barra3.png" width="100%">
+                <br>
+            <p>Hemos recibido una petici&oacute;n para la activacion de su cuenta.</p>
+            <p>Si hiciste esta petici&oacute;n para registrarte, haz clic en el siguiente enlace, si no hiciste esta petici&oacute;n puedes ignorar este correo.</p>
+            <p>
+                <strong>Enlace para activar su cuenta</strong><br>
+                <a href="'.$link.'"> Activar cuenta </a>
+            </p>
+        </body>
+</html>';
+
+        $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+        $cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+        $cabeceras .= 'From: Fiscalia General Del Estado <central@fiscalia.gob.mx>' . "\r\n";
+        $asunto=utf8_decode("Activacion de cuenta");        
+        mail($email, $asunto, $mensaje, $cabeceras);
+    }
+
+
+    public function getEstadoCuenta($idusuario){
+        $sql = "SELECT id, username, password, activacion, name, level,idUnidad FROM db_users WHERE id = ".$idusuario;
+        $resultado = $this->select($sql);
+        if(count($resultado) >= 1)
+            return $resultado;
+        else 
+            return NULL;
+
+    }
+    
+
+    public function activarCuenta($idusuario){
+        $sql = "UPDATE db_users SET activacion = true WHERE id = ".$idusuario;
+        $resultado = $this->update($sql);
+        if(count($resultado) >= 1)
+            return $resultado;
+        else 
+            return NULL;
+
+    }
+    
+    /*proceso de registro de usuarios*/
+    public function registroUsuario($nombre,$usuario,$pass,$correo,$unidad){
+        $hash2 = password_hash($pass, PASSWORD_BCRYPT, array("cost" => 10));
+        $sql = "INSERT INTO db_users (username, password, name, idUnidad, correo, level) VALUES('".$usuario."','".$hash2."' ,'".$nombre."' ,".$unidad." ,'".$correo."' ,3 );";
+
+        $resultado = $this->insert($sql);
+        
+        if(count($resultado) >= 1)
+            return $resultado;
+        else 
+            return NULL;
+
+    }
+
+    public function getComprobacion ($user,$email){
+
+        $sql = " SELECT * FROM db_users WHERE correo = '".$email."' OR username = '".$user."' ;";
+        $resultado = $this->select($sql);
+        
+        if(count($resultado) >= 1)
+            return $resultado;
+        else 
+            return NULL;
+        
+    }
 }
 ?>
