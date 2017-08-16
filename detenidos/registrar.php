@@ -11,7 +11,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=5;">
+    <meta http-equiv="X-UA-Compatible" content="IE=11,chrome=1">
     <title>Gobierno Abierto - Registro Público de Personas Detenidas</title>
     <link rel="icon" href="img/icon.png" sizes="192x192">
 
