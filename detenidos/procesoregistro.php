@@ -35,7 +35,7 @@ if( $email != "" || $name != "" || $user != "" || $pass1 != "" || $pass2 != "" |
                     $registro=$dao->registroUsuario($name,$user,$pass1,$email,$unidad);
                     $resultado=$dao->getComprobacion($user,$email);
                     $idusuario=$resultado[0]['id'];
-
+                    /*
                     if ($registro) {
                         $linkTemporal = $dao->generarLinkActivacion( $idusuario, $user );
                     
@@ -44,6 +44,7 @@ if( $email != "" || $name != "" || $user != "" || $pass1 != "" || $pass2 != "" |
                             $respuesta->mensaje2 = 'correcto';
                         }
                     }
+                    */
                     
                 }else{
                     $respuesta->mensaje2 = 'passdiferente';

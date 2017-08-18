@@ -476,7 +476,7 @@ $getLastId=true;
     
 
     public function activarCuenta($idusuario){
-        $sql = "UPDATE db_users SET activacion = true WHERE id = ".$idusuario;
+        $sql = "UPDATE db_users SET activacion = 1 WHERE id = ".$idusuario;
         $resultado = $this->update($sql);
         if(count($resultado) >= 1)
             return $resultado;
@@ -488,7 +488,7 @@ $getLastId=true;
     /*proceso de registro de usuarios*/
     public function registroUsuario($nombre,$usuario,$pass,$correo,$unidad){
         $hash2 = password_hash($pass, PASSWORD_BCRYPT, array("cost" => 10));
-        $sql = "INSERT INTO db_users (username, password, name, idUnidad, correo, level) VALUES('".$usuario."','".$hash2."' ,'".$nombre."' ,".$unidad." ,'".$correo."' ,3 );";
+        $sql = "INSERT INTO db_users (username, password, name, idUnidad, correo) VALUES('".$usuario."','".$hash2."' ,'".$nombre."' ,".$unidad." ,'".$correo."'  );";
 
         $resultado = $this->insert($sql);
         
