@@ -335,27 +335,43 @@ angular.module('detenidosApp', [])
               else{
                 limpiarResultados();
                 $("#resultsDiv").css("display", "block");
-                //$("#resultsDiv").show();
-                 var pos = new google.maps.LatLng(data[0].latitud,data[0].longitud);
-                 marker.setPosition(pos);
-                 map.setCenter(marker.getPosition());
-                 map.setZoom(15);
-                 
-                 map.setCenter(marker.getPosition());
-                 google.maps.event.trigger(map, 'resize');
 
-                 $scope.itemnombre=data[0].nombre;
-                 $scope.itempaterno=data[0].paterno;
-                 $scope.itemmaterno=data[0].materno;
-                 $scope.itemunidad=data[0].unidad;
-                 $scope.itemfiscal=data[0].fiscal;
-                 $scope.itemtelefono=data[0].telefono;
-                 $scope.itemfechaInicio=data[0].fechaInicio;
-                 $scope.itemfechaFin=data[0].fechaFin;
-                 $scope.itemdireccion=data[0].direccion;
+                $scope.itemnombre=data[0].nombre;
+                $scope.itempaterno=data[0].paterno;
+                $scope.itemmaterno=data[0].materno;
+                $scope.itemunidad=data[0].unidad;
+                $scope.itemfiscal=data[0].fiscal;
+                $scope.itemtelefono=data[0].telefono;
+                $scope.itemfechaInicio=data[0].fechaInicio;
+                $scope.itemfechaFin=data[0].fechaFin;
+                $scope.itemdireccion=data[0].direccion;
+
+                var map;
+                var marker ;
+                map = new google.maps.Map(document.getElementById('map'));
+                marker = new google.maps.Marker({
+                  map: map
+                });
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+                marker.addListener('click', toggleBounce);
+                
+                var pos = new google.maps.LatLng(data[0].latitud,data[0].longitud);
+                marker.setPosition(pos);
+                marker.setTitle(data[0].unidad);
+                map.setZoom(15);
+                map.setCenter(marker.getPosition());
+                google.maps.event.trigger(map, 'resize');
               }
             });
         };
+
+        function toggleBounce() {
+          if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+          } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+          }
+        }
 
 
     });
