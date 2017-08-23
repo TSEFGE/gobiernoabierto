@@ -19,8 +19,7 @@ $(document).ready(function() {
             {
                 data: "db_users.id",
                 defaultContent: "",
-                className: 'select-checkbox',
-                orderable: false
+                className: 'select-checkbox'
             },
          
             { data: "db_users.name", className: 'editable'},
@@ -30,7 +29,6 @@ $(document).ready(function() {
             { data: "db_users.level", className: 'editable'},
             { data: "db_users.create_at", className: 'editable'},
             { data: "db_users.update_at", className: 'editable'}
-            
 
         ],
         order: [ 0, 'desc' ],
@@ -54,8 +52,7 @@ $(document).ready(function() {
             {
                 data: "db_users.id",
                 defaultContent: "",
-                className: 'select-checkbox',
-                orderable: false
+                className: 'select-checkbox'
             },
          
             { data: "db_users.name", className: 'editable'},
@@ -89,8 +86,7 @@ $(document).ready(function() {
             {
                 data: "db_users.id",
                 defaultContent: "",
-                className: 'select-checkbox',
-                orderable: false
+                className: 'select-checkbox'
             },
          
             { data: "db_users.name", className: 'editable'},
@@ -123,8 +119,7 @@ $(document).ready(function() {
             {
                 data: "db_users.id",
                 defaultContent: "",
-                className: 'select-checkbox',
-                orderable: false
+                className: 'select-checkbox'
             },
          
             { data: "db_users.name", className: 'editable'},
@@ -136,7 +131,7 @@ $(document).ready(function() {
         ],
         order: [ 0, 'desc' ],
         select: {
-            style:    'os',
+            style:    'multi',
             selector: 'td:first-child'
         }
     } );

@@ -41,7 +41,9 @@ if( $email != "" || $name != "" || $user != "" || $pass1 != "" || $pass2 != "" |
                     
                         if($linkTemporal){
                             $dao->enviarEmailActivacion( $email, $linkTemporal );
+                    */
                             $respuesta->mensaje2 = 'correcto';
+                    /*
                         }
                     }
                     */

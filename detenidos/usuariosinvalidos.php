@@ -26,18 +26,14 @@ use
             Field::inst( 'db_users.correo' ),
             Field::inst( 'db_users.idUnidad' ),
             Field::inst( 'db_users.level' ),
-            Field::inst( 'db_users.create_at' )->validator( 'Validate::dateFormat', array(
-                    "format"  => Format::DATE_ISO_8601,
-                    "message" => "Introduce la fecha en el formato AAAA/MM/DD"
-                ) )
-                ->getFormatter( 'Format::date_sql_to_format', Format::DATE_ISO_8601 )
-                ->setFormatter( 'Format::date_format_to_sql', Format::DATE_ISO_8601 ),
+            Field::inst( 'db_users.create_at' )->validator( 'Validate::notEmpty'),
             Field::inst( 'db_users.update_at' )->validator( 'Validate::numeric' )->setFormatter( 'Format::ifEmpty', null ),
             Field::inst( 'unidad.nombre' ),
             Field::inst( 'unidad.id' )
         )
         ->leftJoin( 'unidad', 'unidad.id', '=', 'db_users.idUnidad' )
         ->where('db_users.activacion', 3 , '=')
+        ->where('db_users.level', -1 , '>')
         ->process( $_POST )
         ->json();
         }

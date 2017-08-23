@@ -14,7 +14,10 @@
   function limpiar(){
     $("input[type=text]").val("");
     $('#sexo').val([]);
-    $('#unidad').val([]);
+    $('#idUnidad').val("");
+    $('#idUnidadUser').val("");
+    $('#levelUser').val("");
+    $('#estadoUser').val("");
   };
   function limpiarPassword(){
     $('#current_password').val("");
@@ -37,8 +40,27 @@
       $("#messageDiv").css("display", "none");
   };
 
+    function limpiarUser(){
+        $("input[type=text]").val("");
+        $('#sexo').val([]);
+        $('#idUnidad').val("");
+        $('#idUnidadUser').val("");
+        $('#levelUser').val("");
+        $('#estadoUser').val("");
+    };
+    function cancelarEdicionUser(){
+        limpiarUser();
+        $('#searchUser').show();
+        $('#resetUser').show();
+        $('#campopass').show();
+
+        $('#actualizarUser').hide();
+        $('#cancelarUser').hide();
+    };
+
+
 angular.module('detenidosApp', [])
-  .controller('UnidadesController', function($scope, $http){
+.controller('UnidadesController', function($scope, $http){
     var todoList = this;
       $http.get('./index.php/getUnidades').success(function(unidades) {
             todoList.unidades = unidades;
@@ -98,8 +120,7 @@ angular.module('detenidosApp', [])
                   'Hubo un error al intentar agregar el registro favor de reintentar,  en caso de que el error persista comunicarse al 228-841-61-70 ext. 3238.',
                   'error'
                 );
-            });
-           
+            });  
     	};
 
    $scope.removeDetenido = function() {
@@ -235,7 +256,7 @@ angular.module('detenidosApp', [])
                 );
                return;
           }
-        if($('#new_password').val()!=$('#confirm_password').val()){
+          if($('#new_password').val()!=$('#confirm_password').val()){
                //$scope.messagePassword="No coincide la contraseña nueva y su confirmación";
                swal(
                   'Atención',
@@ -288,11 +309,9 @@ angular.module('detenidosApp', [])
       };
       
       $scope.limpiarUpdatePassword = function() {
-        limpiarPassword();
-        $scope.messagePassword="";
+         limpiarPassword();
+         $scope.messagePassword="";
       }
-
-      
 
        $scope.getDetencion = function() {
             if($('#nombre').val()== "" || $('#paterno').val()=="" || $('#materno').val()=="" || $('#sexo').val()=="" || $('#fechaNacimiento').val()==""){
@@ -373,5 +392,150 @@ angular.module('detenidosApp', [])
           }
         }
 
+    /*proceso de usuarios*/
 
-    });
+        $scope.addUser = function() {
+            var url='./index.php/addUser';
+            var data=new Object();
+            if($('#nombreUser').val()=="" || $('#username').val()=="" || $('#passUser').val()=="" || $('#usercorreo').val()=="" || $('#idUnidadUser').val()=="" || $('#levelUser').val()=="" || $('#estadoUser').val()==""){
+                       //$scope.message="Debe capturar todos los datos para registrar la detención";
+                       //$("#resultsDiv").css("display", "block");
+                swal(
+                  'Atención',
+                  'Debe capturar TODOS los datos para registrar la Usuario.',
+                  'warning'
+                );
+                return;
+            }
+
+            data.nombreUser= $scope.nombreUser.trim().toUpperCase();
+            data.username=$scope.username.trim().toUpperCase();
+            data.passUser=$scope.passUser.trim().toUpperCase();
+            data.usercorreo=$scope.usercorreo.trim().toUpperCase();
+            data.idUnidadUser=$scope.idUnidadUser;
+            data.levelUser=$scope.levelUser;
+            data.estadoUser=$scope.estadoUser;
+
+            var dataJSON=JSON.stringify(data);
+            var config = {
+                headers : {
+                    'Content-Type': 'application/json;charset=utf-8;'
+                }
+            };
+            
+            $http.post(url, dataJSON, config)
+            .success(function (data, status, headers, config) {
+                limpiarUser();
+                //$scope.message="El registro fue agregado exitosamente";
+                //$("#resultsDiv").css("display", "block");
+                swal(
+                   'Hecho',
+                   'El registro fue agregado exitosamente.',
+                   'success'
+                );
+                
+                $('#usuariosactivos').DataTable().ajax.reload();
+                $('#usuariosinactivos').DataTable().ajax.reload();
+                $('#usuariosinvalidos').DataTable().ajax.reload();
+                $('#usuariospendientes').DataTable().ajax.reload();
+            })
+            
+            .error(function (data, status, headers, config) {
+                limpiar();
+                //$scope.message="Hubo un error al intentar agregar el registro favor de reintentar,  en caso de que el error persista comunicarse al 228-841-61-70 ext. 3238";
+                //$("#resultsDiv").css("display", "block");
+                swal(
+                   'Atención',
+                   'Hubo un error al intentar agregar el registro favor de reintentar,  en caso de que el error persista comunicarse al 228-841-61-70 ext. 3238.',
+                   'error'
+                );
+            });  
+        };
+                 
+        $scope.editUser = function() {
+                    limpiarUser();
+                    var data=$('#usuariosactivos').DataTable().row('.selected').data();
+                    $('#usuariosactivos').DataTable().$('tr.selected').removeClass('selected');
+                    if(data == undefined){
+                        //alert('Debe seleccionar un registro antes de seleccionar el boton Editar.');
+                        swal(
+                          'Atención',
+                          'Debe seleccionar un registro antes de seleccionar el botón Editar.',
+                          'warning'
+                        );
+                        $('#searchUser').show();
+                        $('#resetUser').show();
+                        $('#actualizarUser').hide();
+                        $('#cancelarUser').hide();
+                        return;
+                          //   $('#detenidos').DataTable().ajax.reload();
+                    }
+                    var dataJSON=JSON.stringify(data);
+                    $scope.idUser=data.db_users.id;
+                    $scope.nombreUser=data.db_users.name;
+                    $scope.username=data.db_users.username;
+                    $scope.usercorreo=data.db_users.correo;
+                    $("#idUnidadUser").val(data.unidad.id);
+                    $("#levelUser").val(data.db_users.level);
+                    $("#estadoUser").val(data.db_users.activacion);
+                    $('#searchUser').hide();
+                    $('#campopass').hide();
+                    $('#resetUser').hide();
+                    $('#actualizarUser').show();
+                    $('#cancelarUser').show();
+               };
+
+        $scope.updateUser = function() {
+            var url='./index.php/updateUser';
+            var data=new Object();
+            if($('#idUser').val()=="" || $('#nombreUser').val()=="" || $('#username').val()=="" || $('#usercorreo').val()=="" || $('#idUnidadUser').val()=="" || $('#levelUser').val()=="" || $('#estadoUser').val()==""){    //$scope.message="Debe capturar todos los datos para registrar la detención";
+                //$("#resultsDiv").css("display", "block");
+                swal(
+                  'Atención',
+                  'Debe capturar TODOS los datos para registrar la Usuario.',
+                  'warning'
+                );
+                return;
+            }
+            
+            data.idUser= $scope.idUser.trim().toUpperCase();
+            data.nombreUser= $scope.nombreUser.trim().toUpperCase();
+            data.username=$scope.username.trim().toUpperCase();
+           
+            data.usercorreo=$scope.usercorreo.trim().toUpperCase();
+            data.idUnidadUser=$("#idUnidadUser").val();
+            data.levelUser=$('#levelUser').val();
+            data.estadoUser=$('#estadoUser').val();
+            var dataJSON=JSON.stringify(data);
+            var config = {
+                headers : {
+                    'Content-Type': 'application/json;charset=utf-8;'
+                }
+            };
+            $http.post(url, dataJSON, config)
+            .success(function (data, status, headers, config) {
+                limpiarUser();
+                $('#searchUser').show();
+                $('#resetUser').show();
+                $('#actualizarUser').hide();
+                $('#campopass').show();
+                $('#cancelarUser').hide();
+                $('#usuariosactivos').DataTable().ajax.reload();
+                $('#usuariosinactivos').DataTable().ajax.reload();
+                $('#usuariosinvalidos').DataTable().ajax.reload();
+                $('#usuariospendientes').DataTable().ajax.reload();
+            })
+            
+            .error(function (data, status, headers, config) {
+                    //alert('Hubo un error al actualizar el registro, por favor intentar nuevamente o comunicar al administrador.')
+                swal(
+                  'Atención',
+                  'Hubo un error al actualizar el registro, por favor intentar nuevamente o comunicar al administrador.',
+                  'error'
+                );
+            });
+        };
+
+
+
+});
