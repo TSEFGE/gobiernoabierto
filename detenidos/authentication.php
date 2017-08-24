@@ -37,12 +37,23 @@ if (isset($_POST['login-submit'])) {
                 header('location: registrar.php');
                 */
 
-                if ($result[0]['activacion']==true) {
-                    $_SESSION['is_auth'] = true;
-                    $_SESSION['idUsuario'] = $result[0]['id'];
-                    $_SESSION['userLevel'] = $result[0]['level'];
-                    $_SESSION['idUnidad'] = $result[0]['idUnidad'];
-                    header('location: registrar.php');
+                if ($result[0]['activacion']==1) {
+
+                    /*
+                    if ($result[0]['level']== -1) {
+                        $_SESSION['is_auth'] = true;
+                        $_SESSION['idUsuario'] = $result[0]['id'];
+                        $_SESSION['userLevel'] = $result[0]['level'];
+                        $_SESSION['idUnidad'] = $result[0]['idUnidad'];
+                        header('location: usergestion.php');    
+                    }else{
+                    */
+                        $_SESSION['is_auth'] = true;
+                        $_SESSION['idUsuario'] = $result[0]['id'];
+                        $_SESSION['userLevel'] = $result[0]['level'];
+                        $_SESSION['idUnidad'] = $result[0]['idUnidad'];
+                        header('location: registrar.php');
+                    //}
                 }else {
                     $_SESSION['is_auth'] = false;
                     session_destroy();

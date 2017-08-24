@@ -476,19 +476,27 @@ $getLastId=true;
     
 
     public function activarCuenta($idusuario){
-        $sql = "UPDATE db_users SET activacion = true WHERE id = ".$idusuario;
+        $sql = "UPDATE db_users SET activacion = 1 WHERE id = ".$idusuario;
         $resultado = $this->update($sql);
         if(count($resultado) >= 1)
             return $resultado;
         else 
             return NULL;
-
     }
     
+    public function rechazarCuenta($idusuario){
+        $sql = "UPDATE db_users SET activacion = 3 WHERE id = ".$idusuario;
+        $resultado = $this->update($sql);
+        if(count($resultado) >= 1)
+            return $resultado;
+        else 
+            return NULL;
+    }
+
     /*proceso de registro de usuarios*/
     public function registroUsuario($nombre,$usuario,$pass,$correo,$unidad){
         $hash2 = password_hash($pass, PASSWORD_BCRYPT, array("cost" => 10));
-        $sql = "INSERT INTO db_users (username, password, name, idUnidad, correo, level) VALUES('".$usuario."','".$hash2."' ,'".$nombre."' ,".$unidad." ,'".$correo."' ,3 );";
+        $sql = "INSERT INTO db_users (username, password, activacion, name, idUnidad, correo) VALUES('".$usuario."','".$hash2."', 0 ,'".$nombre."' ,".$unidad." ,'".$correo."'  );";
 
         $resultado = $this->insert($sql);
         
@@ -501,7 +509,7 @@ $getLastId=true;
 
     public function getComprobacion ($user,$email){
 
-        $sql = " SELECT * FROM db_users WHERE correo = '".$email."' OR username = '".$user."' ;";
+        $sql = " SELECT * FROM db_users WHERE correo = '".$email."' OR username = '".$user."' AND activacion = 1;";
         $resultado = $this->select($sql);
         
         if(count($resultado) >= 1)
@@ -509,6 +517,39 @@ $getLastId=true;
         else 
             return NULL;
         
+    }
+
+    public function insertUser($nombreUser,$username, $pass, $usercorreo, $idUnidadUser, $levelUser  ,$estadoUser) {
+        $hash = password_hash($pass, PASSWORD_BCRYPT, array("cost" => 10));
+        $condition="";
+        if (empty($nombreUser) || empty($username) || empty($pass) || empty($usercorreo) || empty($idUnidadUser) || is_null($levelUser) || is_null($estadoUser))  {
+            throw new Exception('Es necesario especificar TODOS los datos para crear el registro');
+        }
+
+        $sqlSelect = 'INSERT INTO db_users(`username`, `password`, `activacion`, `name`, `idUnidad`, `correo`, `level`) VALUES ("'. $username .'","'. $hash .'",'. $estadoUser .',"'. $nombreUser .'",' . $idUnidadUser .',"'.$usercorreo.'",'.$levelUser.')' ;
+        $result = $this->insert($sqlSelect);
+        if(count($result) >= 1)
+            return $result;
+        else 
+            return NULL;
+    }
+
+    public function updateUser($idUser, $nombreUser, $username, $usercorreo, $idUnidadUser, $levelUser, $estadoUser){
+        if (is_null($idUser) || empty($nombreUser) || empty($username) || empty($usercorreo) || is_null($idUnidadUser) || is_null($levelUser) || is_null($estadoUser)){  
+            throw new Exception('Es necesario especificar TODOS los datos para actualizar el registro');
+        }
+
+        $sqlSelect = 'UPDATE db_users u SET u.username="'.$username.'", u.activacion='.$estadoUser.', u.name="'.$nombreUser.'", u.idUnidad='.$idUnidadUser.', u.correo="'. $usercorreo.'", u.level='.$levelUser.' WHERE u.id='.$idUser.';';
+        
+        $result=$this->update($sqlSelect);    
+
+        if(count($result) >= 1)
+            return $result;
+        else 
+            return NULL;
+
+    
+
     }
 }
 ?>

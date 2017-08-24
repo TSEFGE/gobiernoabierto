@@ -6,7 +6,9 @@
 	box-sizing: border-box;
 }
  
-body {background:#FEFEFE;}
+body {
+	background:#FEFEFE;
+	padding-top: 0;}
  
 .menu_bar {
 	display:none;

@@ -227,7 +227,7 @@ if(count($resultado)>0){
                             $("#modalRegistrar").modal('hide');
                             swal(
                                     'Atención',
-                                    'Un correo ha sido enviado a su cuenta de email con las instrucciones para activar su cuenta.',
+                                    'Se ha completado su registro exitosamente, se le enviara un correo para activación en caso de que la cuenta sea autorizada.',
                                     'success'
                                     );
                             $("#email").val("");
