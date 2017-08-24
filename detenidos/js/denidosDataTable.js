@@ -70,7 +70,9 @@ $(document).ready(function() {
             { data: "detenido.nombre", className: 'editable'},
             { data: "detenido.paterno", className: 'editable'},
             { data: "detenido.materno", className: 'editable'},
-            { data: "detenido.sexo", className: 'editable'},
+            { data: "detenido.sexo", className: 'editable', render: function(data, type, row){  
+                return data === 'MASCULINO' ? 'HOMBRE': 'MUJER';
+            }},
             { data: "detenido.fechaNacimiento", className: 'editable'},
             { data: "detencion.fechaInicio", className: 'editable'},
             { data: "detencion.fechaFin", className: 'editable'},
