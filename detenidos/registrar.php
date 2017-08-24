@@ -202,8 +202,8 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                                                 <label for="sexo">Sexo</label>
                                                 <div>
                                                     <select id="sexo" name="sexo" ng-model="sexo" class="form-control required ng-valid ng-dirty" required>
-                                                        <option value="MASCULINO">Masculino</option>
-                                                        <option value="FEMENINO">Femenino</option>
+                                                        <option value="MASCULINO">Hombre</option>
+                                                        <option value="FEMENINO">Mujer</option>
                                                     </select>
                                                 </div>
                                             </div>
