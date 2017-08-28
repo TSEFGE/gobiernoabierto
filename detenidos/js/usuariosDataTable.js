@@ -26,7 +26,23 @@ $(document).ready(function() {
             { data: "db_users.username", className: 'editable'},
             { data: "db_users.correo", className: 'editable'},
             { data: "unidad.nombre", className: "hide_column", "targets": [ 0 ] },
-            { data: "db_users.level", className: 'editable'},
+            { data: "db_users.level", className: 'editable', render: function(data, type, row){  
+                if (data == 0) {
+                    return 'Fiscal General';
+                }else{
+                    if (data == 1) {
+                        return 'Fiscal Regional';
+                    }else{
+                        if (data == 2) {
+                            return 'Fiscal de Distrito';
+                        }else{
+                            if (data == 3) {
+                                return 'Fiscal de Distrito Diverso';
+                            }
+                        }
+                    }
+                }
+            }},
             { data: "db_users.create_at", className: 'editable'},
             { data: "db_users.update_at", className: 'editable'}
 
@@ -59,7 +75,23 @@ $(document).ready(function() {
             { data: "db_users.username", className: 'editable'},
             { data: "db_users.correo", className: 'editable'},
             { data: "unidad.nombre", className: "hide_column", "targets": [ 0 ] },
-            { data: "db_users.level", className: 'editable'},
+            { data: "db_users.level", className: 'editable', render: function(data, type, row){  
+                if (data == 0) {
+                    return 'Fiscal General';
+                }else{
+                    if (data == 1) {
+                        return 'Fiscal Regional';
+                    }else{
+                        if (data == 2) {
+                            return 'Fiscal de Distrito';
+                        }else{
+                            if (data == 3) {
+                                return 'Fiscal de Distrito Diverso';
+                            }
+                        }
+                    }
+                }
+            }},
             { data: "db_users.create_at", className: 'editable'},
             { data: "db_users.update_at", className: 'editable'}
             
