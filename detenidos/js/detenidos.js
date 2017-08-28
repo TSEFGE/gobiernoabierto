@@ -47,6 +47,7 @@
         $('#idUnidadUser').val("");
         $('#levelUser').val("");
         $('#estadoUser').val("");
+        $('#usercorreo').val("");
     };
     function cancelarEdicionUser(){
         limpiarUser();
@@ -62,10 +63,10 @@
 angular.module('detenidosApp', [])
 .controller('UnidadesController', function($scope, $http){
     var todoList = this;
-      $http.get('./index.php/getUnidades').success(function(unidades) {
-            todoList.unidades = unidades;
+    $http.get('./index.php/getUnidades').success(function(unidades) {
+        todoList.unidades = unidades;
             
-        });
+    });
 
 
        $scope.addDetenido = function() {
@@ -536,6 +537,119 @@ angular.module('detenidosApp', [])
             });
         };
 
+
+        $scope.autorizarUser = function() {
+            var url='./index.php/autorizarUser';
+            var data2=new Object();
+            limpiarUser();
+            var data1=$('#usuariospendientes').DataTable().rows('.selected').data();
+            var contador=0;
+            if(data1 == undefined){
+                swal(
+                  'Atención',
+                  'Debe seleccionar un registro antes de seleccionar el botón Editar.',
+                  'warning'
+                );
+                return;
+                  
+            }
+            cont = 0;
+            var miJSON = '[';
+            while (cont< data1.length){
+                if(cont == (data1.length-1)){
+                    var element = '{"idUser":"'+data1[cont].db_users.id+'"}';
+                    miJSON = miJSON.concat(element);
+                }else{
+                    var element = '{"idUser":"'+data1[cont].db_users.id+'"},';
+                    miJSON = miJSON.concat(element);
+                }
+                //data2['idUser'] = data1[cont].db_users.id;
+                cont++;
+            }
+            miJSON = miJSON.concat(']');
+            //var dataJSON = '[{"idUser":"756"}, {"idUser":"758"}]';
+            var config = {
+                headers : {
+                    'Content-Type': 'application/json;charset=utf-8;'
+                }
+            };
+            $http.post(url, miJSON, config)
+            .success(function (data, status, headers, config) {
+                limpiarUser();
+               
+                $('#usuariosactivos').DataTable().ajax.reload();
+                $('#usuariosinactivos').DataTable().ajax.reload();
+                $('#usuariosinvalidos').DataTable().ajax.reload();
+                $('#usuariospendientes').DataTable().ajax.reload();
+            })
+            
+            .error(function (data, status, headers, config) {
+                    //alert('Hubo un error al actualizar el registro, por favor intentar nuevamente o comunicar al administrador.')
+                swal(
+                  'Atención',
+                  'Hubo un error al actualizar el registro, por favor intentar nuevamente o comunicar al administrador.',
+                  'error'
+                );
+            });
+            $('#usuariospendientes').DataTable().$('tr.selected').removeClass('selected');
+       };
+
+
+       $scope.rechazarUser = function() {
+            var url='./index.php/rechazarUser';
+            var data2=new Object();
+            limpiarUser();
+            var data1=$('#usuariospendientes').DataTable().rows('.selected').data();
+            var contador=0;
+            if(data1 == undefined){
+                swal(
+                  'Atención',
+                  'Debe seleccionar un registro antes de seleccionar el botón Editar.',
+                  'warning'
+                );
+                return;
+                  
+            }
+            cont = 0;
+            var miJSON = '[';
+            while (cont< data1.length){
+                if(cont == (data1.length-1)){
+                    var element = '{"idUser":"'+data1[cont].db_users.id+'"}';
+                    miJSON = miJSON.concat(element);
+                }else{
+                    var element = '{"idUser":"'+data1[cont].db_users.id+'"},';
+                    miJSON = miJSON.concat(element);
+                }
+                //data2['idUser'] = data1[cont].db_users.id;
+                cont++;
+            }
+            miJSON = miJSON.concat(']');
+            //var dataJSON = '[{"idUser":"756"}, {"idUser":"758"}]';
+            var config = {
+                headers : {
+                    'Content-Type': 'application/json;charset=utf-8;'
+                }
+            };
+            $http.post(url, miJSON, config)
+            .success(function (data, status, headers, config) {
+                limpiarUser();
+               
+                $('#usuariosactivos').DataTable().ajax.reload();
+                $('#usuariosinactivos').DataTable().ajax.reload();
+                $('#usuariosinvalidos').DataTable().ajax.reload();
+                $('#usuariospendientes').DataTable().ajax.reload();
+            })
+            
+            .error(function (data, status, headers, config) {
+                    //alert('Hubo un error al actualizar el registro, por favor intentar nuevamente o comunicar al administrador.')
+                swal(
+                  'Atención',
+                  'Hubo un error al actualizar el registro, por favor intentar nuevamente o comunicar al administrador.',
+                  'error'
+                );
+            });
+            $('#usuariospendientes').DataTable().$('tr.selected').removeClass('selected');
+       };
 
 
 });

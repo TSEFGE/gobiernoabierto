@@ -16,8 +16,8 @@
 		if( sha1($userdb) == $nameusuario ){
 			$estadodb=$resultado[0]['activacion'];
 			
-			if ($estadodb==0) {
-					# code...
+			if ($estadodb==2) {
+					
 					
 ?>
 <!DOCTYPE html>
@@ -101,12 +101,10 @@
 			}else{
 				header('Location:login.php');	
 			}
-		}
-		else{
+		}else{
 			header('Location:login.php');
 		}
-	}
-	else{
+	}else{
 		header('Location:login.php');
 	}
 ?>

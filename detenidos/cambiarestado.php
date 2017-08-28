@@ -9,7 +9,7 @@ $nameusuario = mysql_real_escape_string($_POST['nameusuario']);
 $estado = mysql_real_escape_string($_POST['estado']);
 
 
-if( $idusuario != "" && $nameusuario != "" && $estado == 0){
+if( $idusuario != "" && $nameusuario != "" && $estado == 2){
 	
 	?>
 	<!DOCTYPE html>
