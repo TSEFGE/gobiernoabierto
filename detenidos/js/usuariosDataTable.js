@@ -17,10 +17,13 @@ $(document).ready(function() {
         ajax: "./usuariosactivos.php",
          
          columns: [
-            {
-                data: "db_users.id",className: 'editable'
+            { data: "db_users.level", className: 'select-checkbox', render: function(data, type, row){ 
+                if (data != null) {
+                  return '' ;
+                }
+                }
             },
-         
+            { data: "db_users.id",className: 'editable'},
             { data: "db_users.name", className: 'editable'},
             { data: "db_users.username", className: 'editable'},
             { data: "db_users.correo", className: 'editable'},
@@ -46,7 +49,7 @@ $(document).ready(function() {
             { data: "db_users.update_at", className: 'editable'}
 
         ],
-        order: [ 0, 'desc' ],
+        order: [ 1, 'desc' ],
         select: {
             style: 'single'  
         }

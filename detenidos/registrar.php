@@ -534,6 +534,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                             <table id="usuariosactivos" class="display table-striped table-hover" cellspacing="0" width="100%">
                                 <thead class="cabecera">
                                     <tr>
+                                        <th style="padding: 10px;"></th>
                                         <th style="padding: 10px;">ID</th>
                                         <th style="padding: 10px;">Nombre Completo</th>
                                         <th style="padding: 10px;">Usuario</th>
