@@ -15,11 +15,10 @@ $(document).ready(function() {
             'copy', 'csv', 'excel', 'print'
         ],
         ajax: "./usuariosactivos.php",
+         
          columns: [
             {
-                data: "db_users.id",
-                defaultContent: "",
-                className: 'select-checkbox'
+                data: "db_users.id",className: 'editable'
             },
          
             { data: "db_users.name", className: 'editable'},
@@ -49,8 +48,7 @@ $(document).ready(function() {
         ],
         order: [ 0, 'desc' ],
         select: {
-            style:    'os',
-            selector: 'td:first-child'
+            style: 'single'  
         }
     } );
  
