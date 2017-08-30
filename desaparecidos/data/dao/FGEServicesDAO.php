@@ -107,7 +107,7 @@ class FGEServicesDAO extends GenericDAO {
 
             $user = mysql_real_escape_string($user);
             $password = mysql_real_escape_string($password);
-            $sqlSelect='SELECT id, username, password, name, level,idUnidad FROM db_users WHERE username="'.$user.'" ';
+            $sqlSelect='SELECT * FROM db_users WHERE username="'.$user.'" ';
 
             $row=$this->select($sqlSelect);
             return $row;
@@ -304,6 +304,199 @@ class FGEServicesDAO extends GenericDAO {
             $estado = '{"estado":"error"}';
             return $estado;
         }
+    }
+
+    //validacion del estado de la cuenta
+
+    public function generarLinkActivacion($idusuario){
+
+        
+        $comprobacion = "SELECT id, username, password, activacion, name, level,idUnidad FROM db_users WHERE id = ".$idusuario;
+        $resultado = $this->select($comprobacion);
+      
+        if(count($resultado) >= 1){
+        
+            $estado=$resultado[0]['activacion'];
+            $username=$resultado[0]['username'];
+            $enlace = $_SERVER["SERVER_NAME"].'/gobiernoabierto/desaparecidos/activacion.php?idusuario='.$idusuario.'&nameusuario='.sha1($username).'&estado='.$estado;
+            return $enlace;
+        }
+        else
+            return FALSE;
+    }
+
+    public function enviarEmailActivacion( $email, $link ){
+
+        $mensaje = '<html>
+        <head>
+            <title>Activación de cuenta</title>
+            <style type="text/css" media="screen">
+                .titulo1, .titulo2{
+                    font-family: "neosanspro-bold";
+                    font-size: 2.5rem;
+                }
+                .logotipo{
+                    text-align: center;
+                }    
+            </style>
+        </head>
+        <body>
+            <img src="http://compukami.esy.es/barra3.png" width="100%">
+                <br>
+            <p>Hemos recibido una petici&oacute;n para la activacion de su cuenta.</p>
+            <p>Si hiciste esta petici&oacute;n para registrarte, haz clic en el siguiente enlace, si no hiciste esta petici&oacute;n puedes ignorar este correo.</p>
+            <p>
+                <strong>Enlace para activar su cuenta</strong><br>
+                <a href="'.$link.'"> Activar cuenta </a>
+            </p>
+        </body>
+</html>';
+
+        $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+        $cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+        $cabeceras .= 'From: Fiscalia General Del Estado <central@fiscalia.gob.mx>' . "\r\n";
+        $asunto=utf8_decode("Activacion de cuenta");        
+        mail($email, $asunto, $mensaje, $cabeceras);
+    }
+
+
+    public function getEstadoCuenta($idusuario){
+        $sql = "SELECT * FROM db_users WHERE id = ".$idusuario;
+        $resultado = $this->select($sql);
+        if(count($resultado) >= 1)
+            return $resultado;
+        else 
+            return NULL;
+
+    }
+    
+
+    public function activarCuenta($idusuario){
+        $sql = "UPDATE db_users SET activacion = 1 WHERE id = ".$idusuario;
+        $resultado = $this->update($sql);
+        if(count($resultado) >= 1)
+            return $resultado;
+        else 
+            return NULL;
+    }
+    
+    public function rechazarCuenta($idusuario){
+        $sql = "UPDATE db_users SET activacion = 3 WHERE id = ".$idusuario;
+        $resultado = $this->update($sql);
+        if(count($resultado) >= 1)
+            return $resultado;
+        else 
+            return NULL;
+    }
+
+    /*proceso de registro de usuarios*/
+    public function registroUsuario($nombre,$usuario,$pass,$correo,$unidad){
+        $hash2 = password_hash($pass, PASSWORD_BCRYPT, array("cost" => 10));
+        $sql = "INSERT INTO db_users (username, password, activacion, name, idUnidad, correo) VALUES('".$usuario."','".$hash2."', 0 ,'".$nombre."' ,".$unidad." ,'".$correo."'  );";
+
+        $resultado = $this->insert($sql);
+        
+        if(count($resultado) >= 1)
+            return $resultado;
+        else 
+            return NULL;
+
+    }
+
+    public function getComprobacion ($user,$email){
+
+        $sql = " SELECT * FROM db_users WHERE correo = '".$email."' OR username = '".$user."' AND activacion = 1;";
+        $resultado = $this->select($sql);
+        
+        if(count($resultado) >= 1)
+            return $resultado;
+        else 
+            return NULL;
+        
+    }
+
+    public function insertUser($nombreUser,$username, $pass, $usercorreo, $idUnidadUser, $levelUser  ,$estadoUser) {
+        $hash = password_hash($pass, PASSWORD_BCRYPT, array("cost" => 10));
+        $condition="";
+        if (empty($nombreUser) || empty($username) || empty($pass) || empty($usercorreo) || empty($idUnidadUser) || is_null($levelUser) || is_null($estadoUser))  {
+            throw new Exception('Es necesario especificar TODOS los datos para crear el registro');
+        }
+
+        $sqlSelect = 'INSERT INTO db_users(`username`, `password`, `activacion`, `name`, `idUnidad`, `correo`, `level`) VALUES ("'. $username .'","'. $hash .'",'. $estadoUser .',"'. $nombreUser .'",' . $idUnidadUser .',"'.$usercorreo.'",'.$levelUser.')' ;
+        $result = $this->insert($sqlSelect);
+        if(count($result) >= 1)
+            return $result;
+        else 
+            return NULL;
+    }
+
+    public function updateUser($idUser, $nombreUser, $username, $usercorreo, $idUnidadUser, $levelUser, $estadoUser){
+        if (is_null($idUser) || empty($nombreUser) || empty($username) || empty($usercorreo) || is_null($idUnidadUser) || is_null($levelUser) || is_null($estadoUser)){  
+            throw new Exception('Es necesario especificar TODOS los datos para actualizar el registro');
+        }
+
+        $sqlSelect = 'UPDATE db_users u SET u.username="'.$username.'", u.activacion='.$estadoUser.', u.name="'.$nombreUser.'", u.idUnidad='.$idUnidadUser.', u.correo="'. $usercorreo.'", u.level='.$levelUser.' WHERE u.id='.$idUser.';';
+        
+        $result=$this->update($sqlSelect);    
+
+        if(count($result) >= 1)
+            return $result;
+        else 
+            return NULL;
+
+    
+
+    }
+
+    public function autorizarUser($idUser){
+        if (is_null($idUser)){  
+            throw new Exception('hubo problemas en actualizar TODOS los datos para actualizar el registro');
+        }
+
+        $sqlSelect = 'UPDATE db_users u SET u.activacion= 2 WHERE u.id='.$idUser.';';
+        
+        $result=$this->update($sqlSelect);    
+
+        if(count($result) >= 1)
+            return $result;
+        else 
+            return NULL;
+
+    }
+
+    public function rechazarUser($idUser){
+        if (is_null($idUser)){  
+            throw new Exception('hubo problemas en actualizar TODOS los datos para actualizar el registro');
+        }
+
+        $sqlSelect = 'UPDATE db_users u SET u.activacion= 3 WHERE u.id='.$idUser.';';
+        
+        $result=$this->update($sqlSelect);    
+
+        if(count($result) >= 1)
+            return $result;
+        else 
+            return NULL;
+
+    }
+
+    public function getEmailActivacion ($idUser){
+
+        $sql = " SELECT * FROM db_users WHERE id = '$idUser' ";
+        $resultado = $this->select($sql);
+        
+        return $resultado;
+        
+    }
+
+     public function getUnidades() {
+        $sqlSelect = 'SELECT * FROM unidad order by nombre' ;
+        //     $this->logger->debug('getUnidades: ' . $sqlSelect);
+        $result = $this->select($sqlSelect);
+        if(count($result) >= 1)
+            return $result;
+        else 
+            return NULL;
     }
 
 
