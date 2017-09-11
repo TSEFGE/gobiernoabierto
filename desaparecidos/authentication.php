@@ -26,25 +26,31 @@ if (isset($_POST['login-submit'])) {
         if (count($result)>0){
             $hash = $result[0]['password'];
             if (password_verify($password, $hash)) {
-                $_SESSION['is_auth'] = true;
-                $_SESSION['idUsuario'] = $result[0]['id'];
-                $_SESSION['userLevel'] = $result[0]['level'];
-                $_SESSION['idUnidad'] = $result[0]['idUnidad'];
-                header('location: registrar.php');
+                if ($result[0]['activacion']==1) {
+                        $_SESSION['is_auth'] = true;
+                        $_SESSION['idUsuario'] = $result[0]['id'];
+                        $_SESSION['userLevel'] = $result[0]['level'];
+                        $_SESSION['idUnidad'] = $result[0]['idUnidad'];
+                        header('location: registrar.php');
+                }else {
+                    $_SESSION['is_auth'] = false;
+                    session_destroy();
+                    $error = "2";
+                    header("location:login.php?error2=".$error);
+                }
             } else {
                 $_SESSION['is_auth'] = false;
                 session_destroy();
                 $error = "1";
-                header("location:login.php?error=".$error);
+                header("location:login.php?error1=".$error);
             }
-            
 
         }
         else{
             $_SESSION['is_auth'] = false;
             session_destroy();
             $error = "1";
-            header("location:login.php?error=".$error);
+            header("location:login.php?error1=".$error);
         }
     }
 }

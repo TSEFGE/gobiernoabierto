@@ -1,3 +1,21 @@
+<?php 
+require 'vendor/autoload.php';
+include_once 'init.php';
+include_once __DATA_PATH__ . '/dao/FGEServicesDAO.php';
+$dao = new FGEServicesDAO();
+
+ $resultado=$dao->getUnidades();
+if(count($resultado)>0){
+
+    $contador=count($resultado);
+    $contador2=0;
+    $combobit="";
+    while ($contador2 != $contador) {
+        $combobit .=" <option value='".$resultado[$contador2]['id']."'>".$resultado[$contador2]['nombre']."</option>";
+        $contador2++;
+    }
+}
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +28,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.css">
     <link rel="stylesheet" href="css/cssfonts.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/login.css">
@@ -55,9 +75,14 @@
                             </div>
                             <?php
                             $E1 ="El usuario y/o contraseña son incorrectas, vuelva a intentarlo.";
-                            if (isset($_GET['error'])) {
+                            $E2 ="El usuario y la contraseña son correctas, pero su cuenta no esta activada.";
+                            if (isset($_GET['error1'])==1) {
                                 echo "<div class='errormsg'>".$E1."</div>";
                             }
+                            if(isset($_GET['error2'])==2){
+                                echo "<div class='errormsg'>".$E2."</div>";
+                            }
+
                             ?>
                             <div class="login-button-row">
                                 <input type="submit" name="login-submit" id="login-submit" value="INGRESAR" title="Login now"><br><br>
@@ -69,7 +94,10 @@
                             <div class="col-xs-6">
                                 <a class="help-block" href="#" data-toggle="modal" data-target="#modalRecupera"><i class="fa fa-key" aria-hidden="true" style="color: #919396;"></i><br>Recuperar Contraseña</a>
                             </div>
-                            <br><br><br><br><br>
+                            <div>
+                                <a class="help-block" href="#" data-toggle="modal" data-target="#modalRegistrar"><i class="fa fa-user-plus" aria-hidden="true" style="color: #919396;"></i><br>Crear cuenta</a>
+                            </div>
+                            
                         </form>
                     </div>
                 </div>
@@ -105,32 +133,62 @@
         </div>
     </div>
 
-    <div id="modalenviado" class="modal fade" role="dialog"> 
-        <div class="modal-dialog modal-lg" role="document"> 
-            <div class="modal-content"> 
-                <div class="modal-header alert-info"> 
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
-                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> 
-                    </button> 
-                    <h4 class="modal-title" id="myModalLabel"><strong>Un correo ha sido enviado a su cuenta de email con las instrucciones para restablecer la contraseña.</h4> 
-                </div> 
-            </div> 
+    <!--modal de formulario de registro-->
+    <div id="modalRegistrar" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" id="frmRegistrar" action="procesoregistro.php">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title text-center"><strong>Crear cuenta</strong></h4>
+                    </div>
+
+                    <div class="modal-body">
+                        
+                        <div class="form-group">
+                            <label for="Rname">Nombre completo</label><br>
+                            <input type="text" class="form-control" id="Rname" name="Rname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Ruser">Nombre de usuario</label><br>
+                            <input type="text" class="form-control" id="Ruser" name="Ruser" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Remail">correo electrónico</label><br>
+                            <input type="email" class="form-control" id="Remail" name="Remail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass1">Contraseña</label><br>
+                            <input type="password" class="form-control" id="Rpass1" name="Rpass1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass2">Confirmar contraseña</label><br>
+                            <input type="password" class="form-control" id="Rpass2" name="Rpass2" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Unidad</label>
+                            <div>
+                                <select  id="Runidad" name="Runidad" class="form-control" required>
+                                    <option value="">Seleccionar Unidad</option>
+                                    <?php echo $combobit; ?>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div id="mensaje2"></div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" onclick="borrar();" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <input type="submit" class="btn btn-primary" value="Crear cuenta">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
-    <div id="modaldesconocido" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg" role="document"> 
-            <div class="modal-content"> 
-                <div class="modal-header alert-warning"> 
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
-                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> 
-                    </button> 
-                    <h4 class="modal-title" id="myModalLabel">No existe una cuenta asociada a ese correo.</h4> 
-                </div> 
-            </div> 
-        </div> 
-    </div>
-    
+<!--fin modal de formulario de registro-->
+
             
     <footer class="footer">
         <div class="row footer-area-wrap">
@@ -155,6 +213,63 @@
     </footer>
     
     <script>
+        //procesos de registro
+        $(document).ready(function(){
+            $("#frmRegistrar").submit(function(event){
+                event.preventDefault();
+                $.ajax({
+                    url:'procesoregistro.php',
+                    type:'post',
+                    dataType:'json',
+                    data:$("#frmRegistrar").serializeArray()
+                }).done(function(respuesta){
+                    
+                    if(respuesta.mensaje2 == 'correcto'){
+                            $("#modalRegistrar").modal('hide');
+                            swal(
+                                    'Atención',
+                                    'Se ha completado su registro exitosamente, se le enviara un correo para activación en caso de que la cuenta sea autorizada.',
+                                    'success'
+                                    );
+                            $("#email").val("");
+                            $("#Remail").val("");
+                            $("#Rname").val("");
+                            $("#Ruser").val("");
+                            $("#Rpass1").val("");
+                            $("#Rpass2").val("");
+                            $("#Runidad").val("");
+                    }else{
+                        if(respuesta.mensaje2=='passdiferente') {
+                            swal(
+                                    'Atención',
+                                    'Las contraseñas no coinciden.',
+                                    'warning'
+                                    );
+                        }else{
+                            if(respuesta.mensaje2=='yaexisteuser') {
+                                swal(
+                                    'Atención',
+                                    'El usuario que ha ingresado ya existe.',
+                                    'warning'
+                                    );
+                            }else{
+                                if(respuesta.mensaje2=='yaexistecorreo') {
+                                    swal(
+                                    'Atención',
+                                    'El correo que ha ingresado ya existe.',
+                                    'warning'
+                                    );
+                                }
+                            }
+                        }
+                    } 
+                    
+                });
+            });
+        });
+        //fin proceso de registro
+
+
         $(document).ready(function(){
             $("#frmRestablecer").submit(function(event){
                 event.preventDefault();
@@ -167,11 +282,19 @@
                     
                     if(respuesta.mensaje == 'correcto'){
                         $("#modalRecupera").modal('hide');
-                        $("#modalenviado").modal();
+                        swal(
+                            'Atención',
+                            'Un correo ha sido enviado a su cuenta de email con las instrucciones para recuperar su contraseña.',
+                            'success'
+                            );
                     }else{
                         if(respuesta.mensaje=='noexiste') {
                             $("#modalRecupera").modal('hide');
-                            $("#modaldesconocido").modal();
+                            swal(
+                                'Atención',
+                                'Un correo ha ingresado no existe.',
+                                'warning'
+                                );
                         }
                     } 
                     $("#email").val('');
@@ -181,6 +304,12 @@
     
         function borrar() {
             $("#email").val("");
+            $("#Remail").val("");
+            $("#Rname").val("");
+            $("#Ruser").val("");
+            $("#Rpass1").val("");
+            $("#Rpass2").val("");
+            $("#Runidad").val("");
         };
     </script>
 </body>

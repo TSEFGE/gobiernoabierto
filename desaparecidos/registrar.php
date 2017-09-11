@@ -41,6 +41,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.js"></script>
 
     <!--Para las tablas(Al parecer no son necesarios)-->
+    <link rel="stylesheet" type="text/css" href="./Editor-PHP-1.5.6/css/editor.dataTables.min.css">
     <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <link href="https://cdn.datatables.net/autofill/2.1.2/css/autoFill.dataTables.min.css" rel="stylesheet">
@@ -53,8 +54,13 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
     <script src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
     <link href="https://cdn.datatables.net/rowreorder/1.1.2/css/rowReorder.dataTables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/rowreorder/1.1.2/js/dataTables.rowReorder.min.js"></script>
+    <link href="./Editor-PHP-1.5.6/css/editor.dataTables.min.css" rel="stylesheet">    
+    <script type="text/javascript" language="javascript" src="./Editor-PHP-1.5.6/js/dataTables.editor.js"></script>
+    <script type="text/javascript" language="javascript" src="./Editor-PHP-1.5.6/js/dataTables.editor.min.js"></script>
     
 	<script src="./js/desaparecidos.js"></script>
+    
+    <script src="./js/usuariosDataTable.js"></script>
     <!--Mis estilos-->
     <link rel="stylesheet" href="css/cssfonts.css">
     <!--<link rel="stylesheet" href="css/sticky-footer.css">-->
@@ -79,49 +85,52 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
 </head>
 
 <body ng-controller="UnidadesController as todoList">
-        <header>
-    <div class="container conta">
-            <div class="row">
-                <div class="col-md-2 col-xs-3 logotipo">
-                    <img src="./img/logo.png" align="left" border="1" width="100" height="100"/>
+    <header>
+        <div class="container conta">
+                <div class="row">
+                    <div class="col-md-2 col-xs-3 logotipo">
+                        <img src="./img/logo.png" align="left" border="1" width="100" height="100"/>
+                    </div>
+                    <div class="col-md-8 col-xs-9">
+                        <h3 align="center"><strong><span class="titulo1">GOBIERNO</span><br><span class="titulo2">ABIERTO</span></strong></h3>
+                        <br>
+                    </div>
                 </div>
-                <div class="col-md-8 col-xs-9">
-                    <h3 align="center"><strong><span class="titulo1">GOBIERNO</span><br><span class="titulo2">ABIERTO</span></strong></h3>
-                    <br>
-                </div>
-            </div>
-    </div>
-    <div class="container">
-        
-            <div class="barranav" >
-                <div class="menu_bar">
-                    <a href="#" class="bt-menu"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-                </div>
+        </div>
+        <div class="container">
+            
+                <div class="barranav" >
+                    <div class="menu_bar">
+                        <a href="#" class="bt-menu"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+                    </div>
 
-                <nav class="text-center">
-                    <ul>
-                        <li title="Página principal" class="lineamenu">
-                            <a href="http://fiscaliaveracruz.gob.mx/" onclick="borrar();"> Fiscalía</a>
-                        </li><!--
-                        --><li class="lineamenu conta">
-                            <a data-toggle="pill" href="#reporte" onclick="borrar();"><span class="fa fa-file-text" aria-hidden="true"></span> Generar Reporte</a>
-                        </li><!--
-                        --><li class="submenu" id="submenudetenidos">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog" aria-hidden="true"></span> Ajustes<span class="caret"></span></a>
-                            <ul class="children" id="mdetenidos">
-                                <li title="Cambiar contraseña" class="conta" style="cursor: pointer;">
-                                    <a data-toggle="modal" data-target="#pwModal"><span class="fa fa-key" aria-hidden="true"></span> Cambiar contraseña</a>
-                                </li>
-                                <li title="Cerrar sesión">
-                                    <a href="logout.php"><span class="fa fa-sign-out" aria-hidden="true"></span> Cerrar sesión</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-    </div>
-        </header>
+                    <nav class="text-center">
+                        <ul>
+                            <li title="Página principal" class="lineamenu">
+                                <a href="http://fiscaliaveracruz.gob.mx/" onclick="borrar();"> Fiscalía</a>
+                            </li><?php if ($_SESSION['userLevel']==-1) {
+                            ?><li class="lineamenu conta">
+                                <a data-toggle="pill" href="#usuarios" onclick="borrar();><span class="fa fa-user-plus" aria-hidden="true"></span> Usuarios</a>
+                            </li><?php } ?><!--
+                            --><li class="lineamenu conta">
+                                <a data-toggle="pill" href="#reporte" onclick="borrar();"><span class="fa fa-file-text" aria-hidden="true"></span> Generar Reporte</a>
+                            </li><!--
+                            --><li class="submenu" id="submenudetenidos">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog" aria-hidden="true"></span> Ajustes<span class="caret"></span></a>
+                                <ul class="children" id="mdetenidos">
+                                    <li title="Cambiar contraseña" class="conta" style="cursor: pointer;">
+                                        <a data-toggle="modal" data-target="#pwModal"><span class="fa fa-key" aria-hidden="true"></span> Cambiar contraseña</a>
+                                    </li>
+                                    <li title="Cerrar sesión">
+                                        <a href="logout.php"><span class="fa fa-sign-out" aria-hidden="true"></span> Cerrar sesión</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+        </div>
+    </header>
     <div class="container conta">
         <div id="pwModal" class="modal fade" role="dialog">
             <div class="modal-dialog modal-sm">
@@ -226,6 +235,229 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                     </table>
                 </div>
             </div>
+
+            <!--administrador de usuarios-->
+            <?php if ($_SESSION['userLevel']==-1) {?>
+            <div id="usuarios" class="tab-pane fade">
+
+                <ul class="nav nav-tabs">
+                    <li role="presentation">
+                        <a data-toggle="tab" href="#activas" aria-expanded="true">Cuentas Activas</a>
+                    </li>
+                    <li role="presentation">
+                        <a data-toggle="tab" href="#inactivas" aria-expanded="true">Cuentas Inactivas</a>
+                    </li>
+                    <li role="presentation">
+                        <a data-toggle="tab" href="#invalidas" aria-expanded="true">Cuentas Rechazadas</a>
+                    </li>
+                    <li role="presentation">
+                        <a data-toggle="tab" href="#pendientes" aria-expanded="true">Pendientes</a>
+                    </li>
+                </ul>
+                <br>    
+                <div class="tab-content">
+            
+                    <div id="activas" class="tab-pane fade in active default">
+                        <div>
+                            <form name="users" id="users" method="POST"  novalidate class="simple-form" ng-submit="todoList.submit()">
+                                <div class="panel"> 
+                                    <div class="panel-heading panel2">
+                                        <h3 class="panel-title text-left"><i class="fa fa-address-card" aria-hidden="true"></i>  Datos Usuario</h3>
+                                    </div> 
+                                    <div class="panel-body" id="searchDiv">
+                                        <div class="box-body">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-6 col-md-4">
+                                                    <div class="form-group ">
+                                                        <input type="text" id="idUser" name="idUser" ng-model="idUser" class="form-control ng-valid ng-dirty" style="display: none;">
+                                                        <label for="nombreUser">Nombre Completo:</label>
+                                                        <input type="text" id="nombreUser" name="nombreUser" ng-model="nombreUser" class="form-control required ng-valid ng-dirty" ng-required="required" required value="{{}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-md-2 ">
+                                                    <div class="form-group">  
+                                                        <label for="username">Nombre de Usuario:</label>
+                                                        <input type="text" id="username" name="username" ng-model="username" class="form-control ng-valid ng-dirty" ng-required="required" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-md-2" id="campopass">
+                                                    <div class="form-group">  
+                                                        <label for="passUser" id="labelpass">Contraseña:</label>
+                                                        <input type="password" id="passUser" name="passUser" ng-model="passUser" class="form-control" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-md-3 " style="padding-left: 20px;">
+                                                    <div class="form-group">
+                                                        <label for="usercorreo">Correo:</label>
+                                                        <input type="email" id="usercorreo" name="usercorreo" ng-model="usercorreo" class="form-control ng-valid ng-dirty" ng-required="required" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-12 col-sm-6 col-md-3 " style="padding-left: 20px;">
+                                                    <div class="form-group ">
+                                                        <label for="nombre">Unidad:</label>
+                                                        
+                                                            <select  id="idUnidadUser" ng-model="idUnidadUser" name="idUnidadUser" class="form-control required ng-valid ng-dirty" required>
+                                                                <option ng-repeat="unidad in todoList.unidades" value="{{unidad.id}}">{{unidad.nombre}}</option>
+                                                                <option value="">Seleccionar Unidad</option>
+                                                            </select>
+                                                        
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-xs-12 col-sm-6 col-md-3 " style="padding-left: 20px;">
+                                                    <div class="form-group">
+                                                        <label for="levelUser">Nivel</label>
+                                                        <div>
+                                                            <select id="levelUser" name="levelUser" ng-model="levelUser" class="form-control required ng-valid ng-dirty" required>
+                                                                <option value="">Seleccionar Nivel</option>
+                                                                <option value="0">Fiscal General</option>
+                                                                <option value="1">Fiscal Regional</option>
+                                                                <option value="2">Fiscal de Distrito</option>
+                                                                <option value="3">Fiscal de Distrito Diverso</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-md-3 " style="padding-left: 20px;">
+                                                    <div class="form-group">
+                                                        <label for="estadoUser">Estado</label>
+                                                        <div>
+                                                            <select id="estadoUser" name="estadoUser" ng-model="estadoUser" class="form-control required ng-valid ng-dirty" required>
+                                                                <option value="">Seleccionar Estado de la Cuenta</option>
+                                                                <option value="0">Pendiente</option>
+                                                                <option value="1">Activa</option>
+                                                                <option value="2">Inactiva</option>
+                                                                <option value="3">Invalida</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="alert alert-warning">
+                                    <span class="i-info"></span> Todos los campos son requeridos para realizar el registro de la detención.
+                                </div>
+
+                            </form>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-2">
+                                <input type="button" class="btn btn-azul btn-block" id="searchUser" value="Agregar" ng-click="addUser()">
+                                <input  type="button" class="btn btn-azul btn-block" name="actualizarUsers" id="actualizarUser" value="Actualizar" style="display: none;"  ng-click="updateUser()">
+                            </div>
+                            <div class="col-xs-6 col-sm-2">
+                                <input class="btn btn-gris btn-block" onclick="limpiarUser();" type="button" id="resetUser" value="Limpiar">
+                                <input  class="btn btn-gris btn-block" onclick="cancelarEdicionUser();" type="button" id="cancelarUser" name="cancelarUser" value="Cancelar" style="display: none;">
+                            </div>
+                            <div class="col-xs-6 col-sm-2">
+                                <button class="btn btn-gris btn-block" id="editBtnUser" ng-click="editUser()">Editar</button>
+                            </div>
+                            <!-- boton de borrar pendiente en verificar la necesidad
+                            <div class="col-xs-6 col-sm-2">
+                                <button class="btn btn-gris btn-block" id="removeBtnUser" ng-click="removeUser()">Borrar</button>
+                            </div>
+                            -->
+                        
+                        </div><br>
+                        <div class="table-responsive">
+                            <table id="usuariosactivos" class="display table-striped table-hover" cellspacing="0" width="100%">
+                                <thead class="cabecera">
+                                    <tr>
+                                        <th style="padding: 10px;"></th>
+                                        <th style="padding: 10px;">ID</th>
+                                        <th style="padding: 10px;">Nombre Completo</th>
+                                        <th style="padding: 10px;">Usuario</th>
+                                        <th style="padding: 10px;">Correo</th>
+                                        <th style="padding: 10px;">Unidad</th>
+                                        <th style="padding: 10px;">Nivel</th>
+                                        <th style="padding: 10px;">Fecha de creación</th>
+                                        <th style="padding: 10px;">Fecha de modificación</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="inactivas" class="tab-pane fade">
+                        
+                        <div class="table-responsive">
+                            <table id="usuariosinactivos" class="display table-striped table-hover" cellspacing="0" width="100%">
+                                <thead class="cabecera">
+                                    <tr>
+                                        <th style="padding: 10px;">ID</th>
+                                        <th style="padding: 10px;">Nombre Completo</th>
+                                        <th style="padding: 10px;">Usuario</th>
+                                        <th style="padding: 10px;">Correo</th>
+                                        <th style="padding: 10px;">Unidad</th>
+                                        <th style="padding: 10px;">Nivel</th>
+                                        <th style="padding: 10px;">Fecha de creación</th>
+                                        <th style="padding: 10px;">Fecha de modificación</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="invalidas" class="tab-pane fade">
+                        
+                        <div class="table-responsive">
+                            <table id="usuariosinvalidos" class="display table-striped table-hover" cellspacing="0" width="100%">
+                                <thead class="cabecera">
+                                    <tr>
+                                        <th style="padding: 10px;">ID</th>
+                                        <th style="padding: 10px;">Nombre Completo</th>
+                                        <th style="padding: 10px;">Usuario</th>
+                                        <th style="padding: 10px;">Correo</th>
+                                        <th style="padding: 10px;">Unidad</th>
+                                        <th style="padding: 10px;">Fecha de creación</th>
+                                        <th style="padding: 10px;">Fecha de modificación</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="pendientes" class="tab-pane fade">
+
+                         <div class="row">
+                            <div class="col-xs-6 col-sm-2">
+                                <input type="button" class="btn btn-azul btn-block" id="autorizarUser" value="Autorizar" ng-click="autorizarUser()">
+                            </div>
+                            <div class="col-xs-6 col-sm-2">
+                                <input type="button" class="btn btn-azul btn-block" id="rechazarUser" value="Rechazar" ng-click="rechazarUser()">
+                            </div>
+                            <!-- boton de borrar pendiente en verificar la necesidad
+                            <div class="col-xs-6 col-sm-2">
+                                <button class="btn btn-gris btn-block" id="removeBtnUser" ng-click="removeUser()">Borrar</button>
+                            </div>
+                            -->
+                        </div>
+                        <br>
+                        <div class="table-responsive">
+                            <table id="usuariospendientes" class="display table-striped table-hover table-bordered" cellspacing="0" width="99%">
+                                <thead class="cabecera">
+                                    <tr>
+                                        <th style="padding: 10px;">id</th>
+                                        <th style="padding: 10px;">Nombre Completo</th>
+                                        <th style="padding: 10px;">Usuario</th>
+                                        <th style="padding: 10px;">Correo</th>
+                                        <th style="padding: 10px;">Unidad</th>
+                                        <th style="padding: 10px;">Fecha de creación</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <?php  } ?>
         </div>
 
         <!-- Modal de mostrar los resultadosmodal -->
