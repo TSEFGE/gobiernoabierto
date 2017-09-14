@@ -412,7 +412,7 @@ $getLastId=true;
 
 //validacion del estado de la cuenta
 
-    public function generarLinkActivacion($idusuario, $username){
+    public function generarLinkActivacion($idusuario){
 
         
         $comprobacion = "SELECT id, username, password, activacion, name, level,idUnidad FROM db_users WHERE id = ".$idusuario;
@@ -421,7 +421,7 @@ $getLastId=true;
         if(count($resultado) >= 1){
         
             $estado=$resultado[0]['activacion'];
-     
+            $username=$resultado[0]['username'];
             $enlace = $_SERVER["SERVER_NAME"].'/gobiernoabierto/detenidos/activacion.php?idusuario='.$idusuario.'&nameusuario='.sha1($username).'&estado='.$estado;
             return $enlace;
         }
@@ -465,7 +465,7 @@ $getLastId=true;
 
 
     public function getEstadoCuenta($idusuario){
-        $sql = "SELECT id, username, password, activacion, name, level,idUnidad FROM db_users WHERE id = ".$idusuario;
+        $sql = "SELECT * FROM db_users WHERE id = ".$idusuario;
         $resultado = $this->select($sql);
         if(count($resultado) >= 1)
             return $resultado;
@@ -551,5 +551,47 @@ $getLastId=true;
     
 
     }
+
+    public function autorizarUser($idUser){
+        if (is_null($idUser)){  
+            throw new Exception('hubo problemas en actualizar TODOS los datos para actualizar el registro');
+        }
+
+        $sqlSelect = 'UPDATE db_users u SET u.activacion= 2 WHERE u.id='.$idUser.';';
+        
+        $result=$this->update($sqlSelect);    
+
+        if(count($result) >= 1)
+            return $result;
+        else 
+            return NULL;
+
+    }
+
+    public function rechazarUser($idUser){
+        if (is_null($idUser)){  
+            throw new Exception('hubo problemas en actualizar TODOS los datos para actualizar el registro');
+        }
+
+        $sqlSelect = 'UPDATE db_users u SET u.activacion= 3 WHERE u.id='.$idUser.';';
+        
+        $result=$this->update($sqlSelect);    
+
+        if(count($result) >= 1)
+            return $result;
+        else 
+            return NULL;
+
+    }
+
+    public function getEmailActivacion ($idUser){
+
+        $sql = " SELECT * FROM db_users WHERE id = '$idUser' ";
+        $resultado = $this->select($sql);
+        
+        return $resultado;
+        
+    }
+
 }
 ?>

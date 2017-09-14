@@ -67,3 +67,10 @@ h3 {
   -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+.fuente-ficha-titulo {
+  font-family: 'neosanspro-bold';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 11px;
+}

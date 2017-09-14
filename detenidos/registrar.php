@@ -400,7 +400,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
 
 
 
-        <!--administrador de usuarios-->
+            <!--administrador de usuarios-->
         
             <?php if ($_SESSION['userLevel']==-1) {?>
             <div id="usuarios" class="tab-pane fade">
@@ -534,6 +534,7 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
                             <table id="usuariosactivos" class="display table-striped table-hover" cellspacing="0" width="100%">
                                 <thead class="cabecera">
                                     <tr>
+                                        <th style="padding: 10px;"></th>
                                         <th style="padding: 10px;">ID</th>
                                         <th style="padding: 10px;">Nombre Completo</th>
                                         <th style="padding: 10px;">Usuario</th>
@@ -591,15 +592,10 @@ if (!isset($_SESSION['is_auth']) || !$_SESSION['is_auth'] || !isset($_SESSION['i
 
                          <div class="row">
                             <div class="col-xs-6 col-sm-2">
-                                <input type="button" class="btn btn-azul btn-block" id="searchUser" value="Agregar" ng-click="addUser()">
-                                <input  type="button" class="btn btn-azul btn-block" name="actualizarUsers" id="actualizarUser" value="Actualizar" style="display: none;"  ng-click="updateUser()">
+                                <input type="button" class="btn btn-azul btn-block" id="autorizarUser" value="Autorizar" ng-click="autorizarUser()">
                             </div>
                             <div class="col-xs-6 col-sm-2">
-                                <input class="btn btn-gris btn-block" onclick="limpiarUser();" type="button" id="resetUser" value="Limpiar">
-                                <input  class="btn btn-gris btn-block" onclick="cancelarEdicionUser();" type="button" id="cancelarUser" name="cancelarUser" value="Cancelar" style="display: none;">
-                            </div>
-                            <div class="col-xs-6 col-sm-2">
-                                <button class="btn btn-gris btn-block" id="editBtnUser" ng-click="editUser()">Editar</button>
+                                <input type="button" class="btn btn-azul btn-block" id="rechazarUser" value="Rechazar" ng-click="rechazarUser()">
                             </div>
                             <!-- boton de borrar pendiente en verificar la necesidad
                             <div class="col-xs-6 col-sm-2">

@@ -343,5 +343,74 @@ $app->post('/updateUser', function () use ($app, $logger,$dao) {
 });
 
 
+$app->post('/autorizarUser', function () use ($app, $logger,$dao) {
+    $app->response()->header('Content-Type', 'application/json; charset=utf-8');
+    $response = array();
+    $request =$app->request()->getBody()!=='' ? json_decode($app->request()->getBody()): null;
+    try {
+       
+        //$idUser = !is_null($request->idUser)?$request->idUser:NULL;
+        $cont = 0;
+        while ($cont < count($request) ){
+            echo $request[$cont]->idUser;
+            $usuario=$dao->autorizarUser($request[$cont]->idUser);
+            if ($usuario) {
+                $linkactivacion=$dao->generarLinkActivacion($request[$cont]->idUser);
+                $estatus=$dao->getEstadoCuenta($request[$cont]->idUser);
+                $email=$estatus[0]['correo'];
+                $linkactivacion=$dao->enviarEmailActivacion( $email, $linkactivacion );
+            }
+            $cont++;
+        }
+        
+        
+        if (!$usuario) {
+            throw new Exception('Error al insertar el registro; si el error persiste, comunicarse al departamento de sistemas ext.3238', 418);
+        }
+        else{
+            echo json_encode($usuario, JSON_UNESCAPED_UNICODE);
+            return;
+        }
+    } catch (Exception $e) {
+        $response['error_code'] = $e->getCode();
+        $response['error_message'] = $e->getMessage();
+        $logger->debug('addDetenido: ' . $e->getMessage());
+
+    }
+      echo json_encode($response, JSON_UNESCAPED_UNICODE);
+});
+
+$app->post('/rechazarUser', function () use ($app, $logger,$dao) {
+    $app->response()->header('Content-Type', 'application/json; charset=utf-8');
+    $response = array();
+    $request =$app->request()->getBody()!=='' ? json_decode($app->request()->getBody()): null;
+    try {
+       
+        //$idUser = !is_null($request->idUser)?$request->idUser:NULL;
+        $cont = 0;
+        while ($cont < count($request) ){
+            echo $request[$cont]->idUser;
+            $usuario=$dao->rechazarUser($request[$cont]->idUser);
+            
+            $cont++;
+        }
+        
+        
+        if (!$usuario) {
+            throw new Exception('Error al insertar el registro; si el error persiste, comunicarse al departamento de sistemas ext.3238', 418);
+        }
+        else{
+            echo json_encode($usuario, JSON_UNESCAPED_UNICODE);
+            return;
+        }
+    } catch (Exception $e) {
+        $response['error_code'] = $e->getCode();
+        $response['error_message'] = $e->getMessage();
+        $logger->debug('addDetenido: ' . $e->getMessage());
+
+    }
+      echo json_encode($response, JSON_UNESCAPED_UNICODE);
+});
+
 $app->run();
 ?>
