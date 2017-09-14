@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=11,chrome=1">
   <meta name="description" content="Portal Oficial de la Fiscalía General del Estado de Veracruz">
@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link href="css/botonazul.css" rel="stylesheet" type="text/css" />
   <link href="css/botongris.css" rel="stylesheet" type="text/css" />
   <link href="css/alertamarillo.css" rel="stylesheet" type="text/css" />
@@ -27,26 +27,15 @@
   <link rel="stylesheet" href="css/panel-default.css">
   <link rel="stylesheet" href="css/formulario.css">
   <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/medianavdesaparecidos.css">
     <script src="js/main.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.js"></script>
   <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
   <!--.......................-->
-  <style>
-    @media screen and (max-width: 800px) {
-      .barranav nav {
-        width: 50%;
-        height: 100%;
-        position: fixed;
-        right:100%;
-        margin: 0;
-        overflow: scroll;
-        margin-top: -171px;
-        border-radius: 0;
-      }
-    }
-  </style>
+  
+  
 </head>
 
 <body>
@@ -81,17 +70,17 @@
             </li><!--
             --><li class="submenu lineamenu" id="submenudesaparecidos" >
               <a href="#">Desaparecidos<span class="caret"></span></a>
-                <ul class="children" id="desaparecidos">
+                <ul class="children" id="mdesaparecidos">
                   <li title="Busqueda de Desaparecidos"><a href="index4.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Busqueda  </a></li>
                   <li title="Descargar Archivo"><a href="./desaparecidos.xlsx"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>Descargar</a></li>
                   <li title="ir a Infografía"><a href="./img/infografia.pdf"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>Infografía</a></li>
-                  <li title="Estadísticas de Desaparecidos"><a href="http://www.transparenciamexico.mx/User/Workspace/Archivos/PDF/29/INCISO-C-75903.pdf"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Estadísticas</a></li>
+                  <li title="Estadísticas de Desaparecidos"><a href="http://gobiernoabierto.fiscaliaveracruz.gob.mx/desaparecidos/img/GraficasDesaparecidosDic2016.pdf"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Estadísticas</a></li>
                   <li title="Guía para la Denuncia de Personas Desaparecidas"><a href="http://gobiernoabierto.fiscaliaveracruz.gob.mx/desaparecidos/img/cartel.pdf"><span class="glyphicon glyphicon-book" arial-hidden="true"></span>Guía</a></li>
                 </ul>
             </li><!--
             --><li class="submenu lineamenu" id="submenudetenidos">
                 <a href="#">Detenidos<span class="caret"></span></a>
-                  <ul class="children" id="detenidos">
+                  <ul class="children" id="mdetenidos">
                     <li title="Busqueda de Detenidos"><a href="../detenidos/index2.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Busqueda</a></li>
                     <li title="ir a Infografía"><a href="../detenidos/img/infografia.pdf"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>Infografía</a></li>
                     <li title="Estadísticas de Detenidos"><a href="../detenidos/img/grafica.png"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>Estadísticas</a></li>
@@ -165,8 +154,8 @@
                 <div>
                   <select class="form-control" id="sexo" required>
                     <option value="">Sexo</option>
-                    <option value="m">Masculino</option>
-                    <option value="f">Femenino</option>
+                    <option value="m">Hombre</option>
+                    <option value="f">Mujer</option>
                   </select>
                 </div>
               </div>
@@ -267,7 +256,7 @@
        }
     });
 
-        $('#siguiente').hide();
+      $('#siguiente').hide();
       $('#anterior').hide();
       var datos;
       
@@ -279,95 +268,7 @@
         swal({
           title: '<h1>Atención</h1>',
           type: 'warning',
-          html: '<h4">Debe proporcionar <strong>AL MENOS UN</strong> dato(nombre, paterno, materno, sexo, edad) para realizar la busqueda.</h4>'
-        });
-        return false;
-      }
-      $('#paginas').empty();
-      var pagina = 0;
-      $.ajax({
-        type: 'POST',
-        contentType: 'application/json',
-        url: 'index.php/consulta',
-        dataType: "json",                  
-        data: JSON.stringify({
-          nombre: $("#nombre").val(),
-          paterno: $("#paterno").val(),
-          materno: $("#materno").val(),
-          sexo: $("#sexo").val(),
-          edad: $("#edad").val()
-        }),
-        success: function (data) {
-                  datos = data;
-                  var elements_per_page = 6;
-          var max_size=data.length;
-          var pagtot=parseInt(max_size/elements_per_page);
-          var pagreal=max_size/elements_per_page;
-          if (pagreal > pagtot) {
-            pagtot = pagtot + 1
-          }
-          $('#resultsDiv').empty();
-          var sta = 0;
-          $.each(data, function(key, item) {
-            if (key=="error_code"){
-              swal({
-                  title: '<h1>Atención</h1>',
-                  type: 'error',
-                  html: '<h4><strong>No existen resultados</strong> para la búsqueda realizada</h4>'
-              });
-              return false;
-            }
-            $('#siguiente').show();
-            $('#anterior').show();
-            var partefoto="";
-            if(item.rutfoto!=null){
-              partefoto=item.rutfoto.split("\\").pop();
-            }
-            if(sta < elements_per_page){ 
-              var foto=item.rutfoto == null || item.rutfoto === "" ?'./img/desapsf.jpg':'./img/fotos/'+partefoto;
-              if(foto=='./img/desapsf.jpg'){
-                foto='./img/noexiste.jpg';//Para generar error automáticamente
-              }
-              var sexo=item.sexo=='M'?'Masculino':'Femenino';
-              var origen=item.origen==null?'S/D':item.origen;
-              if (item.apat==null) {
-                item.apat='';
-              }
-              if (item.amat==null) {
-                item.amat='';
-              }
-              if (item.fextrav=='00-00-0000') {
-                item.fextrav=' Sin Dato';
-              }
-              htmlElement = $('<div onclick="getDetail('+item.id+');" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 " id="'+item.id+'"> <div class="panel-ficha ficha-desaparecidos"> <div class="panel-body"> <div class="col-xs-4"> <span><img style="border: 4px solid #919396;" class="image_mini " src="'+foto+'" onerror="epic(this);" width="100" height="150"/></span> </div> <div class="data_mini ficha col-xs-8"> <p class="fuente-ficha padding"> '+item.nombre+' '+ item.apat +' '+ item.amat +'</p> <hr class="padding separador"> <p class="padding"> '+item.edad+' años</p> <hr class="separador padding"> <p class="padding"> '+sexo+'</p> <hr class="padding separador"> <p class="padding">Extraviado:'+item.fextrav+'</p> <hr class="padding separador"> </div> </div> <div class="panel-footer"> <input type="button" name="" value="VER M&Aacute;S DETALLES" class="boton-detalles" > </div> </div> </div>');
-              $('#resultsDiv').append(htmlElement);
-              sta = sta+1;
-              if(sta == max_size){
-                pagina = pagina+1;
-                $("#pags").val(pagina);
-                htmlElement = $('<div>Página: '+pagina+' de '+pagtot+' <br>Total de elementos: '+max_size+'</div>');
-                $('#paginas').append(htmlElement);
-                return false;
-              }
-                            $("#muestra").val(sta);
-            }else{
-              pagina = pagina+1;
-              $("#pags").val(pagina);
-              htmlElement = $('<div>Página: '+pagina+' de '+pagtot+' <br>Total de elementos: '+max_size+'</div>');
-              $('#paginas').append(htmlElement);
-              return false;
-            }
-          });
-        }
-      });
-    });
-
-    function busca(){ 
-      if($("#nombre").val()=="" && $("#paterno").val() == "" && $("#materno").val()=="" && $("#sexo").val()=="" && $('#edad').val() == ""){
-        swal({
-          title: '<h1>Atención</h1>',
-          type: 'warning',
-          html: '<h4">Debe proporcionar <strong>AL MENOS UN</strong> dato(nombre, paterno, materno, sexo, edad) para realizar la busqueda.</h4>'
+          html: '<h4">Debe proporcionar <strong>AL MENOS UN</strong> dato(nombre, paterno, materno, sexo, edad) para realizar la búsqueda.</h4>'
         });
         return false;
       }
@@ -416,7 +317,95 @@
               if(foto=='./img/desapsf.jpg'){
                 foto='./img/noexiste.jpg';//Para generar error automáticamente
               }
-              var sexo=item.sexo=='M'?'Masculino':'Femenino';
+              var sexo=item.sexo=='M'?'Hombre':'Mujer';
+              var origen=item.origen==null?'S/D':item.origen;
+              if (item.apat==null) {
+                item.apat='';
+              }
+              if (item.amat==null) {
+                item.amat='';
+              }
+              if (item.fextrav=='00-00-0000') {
+                item.fextrav=' Sin Dato';
+              }
+              htmlElement = $('<div onclick="getDetail('+item.id+');" class="col-xs-12 col-sm-6 col-md-6 col-lg-4 " id="'+item.id+'"> <div class="panel-ficha ficha-desaparecidos"> <div class="panel-body"> <div class="col-xs-4"> <span><img style="border: 4px solid #919396;" class="image_mini " src="'+foto+'" onerror="epic(this);" width="100" height="150"/></span> </div> <div class="data_mini ficha col-xs-8"> <p class="fuente-ficha padding"> '+item.nombre+' '+ item.apat +' '+ item.amat +'</p> <hr class="padding separador"> <p class="padding"> '+item.edad+' años</p> <hr class="separador padding"> <p class="padding"> '+sexo+'</p> <hr class="padding separador"> <p class="padding">Extraviado:'+item.fextrav+'</p> <hr class="padding separador"> </div> </div> <div class="panel-footer"> <input type="button" name="" value="VER M&Aacute;S DETALLES" class="boton-detalles" > </div> </div> </div>');
+              $('#resultsDiv').append(htmlElement);
+              sta = sta+1;
+              if(sta == max_size){
+                pagina = pagina+1;
+                $("#pags").val(pagina);
+                htmlElement = $('<div>Página: '+pagina+' de '+pagtot+' <br>Total de elementos: '+max_size+'</div>');
+                $('#paginas').append(htmlElement);
+                return false;
+              }
+              $("#muestra").val(sta);
+            }else{
+              pagina = pagina+1;
+              $("#pags").val(pagina);
+              htmlElement = $('<div>Página: '+pagina+' de '+pagtot+' <br>Total de elementos: '+max_size+'</div>');
+              $('#paginas').append(htmlElement);
+              return false;
+            }
+          });
+        }
+      });
+    });
+
+    function busca(){ 
+      if($("#nombre").val()=="" && $("#paterno").val() == "" && $("#materno").val()=="" && $("#sexo").val()=="" && $('#edad').val() == ""){
+        swal({
+          title: '<h1>Atención</h1>',
+          type: 'warning',
+          html: '<h4">Debe proporcionar <strong>AL MENOS UN</strong> dato(nombre, paterno, materno, sexo, edad) para realizar la búsqueda.</h4>'
+        });
+        return false;
+      }
+      $('#paginas').empty();
+      var pagina = 0;
+      $.ajax({
+        type: 'POST',
+        contentType: 'application/json',
+        url: 'index.php/consulta',
+        dataType: "json",                  
+        data: JSON.stringify({
+          nombre: $("#nombre").val(),
+          paterno: $("#paterno").val(),
+          materno: $("#materno").val(),
+          sexo: $("#sexo").val(),
+          edad: $("#edad").val()
+        }),
+        success: function (data) {
+          datos = data;
+          var elements_per_page = 6;
+          var max_size=data.length;
+          var pagtot=parseInt(max_size/elements_per_page);
+          var pagreal=max_size/elements_per_page;
+          if (pagreal > pagtot) {
+            pagtot = pagtot + 1
+          }
+          $('#resultsDiv').empty();
+          var sta = 0;
+          $.each(data, function(key, item) {
+            if (key=="error_code"){
+              swal({
+                  title: '<h1>Atención</h1>',
+                  type: 'error',
+                  html: '<h4><strong>No existen resultados</strong> para la búsqueda realizada</h4>'
+              });
+              return false;
+            }
+            $('#siguiente').show();
+            $('#anterior').show();
+            var partefoto="";
+            if(item.rutfoto!=null){
+              partefoto=item.rutfoto.split("\\").pop();
+            }
+            if(sta < elements_per_page){ 
+              var foto=item.rutfoto == null || item.rutfoto === "" ?'./img/desapsf.jpg':'./img/fotos/'+partefoto;
+              if(foto=='./img/desapsf.jpg'){
+                foto='./img/noexiste.jpg';//Para generar error automáticamente
+              }
+              var sexo=item.sexo=='M'?'Hombre':'Mujer';
               var origen=item.origen==null?'S/D':item.origen;
               if (item.apat==null) {
                 item.apat='';
@@ -464,7 +453,7 @@
           $('#detailsDiv').empty();
           $.each(data, function(key, item) {
             if (key=="error_code"){
-              htmlElement = $('<h4>No existen resultados para la busqueda realizada</h4>');
+              htmlElement = $('<h4>No existen resultados para la búsqueda realizada</h4>');
               $('#detailsDiv').append(htmlElement);
               return false;
             }
@@ -476,7 +465,7 @@
             if(foto=='./img/desapsf.jpg'){
               foto='./img/noexiste.jpg';//Para generar error automáticamente
             }
-            var sexo=item.sexo=='M'?'Masculino':'Femenino';
+            var sexo=item.sexo=='M'?'Hombre':'Mujer';
             var origen=item.origen==null?'S/D':item.origen;
             if (item.apat==null) {
                 item.apat='';
@@ -487,10 +476,10 @@
               if (item.fextrav=='00-00-0000') {
                 item.fextrav=' Sin Dato';
               }
-            htmlElement = $('<div class="modal-header" style="border:none; "> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"> </span> </button> </div> <div class="modal-body "><div class="row"> <div class="col-xs-12 col-sm-4" style="text-align: center;""> <span><img style="border: 4px solid #919396;" class="image_mini " src="'+foto+'" onerror="epic(this);" width="150" height="195"/></span> </div> <br><br> <div class="data_mini col-xs-12 col-sm-8"> <p class="fuente-ficha">'+item.nombre+' '+ item.apat +' '+ item.amat +'</p> <hr class="separador2"> <br>'+item.edad+' años<br> <hr class="separador2"> '+sexo+'<br> <hr class="separador2"> <span>Extraviado:'+item.fextrav+'</span> <br><hr class="separador2"><br> <br> </div> <div> <p class="fuente-ficha" style="padding-left:15px;">DESCRIPCI&Oacute;N</p> </div> <div class="col-xs-6">Estatura: '+item.est +'<br>Complexi&oacute;n: '+item.compl +'<br>Ojos: '+item.ojos +'<br>Piel: '+item.piel +'<br>Cabello: '+item.cab +'<br> </div> <div class="col-xs-6"> Tipo de Cabello: '+item.tcab +'<br> Nariz: '+ item.nariz +'<br> Labios: '+item.labios +'<br> Cejas: '+item.cejas +'</div> </div> </div> <div class="numeros-contacto"> <span> <h4 align="center" class="fuente-ficha" style="color:#fff;"> <b>SI LO HA VISTO O LO RECONOCE</b> </h4>COMUNÍQUESE DE 9:00 A 15:00 HRS Y DE 18:00 A 21:00 HRS A:<br><span class="glyphicon glyphicon-earphone"> </span> 2288120841 <br><span class="glyphicon glyphicon-envelope"></span> personasdesaparecidas@fiscaliaveracruz.gob.mx<br>'+
+            htmlElement = $('<div class="modal-header" style="border:none; "> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"> </span> </button> </div> <div class="modal-body "><div class="row"> <div class="col-xs-12 col-sm-4" style="text-align: center;""> <span><img style="border: 4px solid #919396;" class="image_mini " src="'+foto+'" onerror="epic(this);" width="150" height="195"/></span> </div> <br><br> <div class="data_mini col-xs-12 col-sm-8"> <p class="fuente-ficha">'+item.nombre+' '+ item.apat +' '+ item.amat +'</p> <hr class="separador2"> <br>'+item.edad+' años<br> <hr class="separador2"> '+sexo+'<br> <hr class="separador2"> <span>Extraviado:'+item.fextrav+'</span> <br><hr class="separador2"><br> <br> </div> <div> <p class="fuente-ficha" style="padding-left:15px;">DESCRIPCI&Oacute;N</p> </div> <div class="col-xs-6">Estatura: '+item.est +'<br>Complexi&oacute;n: '+item.compl +'<br>Ojos: '+item.ojos +'<br>Piel: '+item.piel +'<br>Cabello: '+item.cab +'<br> </div> <div class="col-xs-6"> Tipo de Cabello: '+item.tcab +'<br> Nariz: '+ item.nariz +'<br> Labios: '+item.labios +'<br> Cejas: '+item.cejas +'</div> </div> </div> <div class="numeros-contacto"> <span> <h4 align="center" class="fuente-ficha" style="color:#fff;"> <b>SI LO HA VISTO O LO RECONOCE</b> </h4>COMUNÍQUESE DE 9:00 A 15:00 HRS Y DE 18:00 A 21:00 HRS A:<br><span class="glyphicon glyphicon-earphone"> </span> 2288120841 <br><span class="glyphicon glyphicon-envelope"></span> personasdesaparecidas @fiscaliaveracruz.gob.mx<br>'+
               '<br><button class="form-control btn btn-primary center-block" id="informar" name="informar" onclick="darInforme('+item.id+');">Proporcionar informe anónimo</button><br> '+
               ' <!-- <p>  <a href="https://www.facebook.com/sharer.php?u=http://gobiernoabierto.fiscaliaveracruz.gob.mx/desaparecidos/detalles.php?id='+item.id+'"><i class="fa fa-facebook" aria-hidden="true"></i></a>  <a href="https://plus.google.com/share?url=http://gobiernoabierto.fiscaliaveracruz.gob.mx/desaparecidos/detalles.php?id='+item.id+'"><i class="fa fa-google-plus" aria-hidden="true"></i></a>   <a href="http://www.linkedin.com/shareArticle?url=http://gobiernoabierto.fiscaliaveracruz.gob.mx/desaparecidos/detalles.php?id='+item.id+'"><i class="fa fa-linkedin" aria-hidden="true"></i></a>    <a href="https://twitter.com/?status=Ayudanos a encontrar a '+item.nombre+' '+item.apat+' '+item.amat+'http://gobiernoabierto.fiscaliaveracruz.gob.mx/desaparecidos/detalles.php?id='+item.id+'"><i class="fa fa-twitter" aria-hidden="true"></i></a></p>-->'+
-              ' SU INFORMACIÓN SER&Aacute; AN&Oacute;NIMA Y CONFIDENCIAL.</div><div class="agradecimiento" ></div> ');
+              ' SU INFORMACIÓN SER&Aacute; AN&Oacute;NIMA Y CONFIDENCIAL.</div>');
             $('#detailsDiv').append(htmlElement);
             $('#success').modal('show');
           });
@@ -527,7 +516,7 @@
                 if(data == '{"estado":"enviado"}'){
                     swal(
                         'Hecho',
-                        'Se ha enviado correctamente el informe, muchas gracias por su ayuda.',
+                        'Se ha enviado correctamente el informe, muchas gracias por su colaboración.',
                         'success'
                     );
                     $("#informe").val("");
@@ -600,7 +589,7 @@
               if(foto=='./img/desapsf.jpg'){
                 foto='./img/noexiste.jpg';//Para generar error automáticamente
               }
-              var sexo=item.sexo=='M'?'Masculino':'Femenino';
+              var sexo=item.sexo=='M'?'Hombre':'Mujer';
               var origen=item.origen==null?'S/D':item.origen;
               if (item.apat==null) {
                 item.apat='';
@@ -682,7 +671,7 @@
               if(foto=='./img/desapsf.jpg'){
                 foto='./img/noexiste.jpg';//Para generar error automáticamente
               }
-              var sexo=item.sexo=='M'?'Masculino':'Femenino';
+              var sexo=item.sexo=='M'?'Hombre':'Mujer';
               var origen=item.origen==null?'S/D':item.origen;
               if (item.apat==null) {
                 item.apat='';
@@ -751,9 +740,9 @@
         </div>
         <div class="col-xs-12 col-sm-4 lineaFooter">
           <h4 class="negrita">Visitante No.</h4>
-            <!--<div class="textwidget"><a href="http://www.easycounter.com/es/">
+            <div class="textwidget"><a href="http://www.easycounter.com/es/">
                   <img src="//www.easycounter.com/counter.php?contactofiscalia" border="0" alt="Contador"></a>
-                </div>-->
+                </div>
         </div>
       </div>
     </div>
