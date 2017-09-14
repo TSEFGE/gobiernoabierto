@@ -642,10 +642,10 @@
           elemento = elemento -(elements_per_page*2);
         }
       }else{
-        if(pagtot == 2){
+        if((pagtot == 2) && (max_size == 12) ){
           elemento = elemento - (pagina*elements_per_page)+1;
         }else{
-          elemento = elemento - (pagina*elements_per_page);
+          elemento = 0;
         }
       }
       var limit = elements_per_page + elemento;   
