@@ -4,7 +4,8 @@
         <layout class="LoggerLayoutPattern">
             <param name="conversionPattern" value="%date [%logger] %message%newline" />
         </layout>
-        <param name="file" value="C:\xampp\htdocs\desaparecidos\logs\desaparecidos.log" />
+        <param name="file" value="/var/www/html/gobiernoabierto/desaparecidos
+/logs/desaparecidos.log" />
     </appender>
     <root>
         <level value="DEBUG" />
