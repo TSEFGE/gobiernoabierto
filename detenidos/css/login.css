@@ -54,11 +54,11 @@
     margin-top: -1px;
     display: none;
 }
-
+/*
 input[type="text"], input[type="password"] {
     text-transform: uppercase;
 }
-
+*/
 @media (max-width: 991px) {
     .imagenlogin{
         display: none;

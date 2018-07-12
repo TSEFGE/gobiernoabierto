@@ -1,6 +1,6 @@
 <?php
 $conexion = new mysqli('localhost', 'web', 'W3b2015_@', 'detenidos');
-$sql = " SELECT id, password FROM db_users where id>=756";
+$sql = " SELECT id, password FROM db_users where id>=759";
 $resultado = $conexion->query($sql);
 
 if( $resultado->num_rows > 0 ){

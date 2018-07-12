@@ -97,6 +97,7 @@ use
             )
             ->leftJoin( 'detencion', 'detenido.id', '=', 'detencion.idDetenido' )
             ->leftJoin( 'unidad', 'unidad.id', '=', 'detencion.idUnidad' )
+            ->where('unidad.region',$_SESSION['idUnidad'],"=")
             ->process( $_POST )
             ->json();
         }
