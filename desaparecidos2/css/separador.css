@@ -1,0 +1,21 @@
+.separador,.separador2{
+    border:none;
+    height: 2px;
+    background: -webkit-linear-gradient(left, white, #8e8e8e, white);
+    background: -moz-linear-gradient(left, white, #8e8e8e, white);
+    background: -o-linear-gradient(left, white, #8e8e8e, white);
+    background: linear-gradient(to right, white, #8e8e8e, white);
+    margin-right:0px; 
+    margin-left:0px;
+    margin-bottom:0px;
+    margin-top:0px;
+}
+
+@media (max-width: 334px) {
+    .separador{
+        float: right;
+        width: 111px;
+
+    }
+    
+}

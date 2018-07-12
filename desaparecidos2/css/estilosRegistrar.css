@@ -1,0 +1,96 @@
+input[type="text"], input[type="password"], input[type="search"] {
+    text-transform: uppercase;
+}
+.ng-scope{
+	padding-top: 0px;
+}
+.imgPanel{
+	width:25px;
+	height:25px;
+}
+.espacioForm{
+	padding-left: 15px;
+}
+.panel2{
+	background-color: #444644;
+}
+
+.btn-gris {
+  color: #fff;
+  background-color: #919396;
+  border-color: #646363;
+}
+.btn-gris:focus,
+.btn-gris.focus {
+  color: #fff;
+  background-color: #646363;
+  border-color: #222222;
+}
+.btn-gris:hover {
+  color: #fff;
+  background-color: #646363;
+  border-color: #58595B;
+}
+.btn-gris:active,
+.btn-gris.active{
+  color: #fff;
+  background-color: #646363;
+  border-color: #58595B;
+}
+td{
+	padding: 0px;
+	font-size: 1rem;
+	color:  #000000;
+}
+.ajuste{
+	white-space: nowrap;
+}
+.cabecera{
+	background-color: #919393;
+	color: #fff;
+	font-size: 1.3rem;
+}
+@media (min-width: 768px) {
+	td{
+		font-size: 1.1rem;
+	}
+	.cabecera{
+		font-size: 1.4rem;
+	}
+}
+@media (min-width: 992px) {
+	td{
+		font-size: 1.2rem;
+	}
+	.cabecera{
+		font-size: 1.5rem;
+	}
+}
+@media (min-width: 1200px) {
+	td{
+		font-size: 1.3rem;
+	}
+	.cabecera{
+		font-size: 1.6rem;
+	}
+}
+
+table#reportes > tbody > tr{
+	cursor: pointer;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #E0E0E0;
+	color: #fff;
+}
+
+/*Para crear un scroll al modal*/
+.modal-dialog{
+    overflow-y: initial !important
+}
+.cuerpo-modal{
+    height: 70%;
+    overflow-y: auto;
+    max-width: 100%;
+    overflow-x: auto;
+}

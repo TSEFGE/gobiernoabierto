@@ -1,0 +1,76 @@
+@font-face {
+  font-family: 'neosanspro-regular';
+  font-weight: normal;
+  font-style: normal;
+  src: url('../fonts/neosanspro-regular.eot');
+  src: url('../fonts/neosanspro-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/neosanspro-regular.woff') format('woff'), url('../fonts/neosanspro-regular.ttf') format('truetype'), url('../fonts/neosanspro-regular.svg') format('svg');
+}
+@font-face {
+  font-family: 'neosanspro-bold';
+  font-weight: normal;
+  font-style: normal;
+  src: url('../fonts/neosanspro-bold.eot');
+  src: url('../fonts/neosanspro-bold.eot?#iefix') format('embedded-opentype'), url('../fonts/neosanspro-bold.woff') format('woff'), url('../fonts/neosanspro-bold.ttf') format('truetype'), url('../fonts/neosanspro-bold.svg') format('svg');
+}
+@font-face {
+  font-family: 'neosanspro-bolditalic';
+  font-weight: normal;
+  font-style: normal;
+  src: url('../fonts/neosanspro-bolditalic.eot');
+  src: url('../fonts/neosanspro-bolditalic.eot?#iefix') format('embedded-opentype'), url('../fonts/neosanspro-bolditalic.woff') format('woff'), url('../fonts/neosanspro-bold.ttf') format('truetype'), url('../fonts/neosanspro-bolditalic.svg') format('svg');
+}
+@font-face {
+  font-family: 'neosanspro-italic';
+  font-weight: normal;
+  font-style: normal;
+  src: url('../fonts/neosanspro-italic.eot');
+  src: url('../fonts/neosanspro-italic.eot?#iefix') format('embedded-opentype'), url('../fonts/neosanspro-italic.woff') format('woff'), url('../fonts/neosanspro-italic.ttf') format('truetype'), url('../fonts/neosanspro-italic.svg') format('svg');
+}
+@font-face {
+  font-family: 'neosanspro-light';
+  font-weight: normal;
+  font-style: normal;
+  src: url('../fonts/neosanspro-light.eot');
+  src: url('../fonts/neosanspro-italic.eot?#iefix') format('embedded-opentype'), url('../fonts/neosanspro-light.woff') format('woff'), url('../fonts/neosanspro-light.ttf') format('truetype'), url('../fonts/neosanspro-light.svg') format('svg');
+}
+@font-face {
+  font-family: 'neosanspro-lightitalic';
+  font-weight: normal;
+  font-style: normal;
+  src: url('../fonts/neosanspro-lightitalic.eot');
+  src: url('../fonts/neosanspro-lightitalic.eot?#iefix') format('embedded-opentype'), url('../fonts/neosanspro-lightitalic.woff') format('woff'), url('../fonts/neosanspro-lightitalic.ttf') format('truetype'), url('../fonts/neosanspro-lightitalic.svg') format('svg');
+}
+@font-face {
+  font-family: 'neosanspro-ultra';
+  font-weight: normal;
+  font-style: normal;
+  src: url('../fonts/neosanspro-ultra.eot');
+  src: url('../fonts/neosanspro-lightitalic.eot?#iefix') format('embedded-opentype'), url('../fonts/neosanspro-ultra.woff') format('woff'), url('../fonts/neosanspro-ultra.ttf') format('truetype'), url('../fonts/neosanspro-ultra.svg') format('svg');
+}
+
+
+h1, h2, h4, h5, h6, div {
+  font-family: 'neosanspro-regular';
+  -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+h3 {
+  font-family: 'neosanspro-lightitalic';
+  -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fuente-ficha {
+  font-family: 'neosanspro-bold';
+  -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fuente-ficha-titulo {
+  font-family: 'neosanspro-bold';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 11px;
+}
