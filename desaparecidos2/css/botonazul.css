@@ -1,0 +1,45 @@
+.btn-azul { 
+  color: #FFFFFF; 
+  background-color: #48B0F7; 
+  border-color: #48B0F7; 
+} 
+ 
+.btn-azul:hover, 
+.btn-azul:focus, 
+.btn-azul:active, 
+.btn-azul.active, 
+.open .dropdown-toggle.btn-azul { 
+  color: #FFFFFF; 
+  background-color: #48b0f7; 
+  border-color: #48B0F7; 
+} 
+ 
+.btn-azul:active, 
+.btn-azul.active, 
+.open .dropdown-toggle.btn-azul { 
+  background-image: none; 
+} 
+ 
+.btn-azul.disabled, 
+.btn-azul[disabled], 
+fieldset[disabled] .btn-azul, 
+.btn-azul.disabled:hover, 
+.btn-azul[disabled]:hover, 
+fieldset[disabled] .btn-azul:hover, 
+.btn-azul.disabled:focus, 
+.btn-azul[disabled]:focus, 
+fieldset[disabled] .btn-azul:focus, 
+.btn-azul.disabled:active, 
+.btn-azul[disabled]:active, 
+fieldset[disabled] .btn-azul:active, 
+.btn-azul.disabled.active, 
+.btn-azul[disabled].active, 
+fieldset[disabled] .btn-azul.active { 
+  background-color: #48B0F7; 
+  border-color: #48B0F7; 
+} 
+ 
+.btn-azul .badge { 
+  color: #48B0F7; 
+  background-color: #FFFFFF; 
+}

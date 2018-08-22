@@ -20,6 +20,7 @@ if(count($resultado)>0){
 <html>
 <head>
     <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-store" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=11,chrome=1">
     <title>Gobierno Abierto - Registro Público de Personas Detenidas</title>
@@ -65,22 +66,23 @@ if(count($resultado)>0){
                     <img class="img-responsive imagenlogin2" src="img/complementlogin2.jpg" alt="" >
                     <div class="login">
                         <h2> INICIA SESIÓN</h2>
-                        <h5>¡Bienvenido!</h5>
+                        <div class="alert alert-info">
+ Utilice el usuario y contraseña de su correo electrónico INSTITUCIONAL sin incluir el @fiscaliaveracruz.gob.mx, Por ejemplo en lugar de miusuario@fiscaliaveracruz.gob.mx utilice <b>miusuario</b> </div>
                         <form method="post" action="authentication.php">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuario" maxlength="100" required>
+                                <input type="text" class="form-control" name="usuario" id="usuario" placeholder="USUARIO DE CORREO SIN INCLUIR @fiscaliaveracruz.gob.mx" maxlength="100" required>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" maxlength="100" required>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="CONTRASEÑA DEL CORREO" maxlength="100" required>
                             </div>
                             <?php
-                            $E1 ="El usuario y/o contraseña son incorrectas, vuelva a intentarlo.";
-                            $E2 ="El usuario y la contraseña son correctas, pero su cuenta no esta activada.";
+                            $E1 ="Recuerda que ahora debes usar tu usuario de correo electrónico institucional y tu contraseña. Si tienes problemas, por favor comunicate al (228)8416170 ext. 3500, para verificar tu cuenta.";
+                            $E1 ="Recuerda que ahora debes usar tu usuario de correo electrónico institucional y tu contraseña. Si tienes problemas, por favor comunicate al (228)8416170 ext. 3500, para verificar tu cuenta.";
                             if (isset($_GET['error1'])==1) {
-                                echo "<div class='errormsg'>".$E1."</div>";
+                                echo "<div class=\"alert alert-warning\">".$E1."</div>";
                             }
                             if(isset($_GET['error2'])==2){
-                                echo "<div class='errormsg'>".$E2."</div>";
+                                echo "<div class=\"alert alert-warning\">".$E2."</div>";
                             }
 
                             ?>
@@ -88,15 +90,15 @@ if(count($resultado)>0){
                                 <input type="submit" name="login-submit" id="login-submit" value="INGRESAR" title="Login now"><br>
 
                             </div>
-                            <div class="col-xs-6">
+                            <div class="col-xs-12">
                                 <a class="help-block" href="https://drive.google.com/open?id=0B3WZvqbqPu3pRzJKWEVVXzFzbEk"><i class="fa fa-book" aria-hidden="true" style="color: #919396;"></i><br>Manual de Usuario</a>
                             </div>
-                            <div class="col-xs-6">
+                            <!--<div class="col-xs-6">
                                 <a class="help-block" href="#" data-toggle="modal" data-target="#modalRecupera"><i class="fa fa-key" aria-hidden="true" style="color: #919396;"></i><br>Recuperar Contraseña</a>
                             </div>
                             <div>
                                 <a class="help-block" href="#" data-toggle="modal" data-target="#modalRegistrar"><i class="fa fa-user-plus" aria-hidden="true" style="color: #919396;"></i><br>Crear cuenta</a>
-                            </div>
+                            </div>-->
                         </form>
                     </div>
                 </div>
